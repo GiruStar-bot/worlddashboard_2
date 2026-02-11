@@ -23,11 +23,11 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 依存関係をクリーンインストール (npm installより確実)
+      # 【重要】ウェブ編集時はlockファイルとズレるため、npm install を使用します
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      # 【重要】Windowsからのプッシュ時に発生する権限エラーを回避
+      # 実行権限の付与
       - name: Fix permissions
         run: chmod +x node_modules/.bin/vite || true
 
