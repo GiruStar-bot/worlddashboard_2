@@ -23,11 +23,10 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # 【重要】ウェブ編集時はlockファイルとズレるため、npm install を使用します
+      # ロックファイルとの不整合を無視してパッケージをインストール
       - name: Install dependencies
         run: npm install
 
-      # 実行権限の付与
       - name: Fix permissions
         run: chmod +x node_modules/.bin/vite || true
 
