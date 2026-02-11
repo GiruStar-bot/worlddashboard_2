@@ -3,6 +3,12 @@ import {
   PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, Tooltip as ChartTooltip, ResponsiveContainer,
 } from 'recharts';
 
+/*
+ * GlobalAnalytics Component
+ * UPDATED: Fixed tooltip text visibility by forcing light colors via itemStyle.
+ * Increased contrast for panel titles.
+ */
+
 const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e879f9'];
 
 export default function GlobalAnalytics({ data }) {
@@ -48,11 +54,14 @@ export default function GlobalAnalytics({ data }) {
     
     const xVals = scatter.map(d => d.x);
     const yVals = scatter.map(d => d.y);
+    const safeXDomain = xVals.length ? [Math.min(...xVals), Math.max(...xVals)] : [0, 100];
+    const safeYDomain = yVals.length ? [Math.min(...yVals), Math.max(...yVals)] : [0, 100];
+
     return { 
       pieData: pie, 
       scatterData: scatter, 
-      xDomain: xVals.length ? [Math.min(...xVals), Math.max(...xVals)] : [0, 100],
-      yDomain: yVals.length ? [Math.min(...yVals), Math.max(...yVals)] : [0, 100]
+      xDomain: safeXDomain,
+      yDomain: safeYDomain
     };
   }, [countries]);
 
@@ -61,7 +70,10 @@ export default function GlobalAnalytics({ data }) {
       {/* GDP Share */}
       <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
         <div className="absolute top-0 left-0 w-0.5 h-full bg-primary/30 group-hover:bg-primary transition-colors"></div>
-        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Global GDP Distribution</h4>
+        {/* Title: Increased brightness (slate-300) and glow effect */}
+        <h4 className="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1 pl-2 text-glow">
+          Global GDP Distribution
+        </h4>
         <div className="flex-1 min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
@@ -82,11 +94,13 @@ export default function GlobalAnalytics({ data }) {
                 layout="vertical" 
                 align="right" 
                 verticalAlign="middle"
-                wrapperStyle={{ fontSize: '10px', color: '#94a3b8' }}
+                wrapperStyle={{ fontSize: '10px', color: '#e2e8f0' }} // Lighter text for Legend
               />
               <ChartTooltip 
-                formatter={(value) => `$${(value / 1e12).toFixed(1)}T`}
-                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
+                formatter={(value) => [`$${(value / 1e12).toFixed(1)}T`, 'GDP']}
+                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f1f5f9', fontSize: '11px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}
+                itemStyle={{ color: '#f1f5f9' }} // Force item text to be white
+                labelStyle={{ color: '#94a3b8' }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -96,7 +110,10 @@ export default function GlobalAnalytics({ data }) {
       {/* Scatter Chart */}
       <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
         <div className="absolute top-0 left-0 w-0.5 h-full bg-secondary/30 group-hover:bg-secondary transition-colors"></div>
-        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Wealth vs Stability</h4>
+        {/* Title: Increased brightness */}
+        <h4 className="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1 pl-2 text-glow">
+          Wealth vs Stability
+        </h4>
         <div className="flex-1 min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
@@ -104,17 +121,18 @@ export default function GlobalAnalytics({ data }) {
               <XAxis 
                 type="number" dataKey="x" name="GDP/Capita" domain={xDomain} 
                 tickFormatter={(val) => `$${(val / 1000).toFixed(0)}k`} 
-                tick={{ fill: '#64748b', fontSize: 10 }}
+                tick={{ fill: '#94a3b8', fontSize: 10 }}
                 tickLine={false} axisLine={false}
               />
               <YAxis 
                 type="number" dataKey="y" name="Stability" domain={yDomain} 
-                tick={{ fill: '#64748b', fontSize: 10 }}
+                tick={{ fill: '#94a3b8', fontSize: 10 }}
                 tickLine={false} axisLine={false}
               />
               <ChartTooltip 
-                cursor={{ strokeDasharray: '3 3' }}
-                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
+                cursor={{ strokeDasharray: '3 3', stroke: '#cbd5e1' }}
+                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f1f5f9', fontSize: '11px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}
+                itemStyle={{ color: '#f1f5f9' }} // Force item text to be white
                 formatter={(value, name, props) => [value.toFixed(1), props.dataKey === 'x' ? 'GDP/Cap ($)' : 'Stability Score']}
               />
               <Scatter name="Countries" data={scatterData} fill="#8b5cf6" fillOpacity={0.6} shape="circle" />
