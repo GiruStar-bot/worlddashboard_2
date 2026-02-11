@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid,
@@ -7,34 +7,28 @@ import {
 import { 
   Globe, ChevronUp, ChevronDown, Activity, Maximize, Minimize, 
   X, Users, AlertTriangle, Newspaper, ExternalLink, RefreshCw, AlertCircle, 
-  TrendingUp, Radio
+  TrendingUp 
 } from 'lucide-react';
-
-// ライブラリ解決エラーとReactの重複（Hookエラー）を避けるため、external指定付きのCDNインポートを慎重に使用します
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'https://esm.sh/react-simple-maps@3.0.0?external=react,react-dom';
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v2.8 - Organic Glass UI & Full Intel
- * * 安定化とUI深化のアップデート:
- * 1. 地図ライブラリの解決エラーをCDN(external指定)で根本修正
- * 2. 「有機的」かつ「硝子(Glass)」な質感のUIデザイン（超広角ブラーと深い角丸）
- * 3. 各国詳細パネルの全指標（人口, GDP, 成長率, FSIリスク, 政体）をHUD形式で復活
- * 4. 左右に広くドラッグでき、上下はピタッと止まる移動制限の最適化
- * 5. リアルタイムニュースフィード（Google Alerts RSS対応）の統合
+ * WorldDashboard v3.2 - Organic Glass UI Edition
+ * * 有機的な「硝子(Glass)」デザインと、高度な地政学インテリジェンスの統合。
+ * 全ての指標（人口、GDP、成長率、FSIリスク、政体区分）をHUDスタイルで復活。
  */
 
-// --- 設定・データソース ---
+// --- データ設定 ---
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
 const PIE_COLOURS = ['#22d3ee', '#818cf8', '#f43f5e', '#fbbf24', '#34d399', '#f472b6'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
 const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
 
-// 国名紐付け用マッピング
+// 国名マッピング (Numeric ID -> ISO3)
 const ISO_MAP = {
   "004": "AFG", "008": "ALB", "012": "DZA", "024": "AGO", "031": "AZE", "032": "ARG", "036": "AUS", "040": "AUT", "050": "BGD", "051": "ARM", "056": "BEL", "068": "BOL", "070": "BIH", "072": "BWA", "076": "BRA", "096": "BRN", "100": "BGR", "104": "MMR", "108": "BDI", "112": "BLR", "116": "KHM", "120": "CMR", "124": "CAN", "140": "CAF", "148": "TCD", "152": "CHL", "156": "CHN", "170": "COL", "178": "COG", "180": "COD", "188": "CRI", "191": "HRV", "192": "CUB", "196": "CYP", "203": "CZE", "208": "DNK", "214": "DOM", "218": "ECU", "222": "SLV", "226": "GNQ", "231": "ETH", "232": "ERI", "233": "EST", "242": "FJI", "246": "FIN", "250": "FRA", "266": "GAB", "268": "GEO", "270": "GMB", "276": "DEU", "288": "GHA", "300": "GRC", "320": "GTM", "324": "GIN", "328": "GUY", "332": "HTI", "340": "HND", "348": "HUN", "352": "ISL", "356": "IND", "360": "IDN", "364": "IRN", "368": "IRQ", "372": "IRL", "376": "ISR", "380": "ITA", "384": "CIV", "388": "JAM", "392": "JPN", "398": "KAZ", "400": "JOR", "404": "KEN", "408": "PRK", "410": "KOR", "414": "KWT", "417": "KGZ", "418": "LAO", "422": "LBN", "426": "LSO", "428": "LVA", "430": "LBR", "434": "LBY", "440": "LTU", "442": "LUX", "450": "MDG", "454": "MWI", "458": "MYS", "462": "MDV", "466": "MLI", "470": "MLT", "478": "MRT", "480": "MUS", "484": "MEX", "492": "MCO", "496": "MNG", "498": "MDA", "499": "MNE", "504": "MAR", "508": "MOZ", "512": "OMN", "516": "NAM", "520": "NRU", "524": "NPL", "528": "NLD", "554": "NZL", "558": "NIC", "562": "NER", "566": "NGA", "578": "NOR", "586": "PAK", "591": "PAN", "598": "PNG", "600": "PRY", "604": "PER", "608": "PHL", "616": "POL", "620": "PRT", "634": "QAT", "642": "ROU", "643": "RUS", "646": "RWA", "682": "SAU", "686": "SEN", "688": "SRB", "694": "SLE", "702": "SGP", "703": "SVK", "704": "VNM", "705": "SVN", "710": "ZAF", "716": "ZWE", "724": "ESP", "728": "SSD", "729": "SDN", "740": "SUR", "748": "SWZ", "752": "SWE", "756": "CHE", "760": "SYR", "762": "TJK", "764": "THA", "768": "TGO", "772": "TKL", "776": "TON", "780": "TTO", "784": "ARE", "788": "TUN", "792": "TUR", "795": "TKM", "800": "UGA", "804": "UKR", "807": "MKD", "818": "EGY", "826": "GBR", "834": "TZA", "840": "USA", "858": "URY", "860": "UZB", "862": "VEN", "882": "WSM", "887": "YEM", "894": "ZMB"
 };
 
-// --- ヘルパー: リスクカラー計算 ---
+// --- カラーヘルパー ---
 const getRiskColor = (risk, min, max) => {
   if (risk == null) return 'rgba(30, 41, 59, 0.4)';
   const t = (risk - min) / (max - min || 1);
@@ -43,14 +37,14 @@ const getRiskColor = (risk, min, max) => {
     g: Math.round(a.g + (b.g - a.g) * w),
     b: Math.round(a.b + (b.b - a.b) * w)
   });
-  const cA = { r: 34, g: 211, b: 238 }; 
-  const cB = { r: 167, g: 139, b: 250 }; 
-  const cC = { r: 244, g: 63, b: 94 }; 
+  const cA = { r: 34, g: 211, b: 238 }; // Cyan
+  const cB = { r: 129, g: 140, b: 248 }; // Indigo
+  const cC = { r: 244, g: 63, b: 94 }; // Rose
   const res = t < 0.5 ? mix(cA, cB, t / 0.5) : mix(cB, cC, (t - 0.5) / 0.5);
   return `rgb(${res.r}, ${res.g}, ${res.b})`;
 };
 
-// --- サブコンポーネント: 世界地図 ---
+// --- コンポーネント: WorldMap ---
 const WorldMap = ({ data, onCountryClick, onHover, selectedIso }) => {
   const riskByIso = useMemo(() => {
     const map = {};
@@ -70,7 +64,7 @@ const WorldMap = ({ data, onCountryClick, onHover, selectedIso }) => {
       <ComposableMap projectionConfig={{ scale: 220 }} className="w-full h-full">
         <ZoomableGroup 
           center={[0, 0]} zoom={1} minZoom={1} maxZoom={8} 
-          /* 解決：左右は広範囲、上下は地図の高さ(0-600)に厳密に制限 */
+          // 左右は自由、上下は地図の範囲にロック
           translateExtent={[[-500, 0], [1300, 600]]}
         >
           <Geographies geography={GEO_URL}>
@@ -86,7 +80,7 @@ const WorldMap = ({ data, onCountryClick, onHover, selectedIso }) => {
                   stroke="rgba(255,255,255,0.08)"
                   strokeWidth={0.5}
                   style={{
-                    default: { outline: 'none', transition: 'fill 0.4s cubic-bezier(0.4, 0, 0.2, 1)' },
+                    default: { outline: 'none', transition: 'fill 0.4s ease' },
                     hover: { fill: '#f472b6', cursor: 'pointer', outline: 'none' },
                     pressed: { fill: '#ec4899', outline: 'none' },
                   }}
@@ -110,7 +104,7 @@ const WorldMap = ({ data, onCountryClick, onHover, selectedIso }) => {
   );
 };
 
-// --- サブコンポーネント: 分析パネル ---
+// --- コンポーネント: 分析・ニュースフィード ---
 const GlobalAnalytics = ({ data, isExpanded }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -146,37 +140,37 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
   }, [countries]);
 
   return (
-    <div className={`grid gap-8 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
-      <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-8 h-full`}>
-        {/* 有機的な硝子カードデザイン */}
-        <div className="bg-white/[0.03] backdrop-blur-3xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-          <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.4em] mb-8 flex items-center gap-3 uppercase">
-             <Activity size={16}/> ECONOMIC_DISTRIBUTION
+    <div className={`grid gap-10 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
+      <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-10 h-full`}>
+        {/* 有機的硝子カード */}
+        <div className="bg-white/[0.04] backdrop-blur-[40px] p-8 border border-white/10 flex flex-col rounded-[3.5rem] shadow-2xl overflow-hidden relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.4em] mb-10 flex items-center gap-3 uppercase">
+             <Activity size={16}/> ECONOMIC_SHARE
           </h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
               <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius="65%" outerRadius="90%" stroke="none" paddingAngle={8} cornerRadius={12}>
+                <Pie data={pieData} dataKey="value" innerRadius="65%" outerRadius="90%" stroke="none" paddingAngle={8} cornerRadius={16}>
                   {pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}
                 </Pie>
                 <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 11, color: '#94a3b8', paddingLeft: 20 }} />
-                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} />
+                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.96)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '2rem', color: '#fff', fontSize: 11 }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-white/[0.03] backdrop-blur-3xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-          <h4 className="text-[11px] text-indigo-400 font-black tracking-[0.4em] mb-8 uppercase">WEALTH_VS_STABILITY</h4>
+        <div className="bg-white/[0.04] backdrop-blur-[40px] p-8 border border-white/10 flex flex-col rounded-[3.5rem] shadow-2xl overflow-hidden relative group">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+          <h4 className="text-[11px] text-indigo-400 font-black tracking-[0.4em] mb-10 uppercase">STABILITY_ANALYSIS</h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
               <ScatterChart margin={{ top: 10, right: 10 }}>
-                <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="6 6" vertical={false} />
-                <XAxis type="number" dataKey="x" tickFormatter={v => `$${(v/1000).toFixed(0)}k`} tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
-                <YAxis type="number" dataKey="y" tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
-                <ChartTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} />
+                <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="8 8" vertical={false} />
+                <XAxis type="number" dataKey="x" tickFormatter={v => `$${(v/1000).toFixed(0)}k`} tick={{fill:'#64748b', fontSize:10}} axisLine={false} />
+                <YAxis type="number" dataKey="y" tick={{fill:'#64748b', fontSize:10}} axisLine={false} />
+                <ChartTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.96)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '2rem' }} />
                 <Scatter data={scatterData} fill="#818cf8" fillOpacity={0.4} />
               </ScatterChart>
             </ResponsiveContainer>
@@ -185,17 +179,17 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
       </div>
 
       {isExpanded && (
-        <div className="lg:col-span-4 bg-slate-950/40 backdrop-blur-[60px] border border-white/10 flex flex-col overflow-hidden rounded-[3.5rem] shadow-2xl animate-in slide-in-from-right duration-700">
-          <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-            <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.5em] flex items-center gap-3 uppercase"><Newspaper size={18} /> LIVE_INTELLIGENCE</h4>
-            {loading && <RefreshCw size={16} className="animate-spin text-cyan-400" />}
+        <div className="lg:col-span-4 bg-slate-950/40 backdrop-blur-[80px] border border-white/10 flex flex-col overflow-hidden rounded-[3.5rem] shadow-2xl animate-in slide-in-from-right duration-700">
+          <div className="p-10 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+            <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.5em] flex items-center gap-3 uppercase"><Newspaper size={20} /> LIVE_FEED</h4>
+            {loading && <RefreshCw size={18} className="animate-spin text-cyan-400" />}
           </div>
-          <div className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-10 space-y-8 custom-scrollbar">
             {news.map((item, i) => (
-              <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-5 bg-white/[0.04] hover:bg-white/[0.08] border border-transparent hover:border-cyan-500/20 rounded-[2rem] transition-all group active:scale-[0.98] duration-300 shadow-lg">
-                <div className="text-[10px] text-slate-500 mb-3 flex justify-between font-mono">
-                  <span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span>
-                  <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-6 bg-white/[0.04] hover:bg-white/[0.1] border border-transparent hover:border-cyan-500/20 rounded-[2rem] transition-all group active:scale-[0.98] duration-300">
+                <div className="text-[10px] text-slate-500 mb-4 flex justify-between font-mono">
+                  <span className="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full font-black uppercase">{new Date(item.pubDate).toLocaleDateString()}</span>
+                  <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <h5 className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
               </a>
@@ -227,60 +221,60 @@ const CountryDetails = ({ country, onClose }) => {
   ];
 
   const GlassMetric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
-    <div className="p-5 bg-white/[0.03] border border-white/[0.05] rounded-[2.5rem] hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all duration-500 flex flex-col items-start group shadow-lg">
-      <div className="text-[10px] text-slate-500 mb-3 flex items-center gap-2 uppercase font-black tracking-widest group-hover:text-slate-300 whitespace-nowrap">
-        {Icon && <Icon size={12} className="opacity-60 group-hover:opacity-100 transition-opacity"/>} {label}
+    <div className="p-6 bg-white/[0.04] border border-white/[0.08] rounded-[2.5rem] hover:bg-white/[0.1] transition-all duration-500 flex flex-col items-start group shadow-xl">
+      <div className="text-[10px] text-slate-500 mb-4 flex items-center gap-2 uppercase font-black tracking-widest group-hover:text-slate-300 whitespace-nowrap">
+        {Icon && <Icon size={14} className="opacity-60 group-hover:opacity-100 transition-opacity"/>} {label}
       </div>
-      <div className={`font-mono ${color} text-xl md:text-2xl leading-none truncate w-full font-black tracking-tighter text-shadow-glow`}>{value}</div>
+      <div className={`font-mono ${color} text-2xl md:text-3xl leading-none truncate w-full font-black tracking-tighter text-shadow-glow`}>{value}</div>
     </div>
   );
 
   return (
-    <div className="flex flex-col h-full bg-slate-900/30 backdrop-blur-[80px] border-l border-white/10 shadow-[-30px_0_60px_rgba(0,0,0,0.5)] overflow-hidden">
-      <div className="p-10 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
-        <div className="space-y-3">
-          <div className="text-[11px] text-cyan-400 animate-pulse tracking-[0.6em] font-black uppercase">TARGET_STATUS</div>
-          <h2 className="text-4xl font-black text-white tracking-tight leading-none drop-shadow-2xl font-sans uppercase tracking-tighter">{master.name}</h2>
-          <div className="flex gap-3 mt-3 font-mono">
-             <span className="bg-cyan-500/20 text-cyan-400 text-[10px] px-3 py-1 rounded-full border border-cyan-500/20 uppercase font-black tracking-widest">{master.iso3}</span>
-             <span className="bg-white/5 text-slate-400 text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase font-black tracking-widest font-mono">{canonical?.politics?.regime_type || 'N/A'}</span>
+    <div className="flex flex-col h-full bg-slate-900/30 backdrop-blur-[80px] border-l border-white/10 shadow-[-30px_0_60px_rgba(0,0,0,0.6)] overflow-hidden">
+      <div className="p-12 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
+        <div className="space-y-4">
+          <div className="text-[11px] text-cyan-400 animate-pulse tracking-[0.6em] font-black uppercase">TARGET_SCAN</div>
+          <h2 className="text-5xl font-black text-white tracking-tight leading-none uppercase tracking-tighter">{master.name}</h2>
+          <div className="flex gap-4 mt-5 font-mono">
+             <span className="bg-cyan-500/20 text-cyan-400 text-[11px] px-4 py-1.5 rounded-full uppercase font-black tracking-widest">{master.iso3}</span>
+             <span className="bg-white/5 text-slate-400 text-[11px] px-4 py-1.5 rounded-full border border-white/10 uppercase font-black">{canonical?.politics?.regime_type || 'N/A'}</span>
           </div>
         </div>
-        <button onClick={onClose} className="text-slate-400 hover:text-white transition-all p-3 bg-white/[0.05] rounded-full hover:rotate-90 duration-500 shadow-2xl border border-white/10"><X size={24} /></button>
+        <button onClick={onClose} className="text-slate-400 hover:text-white transition-all p-4 bg-white/[0.08] rounded-full hover:rotate-90 duration-500"><X size={28} /></button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-10 space-y-10 scrollbar-thin">
-        {/* 有機的な曲線を持つ要約カード */}
-        <div className="p-8 rounded-[3rem] bg-cyan-500/[0.03] border border-cyan-500/10 font-bold text-sm text-slate-200 leading-relaxed min-h-[6rem] shadow-inner relative overflow-hidden group">
-          <div className="absolute top-[-50%] right-[-20%] w-48 h-48 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none group-hover:scale-150 transition-transform duration-1000" />
+      <div className="flex-1 overflow-y-auto p-12 space-y-12 scrollbar-thin">
+        <div className="p-10 rounded-[3rem] bg-cyan-500/[0.03] border border-cyan-500/10 font-bold text-base text-slate-200 leading-relaxed min-h-[6.5rem] shadow-inner relative overflow-hidden group">
+          <div className="absolute top-[-50%] right-[-20%] w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] group-hover:scale-150 transition-transform duration-[2000ms]" />
           {headline}<span className="animate-pulse text-cyan-400 font-black ml-1">|</span>
         </div>
 
-        {/* 復活：全指標（人口, GDP, 成長率, リスク指数） */}
-        <div className="grid grid-cols-2 gap-5">
+        {/* 指標完全復活：人口, GDP, 成長率, リスク */}
+        <div className="grid grid-cols-2 gap-8">
           <GlassMetric label="Population" value={canonical?.society?.population?.value?.toLocaleString() || '0'} icon={Users} color="text-cyan-400" />
           <GlassMetric label="GDP (Nominal)" value={`$${((canonical?.economy?.gdp_nominal?.value || 0) / 1e9).toFixed(1)}B`} icon={Activity} color="text-indigo-400" />
           <GlassMetric label="GDP Growth" value={`${(canonical?.economy?.gdp_growth?.value || 0) > 0 ? '+' : ''}${canonical?.economy?.gdp_growth?.value || 0}%`} icon={TrendingUp} color={(canonical?.economy?.gdp_growth?.value || 0) >= 0 ? "text-emerald-400" : "text-rose-400"} />
           <GlassMetric label="FSI Risk" value={canonical?.risk?.fsi_total?.value?.toFixed(1) || 'N/A'} icon={AlertTriangle} color={(canonical?.risk?.fsi_total?.value || 0) > 80 ? "text-rose-500" : "text-cyan-400"} />
         </div>
 
-        <div className="space-y-5">
-          <div className="text-[11px] text-slate-500 font-black uppercase tracking-[0.4em] pl-4">NEURAL_PARAMETER_MAP</div>
-          <div className="h-72 border border-white/5 rounded-[4rem] bg-white/[0.02] p-8 shadow-2xl relative group">
+        <div className="space-y-8">
+          <div className="text-[11px] text-slate-500 font-black uppercase tracking-[0.5em] pl-6">NEURAL_PARAMETER_MAP</div>
+          <div className="h-80 border border-white/5 rounded-[4rem] bg-white/[0.02] p-12 shadow-2xl relative group overflow-hidden">
+             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="85%" data={radarData}>
                 <PolarGrid stroke="rgba(255,255,255,0.05)" />
-                <PolarAngleAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 11, fontWeight: '900' }} />
+                <PolarAngleAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 12, fontWeight: '900' }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} />
-                <Radar name="Status" dataKey="score" stroke="#22d3ee" fill="#22d3ee" fillOpacity={0.25} dot={{ r: 4, fill: '#22d3ee', strokeWidth: 2 }} />
+                <Radar name="Status" dataKey="score" stroke="#22d3ee" fill="#22d3ee" fillOpacity={0.25} dot={{ r: 5, fill: '#22d3ee', strokeWidth: 3 }} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-3 pt-4">
+        <div className="flex flex-wrap gap-4 pt-6">
            {ui_view?.tags?.map(t => (
-             <span key={t} className="px-4 py-1.5 rounded-full border border-white/10 text-[10px] text-slate-400 uppercase font-black bg-white/[0.05] hover:bg-cyan-500/10 transition-all cursor-pointer shadow-lg tracking-widest font-mono">
+             <span key={t} className="px-6 py-2 rounded-full border border-white/10 text-[11px] text-slate-400 uppercase font-black bg-white/[0.05] hover:bg-cyan-500/10 transition-all cursor-pointer shadow-lg tracking-widest font-mono">
                #{t}
              </span>
            ))}
@@ -299,15 +293,11 @@ export default function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    // データパスの動的解決 (GitHub Pages対応)
     const baseUrl = window.location.hostname.includes('github.io') ? "/worlddashboard_2/" : "/";
     fetch(`${baseUrl}worlddash_global_master.json`)
-      .then(res => {
-        if(!res.ok) throw new Error("Initialize failed");
-        return res.json();
-      })
+      .then(res => res.json())
       .then(setData)
-      .catch(e => console.error("Neural initialization failed", e));
+      .catch(e => console.error("Initialize failed", e));
   }, []);
 
   const toggleFs = () => {
@@ -328,75 +318,72 @@ export default function App() {
   }, [data]);
 
   if (!data) return (
-    <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
-       <Globe size={64} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_SYSTEM_v2.8
+    <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1.2em]">
+       <Globe size={80} className="mb-14 opacity-20 animate-spin-slow" />
+       INITIALIZING_NEXUS_v3.2
     </div>
   );
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-slate-950 relative font-sans text-slate-200">
-      {/* 有機的な背景装飾粒子 */}
-      <div className="absolute inset-0 pointer-events-none z-[999] opacity-25 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
-      {/* デジタル走査線レイヤー */}
-      <div className="absolute inset-0 pointer-events-none z-[998] opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_6px]"></div>
+      <div className="absolute inset-0 pointer-events-none z-[999] opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+      <div className="absolute inset-0 pointer-events-none z-[998] opacity-[0.04] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_8px]"></div>
       
-      {/* Header */}
-      <header className="absolute top-0 left-0 right-0 h-28 flex items-center px-16 justify-between z-[80] bg-gradient-to-b from-slate-950/90 to-transparent pointer-events-none shrink-0">
-        <div className="flex items-center gap-6 pointer-events-auto">
-          <div className="p-4 bg-cyan-500/10 rounded-[2.5rem] border border-cyan-500/20 backdrop-blur-3xl shadow-[0_0_50px_rgba(6,182,212,0.1)]">
-            <Globe className="text-cyan-400 animate-pulse" size={36} />
+      <header className="absolute top-0 left-0 right-0 h-32 flex items-center px-20 justify-between z-[80] bg-gradient-to-b from-slate-950/95 to-transparent pointer-events-none shrink-0">
+        <div className="flex items-center gap-8 pointer-events-auto">
+          <div className="p-5 bg-cyan-500/10 rounded-[2.5rem] border border-cyan-500/20 backdrop-blur-3xl shadow-[0_0_60px_rgba(6,182,212,0.15)]">
+            <Globe className="text-cyan-400 animate-pulse" size={44} />
           </div>
           <div>
-            <h1 className="text-3xl font-black tracking-[0.5em] font-mono text-white text-shadow-glow flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1>
-            <div className="text-[10px] text-slate-500 font-black uppercase tracking-[0.6em] mt-1 tracking-widest opacity-60">Intelligence_Nexus_Core_v2.8</div>
+            <h1 className="text-4xl font-black tracking-[0.6em] font-mono text-white text-shadow-glow flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1>
+            <div className="text-[11px] text-slate-500 font-black uppercase tracking-[0.8em] mt-2 tracking-widest opacity-50 font-mono">Global_Nexus_Stable_v3.2</div>
           </div>
         </div>
 
-        <button onClick={toggleFs} className="pointer-events-auto text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-5 border border-white/5 px-10 py-4 rounded-full bg-white/[0.03] backdrop-blur-3xl text-[12px] font-black shadow-2xl group active:scale-95 duration-300 font-mono tracking-[0.2em] uppercase">
-          {isFullscreen ? <Minimize size={22} /> : <Maximize size={22} />} 
-          {isFullscreen ? 'EXIT_LINK' : 'FULL_NEURAL'}
+        <button onClick={toggleFs} className="pointer-events-auto text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-6 border border-white/5 px-12 py-5 rounded-full bg-white/[0.04] backdrop-blur-3xl text-[13px] font-black shadow-2xl active:scale-95 duration-500 uppercase tracking-[0.3em] font-mono">
+          {isFullscreen ? <Minimize size={24} /> : <Maximize size={24} />} 
+          {isFullscreen ? 'EXIT_LINK' : 'FULL_DEEP'}
         </button>
       </header>
 
       <main className="flex-1 relative">
-        <div className="absolute inset-0 z-10 scale-[1.03] transform transition-transform duration-[2000ms] cubic-bezier(0.16, 1, 0.3, 1)">
+        <div className="absolute inset-0 z-10 scale-[1.04] transform transition-transform duration-[3000ms] cubic-bezier(0.16, 1, 0.3, 1)">
           <WorldMap data={data} onCountryClick={iso => setSelectedIso(prev => prev === iso ? null : iso)} onHover={(iso, pos) => setHoverInfo(iso ? { iso3: iso, ...pos } : null)} selectedIso={selectedIso} />
         </div>
         
         {hoverInfo && (
-          <div className="fixed z-[120] px-8 py-5 bg-slate-900/80 backdrop-blur-[40px] border border-white/10 text-slate-100 font-mono pointer-events-none shadow-2xl rounded-[2.5rem] animate-in fade-in zoom-in-95 duration-300" style={{ left: hoverInfo.x + 30, top: hoverInfo.y + 30 }}>
-            <div className="font-black text-cyan-400 text-lg border-b border-white/5 mb-4 pb-4 flex items-center gap-5">
-              <div className="w-3 h-3 rounded-full bg-cyan-400 animate-ping" />
+          <div className="fixed z-[120] px-10 py-6 bg-slate-900/80 backdrop-blur-[50px] border border-white/15 text-slate-100 font-mono pointer-events-none shadow-2xl rounded-[3rem] animate-in fade-in zoom-in-95 duration-500" style={{ left: hoverInfo.x + 40, top: hoverInfo.y + 40 }}>
+            <div className="font-black text-cyan-400 text-xl border-b border-white/10 mb-5 pb-5 flex items-center gap-6">
+              <div className="w-4 h-4 rounded-full bg-cyan-400 animate-ping" />
               {countryByIso[hoverInfo.iso3]?.master?.name || hoverInfo.iso3}
             </div>
-            <div className="opacity-40 text-[11px] tracking-[0.5em] font-black uppercase flex justify-between gap-16 font-mono font-black tracking-widest"><span>REF_NODE</span><span className="text-white">{hoverInfo.iso3}</span></div>
+            <div className="opacity-40 text-[12px] tracking-[0.6em] font-black uppercase flex justify-between gap-20 font-mono font-black"><span>REF_NODE</span><span className="text-white">{hoverInfo.iso3}</span></div>
           </div>
         )}
 
-        <aside className={`absolute top-0 bottom-0 right-0 w-[28rem] md:w-[38rem] transform transition-all duration-1000 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
+        <aside className={`absolute top-0 bottom-0 right-0 w-[30rem] md:w-[42rem] transform transition-all duration-1000 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails country={countryByIso[selectedIso]} onClose={() => setSelectedIso(null)} />
         </aside>
 
-        <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/60 backdrop-blur-[70px] border-t border-white/10 transition-all duration-1000 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-6.5rem)] rounded-t-[6rem]' : 'h-16'} shadow-[0_-30px_100px_rgba(0,0,0,0.8)] overflow-hidden shrink-0`}>
-          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-16 w-full flex items-center justify-center gap-8 text-[11px] font-black tracking-[1.2em] text-cyan-400/40 hover:text-cyan-400 transition-all shrink-0 group pointer-events-auto border-b border-white/5 uppercase">
-            <Activity size={20} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-30 group-hover:opacity-100'}`} /> 
-            {isAnalyticsOpen ? 'DEACTIVATE_HUB' : 'ACCESS_GLOBAL_INTEL_STREAM'} 
-            {isAnalyticsOpen ? <ChevronDown size={28} className="mt-1" /> : <ChevronUp size={28} className="mb-1" />}
+        <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/60 backdrop-blur-[90px] border-t border-white/10 transition-all duration-1000 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-8rem)] rounded-t-[7rem]' : 'h-20'} shadow-[0_-40px_120px_rgba(0,0,0,0.9)] overflow-hidden shrink-0`}>
+          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-20 w-full flex items-center justify-center gap-10 text-[12px] font-black tracking-[1.5em] text-cyan-400/40 hover:text-cyan-400 transition-all shrink-0 pointer-events-auto border-b border-white/5 uppercase font-mono">
+            <Activity size={24} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-30 group-hover:opacity-100'}`} /> 
+            {isAnalyticsOpen ? 'TERMINATE_HUB_UPLINK' : 'ACCESS_GLOBAL_DATA_SPECTRUM'} 
+            {isAnalyticsOpen ? <ChevronDown size={32} className="mt-2" /> : <ChevronUp size={32} className="mb-2" />}
           </button>
-          <div className="flex-1 overflow-hidden p-12 md:p-24 overflow-y-auto custom-scrollbar">
+          <div className="flex-1 overflow-hidden p-16 md:p-32 overflow-y-auto custom-scrollbar">
             <GlobalAnalytics data={data} isExpanded={isAnalyticsOpen} />
           </div>
         </footer>
       </main>
       
       <style>{`
-        .text-shadow-glow { text-shadow: 0 0 25px rgba(34, 211, 238, 0.7); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .text-shadow-glow { text-shadow: 0 0 30px rgba(34, 211, 238, 0.8); }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 30px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.2); }
-        .animate-spin-slow { animation: spin 20s linear infinite; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 40px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.3); }
+        .animate-spin-slow { animation: spin 25s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         body { background-color: #020617; }
       `}</style>
