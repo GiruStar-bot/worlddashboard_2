@@ -1,126 +1,165 @@
-import React, { useMemo } from 'react';
-import {
-  PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, Tooltip as ChartTooltip, ResponsiveContainer,
-} from 'recharts';
+import React, { useEffect, useState, useMemo } from 'react';
+import WorldMap from './components/WorldMap.jsx';
+import CountryDetails from './components/CountryDetails.jsx';
+import GlobalAnalytics from './components/GlobalAnalytics.jsx';
+import { Globe, ChevronUp, ChevronDown, Activity } from 'lucide-react';
 
-const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e879f9'];
+/*
+ * App Component - Cyberpunk HUD Layout
+ * Refactored to maximize map visibility. Panels are now overlays.
+ */
+export default function App() {
+  const [data, setData] = useState(null);
+  const [selectedIso, setSelectedIso] = useState(null);
+  const [hoverInfo, setHoverInfo] = useState(null);
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false); // ボトムパネルの開閉状態
 
-export default function GlobalAnalytics({ data }) {
-  const countries = useMemo(() => {
-    const arr = [];
-    if (data && data.regions) {
-      Object.values(data.regions).forEach((region) => {
-        region.forEach((entry) => arr.push(entry));
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}worlddash_global_master.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error("JSON not found");
+        return res.json();
+      })
+      .then((json) => setData(json))
+      .catch((err) => console.error('Failed to load data', err));
+  }, []);
+
+  const countryByIso3 = useMemo(() => {
+    const map = {};
+    if (!data) return map;
+    Object.values(data.regions).forEach((region) => {
+      region.forEach((entry) => {
+        map[entry.master.iso3] = entry;
       });
-    }
-    return arr;
+    });
+    return map;
   }, [data]);
 
-  const { pieData, scatterData, xDomain, yDomain } = useMemo(() => {
-    let totalGDP = 0;
-    countries.forEach((c) => { totalGDP += c.canonical?.economy?.gdp_nominal?.value ?? 0; });
-    
-    const sorted = [...countries].sort((a, b) => (
-      (b.canonical?.economy?.gdp_nominal?.value ?? 0) - (a.canonical?.economy?.gdp_nominal?.value ?? 0)
-    ));
-    const top5 = sorted.slice(0, 5);
-    const topGDP = top5.reduce((sum, c) => sum + (c.canonical?.economy?.gdp_nominal?.value ?? 0), 0);
-    const pie = top5.map((c) => ({
-      name: c.master.name,
-      value: c.canonical?.economy?.gdp_nominal?.value ?? 0,
-    }));
-    if (totalGDP - topGDP > 0) pie.push({ name: 'Rest of World', value: totalGDP - topGDP });
-    
-    const scatter = [];
-    countries.forEach((c) => {
-      const gdp = c.canonical?.economy?.gdp_nominal?.value ?? 0;
-      const pop = c.canonical?.society?.population?.value ?? 0;
-      if (!gdp || !pop) return;
-      const x = gdp / pop;
-      let y = null;
-      const vdem = c.canonical?.politics?.vdem_score;
-      const fsi = c.canonical?.risk?.fsi_total?.value;
-      if (vdem != null) y = vdem * 100;
-      else if (fsi != null) y = 100 - fsi;
-      
-      if (y != null && x < 150000) scatter.push({ name: c.master.name, x, y });
-    });
-    
-    const xVals = scatter.map(d => d.x);
-    const yVals = scatter.map(d => d.y);
-    return { 
-      pieData: pie, 
-      scatterData: scatter, 
-      xDomain: xVals.length ? [Math.min(...xVals), Math.max(...xVals)] : [0, 100],
-      yDomain: yVals.length ? [Math.min(...yVals), Math.max(...yVals)] : [0, 100]
-    };
-  }, [countries]);
+  const selectedCountry = selectedIso ? countryByIso3[selectedIso] : null;
+
+  const handleCountryClick = (iso3) => {
+    // 同じ国をクリックしたら選択解除、別の国なら選択
+    setSelectedIso((prev) => (prev === iso3 ? null : iso3));
+  };
+
+  const handleHover = (iso3, position) => {
+    if (!iso3) {
+      setHoverInfo(null);
+    } else {
+      setHoverInfo({ iso3, x: position.x, y: position.y });
+    }
+  };
+
+  if (!data) {
+    return (
+      <div className="h-screen flex items-center justify-center text-xl text-secondary animate-pulse font-mono bg-slate-950">
+        INITIALIZING SYSTEM...
+      </div>
+    );
+  }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full pb-4">
-      {/* GDP Share */}
-      <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
-        <div className="absolute top-0 left-0 w-0.5 h-full bg-primary/30 group-hover:bg-primary transition-colors"></div>
-        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Global GDP Distribution</h4>
-        <div className="flex-1 min-h-0">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                innerRadius="40%"
-                outerRadius="70%"
-                paddingAngle={2}
-                stroke="none"
-              >
-                {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={PIE_COLOURS[index % PIE_COLOURS.length]} />
-                ))}
-              </Pie>
-              <Legend 
-                layout="vertical" 
-                align="right" 
-                verticalAlign="middle"
-                wrapperStyle={{ fontSize: '10px', color: '#94a3b8' }}
-              />
-              <ChartTooltip 
-                formatter={(value) => `$${(value / 1e12).toFixed(1)}T`}
-                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+    <div className="flex flex-col h-screen overflow-hidden bg-slate-950 relative font-sans text-slate-200">
+      {/* Background Scanline Effect */}
+      <div className="absolute inset-0 pointer-events-none scanline-effect z-50 opacity-10"></div>
 
-      {/* Scatter Chart */}
-      <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
-        <div className="absolute top-0 left-0 w-0.5 h-full bg-secondary/30 group-hover:bg-secondary transition-colors"></div>
-        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Wealth vs Stability</h4>
-        <div className="flex-1 min-h-0">
-          <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
-              <CartesianGrid stroke="#334155" strokeDasharray="3 3" opacity={0.3} />
-              <XAxis 
-                type="number" dataKey="x" name="GDP/Capita" domain={xDomain} 
-                tickFormatter={(val) => `$${(val / 1000).toFixed(0)}k`} 
-                tick={{ fill: '#64748b', fontSize: 10 }}
-                tickLine={false} axisLine={false}
-              />
-              <YAxis 
-                type="number" dataKey="y" name="Stability" domain={yDomain} 
-                tick={{ fill: '#64748b', fontSize: 10 }}
-                tickLine={false} axisLine={false}
-              />
-              <ChartTooltip 
-                cursor={{ strokeDasharray: '3 3' }}
-                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
-                formatter={(value, name, props) => [value.toFixed(1), props.dataKey === 'x' ? 'GDP/Cap ($)' : 'Stability Score']}
-              />
-              <Scatter name="Countries" data={scatterData} fill="#8b5cf6" fillOpacity={0.6} shape="circle" />
-            </ScatterChart>
-          </ResponsiveContainer>
+      {/* Header - Transparent overlay */}
+      <header className="absolute top-0 left-0 right-0 h-14 flex items-center px-6 justify-between z-40 bg-gradient-to-b from-slate-950/90 to-transparent pointer-events-none">
+        <div className="flex items-center gap-3 pointer-events-auto">
+          <Globe className="text-primary animate-pulse" size={20} />
+          <h1 className="text-lg font-bold tracking-widest text-slate-100 font-mono">
+            WORLD<span className="text-primary text-glow">DASH</span> <span className="text-[10px] text-slate-500 ml-1">v2.1</span>
+          </h1>
         </div>
+        <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pointer-events-auto">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+            LIVE
+          </div>
+          <div className="hidden sm:block text-slate-500">COUNTRIES: {data.meta?.stats?.total_countries || 0}</div>
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <div className="flex-1 relative overflow-hidden">
+        
+        {/* 1. Map Layer (Background) */}
+        <div className="absolute inset-0 z-0 bg-slate-950">
+          <WorldMap
+            data={data}
+            onCountryClick={handleCountryClick}
+            onHover={handleHover}
+            selectedIso={selectedIso}
+          />
+        </div>
+
+        {/* 2. Tooltip Overlay */}
+        {hoverInfo && (
+          <div
+            className="fixed z-50 px-3 py-2 text-xs bg-slate-900/90 backdrop-blur border border-primary/30 text-slate-100 font-mono shadow-[0_0_15px_rgba(6,182,212,0.2)] pointer-events-none"
+            style={{ left: hoverInfo.x + 15, top: hoverInfo.y + 15 }}
+          >
+            <div className="font-bold text-primary mb-1">
+              {countryByIso3[hoverInfo.iso3]?.master?.name || hoverInfo.iso3}
+            </div>
+            {(() => {
+              const country = countryByIso3[hoverInfo.iso3];
+              if (!country) return null;
+              const risk = country.canonical?.risk?.fsi_total?.value;
+              return risk != null ? (
+                <div className="flex items-center gap-2">
+                  <span className={risk > 80 ? "text-red-400" : "text-emerald-400"}>
+                    FSI: {risk.toFixed(1)}
+                  </span>
+                </div>
+              ) : null;
+            })()}
+          </div>
+        )}
+
+        {/* 3. Right Sidebar (Country Details) - Slide-in Overlay */}
+        <aside
+          className={`
+            absolute top-14 bottom-0 right-0 w-80 md:w-96
+            bg-slate-900/85 backdrop-blur-md border-l border-primary/20
+            transform transition-transform duration-500 ease-out z-20
+            ${selectedCountry ? 'translate-x-0' : 'translate-x-full'}
+          `}
+        >
+          {selectedCountry && (
+            <CountryDetails 
+              country={selectedCountry} 
+              onClose={() => setSelectedIso(null)} 
+            />
+          )}
+        </aside>
+
+        {/* 4. Bottom Analytics Panel - Collapsible Overlay */}
+        <footer
+          className={`
+            absolute bottom-0 left-0 right-0 z-30
+            bg-slate-900/90 backdrop-blur-lg border-t border-white/10
+            transition-all duration-300 ease-in-out flex flex-col
+            ${isAnalyticsOpen ? 'h-80' : 'h-10'}
+            ${selectedCountry ? 'md:pr-96' : ''} /* サイドバーがあるときは右端を空ける */
+          `}
+        >
+          {/* Toggle Button */}
+          <button
+            onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
+            className="h-10 w-full flex items-center justify-center gap-2 text-xs font-mono text-slate-400 hover:text-primary hover:bg-white/5 transition-colors border-b border-white/5 shrink-0"
+          >
+            <Activity size={14} />
+            {isAnalyticsOpen ? 'COLLAPSE ANALYTICS' : 'EXPAND GLOBAL ANALYTICS'}
+            {isAnalyticsOpen ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
+          </button>
+
+          {/* Analytics Content */}
+          <div className="flex-1 overflow-hidden p-4">
+            <GlobalAnalytics data={data} />
+          </div>
+        </footer>
+
       </div>
     </div>
   );
