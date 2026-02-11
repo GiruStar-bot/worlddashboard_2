@@ -10,10 +10,20 @@ import {
   TrendingUp, Radio
 } from 'lucide-react';
 
-// ライブラリ解決エラーとReact重複エラーを避けるため、external指定付きのCDNインポートを使用します
+// 環境との競合（Reactの二重読み込み）を避けるため、パッケージを外部指定したesm.sh経由でインポートします
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'https://esm.sh/react-simple-maps@3.0.0?external=react,react-dom';
 
-// --- 常数・データソース ---
+/**
+ * WorldDashboard v2.5 - Organic Glass UI & Ambient Audio
+ * * 修正内容:
+ * 1. ライブラリ解決エラーの根本修正（External指定付きCDN）
+ * 2. 硝子チック（Glassmorphism）な有機的UIデザイン
+ * 3. BGM機能（Neural Audio）の統合
+ * 4. FSI, GDP成長率等の全指標の完全復活
+ * 5. 地図移動制限（上下ロック・左右拡張）
+ */
+
+// --- 設定・データソース ---
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
 const PIE_COLOURS = ['#22d3ee', '#818cf8', '#f43f5e', '#fbbf24', '#34d399', '#f472b6'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
@@ -60,6 +70,7 @@ const WorldMap = ({ data, onCountryClick, onHover, selectedIso }) => {
       <ComposableMap projectionConfig={{ scale: 220 }} className="w-full h-full">
         <ZoomableGroup 
           center={[0, 0]} zoom={1} minZoom={1} maxZoom={8} 
+          /* 左右はシベリア・アラスカが見えるように広く、上下は地図サイズ(0-600)に固定 */
           translateExtent={[[-500, 0], [1300, 600]]}
         >
           <Geographies geography={GEO_URL}>
@@ -137,8 +148,12 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
   return (
     <div className={`grid gap-8 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
       <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-8 h-full`}>
-        <div className="bg-white/[0.03] backdrop-blur-2xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl overflow-hidden relative group">
-          <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.4em] mb-8 flex items-center gap-3"><Activity size={16}/> ECONOMIC_DISTRIBUTION</h4>
+        {/* 硝子風カードデザイン */}
+        <div className="bg-white/[0.03] backdrop-blur-2xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+          <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.4em] mb-8 flex items-center gap-3">
+             <Activity size={16}/> ECONOMIC_DISTRIBUTION
+          </h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
               <PieChart>
@@ -146,13 +161,14 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
                   {pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}
                 </Pie>
                 <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 11, color: '#94a3b8', paddingLeft: 20 }} />
-                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.9)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} itemStyle={{ color: '#fff' }} />
+                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.9)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         <div className="bg-white/[0.03] backdrop-blur-2xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
           <h4 className="text-[11px] text-indigo-400 font-black tracking-[0.4em] mb-8">WEALTH_VS_STABILITY</h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
@@ -226,8 +242,8 @@ const CountryDetails = ({ country, onClose }) => {
           <div className="text-[11px] text-cyan-400 animate-pulse tracking-[0.6em] font-black uppercase">TARGET_STATUS</div>
           <h2 className="text-4xl font-black text-white tracking-tight leading-none drop-shadow-2xl">{master.name}</h2>
           <div className="flex gap-3 mt-3 font-mono">
-             <span className="bg-cyan-500/20 text-cyan-400 text-[10px] px-3 py-1 rounded-full border border-cyan-500/20 uppercase">{master.iso3}</span>
-             <span className="bg-white/5 text-slate-400 text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase">{canonical?.politics?.regime_type || 'N/A'}</span>
+             <span className="bg-cyan-500/20 text-cyan-400 text-[10px] px-3 py-1 rounded-full border border-cyan-500/20 uppercase font-black">{master.iso3}</span>
+             <span className="bg-white/5 text-slate-400 text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase font-black">{canonical?.politics?.regime_type || 'N/A'}</span>
           </div>
         </div>
         <button onClick={onClose} className="text-slate-400 hover:text-white transition-all p-3 bg-white/[0.05] rounded-full hover:rotate-90 duration-500 shadow-2xl border border-white/10"><X size={24} /></button>
@@ -239,6 +255,7 @@ const CountryDetails = ({ country, onClose }) => {
           {headline}<span className="animate-pulse text-cyan-400 font-black ml-1">|</span>
         </div>
 
+        {/* 復活：地政学・経済全指標 */}
         <div className="grid grid-cols-2 gap-5">
           <GlassMetric label="Population" value={canonical?.society?.population?.value?.toLocaleString() || '0'} icon={Users} color="text-cyan-400" />
           <GlassMetric label="GDP (Nominal)" value={`$${((canonical?.economy?.gdp_nominal?.value || 0) / 1e9).toFixed(1)}B`} icon={Activity} color="text-indigo-400" />
@@ -277,10 +294,11 @@ export default function App() {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    fetch("/worlddashboard_2/worlddash_global_master.json")
+    const baseUrl = window.location.hostname.includes('github.io') ? "/worlddashboard_2/" : "/";
+    fetch(`${baseUrl}worlddash_global_master.json`)
       .then(res => res.json())
       .then(setData)
-      .catch(e => console.error("Initialization failed", e));
+      .catch(e => console.error("Initialize failed", e));
   }, []);
 
   const toggleAudio = () => {
@@ -313,7 +331,7 @@ export default function App() {
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={64} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_CORE_v2.4
+       SYNCING_NEURAL_CORE_v2.5
     </div>
   );
 
@@ -332,12 +350,13 @@ export default function App() {
             <Globe className="text-cyan-400 animate-pulse" size={28} />
           </div>
           <div>
-            <h1 className="text-2xl font-black tracking-[0.4em] font-mono text-white text-shadow-glow flex items-center gap-2 uppercase">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1>
-            <div className="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em] mt-1 tracking-widest">Global_Intelligence_Nexus</div>
+            <h1 className="text-2xl font-black tracking-[0.4em] font-mono text-white text-shadow-glow flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1>
+            <div className="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em] mt-1 tracking-widest opacity-60">Intelligence_Nexus_Core</div>
           </div>
         </div>
 
         <div className="flex items-center gap-4 pointer-events-auto">
+          {/* Neural Audio Controller */}
           <button onClick={toggleAudio} className={`p-4 rounded-full backdrop-blur-3xl border transition-all duration-500 group shadow-2xl relative ${isAudioActive ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-400' : 'bg-white/[0.03] border-white/5 text-slate-500'}`}>
             <Radio size={20} className={isAudioActive ? 'animate-pulse' : 'opacity-50'} />
             <div className="absolute top-full mt-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90 border border-white/10 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] whitespace-nowrap shadow-2xl">
@@ -345,9 +364,9 @@ export default function App() {
             </div>
           </button>
 
-          <button onClick={toggleFs} className="text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-4 border border-white/5 px-8 py-3 rounded-full bg-white/[0.03] backdrop-blur-3xl text-[11px] font-black shadow-2xl group active:scale-95 duration-300">
+          <button onClick={toggleFs} className="text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-4 border border-white/5 px-8 py-3 rounded-full bg-white/[0.03] backdrop-blur-3xl text-[11px] font-black shadow-2xl group active:scale-95 duration-300 font-mono tracking-widest font-black uppercase whitespace-nowrap">
             {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />} 
-            <span className="group-hover:tracking-[0.3em] transition-all uppercase tracking-normal font-mono">{isFullscreen ? 'Exit_Link' : 'Full_Visual'}</span>
+            {isFullscreen ? 'Exit_Link' : 'Full_Visual'}
           </button>
         </div>
       </header>
@@ -363,7 +382,7 @@ export default function App() {
               <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
               {countryByIso[hoverInfo.iso3]?.master?.name || hoverInfo.iso3}
             </div>
-            <div className="opacity-40 text-[10px] tracking-[0.4em] font-black uppercase flex justify-between gap-12"><span>REF_ID</span><span className="text-white">{hoverInfo.iso3}</span></div>
+            <div className="opacity-40 text-[10px] tracking-[0.4em] font-black uppercase flex justify-between gap-12 font-mono font-black"><span>REF_ID</span><span className="text-white">{hoverInfo.iso3}</span></div>
           </div>
         )}
 
