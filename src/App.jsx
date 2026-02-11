@@ -2,17 +2,18 @@ import React, { useEffect, useState, useMemo } from 'react';
 import WorldMap from './components/WorldMap.jsx';
 import CountryDetails from './components/CountryDetails.jsx';
 import GlobalAnalytics from './components/GlobalAnalytics.jsx';
-import { Globe, ChevronUp, ChevronDown, Activity } from 'lucide-react';
+import { Globe, ChevronUp, ChevronDown, Activity, Maximize, Minimize } from 'lucide-react';
 
 /*
  * App Component - Cyberpunk HUD Layout
- * Refactored to maximize map visibility. Panels are now overlays.
+ * Added Fullscreen capability and map movement restrictions.
  */
 export default function App() {
   const [data, setData] = useState(null);
   const [selectedIso, setSelectedIso] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false); // ボトムパネルの開閉状態
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}worlddash_global_master.json`)
@@ -22,6 +23,31 @@ export default function App() {
       })
       .then((json) => setData(json))
       .catch((err) => console.error('Failed to load data', err));
+  }, []);
+
+  // Handle Fullscreen Toggle
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    }
+  };
+
+  // Sync state if user presses Esc
+  useEffect(() => {
+    const handleFsChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFsChange);
+    return () => document.removeEventListener('fullscreenchange', handleFsChange);
   }, []);
 
   const countryByIso3 = useMemo(() => {
@@ -38,7 +64,6 @@ export default function App() {
   const selectedCountry = selectedIso ? countryByIso3[selectedIso] : null;
 
   const handleCountryClick = (iso3) => {
-    // 同じ国をクリックしたら選択解除、別の国なら選択
     setSelectedIso((prev) => (prev === iso3 ? null : iso3));
   };
 
@@ -68,15 +93,25 @@ export default function App() {
         <div className="flex items-center gap-3 pointer-events-auto">
           <Globe className="text-primary animate-pulse" size={20} />
           <h1 className="text-lg font-bold tracking-widest text-slate-100 font-mono">
-            WORLD<span className="text-primary text-glow">DASH</span> <span className="text-[10px] text-slate-500 ml-1">v2.1</span>
+            WORLD<span className="text-primary text-glow">DASH</span> <span className="text-[10px] text-slate-500 ml-1">v2.2</span>
           </h1>
         </div>
-        <div className="flex items-center gap-4 text-xs font-mono text-slate-400 pointer-events-auto">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center gap-6 text-xs font-mono text-slate-400 pointer-events-auto">
+          <div className="hidden sm:flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
             LIVE
           </div>
           <div className="hidden sm:block text-slate-500">COUNTRIES: {data.meta?.stats?.total_countries || 0}</div>
+          
+          {/* Fullscreen Toggle Button */}
+          <button 
+            onClick={toggleFullScreen}
+            className="text-slate-400 hover:text-primary transition-colors flex items-center gap-1 border border-white/10 px-2 py-1 rounded bg-slate-900/50"
+            title="Toggle Fullscreen"
+          >
+            {isFullscreen ? <Minimize size={14} /> : <Maximize size={14} />}
+            <span className="hidden sm:inline">{isFullscreen ? 'EXIT' : 'FULL'}</span>
+          </button>
         </div>
       </header>
 
@@ -141,7 +176,7 @@ export default function App() {
             bg-slate-900/90 backdrop-blur-lg border-t border-white/10
             transition-all duration-300 ease-in-out flex flex-col
             ${isAnalyticsOpen ? 'h-80' : 'h-10'}
-            ${selectedCountry ? 'md:pr-96' : ''} /* サイドバーがあるときは右端を空ける */
+            ${selectedCountry ? 'md:pr-96' : ''}
           `}
         >
           {/* Toggle Button */}
