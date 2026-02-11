@@ -23,7 +23,7 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      # ロックファイルとの不整合を無視してパッケージをインストール
+      # ウェブ編集時のロックファイル不一致を避けるため npm install を使用
       - name: Install dependencies
         run: npm install
 
