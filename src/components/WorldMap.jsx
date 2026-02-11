@@ -2,17 +2,16 @@ import React, { useMemo } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /*
- * WorldMap Component (Enhanced)
- * * 1. Uses reliable CDN for TopoJSON.
- * 2. Implements a robust mapping (ISO_MAP) to convert the map's numeric IDs
- * to the ISO Alpha-3 codes used in our dataset.
- * 3. Handles missing risk data gracefully with a fallback color.
+ * WorldMap Component (Enhanced v2.1)
+ * 1. Locked to UK/Greenwich meridian as central axis.
+ * 2. Restricted panning/zooming to prevent map getting lost.
+ * 3. Robust ISO mapping included.
  */
 
 // Stable CDN for world map topology
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
 
-// Mapping table: UN Numeric Code (TopoJSON) -> ISO Alpha-3 Code (Our Data)
+// Mapping table: UN Numeric Code -> ISO Alpha-3 Code
 const ISO_MAP = {
   "004": "AFG", "008": "ALB", "010": "ATA", "012": "DZA", "016": "ASM", "020": "AND", "024": "AGO", 
   "028": "ATG", "031": "AZE", "032": "ARG", "036": "AUS", "040": "AUT", "044": "BHS", "048": "BHR", 
@@ -88,7 +87,7 @@ export default function WorldMap({ data, onCountryClick, onHover, selectedIso })
         region.forEach((entry) => {
           const iso = entry.master.iso3;
           const risk = entry.canonical?.risk?.fsi_total?.value;
-          map[iso] = risk; // Can be undefined
+          map[iso] = risk; 
         });
       });
     }
@@ -104,32 +103,40 @@ export default function WorldMap({ data, onCountryClick, onHover, selectedIso })
 
   // 3. Color generation function
   const getColour = (risk) => {
-    if (risk == null) return '#1e293b'; // Dark grey for missing data
-    
-    // Normalize risk to 0..1 range
+    if (risk == null) return '#1e293b'; 
     const t = (risk - minRisk) / (maxRisk - minRisk);
-    
-    if (t < 0.5) {
-      return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
-    }
+    if (t < 0.5) return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
     return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
   };
 
   return (
     <div className="w-full h-full bg-slate-950">
-      <ComposableMap projectionConfig={{ scale: 140 }} className="w-full h-full">
-        <ZoomableGroup center={[0, 20]} zoom={1} maxZoom={8} minZoom={0.7}>
+      <ComposableMap 
+        // Increased scale slightly to fill screen better
+        projectionConfig={{ scale: 147 }} 
+        className="w-full h-full"
+      >
+        <ZoomableGroup 
+          // Center on [Longitude 0 (Greenwich), Latitude 20]
+          // This keeps UK/Europe/Africa roughly central horizontally, and balances N/S hemisphere.
+          center={[0, 20]} 
+          zoom={1} 
+          // Restrict zooming out too far (avoids infinite empty space)
+          minZoom={1} 
+          maxZoom={8}
+          // Restrict panning area (approximate bounds for 800x600 viewBox)
+          // This prevents the map from being dragged completely off-screen.
+          translateExtent={[
+            [0, 0], 
+            [800, 600]
+          ]}
+        >
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => {
-                // -- KEY FIX: ID Conversion --
-                // The TopoJSON uses numeric IDs (e.g. "392"). We need ISO3 ("JPN").
                 const isoNumeric = geo.id; 
                 const isoAlpha3 = ISO_MAP[isoNumeric];
-                
-                // Use ISO3 if found, otherwise fallback to original ID (unlikely to match)
                 const iso = isoAlpha3 || isoNumeric;
-                
                 const risk = riskByIso[iso];
                 const fill = getColour(risk);
                 const isSelected = iso === selectedIso;
@@ -148,14 +155,12 @@ export default function WorldMap({ data, onCountryClick, onHover, selectedIso })
                     }}
                     onMouseEnter={(evt) => {
                       const { clientX: x, clientY: y } = evt;
-                      // Pass the converted ISO code up
                       onHover(iso, { x, y });
                     }}
                     onMouseLeave={() => onHover(null)}
                     onClick={() => {
                       if (isoAlpha3) onCountryClick(iso);
                     }}
-                    // Apply glow effect if selected
                     filter={isSelected ? 'url(#country-glow)' : undefined}
                   />
                 );
