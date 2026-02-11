@@ -1,133 +1,127 @@
 import React, { useMemo } from 'react';
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+import {
+  PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, Tooltip as ChartTooltip, ResponsiveContainer,
+} from 'recharts';
 
-/*
- * WorldMap component renders an interactive map coloured by the Fragile
- * States Index (FSI) value of each country.  It fetches a world
- * TopoJSON file directly from a CDN and uses a simple colour interpolation
- * to convey risk levels: safe countries appear cyan/green while higher
- * risk countries shift towards purple and red.  Hovering over a
- * geography triggers a callback with both the ISO code and the mouse
- * coordinates, allowing a tooltip to be positioned in the parent.  A
- * click notifies the parent of the selected country.
- */
+const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e879f9'];
 
-// URL for a low‑resolution world map in TopoJSON format.  Using a CDN
-// avoids having to bundle large GeoJSON assets in the repository.
-const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
-
-// Convert a hex colour to an RGB object.
-function hexToRgb(hex) {
-  const h = hex.replace('#', '');
-  return {
-    r: parseInt(h.slice(0, 2), 16),
-    g: parseInt(h.slice(2, 4), 16),
-    b: parseInt(h.slice(4, 6), 16),
-  };
-}
-
-// Convert an RGB object back to a hex string.
-function rgbToHex({ r, g, b }) {
-  return (
-    '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')
-  );
-}
-
-// Linearly interpolate between two colours.  t should be in the range [0,1].
-function mixColours(a, b, t) {
-  return rgbToHex({
-    r: Math.round(a.r + (b.r - a.r) * t),
-    g: Math.round(a.g + (b.g - a.g) * t),
-    b: Math.round(a.b + (b.b - a.b) * t),
-  });
-}
-
-// Primary (low risk), mid and danger colours as RGB objects.
-const COLOUR_LOW = hexToRgb('#06b6d4');
-const COLOUR_MID = hexToRgb('#8b5cf6');
-const COLOUR_HIGH = hexToRgb('#ef4444');
-
-export default function WorldMap({ data, onCountryClick, onHover, selectedIso }) {
-  // Build a lookup of FSI risk values keyed by ISO3 code.  Missing
-  // values remain undefined.
-  const riskByIso = useMemo(() => {
-    const map = {};
-    Object.values(data.regions).forEach((region) => {
-      region.forEach((entry) => {
-        const iso = entry.master.iso3;
-        const risk = entry.canonical?.risk?.fsi_total?.value;
-        map[iso] = risk;
+export default function GlobalAnalytics({ data }) {
+  const countries = useMemo(() => {
+    const arr = [];
+    if (data && data.regions) {
+      Object.values(data.regions).forEach((region) => {
+        region.forEach((entry) => arr.push(entry));
       });
-    });
-    return map;
+    }
+    return arr;
   }, [data]);
 
-  // Determine the range of risk values to normalise colours.  Filter out
-  // undefined or null entries first.
-  const [minRisk, maxRisk] = useMemo(() => {
-    const values = Object.values(riskByIso).filter((v) => v != null);
-    if (!values.length) return [0, 1];
-    return [Math.min(...values), Math.max(...values)];
-  }, [riskByIso]);
-
-  // Compute a colour based on the risk value.  A value in the lower
-  // third of the range interpolates between low and mid colours, while
-  // values in the upper third interpolate between mid and high colours.
-  const getColour = (risk) => {
-    if (risk == null) return '#1e293b'; // fallback grey for missing data
-    if (minRisk === maxRisk) return rgbToHex(COLOUR_LOW);
-    const t = (risk - minRisk) / (maxRisk - minRisk);
-    if (t < 0.5) {
-      // from safe to mid
-      return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
-    }
-    return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
-  };
+  const { pieData, scatterData, xDomain, yDomain } = useMemo(() => {
+    let totalGDP = 0;
+    countries.forEach((c) => { totalGDP += c.canonical?.economy?.gdp_nominal?.value ?? 0; });
+    
+    const sorted = [...countries].sort((a, b) => (
+      (b.canonical?.economy?.gdp_nominal?.value ?? 0) - (a.canonical?.economy?.gdp_nominal?.value ?? 0)
+    ));
+    const top5 = sorted.slice(0, 5);
+    const topGDP = top5.reduce((sum, c) => sum + (c.canonical?.economy?.gdp_nominal?.value ?? 0), 0);
+    const pie = top5.map((c) => ({
+      name: c.master.name,
+      value: c.canonical?.economy?.gdp_nominal?.value ?? 0,
+    }));
+    if (totalGDP - topGDP > 0) pie.push({ name: 'Rest of World', value: totalGDP - topGDP });
+    
+    const scatter = [];
+    countries.forEach((c) => {
+      const gdp = c.canonical?.economy?.gdp_nominal?.value ?? 0;
+      const pop = c.canonical?.society?.population?.value ?? 0;
+      if (!gdp || !pop) return;
+      const x = gdp / pop;
+      let y = null;
+      const vdem = c.canonical?.politics?.vdem_score;
+      const fsi = c.canonical?.risk?.fsi_total?.value;
+      if (vdem != null) y = vdem * 100;
+      else if (fsi != null) y = 100 - fsi;
+      
+      if (y != null && x < 150000) scatter.push({ name: c.master.name, x, y });
+    });
+    
+    const xVals = scatter.map(d => d.x);
+    const yVals = scatter.map(d => d.y);
+    return { 
+      pieData: pie, 
+      scatterData: scatter, 
+      xDomain: xVals.length ? [Math.min(...xVals), Math.max(...xVals)] : [0, 100],
+      yDomain: yVals.length ? [Math.min(...yVals), Math.max(...yVals)] : [0, 100]
+    };
+  }, [countries]);
 
   return (
-    <ComposableMap projectionConfig={{ scale: 140 }} className="w-full h-full">
-      <Geographies geography={GEO_URL}>
-        {({ geographies }) =>
-          geographies.map((geo) => {
-            const iso = geo.id;
-            const risk = riskByIso[iso];
-            const fill = getColour(risk);
-            const isSelected = iso === selectedIso;
-            return (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill={fill}
-                stroke="#334155"
-                strokeWidth={0.5}
-                style={{
-                  default: { outline: 'none' },
-                  hover: { fill: '#f472b6', cursor: 'pointer' },
-                  pressed: { outline: 'none' },
-                }}
-                onMouseEnter={(evt) => {
-                  const { clientX: x, clientY: y } = evt;
-                  onHover(iso, { x, y });
-                }}
-                onMouseLeave={() => onHover(null)}
-                onClick={() => onCountryClick(iso)}
-                // Add a subtle glow to the selected country.
-                filter={isSelected ? 'url(#country-glow)' : undefined}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full pb-4">
+      {/* GDP Share */}
+      <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
+        <div className="absolute top-0 left-0 w-0.5 h-full bg-primary/30 group-hover:bg-primary transition-colors"></div>
+        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Global GDP Distribution</h4>
+        <div className="flex-1 min-h-0">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                innerRadius="40%"
+                outerRadius="70%"
+                paddingAngle={2}
+                stroke="none"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={PIE_COLOURS[index % PIE_COLOURS.length]} />
+                ))}
+              </Pie>
+              <Legend 
+                layout="vertical" 
+                align="right" 
+                verticalAlign="middle"
+                wrapperStyle={{ fontSize: '10px', color: '#94a3b8' }}
               />
-            );
-          })
-        }
-      </Geographies>
-      {/* Define an SVG filter for selected country glow */}
-      <defs>
-        <filter id="country-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-    </ComposableMap>
+              <ChartTooltip 
+                formatter={(value) => `$${(value / 1e12).toFixed(1)}T`}
+                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Scatter Chart */}
+      <div className="glassmorphic p-3 flex flex-col h-full border border-white/5 relative group">
+        <div className="absolute top-0 left-0 w-0.5 h-full bg-secondary/30 group-hover:bg-secondary transition-colors"></div>
+        <h4 className="text-[10px] text-slate-400 uppercase tracking-widest mb-1 pl-2">Wealth vs Stability</h4>
+        <div className="flex-1 min-h-0">
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
+              <CartesianGrid stroke="#334155" strokeDasharray="3 3" opacity={0.3} />
+              <XAxis 
+                type="number" dataKey="x" name="GDP/Capita" domain={xDomain} 
+                tickFormatter={(val) => `$${(val / 1000).toFixed(0)}k`} 
+                tick={{ fill: '#64748b', fontSize: 10 }}
+                tickLine={false} axisLine={false}
+              />
+              <YAxis 
+                type="number" dataKey="y" name="Stability" domain={yDomain} 
+                tick={{ fill: '#64748b', fontSize: 10 }}
+                tickLine={false} axisLine={false}
+              />
+              <ChartTooltip 
+                cursor={{ strokeDasharray: '3 3' }}
+                contentStyle={{ backgroundColor: '#020617', border: '1px solid #334155', color: '#e2e8f0', fontSize: '11px' }}
+                formatter={(value, name, props) => [value.toFixed(1), props.dataKey === 'x' ? 'GDP/Cap ($)' : 'Stability Score']}
+              />
+              <Scatter name="Countries" data={scatterData} fill="#8b5cf6" fillOpacity={0.6} shape="circle" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
   );
 }
