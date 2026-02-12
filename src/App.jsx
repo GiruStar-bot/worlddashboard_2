@@ -12,9 +12,10 @@ import {
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v5.4 - Panel UI Optimization
- * - 改善: 国詳細パネルのヘッダーをスリム化し、長い国名も省略されずに表示されるように修正。
- * - 改善: ステータスカードとチャートの余白を調整し、一度に見える情報量を増加（視認性の向上）。
+ * WorldDashboard v5.5 - Flat Projection Update
+ * - 改善: 地図の投影法を「正距円筒図法 (geoEquirectangular)」に変更。
+ * - 効果: 端に行くほど曲がって小さくなる歪みを解消し、世界全体をフラットに歪みなく見渡せるように最適化。
+ * - 注記: 3D地球儀化は、SVG再描画による「激重ラグ」を再発させるリスクが極めて高いため、パフォーマンスと安定性を優先し採用を見送りました。
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
@@ -118,8 +119,9 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
 
   return (
     <div className="w-full h-full bg-slate-950">
-      <ComposableMap projectionConfig={{ scale: 220 }} className="w-full h-full outline-none">
-        <ZoomableGroup center={[10, 20]} zoom={1.7} minZoom={1} maxZoom={8} translateExtent={[[-400, -200], [1200, 800]]}>
+      {/* projection="geoEquirectangular" に変更し、端が曲がって小さくなる現象を解消 */}
+      <ComposableMap projection="geoEquirectangular" projectionConfig={{ scale: 160 }} className="w-full h-full outline-none">
+        <ZoomableGroup center={[10, 15]} zoom={1.5} minZoom={1} maxZoom={8} translateExtent={[[-500, -200], [1300, 800]]}>
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => {
@@ -156,7 +158,6 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
 // ==========================================
 // 2. CountryDetails Component (右パネル)
 // ==========================================
-// 改善: Metricカードもスリム化して情報密度を上げる
 const Metric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
   <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-2xl hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 flex flex-col items-start group shadow-lg">
     <div className="text-[9px] text-slate-400 mb-1.5 flex items-center gap-1.5 uppercase font-semibold tracking-wider group-hover:text-slate-200">
@@ -198,11 +199,9 @@ const CountryDetails = ({ country, onClose }) => {
 
   return (
     <div className="flex flex-col h-full bg-slate-900/50 backdrop-blur-[40px] border-l border-white/10 shadow-[-20px_0_60px_rgba(0,0,0,0.5)] overflow-hidden">
-      {/* 改善: ヘッダーのスリム化と国名省略の解除 */}
       <div className="p-6 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
         <div className="space-y-1.5 flex-1 pr-4">
           <div className="text-[9px] text-cyan-400 animate-pulse tracking-[0.5em] font-semibold uppercase font-mono">TARGET_ACQUIRED</div>
-          {/* truncateを外し、改行を許可。文字サイズも少しスマートに */}
           <h2 className="text-xl md:text-2xl font-bold text-slate-100 tracking-tight leading-tight uppercase break-words">{master.name}</h2>
           <div className="flex flex-wrap gap-2 pt-1 font-mono">
              <span className="bg-cyan-500/10 text-cyan-400 text-[9px] px-2.5 py-0.5 rounded-full border border-cyan-500/20 uppercase font-semibold tracking-wider">{master.iso3}</span>
@@ -211,18 +210,14 @@ const CountryDetails = ({ country, onClose }) => {
         </div>
         <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors duration-300 shrink-0"><X size={20} /></button>
       </div>
-      
-      {/* 改善: パディングを少し減らし、コンテンツ領域を拡大 */}
       <div className="flex-1 overflow-y-auto p-6 pb-24 space-y-6 custom-scrollbar">
         <div ref={headlineRef} className="p-4 rounded-2xl bg-cyan-500/[0.03] border border-cyan-500/10 font-sans text-xs text-slate-300 leading-relaxed min-h-[3.5rem]"></div>
-        
         <div className="grid grid-cols-2 gap-4">
           <Metric label="Population" value={population.toLocaleString()} icon={Users} color="text-blue-400" />
           <Metric label="GDP (Nominal)" value={`$${(gdpNominal / 1e9).toFixed(1)}B`} icon={Activity} color="text-emerald-400" />
           <Metric label="GDP Growth" value={gdpGrowth !== undefined ? `${gdpGrowth > 0 ? '+' : ''}${gdpGrowth}%` : "N/A"} icon={TrendingUp} color={gdpGrowth < 0 ? "text-rose-400" : "text-emerald-400"} />
           <Metric label="Risk Index" value={riskValue ? riskValue.toFixed(1) : "N/A"} icon={AlertTriangle} color={riskValue > 80 ? "text-rose-500" : (riskValue > 60 ? "text-amber-400" : "text-cyan-400")} />
         </div>
-
         <div className="space-y-3">
           <h3 className="text-[10px] text-slate-500 uppercase tracking-widest font-mono font-semibold">Neural_Parameter_Map</h3>
           <div className="h-56 border border-white/5 rounded-2xl bg-slate-800/20 p-2 shadow-lg relative">
@@ -236,7 +231,6 @@ const CountryDetails = ({ country, onClose }) => {
             </ResponsiveContainer>
           </div>
         </div>
-        
         <div className="space-y-2 pb-4">
           <h3 className="text-[10px] text-slate-500 uppercase tracking-widest font-mono font-semibold">Classification_Tags</h3>
           <div className="flex flex-wrap gap-2">
@@ -482,7 +476,7 @@ export default function App() {
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v5.4
+       CONNECTING_NEXUS_v5.5
     </div>
   );
 
@@ -500,7 +494,7 @@ export default function App() {
             <h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">
               WORLD<span className="text-cyan-400 opacity-90">DASH</span>
             </h1>
-            <div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v5.4</div>
+            <div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v5.5</div>
           </div>
         </div>
 
