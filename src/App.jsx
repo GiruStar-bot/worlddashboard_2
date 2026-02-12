@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import {
-  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
-  PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid,
-  XAxis, YAxis, Tooltip as ChartTooltip, ResponsiveContainer
-} from 'recharts';
+  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer
+} from 'recharts'; // 不要になったPieChart, ScatterChart等を削除し軽量化
 import { 
   Globe, ChevronUp, ChevronDown, Activity, Maximize, Minimize, 
   X, Users, AlertTriangle, Newspaper, ExternalLink, RefreshCw, TrendingUp,
@@ -12,16 +10,22 @@ import {
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v5.6 - Comprehensive Ranking Update
- * - 新機能: LEADERBOARD (ランキング) に「GDP成長率」と「人口」を追加。
- * - UI改善: ランキングタブを2x2のグリッドに拡張し、コンパクトかつ直感的に4指標を切り替え可能に。
- * - 指標ごとに専用のアクセントカラー（Emerald, Rose, Blue, Amber）を適用し、視認性を向上。
+ * WorldDashboard v5.7 - Intelligence Stream Update
+ * - 刷新: 下部パネルを3カラムの「LIVE GLOBAL STREAM（RSS専用領域）」へ変更。
+ * - 連携: BBC News, NYT World, UN News の3つの国際フィードを並行して取得・表示。
+ * - 名称変更: 左側のランキングパネルを「ANALYTICS パネル」へと役割・名称を変更。
+ * - 軽量化: 不要になったグラフ用ライブラリ（Rechartsの一部）のインポートと処理を削除。
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
-const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e879f9'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
-const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
+
+// 3つの国際ニュースフィードソースを定義
+const NEWS_SOURCES = [
+  { id: 'bbc', name: 'BBC WORLD', url: 'http://feeds.bbci.co.uk/news/world/rss.xml', color: 'text-rose-400', bg: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'nyt', name: 'NYT WORLD', url: 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml', color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'un', name: 'UN NEWS', url: 'https://news.un.org/feed/subscribe/en/news/all/rss.xml', color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20' }
+];
 
 const ISO_MAP = {
   "004": "AFG", "008": "ALB", "010": "ATA", "012": "DZA", "016": "ASM", "020": "AND", "024": "AGO", 
@@ -62,7 +66,6 @@ const ISO_MAP = {
   "894": "ZMB"
 };
 
-// --- Color Utility Functions ---
 function hexToRgb(hex) {
   const h = hex.replace('#', '');
   return { r: parseInt(h.slice(0, 2), 16), g: parseInt(h.slice(2, 4), 16), b: parseInt(h.slice(4, 6), 16) };
@@ -90,9 +93,7 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
     const map = {};
     if (data && data.regions) {
       Object.values(data.regions).forEach((region) => {
-        region.forEach((entry) => {
-          map[entry.master.iso3] = entry.canonical?.risk?.fsi_total?.value; 
-        });
+        region.forEach((entry) => { map[entry.master.iso3] = entry.canonical?.risk?.fsi_total?.value; });
       });
     }
     return map;
@@ -244,104 +245,71 @@ const CountryDetails = ({ country, onClose }) => {
 };
 
 // ==========================================
-// 3. GlobalAnalytics Component (下部パネル)
+// 3. Global Stream Panel (刷新された下部パネル)
+// グラフを廃止し、3つのニュースフィード(BBC, NYT, UN News)を表示する専用ストリームへ
 // ==========================================
-const GlobalAnalytics = ({ data, isExpanded }) => {
+const FeedColumn = ({ source, isExpanded }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isExpanded && news.length === 0) {
       setLoading(true);
-      fetch(`${RSS_API}${encodeURIComponent(DEFAULT_FEED)}`)
+      fetch(`${RSS_API}${encodeURIComponent(source.url)}`)
         .then(res => res.json())
-        .then(json => { if (json.status === "ok") setNews(json.items.slice(0, 10)); setLoading(false); })
+        .then(json => { 
+          if (json.status === "ok") setNews(json.items.slice(0, 8)); 
+          setLoading(false); 
+        })
         .catch(() => setLoading(false));
     }
-  }, [isExpanded, news.length]);
-
-  const countries = useMemo(() => {
-    const arr = [];
-    if (data?.regions) Object.values(data.regions).forEach(reg => reg.forEach(c => arr.push(c)));
-    return arr;
-  }, [data]);
-
-  const { pieData, scatterData } = useMemo(() => {
-    let totalGDP = 0;
-    countries.forEach(c => totalGDP += c.canonical?.economy?.gdp_nominal?.value || 0);
-    const sorted = [...countries].sort((a, b) => (b.canonical?.economy?.gdp_nominal?.value || 0) - (a.canonical?.economy?.gdp_nominal?.value || 0));
-    const top5 = sorted.slice(0, 5);
-    const pie = top5.map(c => ({ name: c.master.name, value: c.canonical?.economy?.gdp_nominal?.value || 0 }));
-    if (totalGDP - top5.reduce((s, c) => s + (c.canonical?.economy?.gdp_nominal?.value || 0), 0) > 0) {
-      pie.push({ name: 'Others', value: totalGDP - top5.reduce((s, c) => s + (c.canonical?.economy?.gdp_nominal?.value || 0), 0) });
-    }
-
-    const scatter = countries.map(c => {
-      const gdp = c.canonical?.economy?.gdp_nominal?.value || 0;
-      const pop = c.canonical?.society?.population?.value || 1;
-      return { name: c.master.name, x: gdp / pop, y: 100 - (c.canonical?.risk?.fsi_total?.value || 50) };
-    }).filter(d => d.x < 150000 && d.x > 0);
-    
-    return { pieData: pie, scatterData: scatter };
-  }, [countries]);
+  }, [isExpanded, news.length, source.url]);
 
   return (
-    <div className={`grid gap-8 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
-      <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-8 h-full`}>
-        <div className="bg-white/[0.02] backdrop-blur-[30px] p-6 border border-white/10 flex flex-col rounded-3xl shadow-xl relative">
-          <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.3em] mb-4 flex items-center gap-2 uppercase font-mono"><Activity size={14}/> ECONOMIC_SHARE</h4>
-          <div className="flex-1 min-h-0">
-            <ResponsiveContainer>
-              <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius="60%" outerRadius="85%" stroke="none" paddingAngle={4} cornerRadius={6}>{pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}</Pie>
-                <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingLeft: 10 }} />
-                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', fontSize: 11 }} />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        <div className="bg-white/[0.02] backdrop-blur-[30px] p-6 border border-white/10 flex flex-col rounded-3xl shadow-xl relative">
-          <h4 className="text-[10px] text-indigo-400 font-semibold tracking-[0.3em] mb-4 uppercase font-mono">STABILITY_ANALYSIS</h4>
-          <div className="flex-1 min-h-0">
-            <ResponsiveContainer>
-              <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: -20 }}>
-                <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" vertical={false} />
-                <XAxis type="number" dataKey="x" tickFormatter={v => `$${(v/1000).toFixed(0)}k`} tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
-                <YAxis type="number" dataKey="y" tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
-                <ChartTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', fontSize: 11 }} />
-                <Scatter data={scatterData} fill="#8b5cf6" fillOpacity={0.6} />
-              </ScatterChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+    <div className="flex flex-col h-full bg-white/[0.02] border border-white/10 rounded-3xl shadow-xl overflow-hidden relative">
+      {/* うっすらと色付きのグラデーション背景 */}
+      <div className={`absolute inset-0 bg-gradient-to-br from-white/0 to-${source.color.replace('text-', '')}/5 opacity-20 pointer-events-none`} />
+      
+      <div className="p-5 border-b border-white/5 flex justify-between items-center bg-white/[0.02] z-10 shrink-0">
+        <h4 className={`text-[10px] ${source.color} font-bold tracking-[0.3em] flex items-center gap-2 uppercase font-mono`}>
+          <Newspaper size={14} /> {source.name}
+        </h4>
+        {loading && <RefreshCw size={12} className={`animate-spin ${source.color}`} />}
       </div>
+      <div className="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar z-10">
+        {news.map((item, i) => (
+          <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-4 bg-white/[0.03] hover:bg-white/[0.08] border border-transparent hover:border-white/10 rounded-2xl transition-all group active:scale-[0.98]">
+            <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono items-center">
+              <span className={`${source.bg} ${source.color} px-2 py-0.5 rounded-full font-bold border ${source.border}`}>
+                {new Date(item.pubDate).toLocaleDateString()}
+              </span>
+              <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <h5 className="text-xs font-medium text-slate-300 group-hover:text-white leading-snug transition-colors line-clamp-3">
+              {item.title}
+            </h5>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-      {isExpanded && (
-        <div className="lg:col-span-4 bg-slate-950/60 backdrop-blur-[40px] border border-white/10 flex flex-col overflow-hidden rounded-3xl shadow-2xl animate-in slide-in-from-right duration-700">
-          <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-            <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.4em] flex items-center gap-2 uppercase font-mono"><Newspaper size={16} /> LIVE_FEED</h4>
-            {loading && <RefreshCw size={14} className="animate-spin text-cyan-400" />}
-          </div>
-          <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
-            {news.map((item, i) => (
-              <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-4 bg-white/[0.03] hover:bg-white/[0.08] border border-transparent hover:border-cyan-500/30 rounded-2xl transition-all group active:scale-[0.98]">
-                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono"><span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span><ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" /></div>
-                <h5 className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+const GlobalStreamPanel = ({ isExpanded }) => {
+  return (
+    <div className={`grid gap-6 h-full transition-all duration-700 w-full ${isExpanded ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1 opacity-0'}`}>
+      {NEWS_SOURCES.map((source) => (
+        <FeedColumn key={source.id} source={source} isExpanded={isExpanded} />
+      ))}
     </div>
   );
 };
 
 // ==========================================
-// 4. RankingPanel Component (左側リーダーボード) 4指標追加版
+// 4. Analytics Panel (左側パネル: 旧RankingPanelから名称変更)
 // ==========================================
-const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) => {
-  const [activeTab, setActiveTab] = useState('gdp'); // 'gdp', 'risk', 'growth', 'pop'
+const AnalyticsPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) => {
+  const [activeTab, setActiveTab] = useState('gdp');
 
   const countries = useMemo(() => {
     const arr = [];
@@ -371,7 +339,7 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
   let maxVal = 1;
   if (currentData.length > 0) {
     if (activeTab === 'gdp') maxVal = currentData[0].canonical.economy.gdp_nominal.value;
-    else if (activeTab === 'risk') maxVal = 120; // Risk is out of 120
+    else if (activeTab === 'risk') maxVal = 120;
     else if (activeTab === 'growth') maxVal = currentData[0].canonical.economy.gdp_growth.value;
     else if (activeTab === 'pop') maxVal = currentData[0].canonical.society.population.value;
   }
@@ -382,15 +350,15 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
         
         <div className="p-6 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
           <div className="space-y-1.5">
-            <div className="text-[9px] text-emerald-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">GLOBAL_RANKING</div>
-            <h2 className="text-2xl font-bold text-slate-100 tracking-tight leading-snug uppercase">LEADERBOARD</h2>
+            <div className="text-[9px] text-emerald-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">GLOBAL_METRICS</div>
+            {/* 名前をLEADERBOARDからANALYTICSへ変更 */}
+            <h2 className="text-2xl font-bold text-slate-100 tracking-tight leading-snug uppercase">ANALYTICS</h2>
           </div>
           <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2.5 rounded-full transition-colors duration-300">
             <X size={20} />
           </button>
         </div>
 
-        {/* 4つのタブを2x2のグリッドで配置 */}
         <div className="grid grid-cols-2 bg-white/[0.02] shrink-0 border-b border-white/5">
           <button 
             onClick={() => setActiveTab('gdp')}
@@ -450,7 +418,6 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
               borderColor = 'border-amber-500/50';
             }
             
-            // プログレスバーの計算（マイナス成長はバーを0とする）
             const pct = Math.max(0, (numVal / maxVal) * 100);
 
             return (
@@ -488,8 +455,8 @@ export default function App() {
   const [data, setData] = useState(null);
   const [selectedIso, setSelectedIso] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
-  const [isRankingOpen, setIsRankingOpen] = useState(false);
+  const [isStreamPanelOpen, setIsStreamPanelOpen] = useState(false); // 下部パネルの状態
+  const [isAnalyticsPanelOpen, setIsAnalyticsPanelOpen] = useState(false); // 左部パネルの状態
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -522,7 +489,7 @@ export default function App() {
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v5.6
+       CONNECTING_NEXUS_v5.7
     </div>
   );
 
@@ -540,7 +507,7 @@ export default function App() {
             <h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">
               WORLD<span className="text-cyan-400 opacity-90">DASH</span>
             </h1>
-            <div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v5.6</div>
+            <div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v5.7</div>
           </div>
         </div>
 
@@ -552,12 +519,13 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* テキストをOPEN_ANALYTICSに変更 */}
           <button 
-            onClick={() => setIsRankingOpen(!isRankingOpen)} 
-            className={`transition-all flex items-center gap-2 border px-5 py-2 rounded-full text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em] ${isRankingOpen ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300' : 'bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]'}`}
+            onClick={() => setIsAnalyticsPanelOpen(!isAnalyticsPanelOpen)} 
+            className={`transition-all flex items-center gap-2 border px-5 py-2 rounded-full text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em] ${isAnalyticsPanelOpen ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300' : 'bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]'}`}
           >
             <BarChart2 size={14} />
-            {isRankingOpen ? 'CLOSE_RANKING' : 'OPEN_RANKING'}
+            {isAnalyticsPanelOpen ? 'CLOSE_ANALYTICS' : 'OPEN_ANALYTICS'}
           </button>
 
           <button onClick={toggleFs} className="text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-2 border border-white/10 px-5 py-2 rounded-full bg-white/[0.04] text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em]">
@@ -582,22 +550,24 @@ export default function App() {
           </div>
         )}
 
-        <div className={`absolute top-20 bottom-12 left-0 w-[24rem] md:w-[28rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${isRankingOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <RankingPanel data={data} isOpen={isRankingOpen} onClose={() => setIsRankingOpen(false)} onSelectCountry={handleCountryClick} selectedIso={selectedIso} />
+        {/* 旧RankingPanel -> AnalyticsPanel */}
+        <div className={`absolute top-20 bottom-12 left-0 w-[24rem] md:w-[28rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${isAnalyticsPanelOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <AnalyticsPanel data={data} isOpen={isAnalyticsPanelOpen} onClose={() => setIsAnalyticsPanelOpen(false)} onSelectCountry={handleCountryClick} selectedIso={selectedIso} />
         </div>
 
         <aside className={`absolute top-20 bottom-12 right-0 w-[24rem] md:w-[28rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails country={data?.regions ? Object.values(data.regions).flat().find(c => c.master.iso3 === selectedIso) : null} onClose={() => setSelectedIso(null)} />
         </aside>
 
-        <footer className={`absolute bottom-0 left-0 right-0 z-[100] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col overflow-hidden shrink-0 ${isAnalyticsOpen ? 'h-[calc(100vh-7rem)] rounded-t-[3rem] bg-slate-950/80 backdrop-blur-[40px] border-t border-white/10 shadow-[0_-20px_60px_rgba(0,0,0,0.8)]' : 'h-12 bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-[8px] border-t border-white/20 hover:bg-white/[0.08]'}`}>
-          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className={`h-12 w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.8em] transition-all shrink-0 pointer-events-auto uppercase font-mono ${isAnalyticsOpen ? 'text-cyan-400/60 hover:text-cyan-400 border-b border-white/5' : 'text-cyan-400/80 hover:text-cyan-300'}`}>
-            <Activity size={14} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-70 group-hover:opacity-100'}`} /> 
-            {isAnalyticsOpen ? 'TERMINATE_HUB' : 'ACCESS_GLOBAL_STREAM'} 
-            {isAnalyticsOpen ? <ChevronDown size={18} className="mt-0.5" /> : <ChevronUp size={18} className="mb-0.5" />}
+        <footer className={`absolute bottom-0 left-0 right-0 z-[100] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col overflow-hidden shrink-0 ${isStreamPanelOpen ? 'h-[calc(100vh-7rem)] rounded-t-[3rem] bg-slate-950/90 backdrop-blur-[40px] border-t border-white/10 shadow-[0_-20px_60px_rgba(0,0,0,0.8)]' : 'h-12 bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-[8px] border-t border-white/20 hover:bg-white/[0.08]'}`}>
+          <button onClick={() => setIsStreamPanelOpen(!isStreamPanelOpen)} className={`h-12 w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.8em] transition-all shrink-0 pointer-events-auto uppercase font-mono ${isStreamPanelOpen ? 'text-cyan-400/60 hover:text-cyan-400 border-b border-white/5' : 'text-cyan-400/80 hover:text-cyan-300'}`}>
+            <Activity size={14} className={`${isStreamPanelOpen ? 'animate-pulse text-cyan-400' : 'opacity-70 group-hover:opacity-100'}`} /> 
+            {isStreamPanelOpen ? 'TERMINATE_STREAM' : 'ACCESS_GLOBAL_STREAM'} 
+            {isStreamPanelOpen ? <ChevronDown size={18} className="mt-0.5" /> : <ChevronUp size={18} className="mb-0.5" />}
           </button>
-          <div className="flex-1 overflow-hidden p-6 md:p-12 overflow-y-auto custom-scrollbar">
-            <GlobalAnalytics data={data} isExpanded={isAnalyticsOpen} />
+          <div className="flex-1 overflow-hidden p-6 md:p-10 overflow-y-auto custom-scrollbar">
+            {/* 新しい 3カラム ライブストリームパネル */}
+            <GlobalStreamPanel isExpanded={isStreamPanelOpen} />
           </div>
         </footer>
       </main>
