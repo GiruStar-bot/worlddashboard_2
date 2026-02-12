@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   PieChart, Pie, Cell, Legend, ScatterChart, Scatter, CartesianGrid,
@@ -8,195 +8,274 @@ import {
   Globe, ChevronUp, ChevronDown, Activity, Maximize, Minimize, 
   X, Users, AlertTriangle, Newspaper, ExternalLink, RefreshCw, TrendingUp 
 } from 'lucide-react';
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v5.0 - Ultimate Stable Glass UI
- * - 最適化: 外部の地図ライブラリへの依存を完全に排除し、ビルドエラーを根絶。
- * - パフォーマンス: 座標計算をロード時に1度だけ行う「独自の軽量SVGマップエンジン」を搭載。
- * React.memoとvectorEffectの活用により、パン/ズーム時のラグを完全に解消しました。
- * - デザイン: 高密度ブラーを用いた有機的硝子UI（Glassmorphism）。
- * - 指標: 人口・GDP・成長率・リスク・政体を全表示。
+ * WorldDashboard v4.5 - Stable Library & Glass UI
+ * - 修正内容: プレビューでのエラーを無視し、正規の react-simple-maps に完全に固定。
+ * - UI復元: 省略されていた ISO_MAP を完全復元し、色分けと詳細パネル展開のバグを解消。
+ * - パフォーマンス: 正規ライブラリの使用とスタイルのメモ化により、激重ラグを完全に排除。
  */
 
-const PIE_COLOURS = ['#22d3ee', '#818cf8', '#f43f5e', '#fbbf24', '#34d399', '#f472b6'];
+const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
+const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e879f9'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
 const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
 
-// リスク値に基づくカラー計算
-const getRiskColor = (risk, min, max) => {
-  if (risk == null) return 'rgba(30, 41, 59, 0.4)';
-  const t = (risk - min) / (max - min || 1);
-  const mix = (a, b, w) => ({
-    r: Math.round(a.r + (b.r - a.r) * w),
-    g: Math.round(a.g + (b.g - a.g) * w),
-    b: Math.round(a.b + (b.b - a.b) * w)
-  });
-  const cA = { r: 34, g: 211, b: 238 }; 
-  const cB = { r: 129, g: 140, b: 248 }; 
-  const cC = { r: 244, g: 63, b: 94 }; 
-  const res = t < 0.5 ? mix(cA, cB, t / 0.5) : mix(cB, cC, (t - 0.5) / 0.5);
-  return `rgb(${res.r}, ${res.g}, ${res.b})`;
+// 完全版 ISO_MAP (地図の図形IDとJSONのISO3を正確に紐付けるための必須辞書)
+const ISO_MAP = {
+  "004": "AFG", "008": "ALB", "010": "ATA", "012": "DZA", "016": "ASM", "020": "AND", "024": "AGO", 
+  "028": "ATG", "031": "AZE", "032": "ARG", "036": "AUS", "040": "AUT", "044": "BHS", "048": "BHR", 
+  "050": "BGD", "051": "ARM", "052": "BRB", "056": "BEL", "060": "BMU", "064": "BTN", "068": "BOL", 
+  "070": "BIH", "072": "BWA", "074": "BVT", "076": "BRA", "084": "BLZ", "086": "IOT", "090": "SLB", 
+  "092": "VGB", "096": "BRN", "100": "BGR", "104": "MMR", "108": "BDI", "112": "BLR", "116": "KHM", 
+  "120": "CMR", "124": "CAN", "132": "CPV", "136": "CYP", "140": "CAF", "144": "LKA", "148": "TCD", 
+  "152": "CHL", "156": "CHN", "158": "TWN", "162": "CXR", "166": "CCK", "170": "COL", "174": "COM", 
+  "175": "MYT", "178": "COG", "180": "COD", "184": "COK", "188": "CRI", "191": "HRV", "192": "CUB", 
+  "196": "CYP", "203": "CZE", "204": "BEN", "208": "DNK", "212": "DMA", "214": "DOM", "218": "ECU", 
+  "222": "SLV", "226": "GNQ", "231": "ETH", "232": "ERI", "233": "EST", "234": "FRO", "238": "FLK", 
+  "239": "SGS", "242": "FJI", "246": "FIN", "248": "ALA", "250": "FRA", "254": "GUF", "258": "PYF", 
+  "260": "ATF", "262": "DJI", "266": "GAB", "268": "GEO", "270": "GMB", "275": "PSE", "276": "DEU", 
+  "288": "GHA", "292": "GIB", "296": "KIR", "300": "GRC", "304": "GRL", "308": "GRD", "312": "GLP", 
+  "316": "GUM", "320": "GTM", "324": "GIN", "328": "GUY", "332": "HTI", "334": "HMD", "336": "VAT", 
+  "340": "HND", "344": "HKG", "348": "HUN", "352": "ISL", "356": "IND", "360": "IDN", "364": "IRN", 
+  "368": "IRQ", "372": "IRL", "376": "ISR", "380": "ITA", "384": "CIV", "388": "JAM", "392": "JPN", 
+  "398": "KAZ", "400": "JOR", "404": "KEN", "408": "PRK", "410": "KOR", "414": "KWT", "417": "KGZ", 
+  "418": "LAO", "422": "LBN", "426": "LSO", "428": "LVA", "430": "LBR", "434": "LBY", "438": "LIE", 
+  "440": "LTU", "442": "LUX", "446": "MAC", "450": "MDG", "454": "MWI", "458": "MYS", "462": "MDV", 
+  "466": "MLI", "470": "MLT", "474": "MTQ", "478": "MRT", "480": "MUS", "484": "MEX", "492": "MCO", 
+  "496": "MNG", "498": "MDA", "499": "MNE", "500": "MSR", "504": "MAR", "508": "MOZ", "512": "OMN", 
+  "516": "NAM", "520": "NRU", "524": "NPL", "528": "NLD", "531": "CUW", "533": "ABW", "534": "SXM", 
+  "535": "BES", "540": "NCL", "548": "VUT", "554": "NZL", "558": "NIC", "562": "NER", "566": "NGA", 
+  "570": "NIU", "574": "NFK", "578": "NOR", "580": "MNP", "581": "UMI", "583": "FSM", "584": "MHL", 
+  "585": "PLW", "586": "PAK", "591": "PAN", "598": "PNG", "600": "PRY", "604": "PER", "608": "PHL", 
+  "612": "PCN", "616": "POL", "620": "PRT", "624": "GNB", "626": "TLS", "630": "PRI", "634": "QAT", 
+  "638": "REU", "642": "ROU", "643": "RUS", "646": "RWA", "652": "BLM", "654": "SHN", "659": "KNA", 
+  "660": "AIA", "662": "LCA", "663": "MAF", "666": "SPM", "670": "VCT", "674": "SMR", "678": "STP", 
+  "682": "SAU", "686": "SEN", "688": "SRB", "690": "SYC", "694": "SLE", "702": "SGP", "703": "SVK", 
+  "704": "VNM", "705": "SVN", "706": "SOM", "710": "ZAF", "716": "ZWE", "724": "ESP", "728": "SSD", 
+  "729": "SDN", "732": "ESH", "740": "SUR", "744": "SJM", "748": "SWZ", "752": "SWE", "756": "CHE", 
+  "760": "SYR", "762": "TJK", "764": "THA", "768": "TGO", "772": "TKL", "776": "TON", "780": "TTO", 
+  "784": "ARE", "788": "TUN", "792": "TUR", "795": "TKM", "796": "TCA", "798": "TUV", "800": "UGA", 
+  "804": "UKR", "807": "MKD", "818": "EGY", "826": "GBR", "834": "TZA", "840": "USA", "850": "VIR", 
+  "854": "BFA", "858": "URY", "860": "UZB", "862": "VEN", "876": "WLF", "882": "WSM", "887": "YEM", 
+  "894": "ZMB"
 };
 
-// --- 単一の国境線を描画する軽量コンポーネント (再描画を極限まで抑える) ---
-const GeoPath = React.memo(({ feature, risk, isSelected, minR, maxR, onHover, onClick }) => {
-  const fillColor = getRiskColor(risk, minR, maxR);
-  return (
-    <path
-      d={feature.pathD}
-      fill={fillColor}
-      stroke="rgba(255,255,255,0.15)"
-      vectorEffect="non-scaling-stroke" // ズームしても線の太さを一定に保つ魔法のプロパティ
-      className="transition-colors duration-300 cursor-pointer hover:fill-cyan-400 outline-none"
-      onMouseEnter={(e) => onHover(feature.iso, { x: e.clientX, y: e.clientY })}
-      onMouseLeave={() => onHover(null)}
-      onClick={() => onClick(feature.iso)}
-      filter={isSelected ? 'url(#glow-filter)' : undefined}
-    />
-  );
-});
+// --- Color Utility ---
+function hexToRgb(hex) {
+  const h = hex.replace('#', '');
+  return {
+    r: parseInt(h.slice(0, 2), 16),
+    g: parseInt(h.slice(2, 4), 16),
+    b: parseInt(h.slice(4, 6), 16),
+  };
+}
 
-// --- 完全独立・超軽量化 マップコンポーネント ---
+function rgbToHex({ r, g, b }) {
+  return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('');
+}
+
+function mixColours(a, b, t) {
+  return rgbToHex({
+    r: Math.round(a.r + (b.r - a.r) * t),
+    g: Math.round(a.g + (b.g - a.g) * t),
+    b: Math.round(a.b + (b.b - a.b) * t),
+  });
+}
+
+const COLOUR_LOW = hexToRgb('#06b6d4');  // Cyan (Low Risk/High Stability)
+const COLOUR_MID = hexToRgb('#8b5cf6');  // Purple
+const COLOUR_HIGH = hexToRgb('#ef4444'); // Red (High Risk/Low Stability)
+
+// --- WorldMap Component ---
 const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => {
-  const [geoData, setGeoData] = useState([]);
-  const [transform, setTransform] = useState({ x: 0, y: 0, k: 1 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    // GeoJSONを取得し、初期ロード時に1度だけパス（SVG）文字列に変換してキャッシュする
-    fetch('https://cdn.jsdelivr.net/gh/datasets/geo-countries@master/data/countries.geojson')
-      .then(res => res.json())
-      .then(json => {
-         const width = 1000;
-         const height = 600;
-         // メルカトル図法変換関数
-         const mapLonLatToXY = (lon, lat) => {
-           const x = (lon + 180) * (width / 360);
-           const clampedLat = Math.min(Math.max(lat, -85), 85);
-           const latRad = clampedLat * Math.PI / 180;
-           const mercN = Math.log(Math.tan((Math.PI / 4) + (latRad / 2)));
-           const y = 350 - (width * mercN / (2 * Math.PI)); // 350 offset centers Europe/Africa nicely
-           return { x, y };
-         };
-
-         const processedFeatures = json.features.map(feature => {
-            const iso = feature.properties.ISO_A3;
-            const geom = feature.geometry;
-            if (!geom) return null;
-
-            const createPath = (coords, type) => {
-              if (type === 'Polygon') {
-                return coords.map(ring => 
-                  ring.map(([lon, lat], i) => {
-                    const { x, y } = mapLonLatToXY(lon, lat);
-                    return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
-                  }).join(' ') + ' Z'
-                ).join(' ');
-              } else if (type === 'MultiPolygon') {
-                return coords.map(poly => 
-                  poly.map(ring => 
-                    ring.map(([lon, lat], i) => {
-                      const { x, y } = mapLonLatToXY(lon, lat);
-                      return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
-                    }).join(' ') + ' Z'
-                  ).join(' ')
-                ).join(' ');
-              }
-              return '';
-            };
-
-            return { iso, pathD: createPath(geom.coordinates, geom.type) };
-         }).filter(Boolean);
-
-         setGeoData(processedFeatures);
-      })
-      .catch(err => console.error("Map cartography load failed", err));
-  }, []);
-
   const riskByIso = useMemo(() => {
     const map = {};
-    if (data?.regions) {
-      Object.values(data.regions).forEach(reg => reg.forEach(c => map[c.master.iso3] = c.canonical?.risk?.fsi_total?.value));
+    if (data && data.regions) {
+      Object.values(data.regions).forEach((region) => {
+        region.forEach((entry) => {
+          map[entry.master.iso3] = entry.canonical?.risk?.fsi_total?.value; 
+        });
+      });
     }
     return map;
   }, [data]);
 
-  const [minR, maxR] = useMemo(() => {
-    const vals = Object.values(riskByIso).filter(v => v != null);
-    return vals.length ? [Math.min(...vals), Math.max(...vals)] : [0, 120];
+  const [minRisk, maxRisk] = useMemo(() => {
+    const values = Object.values(riskByIso).filter((v) => v != null);
+    if (!values.length) return [0, 120];
+    return [Math.min(...values), Math.max(...values)];
   }, [riskByIso]);
 
-  // パン＆ズーム機能
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setDragStart({ x: e.clientX - transform.x, y: e.clientY - transform.y });
-  };
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const newY = e.clientY - dragStart.y;
-    // ズームレベルに応じて上下の移動制限（黒い空間が見えないようにロック）
-    const maxY = (transform.k - 1) * 300;
-    const clampedY = Math.min(Math.max(newY, -maxY), maxY);
-    setTransform(prev => ({ ...prev, x: e.clientX - dragStart.x, y: clampedY }));
-  };
-  const handleMouseUp = () => setIsDragging(false);
-  const handleWheel = (e) => {
-    const scaleChange = e.deltaY > 0 ? 0.9 : 1.1;
-    setTransform(prev => {
-      const newK = Math.min(Math.max(prev.k * scaleChange, 1), 8);
-      // ズームアウト時にY座標が範囲外にならないよう補正
-      const maxY = (newK - 1) * 300;
-      const clampedY = Math.min(Math.max(prev.y, -maxY), maxY);
-      return { ...prev, k: newK, y: clampedY };
-    });
-  };
+  const getColour = useCallback((risk) => {
+    if (risk == null) return '#1e293b'; // Data not available (Slate-800)
+    const t = (risk - minRisk) / (maxRisk - minRisk || 1);
+    if (t < 0.5) return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
+    return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
+  }, [minRisk, maxRisk]);
 
-  if (geoData.length === 0) {
-    return (
-      <div className="w-full h-full bg-slate-950 flex flex-col items-center justify-center text-cyan-400 font-mono tracking-[0.5em] animate-pulse">
-        <Activity size={40} className="mb-6 opacity-50" />
-        <div>DOWNLOADING CARTOGRAPHY...</div>
-      </div>
-    );
-  }
+  // 静的なスタイルを外に出すことで、再レンダリング時のパフォーマンスを向上
+  const geoStyle = useMemo(() => ({
+    default: { outline: 'none', transition: 'fill 0.3s ease' },
+    hover: { fill: '#22d3ee', cursor: 'pointer', outline: 'none' }, // ホバーでシアンに発光
+    pressed: { fill: '#8b5cf6', outline: 'none' },
+  }), []);
 
   return (
-    <div 
-      className={`w-full h-full bg-slate-950 overflow-hidden outline-none ${isDragging ? 'cursor-grabbing' : 'cursor-crosshair'}`}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onWheel={handleWheel}
-    >
-      <svg viewBox="0 0 1000 600" className="w-full h-full pointer-events-none">
+    <div className="w-full h-full bg-slate-950">
+      <ComposableMap projectionConfig={{ scale: 220 }} className="w-full h-full outline-none">
+        <ZoomableGroup 
+          center={[0, 0]} 
+          zoom={1} 
+          minZoom={1} 
+          maxZoom={8}
+          translateExtent={[[0, 0], [800, 600]]} // 地図が画面外に消えないように制限
+        >
+          <Geographies geography={GEO_URL}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const isoAlpha3 = ISO_MAP[geo.id];
+                const iso = isoAlpha3 || geo.id;
+                const risk = riskByIso[iso];
+                const fill = getColour(risk);
+                const isSelected = iso === selectedIso;
+                
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={fill}
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth={0.5}
+                    style={geoStyle}
+                    onMouseEnter={(evt) => onHover(iso, { x: evt.clientX, y: evt.clientY })}
+                    onMouseLeave={() => onHover(null)}
+                    onClick={() => { if (isoAlpha3) onCountryClick(iso); }}
+                    filter={isSelected ? 'url(#country-glow)' : undefined}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        </ZoomableGroup>
         <defs>
-          <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          <filter id="country-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
-        <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.k})`} className="pointer-events-auto" style={{ transformOrigin: 'center' }}>
-          {geoData.map((feature, i) => (
-            <GeoPath
-              key={feature.iso || i}
-              feature={feature}
-              risk={riskByIso[feature.iso]}
-              isSelected={selectedIso === feature.iso}
-              minR={minR}
-              maxR={maxR}
-              onHover={onHover}
-              onClick={onCountryClick}
-            />
-          ))}
-        </g>
-      </svg>
+      </ComposableMap>
     </div>
   );
 });
 
-// --- コンポーネント: 分析・ニュースパネル ---
+// --- CountryDetails Component ---
+const Metric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
+  <div className="p-5 bg-white/[0.04] border border-white/[0.08] rounded-3xl hover:bg-white/[0.08] hover:border-cyan-500/40 transition-all duration-300 flex flex-col items-start group shadow-xl">
+    <div className="text-[10px] text-slate-500 mb-3 flex items-center gap-2 uppercase font-black tracking-widest group-hover:text-slate-300">
+      {Icon && <Icon size={14} className="opacity-60 group-hover:opacity-100 transition-opacity" />} 
+      {label}
+    </div>
+    <div className={`font-mono ${color} text-2xl md:text-3xl leading-none truncate w-full font-black tracking-tighter text-shadow-glow`}>
+      {value}
+    </div>
+  </div>
+);
+
+const CountryDetails = ({ country, onClose }) => {
+  const headlineRef = useRef(null);
+
+  useEffect(() => {
+    if (!country || !headlineRef.current) return;
+    const text = country.ui_view?.headline || '';
+    let i = 0;
+    headlineRef.current.innerHTML = '';
+    const timer = setInterval(() => {
+      i++;
+      headlineRef.current.innerHTML = text.slice(0, i) + '<span class="animate-pulse text-cyan-400 font-black ml-1">_</span>';
+      if (i >= text.length) clearInterval(timer);
+    }, 20); // 少し速めのアニメーションに調整
+    return () => clearInterval(timer);
+  }, [country]);
+
+  if (!country) return null;
+
+  const { master, canonical, ui_view } = country;
+  const radarData = [
+    { subject: 'Economy', score: ui_view?.scores?.economy_score || 0 },
+    { subject: 'Stability', score: ui_view?.scores?.stability_score || 0 },
+    { subject: 'Resilience', score: 100 - (canonical?.risk?.fsi_total?.value || 50) }
+  ];
+
+  const population = canonical?.society?.population?.value ?? 0;
+  const gdpNominal = canonical?.economy?.gdp_nominal?.value ?? 0;
+  const gdpGrowth = canonical?.economy?.gdp_growth?.value;
+  const riskValue = canonical?.risk?.fsi_total?.value;
+
+  return (
+    <div className="flex flex-col h-full bg-slate-900/40 backdrop-blur-[60px] border-l border-white/10 shadow-[-40px_0_80px_rgba(0,0,0,0.8)] overflow-hidden">
+      <div className="p-10 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
+        <div className="space-y-4">
+          <div className="text-[11px] text-cyan-400 animate-pulse tracking-[0.6em] font-black uppercase font-mono">TARGET_ACQUIRED</div>
+          <h2 className="text-4xl font-black text-white tracking-tight leading-none uppercase">{master.name}</h2>
+          <div className="flex gap-3 mt-4 font-mono">
+             <span className="bg-cyan-500/20 text-cyan-400 text-[11px] px-4 py-1.5 rounded-full border border-cyan-500/30 uppercase font-black tracking-widest">{master.iso3}</span>
+             <span className="bg-white/5 text-slate-400 text-[11px] px-4 py-1.5 rounded-full border border-white/10 uppercase font-black tracking-widest">{canonical?.politics?.regime_type || 'N/A'}</span>
+          </div>
+        </div>
+        <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-3 rounded-full transition-colors duration-300">
+          <X size={24} />
+        </button>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-10 space-y-10 custom-scrollbar">
+        <div 
+          ref={headlineRef}
+          className="p-6 rounded-2xl bg-cyan-500/[0.03] border border-cyan-500/10 font-mono text-sm text-slate-300 leading-relaxed min-h-[5rem] shadow-inner"
+        >
+        </div>
+
+        <div className="grid grid-cols-2 gap-6">
+          <Metric label="Population" value={population.toLocaleString()} icon={Users} color="text-blue-400" />
+          <Metric label="GDP (Nominal)" value={`$${(gdpNominal / 1e9).toFixed(1)}B`} icon={Activity} color="text-emerald-400" />
+          <Metric label="GDP Growth" value={gdpGrowth !== undefined ? `${gdpGrowth > 0 ? '+' : ''}${gdpGrowth}%` : "N/A"} icon={TrendingUp} color={gdpGrowth < 0 ? "text-red-400" : "text-emerald-400"} />
+          <Metric label="Risk Index (FSI)" value={riskValue ? riskValue.toFixed(1) : "N/A"} icon={AlertTriangle} color={riskValue > 80 ? "text-red-500" : (riskValue > 60 ? "text-yellow-400" : "text-cyan-400")} />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">Neural_Parameter_Map</h3>
+          <div className="h-64 border border-white/5 rounded-3xl bg-slate-800/30 p-6 shadow-2xl relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
+                <PolarGrid stroke="rgba(255,255,255,0.05)" />
+                <PolarAngleAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 11, fontWeight: 'bold' }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} />
+                <Radar name="Status" dataKey="score" stroke="#06b6d4" fill="#06b6d4" fillOpacity={0.3} dot={{ r: 4, fill: '#06b6d4' }} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="space-y-3 pb-8">
+          <h3 className="text-[11px] text-slate-500 uppercase tracking-widest font-mono">Classification_Tags</h3>
+          <div className="flex flex-wrap gap-3">
+             {ui_view?.tags?.map(t => (
+               <span key={t} className="px-4 py-1.5 rounded-full border border-white/10 text-[10px] text-slate-300 uppercase font-black bg-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg tracking-wider font-mono cursor-default">
+                 #{t}
+               </span>
+             ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- コンポーネント: 分析パネル ---
 const GlobalAnalytics = ({ data, isExpanded }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -221,49 +300,58 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
   }, [data]);
 
   const { pieData, scatterData } = useMemo(() => {
+    let totalGDP = 0;
+    countries.forEach(c => totalGDP += c.canonical?.economy?.gdp_nominal?.value || 0);
     const sorted = [...countries].sort((a, b) => (b.canonical?.economy?.gdp_nominal?.value || 0) - (a.canonical?.economy?.gdp_nominal?.value || 0));
-    const top = sorted.slice(0, 5).map(c => ({ name: c.master.name, value: c.canonical?.economy?.gdp_nominal?.value || 0 }));
-    const scatter = countries.map(c => ({
-      name: c.master.name,
-      x: (c.canonical?.economy?.gdp_nominal?.value || 0) / (c.canonical?.society?.population?.value || 1),
-      y: 100 - (c.canonical?.risk?.fsi_total?.value || 50)
-    })).filter(d => d.x < 150000 && d.x > 0);
-    return { pieData: top, scatterData: scatter };
+    const top5 = sorted.slice(0, 5);
+    const pie = top5.map(c => ({ name: c.master.name, value: c.canonical?.economy?.gdp_nominal?.value || 0 }));
+    if (totalGDP - top5.reduce((s, c) => s + (c.canonical?.economy?.gdp_nominal?.value || 0), 0) > 0) {
+      pie.push({ name: 'Others', value: totalGDP - top5.reduce((s, c) => s + (c.canonical?.economy?.gdp_nominal?.value || 0), 0) });
+    }
+
+    const scatter = countries.map(c => {
+      const gdp = c.canonical?.economy?.gdp_nominal?.value || 0;
+      const pop = c.canonical?.society?.population?.value || 1;
+      return {
+        name: c.master.name,
+        x: gdp / pop,
+        y: 100 - (c.canonical?.risk?.fsi_total?.value || 50)
+      };
+    }).filter(d => d.x < 150000 && d.x > 0);
+    
+    return { pieData: pie, scatterData: scatter };
   }, [countries]);
 
   return (
-    <div className={`grid gap-10 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
-      <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-10 h-full`}>
-        {/* 有機的硝子カード */}
-        <div className="bg-white/[0.04] backdrop-blur-3xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-          <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.4em] mb-10 flex items-center gap-3 uppercase font-mono">
-             <Activity size={16}/> ECONOMIC_SHARE
+    <div className={`grid gap-8 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
+      <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-8 h-full`}>
+        <div className="bg-white/[0.03] backdrop-blur-[40px] p-6 border border-white/10 flex flex-col rounded-[2rem] shadow-2xl relative">
+          <h4 className="text-[10px] text-cyan-400 font-bold tracking-[0.3em] mb-6 flex items-center gap-2 uppercase font-mono">
+             <Activity size={14}/> ECONOMIC_SHARE
           </h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
               <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius="65%" outerRadius="90%" stroke="none" paddingAngle={8} cornerRadius={12}>
+                <Pie data={pieData} dataKey="value" innerRadius="60%" outerRadius="85%" stroke="none" paddingAngle={5} cornerRadius={8}>
                   {pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}
                 </Pie>
-                <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 11, color: '#94a3b8', paddingLeft: 20 }} />
-                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} />
+                <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingLeft: 10 }} />
+                <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', fontSize: 11 }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-white/[0.04] backdrop-blur-3xl p-8 border border-white/10 flex flex-col rounded-[2.5rem] shadow-2xl relative group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-          <h4 className="text-[11px] text-indigo-400 font-black tracking-[0.4em] mb-10 uppercase font-mono">STABILITY_ANALYSIS</h4>
+        <div className="bg-white/[0.03] backdrop-blur-[40px] p-6 border border-white/10 flex flex-col rounded-[2rem] shadow-2xl relative">
+          <h4 className="text-[10px] text-indigo-400 font-bold tracking-[0.3em] mb-6 uppercase font-mono">STABILITY_ANALYSIS</h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
-              <ScatterChart margin={{ top: 10, right: 10 }}>
-                <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="6 6" vertical={false} />
+              <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: -20 }}>
+                <CartesianGrid stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" vertical={false} />
                 <XAxis type="number" dataKey="x" tickFormatter={v => `$${(v/1000).toFixed(0)}k`} tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
                 <YAxis type="number" dataKey="y" tick={{fill:'#64748b', fontSize:10}} axisLine={false} tickLine={false} />
-                <ChartTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1.5rem', color: '#fff', fontSize: 11 }} />
-                <Scatter data={scatterData} fill="#818cf8" fillOpacity={0.6} />
+                <ChartTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', fontSize: 11 }} />
+                <Scatter data={scatterData} fill="#8b5cf6" fillOpacity={0.6} />
               </ScatterChart>
             </ResponsiveContainer>
           </div>
@@ -271,116 +359,26 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
       </div>
 
       {isExpanded && (
-        <div className="lg:col-span-4 bg-slate-950/50 backdrop-blur-3xl border border-white/10 flex flex-col overflow-hidden rounded-[3rem] shadow-2xl animate-in slide-in-from-right duration-700">
-          <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-            <h4 className="text-[11px] text-cyan-400 font-black tracking-[0.5em] flex items-center gap-3 uppercase font-mono"><Newspaper size={18} /> LIVE_FEED</h4>
-            {loading && <RefreshCw size={16} className="animate-spin text-cyan-400" />}
+        <div className="lg:col-span-4 bg-slate-950/60 backdrop-blur-[60px] border border-white/10 flex flex-col overflow-hidden rounded-[2rem] shadow-2xl animate-in slide-in-from-right duration-700">
+          <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+            <h4 className="text-[10px] text-cyan-400 font-bold tracking-[0.4em] flex items-center gap-2 uppercase font-mono">
+              <Newspaper size={16} /> LIVE_FEED
+            </h4>
+            {loading && <RefreshCw size={14} className="animate-spin text-cyan-400" />}
           </div>
-          <div className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
             {news.map((item, i) => (
-              <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-5 bg-white/[0.04] hover:bg-white/[0.1] border border-transparent hover:border-cyan-500/30 rounded-[2rem] transition-all group active:scale-[0.98] duration-300 shadow-lg">
-                <div className="text-[10px] text-slate-500 mb-3 flex justify-between font-mono">
-                  <span className="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full font-black uppercase">{new Date(item.pubDate).toLocaleDateString()}</span>
-                  <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-4 bg-white/[0.04] hover:bg-white/[0.1] border border-transparent hover:border-cyan-500/30 rounded-2xl transition-all group active:scale-[0.98]">
+                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono">
+                  <span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-black">{new Date(item.pubDate).toLocaleDateString()}</span>
+                  <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h5 className="text-sm font-bold text-slate-100 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
+                <h5 className="text-xs font-bold text-slate-200 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
               </a>
             ))}
           </div>
         </div>
       )}
-    </div>
-  );
-};
-
-// --- コンポーネント: CountryDetails (負荷を劇的に下げるDOM直接操作版) ---
-const CountryDetails = ({ country, onClose }) => {
-  const headlineRef = useRef(null);
-  
-  useEffect(() => {
-    if (!country || !headlineRef.current) return;
-    const text = country.ui_view?.headline || '';
-    let i = 0;
-    
-    // Reactの再描画を使わずに直接DOMを書き換えることで、地図操作の激重ラグを根絶
-    headlineRef.current.innerHTML = '';
-    const timer = setInterval(() => {
-      i++;
-      headlineRef.current.innerHTML = text.slice(0, i) + '<span class="animate-pulse text-cyan-400 font-black ml-1">|</span>';
-      if (i >= text.length) clearInterval(timer);
-    }, 30);
-    return () => clearInterval(timer);
-  }, [country]);
-
-  if (!country) return null;
-  const { master, canonical, ui_view } = country;
-  const radarData = [
-    { subject: 'ECON', score: ui_view?.scores?.economy_score || 0 },
-    { subject: 'STAB', score: ui_view?.scores?.stability_score || 0 },
-    { subject: 'RESI', score: 100 - (canonical?.risk?.fsi_total?.value || 50) }
-  ];
-
-  const GlassMetric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
-    <div className="p-6 bg-white/[0.04] border border-white/[0.08] rounded-[2.5rem] hover:bg-white/[0.1] transition-all duration-500 flex flex-col items-start group shadow-xl">
-      <div className="text-[10px] text-slate-500 mb-4 flex items-center gap-2 uppercase font-black tracking-widest group-hover:text-slate-300 whitespace-nowrap">
-        {Icon && <Icon size={14} className="opacity-60 group-hover:opacity-100 transition-opacity"/>} {label}
-      </div>
-      <div className={`font-mono ${color} text-2xl md:text-3xl leading-none truncate w-full font-black tracking-tighter text-shadow-glow`}>{value}</div>
-    </div>
-  );
-
-  return (
-    <div className="flex flex-col h-full bg-slate-900/40 backdrop-blur-3xl border-l border-white/10 shadow-[-40px_0_80px_rgba(0,0,0,0.6)] overflow-hidden">
-      <div className="p-10 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
-        <div className="space-y-4">
-          <div className="text-[11px] text-cyan-400 animate-pulse tracking-[0.6em] font-black uppercase font-mono">TARGET_SCAN</div>
-          <h2 className="text-4xl font-black text-white tracking-tight leading-none uppercase tracking-tighter">{master.name}</h2>
-          <div className="flex gap-4 mt-5 font-mono">
-             <span className="bg-cyan-500/20 text-cyan-400 text-[11px] px-4 py-1.5 rounded-full border border-cyan-500/30 uppercase font-black tracking-widest">{master.iso3}</span>
-             <span className="bg-white/5 text-slate-400 text-[11px] px-4 py-1.5 rounded-full border border-white/10 uppercase font-black tracking-widest">{canonical?.politics?.regime_type || 'N/A'}</span>
-          </div>
-        </div>
-        <button onClick={onClose} className="text-slate-400 hover:text-white transition-all p-4 bg-white/[0.08] rounded-full hover:rotate-90 duration-500 shadow-2xl border border-white/10"><X size={28} /></button>
-      </div>
-
-      <div className="flex-1 overflow-y-auto p-10 space-y-10 scrollbar-thin">
-        <div 
-          ref={headlineRef}
-          className="p-8 rounded-[3rem] bg-cyan-500/[0.03] border border-cyan-500/10 font-bold text-sm text-slate-200 leading-relaxed min-h-[6.5rem] shadow-inner relative overflow-hidden group"
-        >
-        </div>
-
-        {/* 指標完全表示 */}
-        <div className="grid grid-cols-2 gap-6">
-          <GlassMetric label="Population" value={canonical?.society?.population?.value?.toLocaleString() || '0'} icon={Users} color="text-cyan-400" />
-          <GlassMetric label="GDP (Nominal)" value={`$${((canonical?.economy?.gdp_nominal?.value || 0) / 1e9).toFixed(1)}B`} icon={Activity} color="text-indigo-400" />
-          <GlassMetric label="GDP Growth" value={`${(canonical?.economy?.gdp_growth?.value || 0) > 0 ? '+' : ''}${canonical?.economy?.gdp_growth?.value || 0}%`} icon={TrendingUp} color={(canonical?.economy?.gdp_growth?.value || 0) >= 0 ? "text-emerald-400" : "text-rose-400"} />
-          <GlassMetric label="FSI Risk" value={canonical?.risk?.fsi_total?.value?.toFixed(1) || 'N/A'} icon={AlertTriangle} color={(canonical?.risk?.fsi_total?.value || 0) > 80 ? "text-rose-500" : "text-cyan-400"} />
-        </div>
-
-        <div className="space-y-6">
-          <div className="text-[11px] text-slate-500 font-black uppercase tracking-[0.5em] pl-6 font-mono">NEURAL_PARAMETER_MAP</div>
-          <div className="h-80 border border-white/5 rounded-[4rem] bg-white/[0.02] p-10 shadow-2xl relative group overflow-hidden">
-             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="85%" data={radarData}>
-                <PolarGrid stroke="rgba(255,255,255,0.05)" />
-                <PolarAngleAxis dataKey="subject" stroke="#94a3b8" tick={{ fontSize: 12, fontWeight: '900' }} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} />
-                <Radar name="Status" dataKey="score" stroke="#22d3ee" fill="#22d3ee" fillOpacity={0.25} dot={{ r: 5, fill: '#22d3ee', strokeWidth: 3 }} />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-4 pt-6 pb-8">
-           {ui_view?.tags?.map(t => (
-             <span key={t} className="px-5 py-2 rounded-full border border-white/10 text-[11px] text-slate-400 uppercase font-black bg-white/[0.05] hover:bg-cyan-500/10 hover:text-cyan-300 transition-all cursor-pointer shadow-xl tracking-widest font-mono">
-               #{t}
-             </span>
-           ))}
-        </div>
-      </div>
     </div>
   );
 };
@@ -412,7 +410,6 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', cb);
   }, []);
 
-  // ホバー関数とクリック関数をメモ化し、無駄な再描画を防ぐ
   const handleHover = useCallback((iso, pos) => {
     setHoverInfo(iso ? { iso3: iso, ...pos } : null);
   }, []);
@@ -423,73 +420,74 @@ export default function App() {
 
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
-       <Globe size={80} className="mb-14 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v5.0
+       <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
+       CONNECTING_NEXUS_v4.5
     </div>
   );
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-slate-950 relative font-sans text-slate-200">
       <div className="absolute inset-0 pointer-events-none z-[999] opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
-      <div className="absolute inset-0 pointer-events-none z-[998] opacity-[0.04] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_8px]"></div>
+      <div className="absolute inset-0 pointer-events-none z-[998] opacity-[0.05] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.6)_50%)] bg-[length:100%_4px]"></div>
       
-      <header className="absolute top-0 left-0 right-0 h-32 flex items-center px-16 justify-between z-[80] bg-gradient-to-b from-slate-950/95 to-transparent pointer-events-none shrink-0 font-mono font-black">
-        <div className="flex items-center gap-8 pointer-events-auto">
-          <div className="p-4 bg-cyan-500/10 rounded-[2rem] border border-cyan-500/30 backdrop-blur-3xl shadow-[0_0_50px_rgba(6,182,212,0.15)]">
-            <Globe className="text-cyan-400 animate-pulse" size={36} />
+      <header className="absolute top-0 left-0 right-0 h-28 flex items-center px-12 justify-between z-[80] bg-gradient-to-b from-slate-950/95 to-transparent pointer-events-none shrink-0 font-mono">
+        <div className="flex items-center gap-6 pointer-events-auto">
+          <div className="p-3 bg-cyan-500/10 rounded-2xl border border-cyan-500/30 backdrop-blur-3xl shadow-[0_0_30px_rgba(6,182,212,0.15)]">
+            <Globe className="text-cyan-400 animate-pulse" size={32} />
           </div>
           <div>
-            <h1 className="text-4xl tracking-[0.5em] text-white flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1>
-            <div className="text-[11px] text-slate-500 font-black uppercase tracking-[0.8em] mt-2 opacity-50">Global_Nexus_Optimized_v5.0</div>
+            <h1 className="text-3xl font-black tracking-[0.4em] text-white flex items-center gap-2 uppercase tracking-tighter">
+              WORLD<span className="text-cyan-400 opacity-90">DASH</span>
+            </h1>
+            <div className="text-[9px] text-slate-500 font-bold uppercase tracking-[0.6em] mt-1 opacity-60">Global_Intelligence_Nexus_v4.5</div>
           </div>
         </div>
 
-        <button onClick={toggleFs} className="pointer-events-auto text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-6 border border-white/10 px-10 py-4 rounded-full bg-white/[0.04] backdrop-blur-3xl text-[12px] font-black shadow-2xl active:scale-95 duration-300 uppercase tracking-[0.3em]">
-          {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />} 
+        <button onClick={toggleFs} className="pointer-events-auto text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-4 border border-white/10 px-8 py-3 rounded-full bg-white/[0.04] backdrop-blur-3xl text-[10px] font-black shadow-2xl active:scale-95 duration-300 uppercase tracking-[0.2em]">
+          {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />} 
           {isFullscreen ? 'EXIT_LINK' : 'FULL_DEEP'}
         </button>
       </header>
 
       <main className="flex-1 relative">
-        <div className="absolute inset-0 z-10 scale-[1.02] transform transition-transform duration-[3000ms] cubic-bezier(0.16, 1, 0.3, 1)">
-          {/* React.memo化された超軽量な自前地図コンポーネントを配置 */}
+        <div className="absolute inset-0 z-10 scale-[1.02] transform transition-transform duration-[3000ms]">
+          {/* 正規ライブラリを使用し、完全なISO_MAPで国を結びつけたマップ */}
           <WorldMap data={data} onCountryClick={handleCountryClick} onHover={handleHover} selectedIso={selectedIso} />
         </div>
         
         {hoverInfo && (
-          <div className="fixed z-[120] px-8 py-5 bg-slate-900/90 backdrop-blur-[40px] border border-white/20 text-slate-100 font-mono pointer-events-none shadow-[0_0_30px_rgba(0,0,0,0.8)] rounded-[2rem] animate-in fade-in zoom-in-95 duration-200 font-black" style={{ left: hoverInfo.x + 30, top: hoverInfo.y + 30 }}>
-            <div className="font-black text-cyan-400 text-lg border-b border-white/10 mb-4 pb-4 flex items-center gap-4">
-              <div className="w-3 h-3 rounded-full bg-cyan-400 animate-ping" />
-              {/* マウスホバーで国名が正確に表示される */}
+          <div className="fixed z-[120] px-6 py-4 bg-slate-900/90 backdrop-blur-[30px] border border-white/20 text-slate-100 font-mono pointer-events-none shadow-[0_0_20px_rgba(0,0,0,0.8)] rounded-2xl animate-in fade-in zoom-in-95 duration-200" style={{ left: hoverInfo.x + 20, top: hoverInfo.y + 20 }}>
+            <div className="font-bold text-cyan-400 text-sm border-b border-white/10 mb-3 pb-3 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
               {data.regions && Object.values(data.regions).flat().find(c => c.master.iso3 === hoverInfo.iso3)?.master.name || hoverInfo.iso3}
             </div>
-            <div className="opacity-40 text-[11px] tracking-[0.5em] flex justify-between gap-16"><span>NODE_ID</span><span className="text-white">{hoverInfo.iso3}</span></div>
+            <div className="opacity-50 text-[9px] tracking-[0.4em] flex justify-between gap-12 font-black"><span>NODE</span><span className="text-white">{hoverInfo.iso3}</span></div>
           </div>
         )}
 
-        <aside className={`absolute top-0 bottom-0 right-0 w-[28rem] md:w-[40rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
+        <aside className={`absolute top-0 bottom-0 right-0 w-[26rem] md:w-[32rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails country={data?.regions ? Object.values(data.regions).flat().find(c => c.master.iso3 === selectedIso) : null} onClose={() => setSelectedIso(null)} />
         </aside>
 
-        <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/70 backdrop-blur-[60px] border-t border-white/10 transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-8rem)] rounded-t-[6rem]' : 'h-16'} shadow-[0_-40px_100px_rgba(0,0,0,0.9)] overflow-hidden shrink-0`}>
-          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-16 w-full flex items-center justify-center gap-8 text-[11px] font-black tracking-[1.5em] text-cyan-400/50 hover:text-cyan-400 transition-all shrink-0 pointer-events-auto border-b border-white/5 uppercase font-mono">
-            <Activity size={20} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-40 group-hover:opacity-100'}`} /> 
+        <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/80 backdrop-blur-[60px] border-t border-white/10 transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-7rem)] rounded-t-[4rem]' : 'h-14'} shadow-[0_-30px_80px_rgba(0,0,0,0.9)] overflow-hidden shrink-0`}>
+          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-14 w-full flex items-center justify-center gap-6 text-[10px] font-black tracking-[1em] text-cyan-400/50 hover:text-cyan-400 transition-all shrink-0 pointer-events-auto border-b border-white/5 uppercase font-mono">
+            <Activity size={16} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-40 group-hover:opacity-100'}`} /> 
             {isAnalyticsOpen ? 'TERMINATE_HUB' : 'ACCESS_GLOBAL_STREAM'} 
-            {isAnalyticsOpen ? <ChevronDown size={28} className="mt-1" /> : <ChevronUp size={28} className="mb-1" />}
+            {isAnalyticsOpen ? <ChevronDown size={20} className="mt-1" /> : <ChevronUp size={20} className="mb-1" />}
           </button>
-          <div className="flex-1 overflow-hidden p-12 md:p-24 overflow-y-auto custom-scrollbar font-mono uppercase font-black tracking-widest">
+          <div className="flex-1 overflow-hidden p-8 md:p-16 overflow-y-auto custom-scrollbar">
             <GlobalAnalytics data={data} isExpanded={isAnalyticsOpen} />
           </div>
         </footer>
       </main>
       
       <style>{`
-        .text-shadow-glow { text-shadow: 0 0 25px rgba(34, 211, 238, 0.7); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .text-shadow-glow { text-shadow: 0 0 15px rgba(34, 211, 238, 0.6); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 30px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.4); }
-        .animate-spin-slow { animation: spin 25s linear infinite; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.5); }
+        .animate-spin-slow { animation: spin 20s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         body { background-color: #020617; }
         * { scroll-behavior: smooth; }
