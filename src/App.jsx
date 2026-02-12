@@ -12,11 +12,9 @@ import {
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v5.0 - Leaderboard & Structure Analysis Update
- * - 新機能: 左サイドから展開する「LEADERBOARD（ランキングパネル）」を追加。
- * - 指標: GDP (Nominal) トップランキングと FSI Risk 脆弱性ランキングをタブで切り替え。
- * - 連動: ランキングのリストをクリックすると、地図と右側の詳細パネルが連動して展開。
- * - 最適化: 1ファイル内にコンポーネントを整理し、再レンダリングを抑える設計。
+ * WorldDashboard v5.1 - UX Refinement Update
+ * - 改善: ランキングパネルおよび詳細パネルの最下部がフッターに隠れる問題を解消（スクロール限界余白の追加）。
+ * - 改善: 下部アナリティクスパネルの非展開時デザインを透明化し、境界線のみを強調するスマートなUIに変更。
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
@@ -203,7 +201,7 @@ const CountryDetails = ({ country, onClose }) => {
       <div className="p-8 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
         <div className="space-y-2">
           <div className="text-[10px] text-cyan-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">TARGET_ACQUIRED</div>
-          <h2 className="text-3xl font-bold text-slate-100 tracking-tight leading-snug uppercase">{master.name}</h2>
+          <h2 className="text-3xl font-bold text-slate-100 tracking-tight leading-snug uppercase truncate max-w-[200px]">{master.name}</h2>
           <div className="flex gap-3 mt-2 font-mono">
              <span className="bg-cyan-500/10 text-cyan-400 text-[10px] px-3 py-1 rounded-full border border-cyan-500/20 uppercase font-semibold tracking-wider">{master.iso3}</span>
              <span className="bg-white/5 text-slate-400 text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase font-semibold tracking-wider">{canonical?.politics?.regime_type || 'N/A'}</span>
@@ -211,7 +209,8 @@ const CountryDetails = ({ country, onClose }) => {
         </div>
         <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2.5 rounded-full transition-colors duration-300"><X size={20} /></button>
       </div>
-      <div className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
+      {/* 改善: pb-24 を追加し、下部パネルが被っても最後までスクロールできるように調整 */}
+      <div className="flex-1 overflow-y-auto p-8 pb-24 space-y-8 custom-scrollbar">
         <div ref={headlineRef} className="p-5 rounded-2xl bg-cyan-500/[0.03] border border-cyan-500/10 font-sans text-sm text-slate-300 leading-relaxed min-h-[4rem]"></div>
         <div className="grid grid-cols-2 gap-5">
           <Metric label="Population" value={population.toLocaleString()} icon={Users} color="text-blue-400" />
@@ -322,13 +321,18 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
       {isExpanded && (
         <div className="lg:col-span-4 bg-slate-950/60 backdrop-blur-[40px] border border-white/10 flex flex-col overflow-hidden rounded-3xl shadow-2xl animate-in slide-in-from-right duration-700">
           <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-            <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.4em] flex items-center gap-2 uppercase font-mono"><Newspaper size={16} /> LIVE_FEED</h4>
+            <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.4em] flex items-center gap-2 uppercase font-mono">
+              <Newspaper size={16} /> LIVE_FEED
+            </h4>
             {loading && <RefreshCw size={14} className="animate-spin text-cyan-400" />}
           </div>
           <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
             {news.map((item, i) => (
               <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-4 bg-white/[0.03] hover:bg-white/[0.08] border border-transparent hover:border-cyan-500/30 rounded-2xl transition-all group active:scale-[0.98]">
-                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono"><span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span><ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono">
+                  <span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span>
+                  <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
                 <h5 className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
               </a>
             ))}
@@ -343,7 +347,7 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
 // 4. RankingPanel Component (左側リーダーボード)
 // ==========================================
 const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) => {
-  const [activeTab, setActiveTab] = useState('gdp'); // 'gdp' or 'risk'
+  const [activeTab, setActiveTab] = useState('gdp');
 
   const countries = useMemo(() => {
     const arr = [];
@@ -352,11 +356,9 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
   }, [data]);
 
   const rankings = useMemo(() => {
-    // GDP降順
     const gdp = [...countries]
       .filter(c => c.canonical?.economy?.gdp_nominal?.value)
       .sort((a, b) => b.canonical.economy.gdp_nominal.value - a.canonical.economy.gdp_nominal.value);
-    // リスク降順 (高いほど危険)
     const risk = [...countries]
       .filter(c => c.canonical?.risk?.fsi_total?.value)
       .sort((a, b) => b.canonical.risk.fsi_total.value - a.canonical.risk.fsi_total.value);
@@ -373,7 +375,6 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
     <div className={`absolute top-0 bottom-0 left-0 w-[22rem] md:w-[26rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="flex flex-col h-full bg-slate-900/50 backdrop-blur-[40px] border-r border-white/10 shadow-[20px_0_60px_rgba(0,0,0,0.5)] overflow-hidden">
         
-        {/* Header */}
         <div className="p-8 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
           <div className="space-y-2">
             <div className="text-[10px] text-emerald-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">GLOBAL_RANKING</div>
@@ -384,7 +385,6 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
           </button>
         </div>
 
-        {/* Tabs */}
         <div className="flex border-b border-white/5 bg-white/[0.02] shrink-0">
           <button 
             onClick={() => setActiveTab('gdp')}
@@ -400,8 +400,8 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
           </button>
         </div>
 
-        {/* Ranking List */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-3 custom-scrollbar">
+        {/* 改善: pb-24 を追加し、下部パネルが被っても最後までスクロールできるように調整 */}
+        <div className="flex-1 overflow-y-auto p-6 pb-24 space-y-3 custom-scrollbar">
           {currentData.map((c, i) => {
             const iso = c.master.iso3;
             const isSelected = iso === selectedIso;
@@ -419,15 +419,14 @@ const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) =
                 onClick={() => onSelectCountry(iso)}
                 className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer group ${isSelected ? `bg-white/[0.1] border-${activeTab === 'gdp' ? 'emerald' : 'rose'}-500/50 shadow-lg` : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.06] hover:border-white/20'}`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono text-slate-500 font-bold w-4 text-right">{i + 1}.</span>
-                    <span className={`text-xs font-bold uppercase tracking-wide transition-colors ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>{c.master.name}</span>
-                    <span className="text-[9px] font-mono text-slate-500 px-1.5 py-0.5 border border-white/10 rounded-full">{iso}</span>
+                <div className="flex items-center justify-between mb-2 gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold w-4 text-right shrink-0">{i + 1}.</span>
+                    <span className={`text-xs font-bold uppercase tracking-wide transition-colors truncate max-w-[110px] sm:max-w-[130px] ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>{c.master.name}</span>
+                    <span className="text-[9px] font-mono text-slate-500 px-1.5 py-0.5 border border-white/10 rounded-full shrink-0">{iso}</span>
                   </div>
-                  <span className={`font-mono text-sm font-bold ${textColorClass}`}>{val}</span>
+                  <span className={`font-mono text-sm font-bold shrink-0 ${textColorClass}`}>{val}</span>
                 </div>
-                {/* ミニプログレスバー */}
                 <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
                   <div className={`h-full ${colorClass} opacity-80`} style={{ width: `${pct}%` }} />
                 </div>
@@ -450,7 +449,7 @@ export default function App() {
   const [selectedIso, setSelectedIso] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
-  const [isRankingOpen, setIsRankingOpen] = useState(false); // 新機能: ランキングのトグル状態
+  const [isRankingOpen, setIsRankingOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -478,13 +477,12 @@ export default function App() {
 
   const handleCountryClick = useCallback((iso) => {
     setSelectedIso(prev => prev === iso ? null : iso);
-    // モバイル等の狭い画面の場合はパネルを自動で閉じるなどの拡張が可能ですが、今回はそのまま開いておきます
   }, []);
 
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v5.0
+       CONNECTING_NEXUS_v5.1
     </div>
   );
 
@@ -502,12 +500,11 @@ export default function App() {
             <h1 className="text-2xl font-bold tracking-[0.4em] text-white flex items-center gap-2 uppercase tracking-tighter">
               WORLD<span className="text-cyan-400 opacity-90">DASH</span>
             </h1>
-            <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-[0.6em] mt-1 opacity-70">Global_Intelligence_Nexus_v5.0</div>
+            <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-[0.6em] mt-1 opacity-70">Global_Intelligence_Nexus_v5.1</div>
           </div>
         </div>
 
         <div className="flex items-center gap-4 pointer-events-auto">
-          {/* 新機能: ランキング開閉ボタン */}
           <button 
             onClick={() => setIsRankingOpen(!isRankingOpen)} 
             className={`transition-all flex items-center gap-2 border px-6 py-2.5 rounded-full backdrop-blur-2xl text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em] ${isRankingOpen ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300' : 'bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]'}`}
@@ -538,18 +535,16 @@ export default function App() {
           </div>
         )}
 
-        {/* 左側: ランキングパネル */}
         <RankingPanel data={data} isOpen={isRankingOpen} onClose={() => setIsRankingOpen(false)} onSelectCountry={handleCountryClick} selectedIso={selectedIso} />
 
-        {/* 右側: カントリー詳細パネル */}
         <aside className={`absolute top-0 bottom-0 right-0 w-[24rem] md:w-[28rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails country={data?.regions ? Object.values(data.regions).flat().find(c => c.master.iso3 === selectedIso) : null} onClose={() => setSelectedIso(null)} />
         </aside>
 
-        {/* 下部: グローバルアナリティクスパネル */}
-        <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/80 backdrop-blur-[40px] border-t border-white/10 transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-7rem)] rounded-t-[3rem]' : 'h-12'} shadow-[0_-20px_60px_rgba(0,0,0,0.8)] overflow-hidden shrink-0`}>
-          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-12 w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.8em] text-cyan-400/60 hover:text-cyan-400 transition-all shrink-0 pointer-events-auto border-b border-white/5 uppercase font-mono">
-            <Activity size={14} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-50 group-hover:opacity-100'}`} /> 
+        {/* 改善: アナリティクス展開時と非展開時でデザインを動的に切り替え。非展開時は透明度を上げ、境界線のみ強調 */}
+        <footer className={`absolute bottom-0 left-0 right-0 z-[100] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col overflow-hidden shrink-0 ${isAnalyticsOpen ? 'h-[calc(100vh-7rem)] rounded-t-[3rem] bg-slate-950/80 backdrop-blur-[40px] border-t border-white/10 shadow-[0_-20px_60px_rgba(0,0,0,0.8)]' : 'h-12 bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-[8px] border-t border-white/20 hover:bg-white/[0.08]'}`}>
+          <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className={`h-12 w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.8em] transition-all shrink-0 pointer-events-auto uppercase font-mono ${isAnalyticsOpen ? 'text-cyan-400/60 hover:text-cyan-400 border-b border-white/5' : 'text-cyan-400/80 hover:text-cyan-300'}`}>
+            <Activity size={14} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-70 group-hover:opacity-100'}`} /> 
             {isAnalyticsOpen ? 'TERMINATE_HUB' : 'ACCESS_GLOBAL_STREAM'} 
             {isAnalyticsOpen ? <ChevronDown size={18} className="mt-0.5" /> : <ChevronUp size={18} className="mb-0.5" />}
           </button>
