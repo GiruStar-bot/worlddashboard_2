@@ -6,15 +6,17 @@ import {
 } from 'recharts';
 import { 
   Globe, ChevronUp, ChevronDown, Activity, Maximize, Minimize, 
-  X, Users, AlertTriangle, Newspaper, ExternalLink, RefreshCw, TrendingUp 
+  X, Users, AlertTriangle, Newspaper, ExternalLink, RefreshCw, TrendingUp,
+  BarChart2
 } from 'lucide-react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v4.6 - Refined Glass UI & High Performance
- * - タイポグラフィの大幅改善: 極太フォントや巨大すぎる文字サイズを適正化し、洗練されたモダンなUIへ。
- * - 値の省略(...)防止: 数値がカード内に綺麗に収まるよう調整。
- * - ISO_MAP完備・react-simple-maps使用による高速・安定動作を維持。
+ * WorldDashboard v5.0 - Leaderboard & Structure Analysis Update
+ * - 新機能: 左サイドから展開する「LEADERBOARD（ランキングパネル）」を追加。
+ * - 指標: GDP (Nominal) トップランキングと FSI Risk 脆弱性ランキングをタブで切り替え。
+ * - 連動: ランキングのリストをクリックすると、地図と右側の詳細パネルが連動して展開。
+ * - 最適化: 1ファイル内にコンポーネントを整理し、再レンダリングを抑える設計。
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
@@ -22,6 +24,7 @@ const PIE_COLOURS = ['#06b6d4', '#8b5cf6', '#ef4444', '#facc15', '#22c55e', '#e8
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
 const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
 
+// 国名マッピング (Numeric ID -> ISO3)
 const ISO_MAP = {
   "004": "AFG", "008": "ALB", "010": "ATA", "012": "DZA", "016": "ASM", "020": "AND", "024": "AGO", 
   "028": "ATG", "031": "AZE", "032": "ARG", "036": "AUS", "040": "AUT", "044": "BHS", "048": "BHR", 
@@ -61,7 +64,7 @@ const ISO_MAP = {
   "894": "ZMB"
 };
 
-// --- Color Utility ---
+// --- Color Utility Functions ---
 function hexToRgb(hex) {
   const h = hex.replace('#', '');
   return { r: parseInt(h.slice(0, 2), 16), g: parseInt(h.slice(2, 4), 16), b: parseInt(h.slice(4, 6), 16) };
@@ -81,7 +84,9 @@ const COLOUR_LOW = hexToRgb('#06b6d4');  // Cyan
 const COLOUR_MID = hexToRgb('#8b5cf6');  // Purple
 const COLOUR_HIGH = hexToRgb('#ef4444'); // Red
 
-// --- WorldMap Component ---
+// ==========================================
+// 1. WorldMap Component
+// ==========================================
 const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => {
   const riskByIso = useMemo(() => {
     const map = {};
@@ -151,18 +156,15 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
   );
 });
 
-// --- CountryDetails Component (洗練されたスマートなUIへ修正) ---
+// ==========================================
+// 2. CountryDetails Component (右パネル)
+// ==========================================
 const Metric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
-  // 余白と角丸を少しスリムにし、スタイリッシュに
   <div className="p-5 bg-white/[0.03] border border-white/[0.06] rounded-2xl hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 flex flex-col items-start group shadow-lg">
     <div className="text-[10px] text-slate-400 mb-2 flex items-center gap-2 uppercase font-semibold tracking-wider group-hover:text-slate-200">
-      {Icon && <Icon size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />} 
-      {label}
+      {Icon && <Icon size={14} className="opacity-70 group-hover:opacity-100 transition-opacity" />} {label}
     </div>
-    {/* 文字サイズを大幅に縮小(text-xl/2xl)し、はみ出し(truncate)を防止。font-black -> font-boldで洗練度アップ */}
-    <div className={`font-mono ${color} text-lg md:text-xl leading-tight w-full font-bold tracking-tight text-shadow-sm`}>
-      {value}
-    </div>
+    <div className={`font-mono ${color} text-lg md:text-xl leading-tight w-full font-bold tracking-tight text-shadow-sm`}>{value}</div>
   </div>
 );
 
@@ -200,7 +202,6 @@ const CountryDetails = ({ country, onClose }) => {
     <div className="flex flex-col h-full bg-slate-900/50 backdrop-blur-[40px] border-l border-white/10 shadow-[-20px_0_60px_rgba(0,0,0,0.5)] overflow-hidden">
       <div className="p-8 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
         <div className="space-y-2">
-          {/* フォントをスッキリと */}
           <div className="text-[10px] text-cyan-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">TARGET_ACQUIRED</div>
           <h2 className="text-3xl font-bold text-slate-100 tracking-tight leading-snug uppercase">{master.name}</h2>
           <div className="flex gap-3 mt-2 font-mono">
@@ -208,25 +209,16 @@ const CountryDetails = ({ country, onClose }) => {
              <span className="bg-white/5 text-slate-400 text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase font-semibold tracking-wider">{canonical?.politics?.regime_type || 'N/A'}</span>
           </div>
         </div>
-        <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2.5 rounded-full transition-colors duration-300">
-          <X size={20} />
-        </button>
+        <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2.5 rounded-full transition-colors duration-300"><X size={20} /></button>
       </div>
-
       <div className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
-        <div 
-          ref={headlineRef}
-          className="p-5 rounded-2xl bg-cyan-500/[0.03] border border-cyan-500/10 font-sans text-sm text-slate-300 leading-relaxed min-h-[4rem]"
-        >
-        </div>
-
+        <div ref={headlineRef} className="p-5 rounded-2xl bg-cyan-500/[0.03] border border-cyan-500/10 font-sans text-sm text-slate-300 leading-relaxed min-h-[4rem]"></div>
         <div className="grid grid-cols-2 gap-5">
           <Metric label="Population" value={population.toLocaleString()} icon={Users} color="text-blue-400" />
           <Metric label="GDP (Nominal)" value={`$${(gdpNominal / 1e9).toFixed(1)}B`} icon={Activity} color="text-emerald-400" />
-          <Metric label="GDP Growth" value={gdpGrowth !== undefined ? `${gdpGrowth > 0 ? '+' : ''}${gdpGrowth}%` : "N/A"} icon={TrendingUp} color={gdpGrowth < 0 ? "text-red-400" : "text-emerald-400"} />
-          <Metric label="Risk Index" value={riskValue ? riskValue.toFixed(1) : "N/A"} icon={AlertTriangle} color={riskValue > 80 ? "text-red-500" : (riskValue > 60 ? "text-yellow-400" : "text-cyan-400")} />
+          <Metric label="GDP Growth" value={gdpGrowth !== undefined ? `${gdpGrowth > 0 ? '+' : ''}${gdpGrowth}%` : "N/A"} icon={TrendingUp} color={gdpGrowth < 0 ? "text-rose-400" : "text-emerald-400"} />
+          <Metric label="Risk Index" value={riskValue ? riskValue.toFixed(1) : "N/A"} icon={AlertTriangle} color={riskValue > 80 ? "text-rose-500" : (riskValue > 60 ? "text-amber-400" : "text-cyan-400")} />
         </div>
-
         <div className="space-y-4">
           <h3 className="text-[10px] text-slate-500 uppercase tracking-widest font-mono font-semibold">Neural_Parameter_Map</h3>
           <div className="h-60 border border-white/5 rounded-2xl bg-slate-800/20 p-4 shadow-lg relative">
@@ -240,14 +232,11 @@ const CountryDetails = ({ country, onClose }) => {
             </ResponsiveContainer>
           </div>
         </div>
-
         <div className="space-y-3 pb-6">
           <h3 className="text-[10px] text-slate-500 uppercase tracking-widest font-mono font-semibold">Classification_Tags</h3>
           <div className="flex flex-wrap gap-2">
              {ui_view?.tags?.map(t => (
-               <span key={t} className="px-3 py-1 rounded-full border border-white/10 text-[10px] text-slate-300 uppercase font-medium bg-slate-800/50 hover:border-cyan-500/40 transition-colors tracking-wide font-mono cursor-default">
-                 #{t}
-               </span>
+               <span key={t} className="px-3 py-1 rounded-full border border-white/10 text-[10px] text-slate-300 uppercase font-medium bg-slate-800/50 hover:border-cyan-500/40 transition-colors tracking-wide font-mono cursor-default">#{t}</span>
              ))}
           </div>
         </div>
@@ -256,7 +245,9 @@ const CountryDetails = ({ country, onClose }) => {
   );
 };
 
-// --- コンポーネント: 分析パネル ---
+// ==========================================
+// 3. GlobalAnalytics Component (下部パネル)
+// ==========================================
 const GlobalAnalytics = ({ data, isExpanded }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -266,10 +257,7 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
       setLoading(true);
       fetch(`${RSS_API}${encodeURIComponent(DEFAULT_FEED)}`)
         .then(res => res.json())
-        .then(json => {
-          if (json.status === "ok") setNews(json.items.slice(0, 10));
-          setLoading(false);
-        })
+        .then(json => { if (json.status === "ok") setNews(json.items.slice(0, 10)); setLoading(false); })
         .catch(() => setLoading(false));
     }
   }, [isExpanded, news.length]);
@@ -293,11 +281,7 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
     const scatter = countries.map(c => {
       const gdp = c.canonical?.economy?.gdp_nominal?.value || 0;
       const pop = c.canonical?.society?.population?.value || 1;
-      return {
-        name: c.master.name,
-        x: gdp / pop,
-        y: 100 - (c.canonical?.risk?.fsi_total?.value || 50)
-      };
+      return { name: c.master.name, x: gdp / pop, y: 100 - (c.canonical?.risk?.fsi_total?.value || 50) };
     }).filter(d => d.x < 150000 && d.x > 0);
     
     return { pieData: pie, scatterData: scatter };
@@ -307,15 +291,11 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
     <div className={`grid gap-8 h-full transition-all duration-700 ${isExpanded ? 'lg:grid-cols-12' : 'lg:grid-cols-2'}`}>
       <div className={`${isExpanded ? 'lg:col-span-8' : ''} grid md:grid-cols-2 gap-8 h-full`}>
         <div className="bg-white/[0.02] backdrop-blur-[30px] p-6 border border-white/10 flex flex-col rounded-3xl shadow-xl relative">
-          <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.3em] mb-4 flex items-center gap-2 uppercase font-mono">
-             <Activity size={14}/> ECONOMIC_SHARE
-          </h4>
+          <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.3em] mb-4 flex items-center gap-2 uppercase font-mono"><Activity size={14}/> ECONOMIC_SHARE</h4>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer>
               <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius="60%" outerRadius="85%" stroke="none" paddingAngle={4} cornerRadius={6}>
-                  {pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}
-                </Pie>
+                <Pie data={pieData} dataKey="value" innerRadius="60%" outerRadius="85%" stroke="none" paddingAngle={4} cornerRadius={6}>{pieData.map((_, i) => <Cell key={i} fill={PIE_COLOURS[i % PIE_COLOURS.length]} />)}</Pie>
                 <Legend layout="vertical" align="right" verticalAlign="middle" wrapperStyle={{ fontSize: 10, color: '#94a3b8', paddingLeft: 10 }} />
                 <ChartTooltip contentStyle={{ backgroundColor: 'rgba(2, 6, 23, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '1rem', fontSize: 11 }} />
               </PieChart>
@@ -342,18 +322,13 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
       {isExpanded && (
         <div className="lg:col-span-4 bg-slate-950/60 backdrop-blur-[40px] border border-white/10 flex flex-col overflow-hidden rounded-3xl shadow-2xl animate-in slide-in-from-right duration-700">
           <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-            <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.4em] flex items-center gap-2 uppercase font-mono">
-              <Newspaper size={16} /> LIVE_FEED
-            </h4>
+            <h4 className="text-[10px] text-cyan-400 font-semibold tracking-[0.4em] flex items-center gap-2 uppercase font-mono"><Newspaper size={16} /> LIVE_FEED</h4>
             {loading && <RefreshCw size={14} className="animate-spin text-cyan-400" />}
           </div>
           <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
             {news.map((item, i) => (
               <a key={i} href={item.link} target="_blank" rel="noreferrer" className="block p-4 bg-white/[0.03] hover:bg-white/[0.08] border border-transparent hover:border-cyan-500/30 rounded-2xl transition-all group active:scale-[0.98]">
-                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono">
-                  <span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span>
-                  <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
+                <div className="text-[9px] text-slate-500 mb-2 flex justify-between font-mono"><span className="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded-full font-bold">{new Date(item.pubDate).toLocaleDateString()}</span><ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" /></div>
                 <h5 className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 leading-snug transition-colors">{item.title}</h5>
               </a>
             ))}
@@ -364,12 +339,118 @@ const GlobalAnalytics = ({ data, isExpanded }) => {
   );
 };
 
-// --- メインアプリ ---
+// ==========================================
+// 4. RankingPanel Component (左側リーダーボード)
+// ==========================================
+const RankingPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) => {
+  const [activeTab, setActiveTab] = useState('gdp'); // 'gdp' or 'risk'
+
+  const countries = useMemo(() => {
+    const arr = [];
+    if (data?.regions) Object.values(data.regions).forEach(reg => reg.forEach(c => arr.push(c)));
+    return arr;
+  }, [data]);
+
+  const rankings = useMemo(() => {
+    // GDP降順
+    const gdp = [...countries]
+      .filter(c => c.canonical?.economy?.gdp_nominal?.value)
+      .sort((a, b) => b.canonical.economy.gdp_nominal.value - a.canonical.economy.gdp_nominal.value);
+    // リスク降順 (高いほど危険)
+    const risk = [...countries]
+      .filter(c => c.canonical?.risk?.fsi_total?.value)
+      .sort((a, b) => b.canonical.risk.fsi_total.value - a.canonical.risk.fsi_total.value);
+      
+    return { gdp, risk };
+  }, [countries]);
+
+  const currentData = rankings[activeTab];
+  const maxVal = currentData.length > 0 
+    ? (activeTab === 'gdp' ? currentData[0].canonical.economy.gdp_nominal.value : 120) 
+    : 1;
+
+  return (
+    <div className={`absolute top-0 bottom-0 left-0 w-[22rem] md:w-[26rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className="flex flex-col h-full bg-slate-900/50 backdrop-blur-[40px] border-r border-white/10 shadow-[20px_0_60px_rgba(0,0,0,0.5)] overflow-hidden">
+        
+        {/* Header */}
+        <div className="p-8 border-b border-white/5 flex justify-between items-start bg-gradient-to-b from-white/[0.04] to-transparent shrink-0">
+          <div className="space-y-2">
+            <div className="text-[10px] text-emerald-400 animate-pulse tracking-[0.4em] font-semibold uppercase font-mono">GLOBAL_RANKING</div>
+            <h2 className="text-3xl font-bold text-slate-100 tracking-tight leading-snug uppercase">LEADERBOARD</h2>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-white hover:bg-white/10 p-2.5 rounded-full transition-colors duration-300">
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-white/5 bg-white/[0.02] shrink-0">
+          <button 
+            onClick={() => setActiveTab('gdp')}
+            className={`flex-1 py-4 text-[10px] font-bold tracking-[0.2em] uppercase font-mono transition-colors ${activeTab === 'gdp' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-white/[0.05]' : 'text-slate-500 hover:text-slate-300 hover:bg-white/[0.02]'}`}
+          >
+            GDP (Nominal)
+          </button>
+          <button 
+            onClick={() => setActiveTab('risk')}
+            className={`flex-1 py-4 text-[10px] font-bold tracking-[0.2em] uppercase font-mono transition-colors ${activeTab === 'risk' ? 'text-rose-400 border-b-2 border-rose-400 bg-white/[0.05]' : 'text-slate-500 hover:text-slate-300 hover:bg-white/[0.02]'}`}
+          >
+            FSI Risk Index
+          </button>
+        </div>
+
+        {/* Ranking List */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-3 custom-scrollbar">
+          {currentData.map((c, i) => {
+            const iso = c.master.iso3;
+            const isSelected = iso === selectedIso;
+            const val = activeTab === 'gdp' 
+              ? `$${(c.canonical.economy.gdp_nominal.value / 1e9).toFixed(1)}B`
+              : c.canonical.risk.fsi_total.value.toFixed(1);
+            const numVal = activeTab === 'gdp' ? c.canonical.economy.gdp_nominal.value : c.canonical.risk.fsi_total.value;
+            const pct = (numVal / maxVal) * 100;
+            const colorClass = activeTab === 'gdp' ? 'bg-emerald-400' : 'bg-rose-400';
+            const textColorClass = activeTab === 'gdp' ? 'text-emerald-400' : 'text-rose-400';
+
+            return (
+              <div 
+                key={iso}
+                onClick={() => onSelectCountry(iso)}
+                className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer group ${isSelected ? `bg-white/[0.1] border-${activeTab === 'gdp' ? 'emerald' : 'rose'}-500/50 shadow-lg` : 'bg-white/[0.02] border-white/5 hover:bg-white/[0.06] hover:border-white/20'}`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold w-4 text-right">{i + 1}.</span>
+                    <span className={`text-xs font-bold uppercase tracking-wide transition-colors ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>{c.master.name}</span>
+                    <span className="text-[9px] font-mono text-slate-500 px-1.5 py-0.5 border border-white/10 rounded-full">{iso}</span>
+                  </div>
+                  <span className={`font-mono text-sm font-bold ${textColorClass}`}>{val}</span>
+                </div>
+                {/* ミニプログレスバー */}
+                <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                  <div className={`h-full ${colorClass} opacity-80`} style={{ width: `${pct}%` }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+
+// ==========================================
+// 5. Main App Component
+// ==========================================
 export default function App() {
   const [data, setData] = useState(null);
   const [selectedIso, setSelectedIso] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const [isRankingOpen, setIsRankingOpen] = useState(false); // 新機能: ランキングのトグル状態
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -397,12 +478,13 @@ export default function App() {
 
   const handleCountryClick = useCallback((iso) => {
     setSelectedIso(prev => prev === iso ? null : iso);
+    // モバイル等の狭い画面の場合はパネルを自動で閉じるなどの拡張が可能ですが、今回はそのまま開いておきます
   }, []);
 
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v4.6
+       CONNECTING_NEXUS_v5.0
     </div>
   );
 
@@ -420,14 +502,25 @@ export default function App() {
             <h1 className="text-2xl font-bold tracking-[0.4em] text-white flex items-center gap-2 uppercase tracking-tighter">
               WORLD<span className="text-cyan-400 opacity-90">DASH</span>
             </h1>
-            <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-[0.6em] mt-1 opacity-70">Global_Intelligence_Nexus_v4.6</div>
+            <div className="text-[9px] text-slate-500 font-semibold uppercase tracking-[0.6em] mt-1 opacity-70">Global_Intelligence_Nexus_v5.0</div>
           </div>
         </div>
 
-        <button onClick={toggleFs} className="pointer-events-auto text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-3 border border-white/10 px-6 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-2xl text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em]">
-          {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />} 
-          {isFullscreen ? 'EXIT_LINK' : 'FULL_DEEP'}
-        </button>
+        <div className="flex items-center gap-4 pointer-events-auto">
+          {/* 新機能: ランキング開閉ボタン */}
+          <button 
+            onClick={() => setIsRankingOpen(!isRankingOpen)} 
+            className={`transition-all flex items-center gap-2 border px-6 py-2.5 rounded-full backdrop-blur-2xl text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em] ${isRankingOpen ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300' : 'bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]'}`}
+          >
+            <BarChart2 size={16} />
+            {isRankingOpen ? 'CLOSE_RANKING' : 'OPEN_RANKING'}
+          </button>
+
+          <button onClick={toggleFs} className="text-slate-400 hover:text-cyan-400 transition-all flex items-center gap-3 border border-white/10 px-6 py-2.5 rounded-full bg-white/[0.04] backdrop-blur-2xl text-[10px] font-semibold shadow-lg active:scale-95 duration-300 uppercase tracking-[0.2em]">
+            {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />} 
+            {isFullscreen ? 'EXIT_LINK' : 'FULL_DEEP'}
+          </button>
+        </div>
       </header>
 
       <main className="flex-1 relative">
@@ -445,11 +538,15 @@ export default function App() {
           </div>
         )}
 
-        {/* パネルの幅を少しスリム化 */}
+        {/* 左側: ランキングパネル */}
+        <RankingPanel data={data} isOpen={isRankingOpen} onClose={() => setIsRankingOpen(false)} onSelectCountry={handleCountryClick} selectedIso={selectedIso} />
+
+        {/* 右側: カントリー詳細パネル */}
         <aside className={`absolute top-0 bottom-0 right-0 w-[24rem] md:w-[28rem] transform transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails country={data?.regions ? Object.values(data.regions).flat().find(c => c.master.iso3 === selectedIso) : null} onClose={() => setSelectedIso(null)} />
         </aside>
 
+        {/* 下部: グローバルアナリティクスパネル */}
         <footer className={`absolute bottom-0 left-0 right-0 z-[100] bg-slate-950/80 backdrop-blur-[40px] border-t border-white/10 transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col ${isAnalyticsOpen ? 'h-[calc(100vh-7rem)] rounded-t-[3rem]' : 'h-12'} shadow-[0_-20px_60px_rgba(0,0,0,0.8)] overflow-hidden shrink-0`}>
           <button onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)} className="h-12 w-full flex items-center justify-center gap-4 text-[10px] font-semibold tracking-[0.8em] text-cyan-400/60 hover:text-cyan-400 transition-all shrink-0 pointer-events-auto border-b border-white/5 uppercase font-mono">
             <Activity size={14} className={`${isAnalyticsOpen ? 'animate-pulse text-cyan-400' : 'opacity-50 group-hover:opacity-100'}`} /> 
