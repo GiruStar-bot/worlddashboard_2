@@ -182,5 +182,2692 @@
         "summary": "自給自足農業が中心で経済基盤は極めて脆弱です。国家予算の大部分を海外援助に依存していましたが、西側諸国との関係悪化により財政難が深刻化しています。"
       }
     }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:00:00+09:00",
+      "country_iso3": "TCD",
+      "country_name_ja": "チャド共和国",
+      "country_name_en": "Republic of Chad",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "Refugee statistics are volatile due to the ongoing Sudan crisis. Political opacity remains high within the inner circle of the military council."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "隣国スーダンの内戦激化により、東部国境に100万人規模の難民が流入し、水・食料資源の枯渇と地域コミュニティ間の緊張が限界に達しています。",
+        "evidence": ["SRC_UNHCR_Chad_Crisis_2025", "SRC_IOM_Displacement"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "マハマト・デビ大統領の選挙勝利（2024年）による民政移管完了後も、ザガワ族内部の権力闘争や北部反政府勢力（FACT）の脅威は消滅しておらず、体制は盤石ではありません。",
+        "evidence": ["SRC_Sahel_Security_Monitor", "SRC_ICG_Chad_Transition"],
+        "confidence": 0.8
+      },
+      {
+        "claim": "サヘル地域で西側諸国（特にフランス）の最後の砦となっていますが、近隣のAES（サヘル諸国同盟）やロシアからの影響力拡大圧力に直面し、外交的なバランス外交を強いられています。",
+        "evidence": ["SRC_Foreign_Policy_Analysis", "SRC_Regional_Security_Brief"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "内陸国でありながら原油生産に依存する一本足打法ですが、金鉱脈や畜産資源も有しています。ただし、気候変動によるチャド湖の縮小が資源争奪を招いています。",
+        "notable_resources": [
+          {
+            "name": "原油",
+            "role": "国家歳入の約60-70%を占める絶対的な経済柱。カメルーン経由のパイプラインで輸出。",
+            "evidence": ["SRC_WB_Chad_Econ"],
+            "confidence": 0.95
+          },
+          {
+            "name": "家畜（牛・ラクダ）",
+            "role": "石油に次ぐ主要輸出品であり、国民の生計を支える基盤。近隣諸国への生体輸出が盛ん。",
+            "evidence": ["SRC_FAO_Livestock"],
+            "confidence": 0.85
+          },
+          {
+            "name": "金",
+            "role": "北部ティベスティ山地での非公式・半合法的な採掘が盛んで、武装勢力の資金源や紛争の火種となっている。",
+            "evidence": ["SRC_Global_Initiative_TOC"],
+            "confidence": 0.75
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "デビ一族と軍部による支配が継続していますが、スーダン紛争の余波（民族的な繋がり）が国内の権力バランスを揺るがす最大のリスク要因です。",
+        "key_actors": [
+          { "name": "マハマト・イドリス・デビ", "role": "大統領。父の跡を継ぎ権力を掌握、軍部を統制。" },
+          { "name": "MPS (愛国救済運動)", "role": "旧支配政党であり、現在の政権与党基盤。" },
+          { "name": "FACT (変革と和合のための戦線)", "role": "リビアを拠点とする北部反政府武装勢力。先代大統領殺害に関与。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "世界最貧国水準の人間開発指数にとどまり、原油価格の変動と気候変動（干ばつ・洪水）の双方に対して極めて脆弱な経済構造です。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T14:30:00+09:00",
+      "country_iso3": "SDN",
+      "country_name_ja": "スーダン共和国",
+      "country_name_en": "Republic of the Sudan",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "Information warfare is intense; verifying territorial control and casualty figures is difficult due to communication blackouts."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "SAF（ポートスーダン拠点）とRSF（ダルフール・ハルツーム拠点）による事実上の国家分裂が進み、実効支配地域ごとに異なる行政・経済圏が形成されつつあります。",
+        "evidence": ["SRC_ACLED_Conflict_Map_2025", "SRC_UN_Panel_Experts"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "世界最大規模の国内避難民（1,000万人超）と飢饉リスクに直面しており、特にダルフール地方やコルドファン地方では組織的な民族浄化と飢餓が報告されています。",
+        "evidence": ["SRC_IPC_Famine_Alert", "SRC_Human_Rights_Watch"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "地域大国（エジプト、UAE、サウジアラビア）や域外勢力（ロシア、イラン）の代理戦争の様相を呈しており、和平交渉は度重なる合意破棄により機能不全に陥っています。",
+        "evidence": ["SRC_Geopolitical_Monitor", "SRC_Jeddah_Process_Status"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "かつてのアフリカの穀倉地帯としての潜在力は戦火で破壊され、現在は金（ゴールド）が紛争資金の主要源となり、石油インフラの損傷が経済的致命傷となっています。",
+        "notable_resources": [
+          {
+            "name": "金 (Gold)",
+            "role": "RSFの主要資金源。ダルフール等の鉱山を掌握し、UAE経由で換金され武器調達に使用されている。",
+            "evidence": ["SRC_Global_Witness", "SRC_CNN_Investigation"],
+            "confidence": 0.95
+          },
+          {
+            "name": "農業（ゲジラ計画など）",
+            "role": "ナイル川流域の灌漑農業は戦闘により壊滅的打撃を受け、食料自給率が激減。",
+            "evidence": ["SRC_FAO_Crop_Assessment"],
+            "confidence": 0.9
+          },
+          {
+            "name": "石油インフラ",
+            "role": "南スーダン産原油の輸送パイプラインと精製施設。戦闘による破損で稼働停止が相次ぎ、両国の財政を直撃。",
+            "evidence": ["SRC_Oil_Ministry_Statement"],
+            "confidence": 0.9
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "中央政府は崩壊しており、ブルハン将軍率いる正規軍（SAF）とヘメティ司令官率いる即応支援部隊（RSF）による完全な武力対立構造です。",
+        "key_actors": [
+          { "name": "SAF (スーダン国軍)", "role": "ブルハン議長が指揮。東部ポートスーダンを臨時首都とし、国際的承認を主張。" },
+          { "name": "RSF (即応支援部隊)", "role": "ヘメティ副議長（解任済）が指揮。西部・首都圏を制圧し、並行政府的な動きを見せる。" },
+          { "name": "タガドム (Tagadum)", "role": "ハムドゥク元首相率いる民政勢力連合。戦争終結と民政移管を訴えるが影響力は限定的。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "首都ハルツームの破壊により銀行・産業システムが停止。東部はポートスーダン中心の輸入経済、西部は略奪と密貿易による戦争経済という二重構造化が進行しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:18:00+09:00",
+      "country_iso3": "MAR",
+      "country_name_ja": "モロッコ王国",
+      "country_name_en": "Kingdom of Morocco",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "Official statistics are reliable. Economic data is supported by IMF/World Bank reports and transparent trade figures."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2030年FIFAワールドカップの共催（スペイン・ポルトガルと共に）に向けた大規模なインフラ投資（スタジアム、高速鉄道網拡張）が経済成長を牽引しています。",
+        "evidence": ["SRC_FIFA_Bid_2030", "SRC_Morocco_Budget_2025"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "自動車・航空宇宙産業が伝統的なリン鉱石・農業輸出を凌ぐ勢いで成長しており、アフリカ随一の工業化ハブとしての地位を確立しました。",
+        "evidence": ["SRC_Auto_Export_Stats", "SRC_Ministry_Industry_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "構造的な水不足と頻発する干ばつが農業セクター（GDPの約12%）にとって最大の脅威であり、大規模な海水淡水化プロジェクトと「水ハイウェイ」建設が急務となっています。",
+        "evidence": ["SRC_Water_Plan_2020-2027", "SRC_WB_Climate_Risk"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界最大のリン鉱石埋蔵量を誇り、肥料市場での価格決定力を持ちますが、エネルギー資源（石油・ガス）には乏しく、再生可能エネルギー（太陽光・風力）への転換を国家戦略としています。",
+        "notable_resources": [
+          {
+            "name": "リン鉱石 (Phosphates)",
+            "role": "世界埋蔵量の約70%を保有。国営OCPグループが肥料生産を通じて世界の食料安全保障に不可欠な役割を果たす。",
+            "evidence": ["SRC_USGS_Phosphate", "SRC_OCP_Report"],
+            "confidence": 0.98
+          },
+          {
+            "name": "再生可能エネルギー",
+            "role": "ヌール（Noor）太陽熱発電所など、欧州へのグリーン水素輸出拠点としての潜在力が高い。",
+            "evidence": ["SRC_Green_Hydrogen_Offer"],
+            "confidence": 0.85
+          },
+          {
+            "name": "農業（柑橘類・オリーブ）",
+            "role": "主要な輸出産品だが、気候変動による降雨量減少の影響を最も強く受けている。",
+            "evidence": ["SRC_Agri_Export_Data"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "モハメド6世国王を中心とする安定した君主制が維持されており、近隣のアラブの春やサヘルの政変の影響を比較的受けていません。ただし、西サハラ問題が外交・安保政策の最優先事項です。",
+        "key_actors": [
+          { "name": "モハメド6世国王", "role": "国家元首であり宗教的権威（信徒の長）。政治・軍事・宗教の最終決定権を持つ。" },
+          { "name": "RNI (独立国民連合)", "role": "アズィーズ・アハンヌッシュ首相率いる現在の連立政権の中核政党。親ビジネス路線。" },
+          { "name": "ポリサリオ戦線", "role": "西サハラの独立を主張する武装組織。アルジェリアの支援を受け、国境地帯で緊張が続く。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "観光、製造業（自動車）、農業、鉱業（リン鉱石）の多角化が進んでいます。タンジェ地中海港（Tanger Med）を核とした物流ハブ機能が欧州・アフリカ貿易の要衝となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:22:00+09:00",
+      "country_iso3": "DZA",
+      "country_name_ja": "アルジェリア民主人民共和国",
+      "country_name_en": "People's Democratic Republic of Algeria",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "Hydrocarbon data is reliable (OPEC/Sonatrach), but military spending and inner circle politics remain opaque."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ロシア産ガスの代替として欧州（特にイタリア、スペイン）への天然ガス供給を拡大し、エネルギー安全保障上の戦略的価値が過去最高レベルに達しています。",
+        "evidence": ["SRC_Sonatrach_Export_Data_2025", "SRC_IEA_Gas_Report"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "モロッコとの国交断絶と西サハラ問題（ポリサリオ戦線支援）が外交・安保政策の核心であり、国境閉鎖の長期化が地域統合を阻害し軍拡競争を招いています。",
+        "evidence": ["SRC_SIPRI_Arms_Transfer", "SRC_UN_Maghreb_Briefing"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "テブン政権は炭化水素依存からの脱却（非石油輸出の拡大）を掲げていますが、官僚主義的な障壁と外資規制の緩和の遅れにより、経済多角化は依然として課題です。",
+        "evidence": ["SRC_IMF_Article_IV", "SRC_Business_Climate_Index"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の天然ガスおよび石油埋蔵量を保有する資源大国であり、国営企業ソナトラック（Sonatrach）が経済の心臓部を握っています。",
+        "notable_resources": [
+          {
+            "name": "天然ガス",
+            "role": "世界第10位前後の生産量を誇り、パイプライン（Trans-Med等）とLNGで欧州へ輸出。国家歳入の最大源。",
+            "evidence": ["SRC_OPEC_Bulletin", "SRC_Sonatrach_Annual"],
+            "confidence": 0.98
+          },
+          {
+            "name": "原油",
+            "role": "サハラ・ブレンド（軽質油）が主力。OPEC加盟国として生産調整に関与。",
+            "evidence": ["SRC_OPEC_MOMR"],
+            "confidence": 0.95
+          },
+          {
+            "name": "太陽光エネルギー",
+            "role": "広大なサハラ砂漠を活用した「Solar 1000MW」計画などが進行中だが、化石燃料に比べ開発スピードは緩やか。",
+            "evidence": ["SRC_Renewable_Ministry"],
+            "confidence": 0.8
+          },
+          {
+            "name": "鉄鉱石",
+            "role": "ガラ・ジェビレット（Gara Djebilet）鉱山の開発を中国企業と連携して進め、鉱業部門の柱とする計画。",
+            "evidence": ["SRC_Mining_Partnership_2024"],
+            "confidence": 0.85
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "アブデルマジド・テブン大統領と軍部（ANP）による強固な支配体制が確立されており、市民運動（ヒラク）の活動は抑え込まれています。",
+        "key_actors": [
+          { "name": "アブデルマジド・テブン", "role": "大統領。「新しいアルジェリア」をスローガンに統治強化と経済改革を推進。" },
+          { "name": "サイード・シャンクリハ", "role": "軍参謀総長。事実上の最高実力者であり、対モロッコ強硬路線の主導者。" },
+          { "name": "FLN (民族解放戦線)", "role": "独立以来の伝統的与党だが、近年は連立政権内での影響力を再編中。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "依然としてレント国家（資源収入依存型）の特徴が強く、原油・ガス価格の変動が財政に直結します。輸入代替産業の育成に力を入れていますが、若年層の失業率が高止まりしています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:25:00+09:00",
+      "country_iso3": "TUN",
+      "country_name_ja": "チュニジア共和国",
+      "country_name_en": "Republic of Tunisia",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "Political opposition crackdown limits independent reporting; economic data from Central Bank is credible but fiscal transparency is declining."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "カイス・サイード大統領による権力集中が進み、議会の無力化や野党指導者の逮捕など、「アラブの春」の成果であった民主的制度が後退しています。",
+        "evidence": ["SRC_Amnesty_Tunisia_Report", "SRC_Constitutional_Reform_Analysis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "公的債務の増大とIMF交渉の停滞により、デフォルト（債務不履行）リスクがくすぶり続けており、食料や医薬品の輸入決済に支障が出る場面が散見されます。",
+        "evidence": ["SRC_Moody's_Rating", "SRC_Tunisia_Central_Bank_Data"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "サハラ以南アフリカからの移民が欧州を目指す主要な経由地となっており、EUとの間で巨額の資金援助を条件とした国境管理強化協定が結ばれていますが、人権侵害の批判も高まっています。",
+        "evidence": ["SRC_EU_Tunisia_MOU", "SRC_Migration_Routes_Update"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "隣国アルジェリアやリビアと異なり大規模な化石燃料資源を持たず、観光、農業、軽工業に依存する資源小国です。",
+        "notable_resources": [
+          {
+            "name": "リン鉱石 (Phosphates)",
+            "role": "かつては世界有数の生産国だったが、ストライキや設備老朽化で生産量が低迷。外貨獲得の潜在力はある。",
+            "evidence": ["SRC_CPG_Production_Stats"],
+            "confidence": 0.85
+          },
+          {
+            "name": "オリーブオイル",
+            "role": "世界有数の輸出国。気候変動（干ばつ）による生産量変動が農村経済と貿易収支を直撃する。",
+            "evidence": ["SRC_Olive_Council"],
+            "confidence": 0.9
+          },
+          {
+            "name": "太陽光・風力",
+            "role": "欧州（イタリア）への送電プロジェクト（ELMED）が進展中で、将来的なエネルギー輸出の柱として期待。",
+            "evidence": ["SRC_Energy_Transition_Plan"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "大統領による強権支配が確立されていますが、高い失業率と物価高に対する国民の不満は根強く、突発的な社会不安のリスクが排除できません。",
+        "key_actors": [
+          { "name": "カイス・サイード", "role": "大統領。ポピュリズム的手法で既成政党を排除し、全権を掌握。" },
+          { "name": "UGTT (チュニジア労働総同盟)", "role": "国内最大の労働組合。大統領と対立・妥協を繰り返す強力な圧力団体。" },
+          { "name": "エンナハダ (Ennahda)", "role": "かつての最大与党（イスラム系）。指導者ガンヌーシ氏の収監により弱体化。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "観光業と欧州向け製造業（繊維・自動車部品）が主軸ですが、外需依存度が高く脆弱です。若年層の失業率が高く、頭脳流出が深刻な課題となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T14:45:00+09:00",
+      "country_iso3": "LBY",
+      "country_name_ja": "リビア",
+      "country_name_en": "State of Libya",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "東西政府による統計の不一致や、非公式経済（密輸）の規模が大きいため、正確なGDP予測には注意が必要。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "トリポリ拠点の国民統一政府（GNU）と東部拠点の安定政府（GSN/LNA）による二重権力構造が固定化しており、統一選挙の実施は無期限に近い延期状態にあります。",
+        "evidence": ["SRC_UNSMIL_Briefing_2025", "SRC_ICG_Libya_Update"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "石油生産は政治交渉の強力なカードとして利用されており、東西の対立激化に伴うパイプラインや港湾の封鎖が、国家経済と世界市場への供給に突発的な混乱を招き続けています。",
+        "evidence": ["SRC_NOC_Daily_Production", "SRC_IEA_Supply_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "ロシア（アフリカ・コープ）やトルコといった外部勢力の軍事介入が常態化しており、リビアは地中海およびサヘル地域の安全保障を左右する代理戦争の舞台となっています。",
+        "evidence": ["SRC_SIPRI_Regional_Security", "SRC_UN_Panel_Experts_Libya"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "アフリカ最大の原油埋蔵量を誇り、高品質かつ欧州に近い地理的優位性を持ちますが、インフラの老朽化と政治的混乱が潜在能力のフル活用を阻んでいます。",
+        "notable_resources": [
+          {
+            "name": "原油 (スウィート・クルード)",
+            "role": "低硫黄で精製しやすく、欧州の精油所にとって極めて重要。国家歳入の95%以上を占める。",
+            "evidence": ["SRC_OPEC_LBY_Data"],
+            "confidence": 0.98
+          },
+          {
+            "name": "天然ガス",
+            "role": "グリーンストリーム・パイプラインを通じてイタリアへ直接供給。欧州の脱ロシア依存戦略において重要性が再認識されている。",
+            "evidence": ["SRC_Eni_Energy_Review"],
+            "confidence": 0.9
+          },
+          {
+            "name": "金・人身売買経済",
+            "role": "サハラ以南からの移民・難民ルートを掌握する武装勢力による非公式な資金源。負の経済側面。",
+            "evidence": ["SRC_Frontex_Migration_Report"],
+            "confidence": 0.75
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "制度的な統合は進んでおらず、中央銀行の総裁人事や石油収入の分配を巡る争いが、小規模な武力衝突を誘発する最大の不安定要因です。",
+        "key_actors": [
+          { "name": "アブドゥルハミド・ドベイバ", "role": "GNU（国民統一政府）首相。トリポリを拠点とし、国際的承認と石油収入の配分権を持つ。" },
+          { "name": "ハリファ・ハフタル", "role": "LNA（リビア国民軍）司令官。東部および南部を実効支配し、軍事力と石油施設を掌握。" },
+          { "name": "リビア中央銀行 (CBL)", "role": "石油収入の唯一の受取先。その支配権は東西陣営にとって死活問題であり、政治争いの中心。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "典型的なレント国家であり、国家予算の大部分が公務員給与と補助金（燃料・食料）に費やされています。金融システムは東西で分裂しており、インフレと通貨の闇レートが国民生活を圧迫しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T15:20:00+09:00",
+      "country_iso3": "EGY",
+      "country_name_ja": "エジプト・アラブ共和国",
+      "country_name_en": "Arab Republic of Egypt",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "IMF and Central Bank data are consistent. Regional geopolitical impacts are based on maritime traffic and diplomatic records."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "UAEによるラス・エル・ヘクマ開発への350億ドルの巨額投資とIMFの融資枠拡大により、最悪の通貨危機とデフォルトの懸念は回避されましたが、対外債務負担は依然として重い状態です。",
+        "evidence": ["SRC_IMF_Egypt_Review_2025", "SRC_Central_Bank_EGY"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "紅海でのフーシ派による商船攻撃の影響で、スエズ運河の通航料収入が前年比で50%以上減少しており、貴重な外貨準備の源泉が脅かされています。",
+        "evidence": ["SRC_Suez_Canal_Authority_2025", "SRC_UNCTAD_Trade_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "ガザ情勢を巡るイスラエルとハマスの仲介役として不可欠な存在であり、この地政学的な重要性が欧米・中東諸国からの財政支援を引き出す強力なレバレッジとなっています。",
+        "evidence": ["SRC_Geopolitical_Monitor", "SRC_Foreign_Ministry_Statements"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "東地中海のガス田開発によりエネルギー自給と輸出を目指していますが、国内需要の増大と既存ガス田の生産減退により、再びエネルギー輸入国へ転落するリスクを抱えています。",
+        "notable_resources": [
+          {
+            "name": "天然ガス (ゾフルガス田等)",
+            "role": "東地中海ハブ構想の核。液化施設(LNG)を有し、欧州への供給拠点を目指す。",
+            "evidence": ["SRC_EGAS_Annual_Report"],
+            "confidence": 0.9
+          },
+          {
+            "name": "スエズ運河 (戦略的サービス資源)",
+            "role": "世界の海上貿易の約12%が通過する「地理的資源」。国家の主要な外貨獲得源。",
+            "evidence": ["SRC_SCA_Monthly_Stats"],
+            "confidence": 0.98
+          },
+          {
+            "name": "グリーン水素・再生可能エネルギー",
+            "role": "スエズ運河経済特区(SCZONE)での大規模な投資誘致により、次世代エネルギーの輸出拠点化を推進。",
+            "evidence": ["SRC_Green_Hydrogen_EGY_Strategy"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "シーシ大統領による強力な権威主義的統治と軍部による経済支配が続いており、政権基盤は安定していますが、高インフレによる市民の生活苦が潜在的な不満の火種となっています。",
+        "key_actors": [
+          { "name": "アブドゥルフッターハ・アッ＝シーシ", "role": "大統領。軍出身。インフラ主導の成長と治安維持を最優先する。" },
+          { "name": "エジプト軍 (EAF)", "role": "国防のみならず、建設、製造、農業など経済の広範囲を支配する実質的な既得権益層。" },
+          { "name": "ムスリム同胞団", "role": "非合法化された最大野党勢力。現在は弾圧により国内での組織活動は壊滅的。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "人口1億人を超える巨大市場ですが、国営（軍関連）企業の肥大化が民間投資を阻害しています。現在はIMFの勧告を受け、国有資産の売却と民間セクターの役割拡大を通じた構造改革の途上にあります。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:25:00+09:00",
+      "country_iso3": "MRT",
+      "country_name_ja": "モーリタニア・イスラム共和国",
+      "country_name_en": "Islamic Republic of Mauritania",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "Economic projections are based on IMF and World Bank's gas production onset timelines. Political data is verified through regional security briefs."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "セネガル国境沖の巨大ガス田（グランド・トルトゥ・アメイム：GTA）の生産開始により、2025年以降のGDP成長率が劇的に加速し、エネルギー輸出国家への転換期を迎えています。",
+        "evidence": ["SRC_BP_Kosmos_GTA_Update", "SRC_IMF_Country_Report_2025"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "サヘル地域の軍事クーデター連鎖（マリ、ニジェール等）の中で、ウルド・ガズワニ政権は例外的な政治的安定を維持しており、欧米諸国にとっての戦略的安保パートナーとしての重要性が高まっています。",
+        "evidence": ["SRC_G5_Sahel_Security_Brief", "SRC_EEAS_Diplomacy"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "広大な砂漠地帯と強風・日照条件を活かし、世界最大級のグリーン水素プロジェクト（AMAN等）を推進しており、将来的な欧州への脱炭素エネルギー供給拠点を目指しています。",
+        "evidence": ["SRC_CWP_Global_AMAN", "SRC_Hydrogen_Strategy_2030"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "伝統的な鉄鉱石と水産資源に加え、新たに天然ガスが経済の柱に加わりました。また、戦略的重要鉱物や再生可能エネルギーの潜在力も極めて高いのが特徴です。",
+        "notable_resources": [
+          {
+            "name": "天然ガス (GTAプロジェクト)",
+            "role": "国家経済を根本から変える新資源。欧州のガス多角化戦略において重要な供給源となる。",
+            "evidence": ["SRC_Petrosen_SMH_Joint"],
+            "confidence": 0.95
+          },
+          {
+            "name": "鉄鉱石",
+            "role": "国営企業SNIMが運営。長年の輸出の柱（GDPの約10-15%）であり、インフラ整備の基盤。",
+            "evidence": ["SRC_SNIM_Annual_Report"],
+            "confidence": 0.95
+          },
+          {
+            "name": "水産資源 (大西洋沿岸)",
+            "role": "世界有数の好漁場。日本を含む国際市場へのタコやイカの主要な供給地。",
+            "evidence": ["SRC_MPEM_Stats"],
+            "confidence": 0.9
+          },
+          {
+            "name": "金・銅",
+            "role": "タジアスト金鉱山など外資による大規模開発が進み、重要な外貨獲得源となっている。",
+            "evidence": ["SRC_Kinross_Gold_Report"],
+            "confidence": 0.85
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2019年の民主的な政権交代以降、ガズワニ大統領の下で治安情勢は落ち着いていますが、マリ国境からの難民流入やイスラム過激派の浸透リスクには継続的な警戒が必要です。",
+        "key_actors": [
+          { "name": "モハメド・ウルド・ガズワニ", "role": "大統領。軍出身ながら包摂的な政治を志向。サヘル地域の安定化に向けたキーマン。" },
+          { "name": "SNIM (国立工業鉱山会社)", "role": "国家最大の企業であり、経済的・政治的影響力が極めて強い「国家の中の国家」。" },
+          { "name": "国軍 (Mauritanian Armed Forces)", "role": "テロ対策において高い能力を示し、政権の安定を支える基盤。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "資源輸出に特化した構造ですが、ガス収入を背景にしたインフラ整備と、グリーン水素への先行投資による産業多角化を急いでいます。若年層の雇用創出と貧困削減が国内安定の鍵となります。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:28:00+09:00",
+      "country_iso3": "ESH",
+      "country_name_ja": "西サハラ",
+      "country_name_en": "Western Sahara",
+      "confidence": {
+        "overall": 0.55,
+        "notes": "Disputed territory. Economic data is largely integrated into Moroccan statistics for the controlled areas. Information on SADR-controlled zones is limited to NGO and UN reports."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "モロッコの主権を認める外交的動き（米国、イスラエル、スペイン、フランス）が加速しており、国連の仲介プロセスを介さない既成事実化が進んでいます。",
+        "evidence": ["SRC_UN_Secretary_General_Report_2025", "SRC_Diplomatic_Recognition_Tracker"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "2020年のゲルゲラト衝突以降、1991年の停戦合意は事実上崩壊しており、砂の壁（Berm）沿いでのポリサリオ戦線による低強度の武力攻撃が継続しています。",
+        "evidence": ["SRC_MINURSO_Daily_Brief", "SRC_ACLED_Conflict_Update"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "モロッコ実効支配下の沿岸部では、リン鉱石採掘と大規模な漁業、および再生可能エネルギーへの投資が、同国の南南協力戦略の拠点として推進されています。",
+        "evidence": ["SRC_OCP_Sustainability_Report", "SRC_Morocco_Southern_Provinces_Development_Plan"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界最大級のリン鉱石鉱床と大西洋屈指の好漁場を擁しますが、これらの資源開発は国際法上の正当性を巡る論争の的となっています。",
+        "notable_resources": [
+          {
+            "name": "リン鉱石 (Bou Craa鉱山)",
+            "role": "世界最高品質の鉱石を産出。モロッコ国営OCPの供給網の重要拠点だが、法的係争のリスクを伴う。",
+            "evidence": ["SRC_WSRW_Trade_Monitoring"],
+            "confidence": 0.95
+          },
+          {
+            "name": "水産資源 (大西洋沿岸)",
+            "role": "タコやイワシの豊富な漁場。EU・モロッコ漁業協定の主対象だが、欧州司法裁判所の判決により法的地位が揺らいでいる。",
+            "evidence": ["SRC_CJEU_Ruling_2024"],
+            "confidence": 0.9
+          },
+          {
+            "name": "風力・太陽光エネルギー",
+            "role": "広大な砂漠と安定した貿易風を利用。モロッコのグリーン水素戦略における主要な発電拠点として期待されている。",
+            "evidence": ["SRC_MASEN_Strategic_Plan"],
+            "confidence": 0.85
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "モロッコによる強固な統治体制（砂の壁の西側）と、アルジェリアのティンドゥフを拠点とするポリサリオ戦線（サハラ・アラブ民主共和国：SADR）との間で膠着状態が続いています。",
+        "key_actors": [
+          { "name": "モロッコ王国 (実効支配勢力)", "role": "領土の約80%を支配。「自治案」を唯一の解決策として提示し、インフラ投資を通じた統合を進める。" },
+          { "name": "ポリサリオ戦線 (SADR)", "role": "独立を求める武装・政治組織。アルジェリアの支援を受け、難民キャンプと「自由地域」を管理。" },
+          { "name": "MINURSO (国連西サハラ住民投票ミッション)", "role": "停戦監視を行う国連部隊。住民投票の実施という本来の任務は政治的対立により停滞。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "モロッコ側は政府による巨額の補助金と免税措置、インフラ整備（ダフラ港建設等）に支えられた投資主導型経済です。対してSADR側および難民キャンプは、国際的な人道支援に全面的に依存しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:30:00+09:00",
+      "country_iso3": "MLI",
+      "country_name_ja": "マリ共和国",
+      "country_name_en": "Republic of Mali",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "Security constraints limit ground verification in the north; economic data impacted by ECOWAS exit and transition to AES."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "西アフリカ諸国経済共同体（ECOWAS）を脱退し、ニジェール・ブルキナファソと共に「サヘル諸国連合（AES）」を結成したことで、地域統合の枠組みから離脱し、独自の集団防衛・経済圏の構築を急いでいます。",
+        "evidence": ["SRC_AES_Charter_2024", "SRC_ECOWAS_Withdrawal_Notice"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "フランス軍およびMINUSMA（国連軍）撤退後、ロシア系軍事組織（アフリカ・コープ）への依存を強めていますが、北部でのトゥアレグ反政府勢力（CSP-DPA）やイスラム過激派（JNIM）との衝突激化により、治安状況は悪化しています。",
+        "evidence": ["SRC_Tinzawatene_Clash_Report", "SRC_ACLED_Sahel_2025"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "2023年制定の新鉱業法に基づき、国家および国内民間セクターの権益比率を最大35%まで引き上げ、外資（主に豪・加企業）からの資源ナショナリズム的圧力を強めています。",
+        "evidence": ["SRC_Mali_Mining_Code_2023", "SRC_Reuters_Mining_Update"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "アフリカ有数の金生産国であり、経済の根幹を支えています。近年はEVバッテリー向けのリチウム開発にも注力しており、戦略的重要鉱物の供給地として注目されています。",
+        "notable_resources": [
+          {
+            "name": "金 (Gold)",
+            "role": "最大の輸出産品（輸出額の80%以上）。国家財政の要。カナダ、オーストラリア、ロシア企業が主要プレーヤー。",
+            "evidence": ["SRC_World_Gold_Council"],
+            "confidence": 0.95
+          },
+          {
+            "name": "リチウム (Lithium)",
+            "role": "グラミナ（Goulamina）プロジェクト等、アフリカ最大級の埋蔵量を誇り、世界的なサプライチェーンの多角化において重要。",
+            "evidence": ["SRC_Leo_Lithium_Report"],
+            "confidence": 0.85
+          },
+          {
+            "name": "綿花 (Cotton)",
+            "role": "農業部門の主軸であり、国民の多くが従事する生計基盤。サヘル地域最大級の生産量を維持。",
+            "evidence": ["SRC_USDA_Cotton_Report"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "アシミ・ゴイタ大佐率いる軍事政権が継続しており、当初予定されていた民政移管のタイムラインは事実上無期限に延期されています。反仏・親露感情を背景に一定の支持を得ていますが、インフラ停止（深刻な電力不足）への不満がリスク要因です。",
+        "key_actors": [
+          { "name": "アシミ・ゴイタ", "role": "暫定大統領。軍事クーデター後に権力を掌握し、対外強硬路線とロシア連携を主導。" },
+          { "name": "CSP-DPA (永続的平和・安全・開発のための戦略的枠組み)", "role": "北部を拠点とするトゥアレグ反政府勢力。アザワドの自治を求め、政府軍・ロシア部隊と激しく対立。" },
+          { "name": "JNIM (イスラムとムスリムの勝利を支える集団)", "role": "アルカイダ系武装組織。中南部を含む広範囲でテロ攻撃を継続し、統治を阻害。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "内陸国のため近隣諸国（コートジボワール、セネガル等）の港湾に依存していましたが、ECOWAS離脱により物流ルートの再編を強いられています。慢性的な電力公社（EDM-SA）の経営危機と大規模停電が産業活動の最大の障害となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:35:00+09:00",
+      "country_iso3": "SEN",
+      "country_name_ja": "セネガル共和国",
+      "country_name_en": "Republic of Senegal",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "Democratic transition in 2024 was peaceful; economic data is transparent and supported by IMF/World Bank reports."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年3月の選挙で野党勢力が勝利し、ファイ大統領とソンコ首相による新政権が誕生。西アフリカで稀有な民主的安定を証明しつつ、国家主権を重視する抜本的な政策転換を進めています。",
+        "evidence": ["SRC_CENA_Election_Result", "SRC_Constitutional_Council_2024"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "サンゴマール油田およびグランド・トルトゥ・アメイム（GTA）ガス田の商業生産が本格化し、エネルギー資源が経済成長の新たな強力なエンジンとなっています。",
+        "evidence": ["SRC_Petrosen_Update_2025", "SRC_Woodside_Sangomar_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "新政権は「経済的主権」を掲げ、CFAフランの見直しや資源採掘契約の再交渉を検討しており、投資環境の不確実性とナショナリズムのバランスが焦点となっています。",
+        "evidence": ["SRC_PASTEF_Program_2024", "SRC_Geopolitical_Monitor_SEN"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "伝統的なリン鉱石と漁業に加え、深海油田・ガス田の開発により、西アフリカ有数のエネルギー供給拠点へと変貌を遂げています。",
+        "notable_resources": [
+          {
+            "name": "原油 (サンゴマール油田)",
+            "role": "2024年に初出油。セネガル初の本格的石油開発であり、財政収支の劇的な改善が期待される。",
+            "evidence": ["SRC_Woodside_Energy"],
+            "confidence": 0.95
+          },
+          {
+            "name": "天然ガス (GTAプロジェクト)",
+            "role": "モーリタニアとの共同開発。LNGとしての輸出に加え、国内発電（Gas-to-Power）への活用を計画。",
+            "evidence": ["SRC_BP_GTA_Project"],
+            "confidence": 0.9
+          },
+          {
+            "name": "リン鉱石",
+            "role": "セネガル化学会社(ICS)が運営。インド等への輸出が多く、長年の外貨獲得源。",
+            "evidence": ["SRC_USGS_Mineral_Yearbook"],
+            "confidence": 0.9
+          },
+          {
+            "name": "水産資源",
+            "role": "国民のタンパク質源の7割以上を占めるが、外国漁船による乱獲が社会問題化し、規制強化が進んでいる。",
+            "evidence": ["SRC_FAO_Fisheries_2024"],
+            "confidence": 0.85
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "大統領選挙直前の混乱を乗り越え、現在は非常に高い民意の付託を受けた新政権が統治しています。軍の政治的中立性も高く、近隣のサヘル諸国のようなクーデターのリスクは極めて低いと評価されます。",
+        "key_actors": [
+          { "name": "バスィル・ジョマイ・ファイ", "role": "大統領。最年少の大統領として「変革」と「主権」を象徴。実務・調整型。" },
+          { "name": "ウスマン・ソンコ", "role": "首相。国民、特に若年層に絶大な人気を誇るカリスマ的指導者。政権の真の推進力。" },
+          { "name": "PASTEF (セネガルのための活動・倫理・友愛のためのアフリカ愛国者党)", "role": "現与党。アフリカ主義、反腐敗、経済主権を掲げる若手中心の政治勢力。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "サービス業（通信・金融）、農業、観光が主軸でしたが、現在は石油・ガス生産による「資源駆動型成長」への移行期にあります。ダカール・ベルニョ経済特区などのインフラ整備を進め、西アフリカのゲートウェイとしての地位を強化しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T16:00:00+09:00",
+      "country_iso3": "GMB",
+      "country_name_ja": "ガンビア共和国",
+      "country_name_en": "Republic of The Gambia",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "Post-Jammeh transparency has improved; data from IMF and African Development Bank is relatively consistent."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2017年の政権交代以降、アダマ・バロウ大統領の下で民主主義の定着が進んでいますが、旧政権時代の負の遺産清算（TRRC）と治安部門改革（SSR）が継続的な政治課題となっています。",
+        "evidence": ["SRC_TRRC_Final_Report", "SRC_Freedom_House_2025"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "GDPの約20%を占める観光業への依存度が高く、外部ショック（パンデミックや気候変動）に対して極めて脆弱な経済構造を持っています。",
+        "evidence": ["SRC_World_Bank_Gambia_Econ", "SRC_Gambia_Tourism_Board"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "セネガンビア橋の完成（2019年）により、国土を二分するガンビア川を越えた物流が飛躍的に改善し、セネガルを含むサブ地域における中継貿易の拠点としての価値が高まっています。",
+        "evidence": ["SRC_AfDB_Infrastructure_Review", "SRC_ECOWAS_Trade_Report"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "目立った鉱物資源には乏しいものの、ガンビア川の肥沃な土壌と大西洋の好漁場、そして「アフリカの微笑む海岸」と称される観光資源を最大の資産としています。",
+        "notable_resources": [
+          {
+            "name": "観光資源 (ビーチ・リバー)",
+            "role": "欧州からの冬のバカンス先として定着。主要な外貨獲得源であり雇用創出の柱。",
+            "evidence": ["SRC_Travel_Tourism_Council"],
+            "confidence": 0.95
+          },
+          {
+            "name": "落花生 (Groundnuts)",
+            "role": "伝統的な主要輸出品目。国民の大部分が従事する農業セクターの基盤だが、付加価値化が課題。",
+            "evidence": ["SRC_FAO_GMB_Agri"],
+            "confidence": 0.9
+          },
+          {
+            "name": "水産資源",
+            "role": "西アフリカ有数の排他的経済水域（EEZ）を持つが、外国漁船による違法・無報告・無規制（IUU）漁業が課題。",
+            "evidence": ["SRC_Fisheries_Ministry_GMB"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ジャメ長期政権崩壊後の混乱を脱し、現在は相対的に安定していますが、連立与党内のパワーバランスと憲法改正プロセスの停滞がリスク要因として残ります。",
+        "key_actors": [
+          { "name": "アダマ・バロウ", "role": "大統領。民主化以降、インフラ整備と経済回復を主導。2021年に再選。" },
+          { "name": "UDP (統一民主党)", "role": "かつてのバロウ氏の出身母体であり、現在は最大の野党勢力として政権を牽制。" },
+          { "name": "ECOMIG (西アフリカ諸国経済共同体ガンビア待機軍)", "role": "政権交代時の介入以来駐留し、治安維持のバックボーンを担う。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "セネガルに三方を囲まれた極小の内陸食い込み国家であり、隣国との貿易関係が死活的です。港湾・道路インフラの整備を通じて「西アフリカのゲートウェイ」を目指す戦略を推進しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T16:30:00+09:00",
+      "country_iso3": "GNB",
+      "country_name_ja": "ギニアビサウ共和国",
+      "country_name_en": "Republic of Guinea-Bissau",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "Political situation is highly volatile following the 2023 parliament dissolution. Drug trafficking data relies on UNODC and international intelligence estimates."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "エンバロ大統領による議会解任（2023年12月）以降、大統領権限の拡大と法的正当性を巡る対立が続いており、憲政危機のリスクが常態化しています。",
+        "evidence": ["SRC_UN_Security_Council_GNB_2025", "SRC_ECOWAS_Political_Monitor"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "南米産コカインの欧州向け大規模中継拠点として機能しており、治安機関や軍の一部が密輸に関与している「ナルコ・ステート（麻薬国家）」化の懸念が払拭されていません。",
+        "evidence": ["SRC_UNODC_World_Drug_Report", "SRC_Global_Initiative_TOC"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "正規輸出の約90%をカシューナッツが占めており、国際価格の変動や最大輸出先であるインドの需要動向に国家経済が完全に左右される極めて脆弱な構造です。",
+        "evidence": ["SRC_World_Bank_GNB_Economic_Update", "SRC_IMF_Article_IV_2024"],
+        "confidence": 0.95
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "肥沃な農地と豊富な水産資源、さらには未開発の沖合石油やリン鉱石の潜在力がありますが、政治的不安定さが外資導入の最大の障壁となっています。",
+        "notable_resources": [
+          { 
+            "name": "カシューナッツ", 
+            "role": "世界第5位前後の生産量を誇る。国民の約8割が直接・間接的に従事する生計の基盤。", 
+            "evidence": ["SRC_FAO_Stat_GNB"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "水産資源", 
+            "role": "西アフリカ屈指の好漁場。EUとの漁業協定による入漁料は重要な財政収入源。", 
+            "evidence": ["SRC_EU_Fisheries_Partnership"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "ボーキサイト・リン鉱石", 
+            "role": "東部地域に大規模な埋蔵が確認されているが、電力と輸送インフラの欠如により開発が停滞。", 
+            "evidence": ["SRC_African_Development_Bank"], 
+            "confidence": 0.7 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1974年の独立以来、平和裏に任期を終えた大統領が稀なほどクーデターが頻発しており、軍部の政治介入が根深い問題となっています。",
+        "key_actors": [
+          { "name": "ウマロ・シソコ・エンバロ", "role": "大統領。軍出身。強硬な政治手法で反対派を抑え込み、ECOWAS等との連携を重視。" },
+          { "name": "PAIGC (ギニア・カーボベルデ独立アフリカ党)", "role": "独立を導いた伝統的政党。現在は最大の野党勢力として大統領と激しく対立。" },
+          { "name": "ギニアビサウ軍 (FARP)", "role": "歴史的に政治のキングメーカー。派閥争いと薬物取引への関与が治安上の懸念。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "GDPの約半分を農業が占める典型的な低開発国であり、財政の多くを国際援助に依存しています。電力普及率が極めて低く、都市部以外での経済活動は自給自足レベルにとどまっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T17:00:00+09:00",
+      "country_iso3": "GIN",
+      "country_name_ja": "ギニア共和国",
+      "country_name_en": "Republic of Guinea",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "Political transition timelines are subject to change by the junta. Mining data is well-documented due to involvement of global firms (Rio Tinto, Winning Consortium)."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "世界最大級の未開発鉄鉱石プロジェクト「シマンドゥ（Simandou）」が2025年末から2026年の生産開始に向けて加速しており、世界の鉄鋼サプライチェーンを塗り替える可能性があります。",
+        "evidence": ["SRC_Rio_Tinto_Simandou_Update", "SRC_Winning_Consortium_Brief"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ママディ・ドゥンブヤ暫定大統領率いる軍事政権は、当初の民政移管期限（2024年末）を実質的に延期しており、反対派の弾圧やメディア規制による政治的緊張が高まっています。",
+        "evidence": ["SRC_ECOWAS_Transition_Monitor", "SRC_Human_Rights_Watch_GIN"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "世界のボーキサイト埋蔵量の約3分の1を保有し、特に中国への供給において圧倒的なシェアを占めていますが、資源ナショナリズムの台頭により国内精錬（アルミナ化）の要求を強めています。",
+        "evidence": ["SRC_USGS_Bauxite_2025", "SRC_Ministry_of_Mines_GIN"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "「鉱物の驚異」と称されるほど豊富な資源を有し、特にアルミニウム原料のボーキサイトと超高品位の鉄鉱石において世界戦略上の重要拠点となっています。",
+        "notable_resources": [
+          { 
+            "name": "ボーキサイト", 
+            "role": "世界第1位の埋蔵量。中国のアルミニウム生産に不可欠な供給源であり、世界市場の価格決定力を持つ。", 
+            "evidence": ["SRC_World_Mining_Data"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "鉄鉱石 (シマンドゥ鉱山)", 
+            "role": "世界最高クラスの品位を誇る。鉄道・港湾インフラを含む巨大プロジェクトとして、豪州・ブラジル依存の打破を狙う中国にとって死活的。", 
+            "evidence": ["SRC_Simfer_Joint_Venture"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "金・ダイヤモンド", 
+            "role": "伝統的な輸出資源。北東部での小規模採掘が盛んで、地域経済と外貨獲得を支える。", 
+            "evidence": ["SRC_Kimberley_Process_GIN"], 
+            "confidence": 0.8 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2021年のクーデターによりコンデ前政権を崩壊させたドゥンブヤ暫定大統領が全権を掌握。軍部内の団結は比較的維持されていますが、民政復帰を求める市民社会との対立が深まっています。",
+        "key_actors": [
+          { "name": "ママディ・ドゥンブヤ", "role": "暫定大統領、CNRD（再開発国家評議会）議長。軍のエリート（元仏外人部隊）で、資源契約の再交渉を主導。" },
+          { "name": "FNDC (憲法守護国民戦線)", "role": "民政移管を求める主要な市民社会連合。政府により解散を命じられたが、抗議活動を継続。" },
+          { "name": "リオ・ティント / WCS", "role": "シマンドゥ開発を担う国際コンソーシアム。経済的安定における実質的なステークホルダー。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "鉱業がGDPの約25%、輸出の90%以上を占める極端な資源依存経済です。インフラ整備（特に電力と鉄道）を鉱山開発と連動させることで、広範な経済発展を目指す「ギニア・ビジョン2040」を推進しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:31:00+09:00",
+      "country_iso3": "SLE",
+      "country_name_ja": "シエラレオネ共和国",
+      "country_name_en": "Republic of Sierra Leone",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "Economic indicators are based on IMF and Statistics Sierra Leone. Political sentiment analysis includes local reports following the June 2023 elections."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2023年6月の選挙結果を巡る与野党（SLPPとAPC）の対立は、国際的な仲介により対話が開始されたものの、依然として社会の分断と政治的不透明感の根源となっています。",
+        "evidence": ["SRC_EU_Election_Observation_2024", "SRC_National_Dialogue_Accord"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "世界最高水準のインフレ率（40%超）と通貨レオネの急速な減価により、食料安全保障が危機的状況にあり、生活費の高騰を背景とした突発的な抗議デモのリスクが高まっています。",
+        "evidence": ["SRC_IMF_Article_IV_SLE_2025", "SRC_WFP_Vulnerability_Analysis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "鉄鉱石の生産拡大（トマニアやマランパ鉱山）が経済成長の牽引役となっており、政府は鉱業収入を「Feed Salone（シエラレオネを養う）」などの農業自給プログラムへ再投資する戦略を掲げています。",
+        "evidence": ["SRC_Ministry_of_Mines_2025", "SRC_Government_Annual_Plan"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "ダイヤモンドの国としての歴史を持ちますが、現在は鉄鉱石が外貨獲得の主役であり、他にもルチル、ボーキサイト、金などの多様な鉱物資源を有しています。",
+        "notable_resources": [
+          { 
+            "name": "鉄鉱石", 
+            "role": "最大の輸出品目。トンコリリ鉱山等の再稼働により、GDP成長の主要なドライバーとなっている。", 
+            "evidence": ["SRC_Leone_Rock_Mining_Report"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "ダイヤモンド", 
+            "role": "伝統的な重要資源。職人による小規模採掘が多く、正規ルートの強化と透明性向上が課題。", 
+            "evidence": ["SRC_Kimberley_Process_SLE"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "ルチル (二酸化チタン)", 
+            "role": "世界有数の埋蔵量を誇る。塗料や航空宇宙産業の原料として安定した需要がある。", 
+            "evidence": ["SRC_Sierra_Rutile_Limited"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ジュリアス・マーダ・ビオ大統領の2期目の統治下、治安機関による締め付けにより表面上は落ち着いていますが、野党支持層の不満と経済的困窮が潜在的な不安定要因です。",
+        "key_actors": [
+          { "name": "ジュリアス・マーダ・ビオ", "role": "大統領。SLPP党首。教育と農業改革を優先事項に掲げるが、強権的な手法への批判も根強い。" },
+          { "name": "APC (全人民会議)", "role": "主要野党。北西部を地盤とし、選挙の透明性を巡り政府と激しく対立中。" },
+          { "name": "シエラレオネ軍 (RSLAF)", "role": "2023年11月にクーデター未遂とされる事案が発生。軍内部の規律と忠誠心が政権維持の鍵。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "人口の過半数が従事する自給的農業と、外貨を生む鉱業の二重構造です。慢性的な財政赤字と重い債務負担により、インフラ整備や社会保障のための財政的余地が極めて限定されています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:35:00+09:00",
+      "country_iso3": "LBR",
+      "country_name_ja": "リベリア共和国",
+      "country_name_en": "Republic of Liberia",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "Economic data is based on IMF and Central Bank of Liberia. Political assessments reflect the smooth 2024 transition but acknowledge ongoing transparency challenges."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年のジョセフ・ボアカイ大統領への平和的な政権交代は、西アフリカにおける民主主義の成熟を示す重要な事例となりましたが、前政権からの腐敗体質の払拭が最大の国内課題となっています。",
+        "evidence": ["SRC_NEC_Liberia_2023", "SRC_Carter_Center_Observation"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "鉄鉱石と金を中心とした採掘セクターがGDP成長を牽引していますが、付加価値の低さとインフラ（電力・道路）の未整備が広範な経済発展を阻害しています。",
+        "evidence": ["SRC_World_Bank_LBR_Update_2025", "SRC_IMF_Article_IV"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "若年層の間での安価な合成麻薬「クッシュ（Kush）」の蔓延が深刻な社会問題化しており、治安維持と公衆衛生の両面から国家の安定を脅かすリスク要因となっています。",
+        "evidence": ["SRC_WHO_Liberia_Brief", "SRC_LNP_Security_Report"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の鉄鉱石埋蔵量と広大な熱帯雨林、および伝統的な天然ゴム産業を有し、さらに海洋資源やオフショア石油の潜在性も秘めています。",
+        "notable_resources": [
+          { 
+            "name": "鉄鉱石", 
+            "role": "最大の輸出資源。アルセロール・ミタル等の多国籍企業による大規模開発が続き、隣国ギニアのシマンドゥ鉱山からの輸送ルートとしても注目されている。", 
+            "evidence": ["SRC_ArcelorMittal_LBR_Mining"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "天然ゴム", 
+            "role": "歴史的な主要産品。世界最大のゴム農園を運営するファイアストーン社が主要な雇用主の一つであり、伝統的な外貨獲得源。", 
+            "evidence": ["SRC_Firestone_Liberia_Operations"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "金", 
+            "role": "近年、商業的採掘が拡大しており、鉄鉱石に次ぐ重要な鉱物輸出品目となっている。", 
+            "evidence": ["SRC_Ministry_Mines_LBR"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ボアカイ政権は「法の支配」を掲げ、内戦時代の戦犯追及のための特別法廷設置を推進していますが、これが既得権益層との軋轢を生む可能性も孕んでいます。",
+        "key_actors": [
+          { "name": "ジョセフ・ボアカイ", "role": "大統領。統一党（UP）党首。腐敗撲滅と農業中心の経済再生（ARREST）を主導。" },
+          { "name": "ジョージ・ウェア", "role": "前大統領、CDC党首。平和的に下野したものの、依然として若年層や特定の地域に強い支持基盤を持つ。" },
+          { "name": "リベリア国軍 (AFL)", "role": "内戦後の再編を経て高いプロフェッショナリズムを維持しており、治安のバックボーンとなっている。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "輸入依存度の高い「小規模開放経済」であり、米ドルとリベリアドルの二重通貨体制をとっています。電力普及率がアフリカでも最低水準にあり、製造業の育成が極めて困難な状況にあります。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:33:00+09:00",
+      "country_iso3": "CIV",
+      "country_name_ja": "コートジボワール共和国",
+      "country_name_en": "Republic of Côte d'Ivoire",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "経済データはIMFおよびAfDBの報告に基づく。バレーヌ油田の生産予測はENIの発表資料を参照。政治情勢は現職大統領の動向を注視。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "バレーヌ（Baleine）油田およびカラオ（Calao）油田の相次ぐ発見と生産開始により、同国は西アフリカの主要なエネルギー供給拠点へと劇的な構造転換を遂げつつあります。",
+        "evidence": ["SRC_ENI_Production_Report_2025", "SRC_Ministry_Petroleum_CIV"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ワタラ大統領の4選出馬の是非を巡る憶測が広がる中、2025年末の選挙に向けた与野党の陣取り合戦が激化しており、政治的緊張が徐々に高まっています。",
+        "evidence": ["SRC_Political_Risk_Analysis_CIV", "SRC_Jeune_Afrique_Insight"],
+        "confidence": 0.8
+      },
+      {
+        "claim": "世界最大のカカオ生産国として、国際価格の急騰を背景に「持続可能なカカオ」への投資と国内加工率の向上を加速させ、資源ナショナリズムを経済多角化に活用しています。",
+        "evidence": ["SRC_ICCO_Market_Review", "SRC_WB_Economic_Update_CIV"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "伝統的な農業資源（カカオ、天然ゴム）に加え、近年発見された巨大な炭化水素資源が国家の富を根本的に押し上げています。また、金を中心とした採掘部門も急成長しています。",
+        "notable_resources": [
+          { 
+            "name": "石油・天然ガス (バレーヌ油田等)", 
+            "role": "アフリカ最大級の純排出ゼロ（Scope 1&2）プロジェクト。エネルギー自給のみならず、近隣諸国への電力・ガス輸出を担う。", 
+            "evidence": ["SRC_ENI_Strategic_Plan"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "カカオ", 
+            "role": "世界シェアの約4割を占める。国際価格の変動が国家財政と数百万人の農家の生計を左右する最重要戦略作物。", 
+            "evidence": ["SRC_Coffee_Cocoa_Council"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "金 (Gold)", 
+            "role": "近年、複数の新鉱山が稼働。カカオに次ぐ主要な輸出産品として外貨獲得に貢献している。", 
+            "evidence": ["SRC_GPM_Mining_Stats"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2011年の内戦終結以降、ワタラ政権下で目覚ましい安定を維持していますが、北部のサヘル境界における過激派の浸透リスクと、世代交代を伴う次期大統領選の行方が中長期的な不透明要因です。",
+        "key_actors": [
+          { "name": "アラサン・ワタラ", "role": "大統領、RHDP党首。マクロ経済の安定化とインフラ投資を主導。後継者問題が焦点。" },
+          { "name": "ティジャン・ティアム", "role": "最大野党PDCI-RDA党首。元クレディ・スイスCEO。経済的知見を武器に次期大統領選の有力候補。" },
+          { "name": "ローラン・バグボ", "role": "元大統領、PPA-CI党首。根強い支持層を持つが、選挙資格を巡る法的・政治的論争が続く。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "西アフリカ経済通貨同盟（UEMOA）のGDPの約4割を占める地域経済の牽引役。インフラ整備、製造業、デジタル経済への投資が進み、周辺国からの労働流入を吸収する拠点となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:35:12+09:00",
+      "country_iso3": "BFA",
+      "country_name_ja": "ブルキナファソ",
+      "country_name_en": "Burkina Faso",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "Security crisis limits data collection in rural areas; political transparency is low under the military junta."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "国土の約40-50%がイスラム過激派（JNIM等）の影響下にあり、暫定政府は民兵組織「郷土防衛ボランティア（VDP）」を動員した総力戦体制を敷いています。",
+        "evidence": ["SRC_ACLED_Sahel_2025", "SRC_UN_Security_Council_BFA"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ニジェール、マリと共に「サヘル諸国連合（AES）」を核とした独自路線を突き進んでおり、フランスとの断交およびロシアからの軍事支援（アフリカ・コープ）が統治の基盤となっています。",
+        "evidence": ["SRC_AES_Liptako_Gourma_Charter", "SRC_Ministry_Foreign_Affairs_BFA"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "深刻な治安悪化にもかかわらず、金採掘（ゴールド）が経済の生命線として機能しており、政府は新鉱業法を通じて国家収益の最大化を図る「資源ナショナリズム」を強めています。",
+        "evidence": ["SRC_BFA_Mining_Code_2023", "SRC_ITIE_Burkina_Faso"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "アフリカ有数の金生産国であり、国家輸出の8割以上を金が占めています。未開発の亜鉛やマンガン資源も有していますが、紛争地域に位置するため開発は停滞しています。",
+        "notable_resources": [
+          { 
+            "name": "金 (Gold)", 
+            "role": "最大の輸出産品。外貨獲得の柱。小規模採掘と大規模産業採掘が混在し、武装勢力の資金源化も懸念されている。", 
+            "evidence": ["SRC_World_Gold_Council"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "亜鉛 (Zinc)", 
+            "role": "ペコア（Perkoa）鉱山等が主要拠点だが、治安および浸水事故等の影響で操業が不安定化。", 
+            "evidence": ["SRC_USGS_Mineral_Yearbook"], 
+            "confidence": 0.8 
+          },
+          { 
+            "name": "綿花 (Cotton)", 
+            "role": "「白い金」と呼ばれ、国民の数百万人の生計を支える主要な農業資源。気候変動と紛争により生産量が減少傾向。", 
+            "evidence": ["SRC_USDA_Cotton_Stats"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2022年の2度のクーデターを経て就任したイブラヒム・トラオレ暫定大統領による強権的な軍事統治下にあります。民政移管の期限は「治安回復」を理由に無期限延期の様相を呈しています。",
+        "key_actors": [
+          { "name": "イブラヒム・トラオレ", "role": "暫定大統領、大尉。反仏・親露路線を掲げ、若年層や軍下士官から強い支持を得る。" },
+          { "name": "VDP (郷土防衛ボランティア)", "role": "政府軍を補完する民間武装組織。国内の治安維持の主軸だが、人権侵害の懸念も指摘される。" },
+          { "name": "JNIM (イスラムとムスリムの勝利を支える集団)", "role": "アルカイダ系武装組織。政府軍に対する主要な脅威であり、広範な農村部を支配。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "内陸国であり、物流は近隣国（特にコートジボワール、トーゴ）の港湾に依存しています。ECOWAS離脱により、域内共通関税や移動の自由が失われることへの経済的リスクが懸念されています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:38:00+09:00",
+      "country_iso3": "GHA",
+      "country_name_ja": "ガーナ共和国",
+      "country_name_en": "Republic of Ghana",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "Economic data is based on IMF 2025 reviews and Bank of Ghana reports. Political outlook reflects the lead-up to the 2024 general elections."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年12月の総選挙は、現職ナカ・アクフォ＝アド大統領の退任に伴い、バウミア副大統領（NPP）とマハマ元大統領（NDC）の激しい一騎打ちとなり、経済再生が最大の争点となっています。",
+        "evidence": ["SRC_EC_Ghana_2024", "SRC_Political_Risk_GHA"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "30億ドルのIMF支援プログラムの下、ユーロ債を含む債務再編が概ね合意に達し、一時期50%を超えたインフレ率も沈静化の兆しを見せるなど、マクロ経済の安定化プロセスが進行中です。",
+        "evidence": ["SRC_IMF_Ghana_Program_2025", "SRC_BoG_Inflation_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "サヘル諸国（ブルキナファソ等）からのテロ脅威波及を阻止するため、「アクラ・イニシアティブ」を通じた周辺国との安保協力と、北部地域への軍事展開を強化しています。",
+        "evidence": ["SRC_Accra_Initiative_Update", "SRC_Security_Brief_GHA"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "金、石油、カカオの三本柱に加え、リチウム等の「緑の資源」への投資を加速させ、産業構造の高度化を目指しています。",
+        "notable_resources": [
+          {
+            "name": "金 (Gold)",
+            "role": "アフリカ最大の産金国。アングロゴールド・アシャンティ等の大手から小規模採掘まで幅広く、外貨獲得の主要源。",
+            "evidence": ["SRC_World_Gold_Council_2025"],
+            "confidence": 0.98
+          },
+          {
+            "name": "石油・天然ガス",
+            "role": "ジュビリー、TEN、SANKOFAの三つの主要油田を擁し、エネルギー自給と輸出を担う。新たな探査ライセンス供与も継続中。",
+            "evidence": ["SRC_GNPC_Annual_Review"],
+            "confidence": 0.9
+          },
+          {
+            "name": "カカオ",
+            "role": "世界第2位の生産量。病害（スウォールン・シュート病）による減産の懸念はあるが、国際価格急騰により農家所得改善を模索。",
+            "evidence": ["SRC_COCOBOD_Stats"],
+            "confidence": 0.85
+          },
+          {
+            "name": "リチウム",
+            "role": "エオリアン・リチウム・プロジェクトが進展。アフリカ初のリチウム鉱山稼働を目指し、国内精錬も視野に入れている。",
+            "evidence": ["SRC_Atlantic_Lithium_Ewoyaa"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "西アフリカで最も安定した民主主義国家の一つと評されますが、経済的困窮への不満や、選挙を巡る与野党の激しい対立が社会的な緊張を生んでいます。",
+        "key_actors": [
+          { "name": "マハムドゥ・バウミア", "role": "副大統領、NPP大統領候補。経済学者。デジタル化とインフラ整備による実績を強調。" },
+          { "name": "ジョン・ドラマニ・マハマ", "role": "元大統領、最大野党NDC候補。現政権の失政（債務危機）を批判し、若年層に支持を訴える。" },
+          { "name": "ガーナ軍 (GAF)", "role": "高いプロフェッショナリズムを持ち、政情不安な西アフリカにおいて治安維持の要石となっている。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "債務危機を克服するための構造改革の途上にあり、民間セクターの活性化と農業・鉱業の付加価値向上を急いでいます。アフリカ大陸自由貿易圏（AfCFTA）事務局がアクラに置かれていることから、域内貿易ハブとしての地位も強化しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:38:45+09:00",
+      "country_iso3": "TGO",
+      "country_name_ja": "トーゴ共和国",
+      "country_name_en": "Republic of Togo",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済データはIMFおよびロメ港湾局の統計に基づく。政治情勢は2024年5月の新憲法下での総選挙結果を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年の憲法改正により大統領制から議院内閣制へ移行し、フォール・ニャシンベ大統領が「閣僚評議会議長」として実権を維持し続ける法的枠組みが整いました。",
+        "evidence": ["SRC_Togo_Constitutional_Reform_2024", "SRC_Election_Results_May_2024"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "北部サバヌ州において、隣国ブルキナファソから波及するイスラム過激派（JNIM等）による攻撃が頻発しており、治安維持コストの増大が財政を圧迫しています。",
+        "evidence": ["SRC_ACLED_Togo_Security_2025", "SRC_Operation_Koundjoare_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "西アフリカで唯一の天然深水港であるロメ港（Lomé Port）が、サヘル諸国（AES）への主要な物流ゲートウェイとして、周辺国の政変に関わらず戦略的重要性を高めています。",
+        "evidence": ["SRC_Lome_Container_Terminal_Data", "SRC_World_Bank_Logistics_Index"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の埋蔵量を誇るリン鉱石と石灰岩が鉱業の柱です。また、肥沃な土地を活かした商品作物（綿花、コーヒー、カカオ）が国民の生計を支えています。",
+        "notable_resources": [
+          { 
+            "name": "リン鉱石 (Phosphates)", 
+            "role": "世界第10位前後の生産規模。肥料原料として重要な輸出品目であり、国営SNPTが運営。", 
+            "evidence": ["SRC_USGS_Phosphate_Report"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "石灰岩・クリンカー", 
+            "role": "セメント製造の基盤。西アフリカ地域への建設資材供給拠点として外資（ハイデルベルグ・セメント等）が参入。", 
+            "evidence": ["SRC_Ministry_of_Mines_TGO"], 
+            "confidence": 0.85 
+          },
+          { 
+            "name": "農産物 (綿花・大豆)", 
+            "role": "近年は大豆の輸出が急成長しており、欧州市場向けのオーガニック大豆供給国としての地位を確立。", 
+            "evidence": ["SRC_USDA_Agri_Export_2024"], 
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1967年から続くニャシンベ家による支配が継続しており、表面上は安定していますが、野党勢力の弾圧や言論統制に対する不満が潜在的なリスクとして存在します。外交ではサヘル諸国連合（AES）とECOWASの仲介役を自認しています。",
+        "key_actors": [
+          { "name": "フォール・ニャシンベ", "role": "閣僚評議会議長（実質的最高権力者）。UNIR党首。開発独裁的な経済改革を推進。" },
+          { "name": "UNIR (共和国連合)", "role": "圧倒的な議席数を誇る与党。軍部および地方伝統的首長層を支持基盤とする。" },
+          { "name": "トーゴ軍 (FAT)", "role": "政権の最大の守護神。北部でのテロ対策を通じ、対外的な軍事支援（仏・米等）を受ける大義名分を強化。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "サービス業（港湾、銀行、物流）がGDPの約半分を占める「中継貿易・金融ハブ型経済」です。アデティコペ工業団地（PIA）などの経済特区（SEZ）への投資誘致により、農産品加工の国内完結を目指しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:40:00+09:00",
+      "country_iso3": "BEN",
+      "country_name_ja": "ベナン共和国",
+      "country_name_en": "Republic of Benin",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "経済データはIMFおよびコトヌー港湾局（PAC）の数値を参照。政治情勢は2026年大統領選に向けた動向を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "パトリス・タロン大統領によるテクノクラート的統治によりマクロ経済は安定していますが、有力野党の排除や集会の制限など民主主義の後退が指摘されており、2026年の次期総選挙が大きな試練となります。",
+        "evidence": ["SRC_Human_Rights_Watch_BEN_2025", "SRC_BTI_Benin_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "ニジェールのクーデターに伴う国境閉鎖と、それに続くAES（サヘル諸国連合）との外交対立により、コトヌー港を経由した中継貿易が停滞し、国家歳入に無視できない打撃を与えています。",
+        "evidence": ["SRC_PAC_Trade_Stats_2025", "SRC_ECOWAS_Sanctions_Impact"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "北部（ペンジャリ国立公園およびW国立公園付近）でのイスラム過激派（JNIM等）による越境攻撃が常態化しており、政府はフランス以外の新たな安保協力パートナー（ルワンダ等）を模索しています。",
+        "evidence": ["SRC_ACLED_Benin_2025", "SRC_Benin_Defense_Brief"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "「白い金」と呼ばれる綿花が最大の輸出品ですが、近年はグロ・ジグベ工業団地（GDIZ）を中心とした農産品の国内加工と、鉱物資源の探査に注力しています。",
+        "notable_resources": [
+          { 
+            "name": "綿花 (Cotton)", 
+            "role": "長らくアフリカ最大の生産国を争う。外貨獲得の柱。政府による種子・肥料の配布管理により生産量を維持。", 
+            "evidence": ["SRC_AIC_Cotton_Stats"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "コトヌー港 (物流資源)", 
+            "role": "西アフリカで最も効率的な港の一つ。ニジェール、ナイジェリアへのゲートウェイとしての役割。ベルギーのアントワープ港が管理協力。", 
+            "evidence": ["SRC_World_Bank_LPI"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "カシューナッツ・パイナップル", 
+            "role": "輸出の多角化を担う重要作物。GDIZでの加工により「メイド・イン・ベナン」としての輸出を強化。", 
+            "evidence": ["SRC_GDIZ_Export_Data"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "タロン大統領が強力なリーダーシップで政治・経済を掌握していますが、2026年に任期満了を迎える大統領の後継指名プロセスが、今後の体制継続か混乱かを分ける重要な焦点です。",
+        "key_actors": [
+          { "name": "パトリス・タロン", "role": "大統領。「綿花王」と呼ばれた実業家出身。徹底的な行政改革とデジタル化を推進。" },
+          { "name": "「民主主義者」党 (LD)", "role": "ボニ・ヤイ前大統領が率いる最大野党。タロン路線の修正と政治的開放を訴える。" },
+          { "name": "ベナン軍 (FAB)", "role": "北部でのテロ対策にリソースを集中。外部パートナーとの協力関係を拡大中。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "ナイジェリアとの貿易関係に深く依存しており、隣国の経済状況（ナイラ安や補助金廃止）がベナンの物価や物流に即座に波及します。観光（ウィダ、アボメイ）を文化経済の柱とする投資も進展しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:45:00+09:00",
+      "country_iso3": "NER",
+      "country_name_ja": "ニジェール共和国",
+      "country_name_en": "Republic of Niger",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "軍事政権下の情報統制により、内部の権力構造や詳細な経済統計の入手が制限されている。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ニジェール、マリ、ブルキナファソによる「サヘル諸国連合（AES）」の結成とECOWASからの離脱により、西アフリカにおける地政学的な分断が決定定的となりました。",
+        "evidence": ["SRC_AES_Charter_2024", "SRC_ECOWAS_Official_Withdrawal_Notice"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ベナン経由の石油輸出パイプラインが国境閉鎖や地政学的対立により稼働と停止を繰り返しており、国家の新たな財政基盤である石油収入が不安定化しています。",
+        "evidence": ["SRC_CNPC_Niger_Project_Update", "SRC_Benin_Niger_Pipeline_Dispute_2025"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "フランスのウラン採掘権の取り消しや米軍撤退が進む一方で、ロシア（アフリカ・コープ）や中国による安保・資源協力が急拡大し、外交軸の劇的な転換が起きています。",
+        "evidence": ["SRC_Orano_Contract_Termination", "SRC_US_AFRICOM_Withdrawal_Report"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の埋蔵量を誇るウランに加え、アガデム油田の開発により「石油輸出国」への転換を図っていますが、内陸国ゆえの物流リスクが最大のボトルネックです。",
+        "notable_resources": [
+          { 
+            "name": "ウラン (Uranium)", 
+            "role": "世界第7位前後の生産量。欧州（特にフランス）の原子力発電にとって極めて重要だったが、軍事政権による資源ナショナリズムの標的となっている。", 
+            "evidence": ["SRC_World_Nuclear_Association_NER"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "原油 (Crude Oil)", 
+            "role": "アガデム油田からベナンのセメ港へ至るアフリカ最長のパイプラインにより、日産11万バレルへの増産を計画中。国家財政の生命線。", 
+            "evidence": ["SRC_CNPC_Niger_Operations"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "金・リン鉱石", 
+            "role": "北部および西部で小規模採掘が盛ん。テロ組織の資金源化を防ぐための管理強化が課題。", 
+            "evidence": ["SRC_OECD_Due_Diligence_Minerals"], 
+            "confidence": 0.75 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "アブドゥラハマネ・チアニ将軍率いる「国土防衛全国評議会（CNSP）」が全権を掌握。拘束中のバズム前大統領支持派を排除し、軍内部の団結を維持していますが、制裁と物価高による市民の不満が潜在的リスクです。",
+        "key_actors": [
+          { "name": "アブドゥラハマネ・チアニ", "role": "CNSP議長、国家元首。大統領警護隊長から実権を掌握。対仏強硬路線の先導者。" },
+          { "name": "アリ・ラミネ・ゼイン", "role": "暫定首相。経済学者。制裁下での財政運営と中国・ロシア等との経済交渉を担う。" },
+          { "name": "ISGS（大サハラのイスラム国）/ JNIM", "role": "リプタコ・グルマ地域（三カ国国境地帯）で活動する武装勢力。軍部にとって最大の治安上の脅威。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "GDPの約4割を占める自給的農業・畜産業が基盤ですが、輸出は鉱物（ウラン）と原油に特化しています。サヘル諸国連合（AES）独自の通貨導入の構想もあり、CFAフラン圏からの離脱可能性が注視されています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T18:30:00+09:00",
+      "country_iso3": "NGA",
+      "country_name_ja": "ナイジェリア連邦共和国",
+      "country_name_en": "Federal Republic of Nigeria",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "マクロ経済データはナイジェリア中央銀行(CBN)およびIMFを参照。治安情勢はACLEDおよび現地メディアの集計に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ティヌブ政権による燃料補助金の廃止と為替レートの変動相場制移行により、通貨ナイラの急落と30%を超える記録的なインフレが発生し、深刻な生活コスト危機を招いています。",
+        "evidence": ["SRC_CBN_Inflation_Report_2025", "SRC_IMF_Nigeria_Review"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "アフリカ最大規模のダンゴテ製油所が本格稼働を開始したことで、石油製品の輸入依存からの脱却と、近隣諸国への製品輸出ハブとしての地位確立に向けた歴史的転換点を迎えています。",
+        "evidence": ["SRC_Dangote_Refinery_Production_Data", "SRC_NNPC_Status_Update"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "北東部のイスラム過激派（ISWAP）に加え、北西部の武装集団（バンディット）による誘拐や南東部の分離独立派（IPOB）の活動が継続しており、治安維持が経済成長の最大の足枷となっています。",
+        "evidence": ["SRC_ACLED_NGA_2025", "SRC_Security_Brief_West_Africa"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の原油・ガス埋蔵量を誇る一方で、エネルギー移行を見据えたリチウム等の重要鉱物開発や、肥沃な農地を活かしたアグリビジネスの近代化を急いでいます。",
+        "notable_resources": [
+          { 
+            "name": "原油 (Bonny Light)", 
+            "role": "国家の外貨収入の約90%を占める。低硫黄で精製しやすく、世界市場で高い需要を持つ。", 
+            "evidence": ["SRC_OPEC_NGA_Profile"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "天然ガス", 
+            "role": "世界第9位の埋蔵量。LNG輸出に加え、国内の「デケイド・オブ・ガス」政策により産業用燃料としての活用を推進。", 
+            "evidence": ["SRC_NLNG_Expansion_Report"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "リチウム・重要鉱物", 
+            "role": "北部を中心に有望な埋蔵が確認されており、中国企業等による精錬施設への投資が加速している。", 
+            "evidence": ["SRC_Ministry_Solid_Minerals_NGA"], 
+            "confidence": 0.8 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1999年の民政移管以来の民主主義体制を維持していますが、民族・宗教間の緊張や、経済苦境に伴う大規模デモ（EndBadGovernance等）が政権の統治能力を試しています。",
+        "key_actors": [
+          { "name": "ボラ・ティヌブ", "role": "大統領。強力な政治ネットワークを背景に、痛みを伴う構造改革を断行中。2027年再選に向けた基盤固めが焦点。" },
+          { "name": "APC (全進歩会議)", "role": "与党。議会で多数派を占めるが、内部の派閥争いと経済批判への対応に苦慮。" },
+          { "name": "ナイジェリア軍", "role": "36州の大部分で治安維持任務に従事。予算の肥大化と兵力疲弊が指摘されている。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "石油依存からの脱却を掲げ、ラゴスを中心としたテック・フィンテック産業やエンターテインメント（ノリウッド）がアフリカ市場を席巻しています。しかし、深刻なインフラ（電力・物流）不足が製造業の本格的な発展を阻害しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:39:45+09:00",
+      "country_iso3": "CMR",
+      "country_name_ja": "カメルーン共和国",
+      "country_name_en": "Republic of Cameroon",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済統計はCEMACおよびIMFの報告に基づく。後継問題については政治的秘匿性が高く、推測を含む。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "90歳を超えるポール・ビヤ大統領の長期政権下で、制度的な後継プロセスが不透明なまま、政権内部の派閥争いと軍の動向が将来の最大の不安定要因となっています。",
+        "evidence": ["SRC_Crisis_Group_CMR_2025", "SRC_Political_Risk_Index"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "北西・南西地域の英語圏分離独立紛争（アンバゾニア紛争）が膠着状態にあり、人道危機の深刻化と農業・石油インフラへの物理的打撃が続いています。",
+        "evidence": ["SRC_UN_OCHA_Cameroon_2025", "SRC_Human_Rights_Watch_CMR"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "クリビ深水港を核とした物流インフラ整備と、アダマワ地方での大規模ボーキサイト開発により、中央アフリカ地域の経済・物流ハブとしての地位強化を図っています。",
+        "evidence": ["SRC_World_Bank_Infrastructure_CMR", "SRC_Canyon_Resources_Update"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "原油、ガス、高品質な木材、農産物（カカオ、コーヒー）など、近隣諸国に比べて極めて多角化された資源基盤を有しており、資源価格の変動に対する耐性が比較的高いのが特徴です。",
+        "notable_resources": [
+          { 
+            "name": "原油・天然ガス", 
+            "role": "国家歳入の主要源。リオ・デル・レイ海域での採掘が中心。フローティングLNGによる輸出拡大を推進。", 
+            "evidence": ["SRC_SNH_Annual_Report"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "カカオ", 
+            "role": "世界第5位前後の生産量。農村経済の柱であり、加工能力の拡大による付加価値向上を目指している。", 
+            "evidence": ["SRC_ICCO_Stats_CMR"], 
+            "confidence": 0.9
+          },
+          { 
+            "name": "木材 (Congo Basin)", 
+            "role": "世界第2位の熱帯雨林（コンゴ盆地）の一部を擁し、高品質な丸太および加工材を欧州・アジアへ輸出。", 
+            "evidence": ["SRC_ITTO_Report"], 
+            "confidence": 0.85 
+          },
+          { 
+            "name": "ボーキサイト", 
+            "role": "アダマワ地方に世界級の未開発鉱床（ミニマ・マタップ等）を保有。鉄道延伸により本格開発が期待される。", 
+            "evidence": ["SRC_Camalco_Project_Brief"], 
+            "confidence": 0.8 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ビヤ大統領による強固な権力掌握により表面上は安定していますが、北部のボコ・ハラムの残党、英語圏の分離派、そして大統領の健康状態という三正面のリスクを抱えています。",
+        "key_actors": [
+          { "name": "ポール・ビヤ", "role": "大統領（1982年〜）。「獅子王」と呼ばれ、権力均衡の高度な操作で長期政権を維持。" },
+          { "name": "RDPC (カメルーン人民民主連合)", "role": "圧倒的な支持を誇る与党。政権内部の後継者争いの主舞台。" },
+          { "name": "アンバゾニア分離独立派 (ADF等)", "role": "英語圏地域の独立を掲げる武装勢力。ゲリラ戦を展開し政府軍と対立。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "CEMAC圏のGDPの約4割を占めるリーダー的存在です。石油依存度は低減傾向にあり、製造業、サービス業、農業のバランスが良い構造ですが、深刻な汚職とインフラ不足が民間成長を阻害しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:42:00+09:00",
+      "country_iso3": "GNQ",
+      "country_name_ja": "赤道ギニア共和国",
+      "country_name_en": "Republic of Equatorial Guinea",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "経済統計はCEMACおよびIMFを参照。政治的動向は極めて秘匿性が高いが、公式発表と外交筋の情報に基づき構成。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "1979年から続くテオドロ・オビアン・ンゲマ大統領の超長期政権下で、長男テオドリン副大統領への権力継承に向けた地盤固めが進行していますが、軍内部や一族内の権力バランスが潜在的な不安定要因となっています。",
+        "evidence": ["SRC_Human_Rights_Watch_GNQ_2025", "SRC_Diplomatic_Briefing_Central_Africa"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "主要油田（ザフィロ等）の老朽化による原油生産の急減に直面しており、近隣諸国（カメルーン、ナイジェリア）のガスを国内施設で加工・輸出する「ガス・メガハブ」構想が国家存続の鍵を握っています。",
+        "evidence": ["SRC_Ministry_of_Mines_and_Hydrocarbons_GNQ", "SRC_IEA_Africa_Energy_Outlook"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "一人当たりGDPはアフリカ最高水準にあるものの、富の極端な偏在と深刻な汚職により、国民の大部分は依然として貧困状態にあり、人道的指標は経済規模に比して極めて低いままです。",
+        "evidence": ["SRC_World_Bank_Poverty_Assessment", "SRC_Transparency_International_CPI"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "原油および天然ガスが経済の9割以上を占めますが、資源枯渇リスクに対応するため、バイオコ島の液化天然ガス（LNG）ターミナルを活用したリージョナル・ハブ化を推進しています。",
+        "notable_resources": [
+          { 
+            "name": "天然ガス (LNG / メタノール)", 
+            "role": "現在の経済成長の主軸。EG LNGプロジェクトを通じて世界市場へ供給。近隣国の未開発ガス田の受け皿を目指す。", 
+            "evidence": ["SRC_Marathon_Oil_EG_Update"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "原油", 
+            "role": "かつてのアイボリアン・ミラクルを支えたが、近年は生産量がピーク時の半分以下に低下。新規探査への投資誘致を急いでいる。", 
+            "evidence": ["SRC_OPEC_GNQ_Data"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "水産資源・木材", 
+            "role": "大陸部（リオ・ムニ）の森林資源と広大な排他的経済水域（EEZ）を持つが、非石油部門の育成は遅れている。", 
+            "evidence": ["SRC_FAO_Fisheries_Report"], 
+            "confidence": 0.7 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "オビアン大統領による絶対的な統治により表面上は極めて安定していますが、大統領の高齢化に伴う権力の空白が生じた際の内部抗争リスクが常に懸念されています。",
+        "key_actors": [
+          { "name": "テオドロ・オビアン・ンゲマ・ムバソゴ", "role": "大統領。現役世界最長の国家元首。治安機関を完全に掌握し、強固な支配を維持。" },
+          { "name": "テオドリン・ンゲマ・オビアン", "role": "副大統領（大統領の息子）。事実上の後継候補。SNSを駆使した若年層へのアピールと治安権限の掌握を進める。" },
+          { "name": "PDGE (赤道ギニア民主党)", "role": "事実上の一党独裁体制を担う政権党。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "典型的なレント国家であり、政府歳入の大部分を石油・ガス関連のロイヤリティに依存しています。インフラ整備は進んでいるものの、民間部門の自律的な成長や産業多角化は進んでおらず、資源価格と生産量に国家の運命が直結しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:44:00+09:00",
+      "country_iso3": "GAB",
+      "country_name_ja": "ガボン共和国",
+      "country_name_en": "Gabonese Republic",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済統計はCEMACおよびIMFを参照。政治情勢は2024年11月の国民投票による新憲法採択の結果を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ブライス・オリギ・ンゲマ暫定大統領率いる軍事政権（CTRI）は、2024年11月の国民投票で新憲法を採択し、2025年の大統領選挙に向けた民政移管ロードマップを概ね順守しています。",
+        "evidence": ["SRC_Gabon_Constitutional_Referendum_2024", "SRC_CTRI_Transition_Timeline"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "石油資源の減退に備え、世界第2位のシェアを誇るマンガン採掘の拡大と、国内での木材加工の完全義務化による付加価値向上を経済成長の新たな柱に据えています。",
+        "evidence": ["SRC_Eramet_COMILOG_Report_2025", "SRC_Ministry_of_Economy_GAB"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "コンゴ盆地の広大な熱帯雨林を活用した「カーボンクレジット」市場の先駆者として、環境保護と経済利益を両立させる「グリーン・ガボン」政策を国際的に推進しています。",
+        "evidence": ["SRC_UNFCCC_Gabon_Forest_Data", "SRC_African_Carbon_Markets_Initiative"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "石油輸出に依存するレント国家からの脱却を図る中、マンガンなどの重要鉱物と、世界有数の森林資源が国家戦略の核心となっています。",
+        "notable_resources": [
+          { 
+            "name": "マンガン (Manganese)", 
+            "role": "世界第2位の生産量。鉄鋼生産に不可欠。フランス企業エラメット（Eramet）との協力により、さらなる増産と国内加工を推進。", 
+            "evidence": ["SRC_COMILOG_Operations_2025"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "原油", 
+            "role": "国家収益の約60%を占める。老朽化した油田が多く、深海探査への投資と既存油田の回収率向上が課題。OPEC加盟国。", 
+            "evidence": ["SRC_OPEC_GAB_Profile"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "森林資源・カーボンクレジット", 
+            "role": "国土の88%が森林。丸太輸出禁止（2010年〜）により木材加工業が成長。森林保全による二酸化炭素吸収量のクレジット化で外資を獲得。", 
+            "evidence": ["SRC_GSEZ_Nkok_Report"], 
+            "confidence": 0.9
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ボンゴ一族による長期支配が崩壊した後、オリギ・ンゲマ大統領への支持は現時点で高く、表面上は安定していますが、民政復帰プロセスにおける軍内部の利害調整が今後の焦点です。",
+        "key_actors": [
+          { "name": "ブライス・オリギ・ンゲマ", "role": "暫定大統領、CTRI（制度移行・再建委員会）議長。元大統領親衛隊長。ボンゴ体制からの「解放」を掲げ高い支持を得る。" },
+          { "name": "CTRI (制度移行・再建委員会)", "role": "実権を握る軍部組織。国政のあらゆる決定に介入し、汚職撲滅と行政改革を主導。" },
+          { "name": "PDG (ガボン民主党)", "role": "かつての支配政党。クーデターにより弱体化したものの、依然として官僚機構内に影響力を持つ。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "一人当たりGDPはアフリカ最高水準ですが、所得格差は依然として大きく、失業率（特に若年層）の改善が急務です。ンコク経済特区（GSEZ）などのインフラ整備を通じて、製造業の育成と経済多角化を加速させています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:46:00+09:00",
+      "country_iso3": "COG",
+      "country_name_ja": "コンゴ共和国",
+      "country_name_en": "Republic of the Congo",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済統計はIMFおよびBEAC（中部アフリカ諸国銀行）のデータを参照。政治情勢は現職大統領の長男への権力継承に向けた動きを注視。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ドニ・サスヌゲソ大統領による通算40年以上の超長期政権が続いており、長男デニ・クリステル・サスヌゲソ国際協力・公私連携担当相への世襲的権力継承に向けた準備が政府内で進行しています。",
+        "evidence": ["SRC_Crisis_Group_COG_2025", "SRC_Africa_Confidential_Update"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "主要産油国（OPEC加盟）として国家歳入を石油に依存していますが、債務持続性の確保に向けた中国との債務再編交渉とIMFの構造調整プログラムが経済運営の最優先事項となっています。",
+        "evidence": ["SRC_IMF_Article_IV_COG_2024", "SRC_China_Congo_Debt_Agreement"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "世界最大級の泥炭地（キュベット盆地）を含むコンゴ盆地の森林保護を「ブルー・ファンド」構想を通じて国際的な環境資金獲得のレバレッジとして活用しており、環境大国としての外交的地位を高めています。",
+        "evidence": ["SRC_COP_Climate_Action_Report", "SRC_Congo_Basin_Blue_Fund"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "深海・大陸棚の石油資源が経済の屋台骨ですが、世界第2位の熱帯雨林を背景とした木材および環境資源（カーボンクレジット）の潜在力が極めて高いのが特徴です。",
+        "notable_resources": [
+          { 
+            "name": "原油・天然ガス", 
+            "role": "輸出の約8割を占める。イタリアのEni社によるLNG（液化天然ガス）プロジェクトが稼働し、欧州へのガス供給源としての役割が増大。", 
+            "evidence": ["SRC_Eni_Congo_LNG_Update"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "木材", 
+            "role": "石油に次ぐ輸出品。持続可能な森林管理（FSC認証）を推進し、丸太輸出規制による国内加工化を強化中。", 
+            "evidence": ["SRC_ATIBT_Congo_Sector_Review"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "カリウム（ポタッシュ）", 
+            "role": "世界級の埋蔵量を誇る。肥料原料として注目されており、大規模な新規鉱山開発プロジェクトが進行中。", 
+            "evidence": ["SRC_Kore_Potash_Project"], 
+            "confidence": 0.8 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "大統領による強力な治安機関の掌握と、主要ポストへの血縁・地縁者の配置により、体制の安定が保たれています。一方で、次世代への権力移行を巡る軍部内の力学が中長期的な不透明要因です。",
+        "key_actors": [
+          { "name": "ドニ・サスヌゲソ", "role": "大統領。1979年以降、内戦による中断を経て長期政権を維持。中部アフリカの「長老」として地域紛争の仲介役も担う。" },
+          { "name": "デニ・クリステル・サスヌゲソ", "role": "閣僚。大統領の息子。「キキ」の愛称で知られ、外交と投資誘致を主導する事実上の後継候補。" },
+          { "name": "コンゴ労働党 (PCT)", "role": "圧倒的な権力基盤を持つ与党。官僚機構と地方統治を支配。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "典型的な石油レント国家ですが、公共部門の肥大化と民間部門の未発達が課題です。ポワントノワール港を核とした物流インフラ整備と、特区（SEZ）への投資誘致による産業多角化を図っています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:47:00+09:00",
+      "country_iso3": "AGO",
+      "country_name_ja": "アンゴラ共和国",
+      "country_name_en": "Republic of Angola",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "経済統計はIMFおよびアンゴラ中央銀行（BNA）の公開データに基づく。ロビト回廊に関する進捗は米国・欧州の投資発表を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年初頭のOPEC脱退以降、クォータに縛られない増産体制を目指していますが、既存油田の老朽化による生産減退を食い止めるための新規投資の呼び込みが喫緊の課題となっています。",
+        "evidence": ["SRC_ANPG_Production_Forecast", "SRC_Reuters_OPEC_Exit_Impact"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "米国・欧州が支援する「ロビト回廊（Lobito Corridor）」プロジェクトにより、コンゴ民主共和国やザンビアの重要鉱物を輸出する物流ハブとしての地位を確立し、地政学的に西側諸国との連携を急速に強めています。",
+        "evidence": ["SRC_G7_PGII_Lobito_Update", "SRC_EU_Angola_Partnership"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ジョアン・ロウレンソ大統領の2期目において、汚職撲滅運動の停滞と生活コスト高騰への不満が、最大野党UNITAの支持拡大を許しており、次期選挙に向けた国内政治の流動性が高まっています。",
+        "evidence": ["SRC_Afrobarometer_Angola_2025", "SRC_Chatham_House_Analysis"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "アフリカ屈指の産油国およびダイヤモンド生産国ですが、現在はリチウムやレアアースといった「重要鉱物」の開発と、広大な未開発の農地を活用したアグリビジネスの育成に舵を切っています。",
+        "notable_resources": [
+          { 
+            "name": "原油・天然ガス", 
+            "role": "国家収入の大部分を占める。OPEC脱退により生産の自由度を得たが、深海探査への巨額投資が必要。", 
+            "evidence": ["SRC_Sonangol_Annual_Report"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "ダイヤモンド", 
+            "role": "世界最大級のルアシェ（Luaxe）鉱山の稼働により、世界トップクラスの供給能力を維持。加工部門の国内化を推進。", 
+            "evidence": ["SRC_Endiama_Development_Plan"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "重要鉱物 (リチウム・レアアース)", 
+            "role": "ロビト回廊の整備と連動し、エネルギー移行に不可欠な鉱物の探査・採掘を外資主導で加速。", 
+            "evidence": ["SRC_Pensana_Longonjo_Project"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1975年の独立以来、MPLAによる一党優位体制が続いていますが、若年層を中心とした変革への要求がかつてなく強まっており、地方自治選挙の実施を巡る攻防が焦点です。",
+        "key_actors": [
+          { "name": "ジョアン・ロウレンソ", "role": "大統領、MPLA議長。ドス・サントス前体制からの脱却を掲げ、経済改革と外資誘致を主導。" },
+          { "name": "アダルベルト・コスタ・ジュニオール", "role": "最大野党UNITA党首。都市部や若年層の不満を背景に、MPLAの長期支配に挑む実力派。" },
+          { "name": "ソナング（Sonangol）", "role": "国営石油会社。国家経済を支える巨大企業であり、その民営化・改革の成否が経済再生の鍵。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "重い対中債務の再編を進めつつ、IMFの支援の下で「石油依存からの脱却」を最優先事項としています。クワンザ安に伴うインフレ抑制のため、製造業の国内化と食料自給率の向上が急務となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:50:00+09:00",
+      "country_iso3": "NAM",
+      "country_name_ja": "ナミビア共和国",
+      "country_name_en": "Republic of Namibia",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "政治的安定性は高く、エネルギー関連の投資計画は大手石油メジャー（Shell, TotalEnergies）の発表に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年のガインゴブ大統領死去後、憲法に基づきナンゴロ・ムブンバ氏が平和的に暫定大統領に就任。次期大統領選に向け、与党SWAPOは初の女性候補ナンディ＝ンダイトワ氏を指名し、高い政治的一貫性を維持しています。",
+        "evidence": ["SRC_Namibia_Electoral_Commission_2025", "SRC_AU_Democratic_Assessment"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "オレンジ盆地（Orange Basin）での相次ぐ巨大油田発見により、2030年までの初出油を目指しており、これが実現すれば同国のGDPは今後10年で倍増する潜在力を秘めています。",
+        "evidence": ["SRC_NAMCOR_Exploration_Update", "SRC_TotalEnergies_Venus_Project"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "世界最大級のグリーン水素プロジェクト（Hyphenプロジェクト等）を推進しており、豊富な日照と風力を活かして欧州市場向けの脱炭素エネルギー供給拠点となることを国家戦略の柱としています。",
+        "evidence": ["SRC_Namibia_Green_Hydrogen_Strategy", "SRC_EU_Energy_Partnership"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "伝統的なダイヤモンド、ウラン採掘に加え、新たに石油・ガス、そして再生可能エネルギーが経済の柱に加わろうとしています。",
+        "notable_resources": [
+          {
+            "name": "ウラン (Uranium)",
+            "role": "世界第3位前後の生産量を誇る。ハサブ鉱山（中国資本）やロッシング鉱山が中心。原子力回帰の世界的潮流で重要性が再燃。",
+            "evidence": ["SRC_World_Nuclear_Association_NAM"],
+            "confidence": 0.98
+          },
+          {
+            "name": "海洋ダイヤモンド",
+            "role": "世界最高品質の宝石用ダイヤモンド。デブマリン（Debmarine）による特殊な深海採掘船を用いた生産が主力。",
+            "evidence": ["SRC_DeBeers_Annual_Review"],
+            "confidence": 0.95
+          },
+          {
+            "name": "沖合石油・ガス (オレンジ盆地)",
+            "role": "ヴィーナス、グラフといった巨大発見。西アフリカの新たなエネルギーフロンティアとして外資が殺到中。",
+            "evidence": ["SRC_Shell_Exploration_Data"],
+            "confidence": 0.9
+          },
+          {
+            "name": "グリーン水素",
+            "role": "ツァウ・カイブ国立公園周辺での大規模発電・精製計画。ドイツ等との強力な提携関係を構築。",
+            "evidence": ["SRC_Hyphen_Hydrogen_Energy_Brief"],
+            "confidence": 0.8
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "独立以来の与党SWAPO（ナミビア南西アフリカ人民機構）による統治が続いていますが、若年層の失業問題を背景に野党（IPC等）の支持も拡大。しかし、制度的な安定性と法の支配はアフリカでトップクラスです。",
+        "key_actors": [
+          { "name": "ナンゴロ・ムブンバ", "role": "暫定大統領。ガインゴブ氏の遺志を継ぎ、安定した政権運営と資源開発の加速を担う。" },
+          { "name": "ネトゥンボ・ナンディ＝ンダイトワ", "role": "副大統領、SWAPO大統領候補。次期選挙の最有力候補であり、外交・安保の経験が豊富。" },
+          { "name": "NAMCOR (ナミビア国立石油公社)", "role": "石油・ガス権益の管理を担い、国際メジャーとの交渉の窓口となる重要機関。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "鉱業依存型経済ですが、中産階級の育成と観光業の復活、さらにはワルビスベイ港の拡張による周辺内陸国（ザンビア、ボツワナ）への物流ハブ化を推進しています。南アフリカ・ランドと固定されたナミビア・ドルにより為替は安定していますが、南ア経済の影響を強く受けます。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:00:00+09:00",
+      "country_iso3": "ZAF",
+      "country_name_ja": "南アフリカ共和国",
+      "country_name_en": "Republic of South Africa",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "マクロ経済統計は統計局(Stats SA)および中央銀行(SARB)により高い透明性が確保されている。政治的合意の持続性は連立内の力学に依存。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年に発足した挙国一致政府（GNU）は、ANCとDAというイデオロギーの異なる政党間の妥協により、予測されたほどの混乱なく運営されており、市場の信頼を一定程度回復させています。",
+        "evidence": ["SRC_GNU_Performance_Review_2025", "SRC_JSE_Market_Sentiment"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "長年の経済成長の足枷であった計画停電（ロードシェディング）が、電力公社エスコムの保守改善と民間発電の普及により劇的に減少しており、製造業および鉱業の回復基盤が整いつつあります。",
+        "evidence": ["SRC_Eskom_Generation_Data_2025", "SRC_Department_of_Energy_NAM"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "世界第1位の白金族金属（PGM）生産を背景に、欧州・アジア市場向けのグリーン水素サプライチェーン構築を国家戦略の柱に据え、鉱業国家からクリーンエネルギー大国への転換を狙っています。",
+        "evidence": ["SRC_Green_Hydrogen_National_Masterplan", "SRC_Anglo_American_Sustainability"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の鉱物資源大国であり、特に貴金属と希少金属において圧倒的なシェアを持ちます。石炭依存からの「公正なエネルギー移行（JET）」が最大の課題です。",
+        "notable_resources": [
+          { 
+            "name": "白金族金属 (PGM)", 
+            "role": "世界シェアの約7割を占める。自動車触媒や水素燃料電池に不可欠な戦略資源。", 
+            "evidence": ["SRC_Minerals_Council_South_Africa"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "石炭", 
+            "role": "現在も電力の約8割を供給。主要な輸出品目だが、気候変動対策による国際的投資撤退の圧力を受けている。", 
+            "evidence": ["SRC_Eskom_Energy_Mix"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "金 (Gold)", 
+            "role": "かつての首位からは転落したものの、依然として重要な外貨獲得源。超大深度採掘によるコスト増が課題。", 
+            "evidence": ["SRC_World_Gold_Council_ZAF"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "クロム・マンガン・鉄鉱石", 
+            "role": "ステンレス鋼や特殊鋼の原料として世界的な供給責任を負う。トランスネットの物流網改善が輸出拡大の鍵。", 
+            "evidence": ["SRC_Transnet_Freight_Rail_Update"], 
+            "confidence": 0.9
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ラマポーザ大統領の下、連立政権は実務的な政策協調を維持していますが、最大野党に回ったEFFやMK党によるポピュリズム的批判と、深刻な貧富の差（ジニ係数世界最悪水準）が社会的不安の火種です。",
+        "key_actors": [
+          { "name": "シリル・ラマポーザ", "role": "大統領、ANC議長。穏健派として連立をまとめ、経済構造改革（オペレーション・ヴルンドゥレラ）を推進。" },
+          { "name": "ジョン・スティーンハイゼン", "role": "農業相、DA党首。GNU内で自由主義的な経済政策と行政の効率化を主張。" },
+          { "name": "ジュリアス・マレマ", "role": "EFF党首。土地の無償収用などを掲げ、若年層の失業と不満を背景に政権を激しく攻撃。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "アフリカで最も洗練された金融・製造・テック部門を持ちますが、30%を超える失業率と物流インフラ（鉄道・港湾）の老朽化が構造的なボトルネックです。現在はトランスネットの民間開放など、物流部門の抜本的改革に着手しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:50:00+09:00",
+      "country_iso3": "LSO",
+      "country_name_ja": "レソト王国",
+      "country_name_en": "Kingdom of Lesotho",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "経済データはIMFおよびSACU（南部アフリカ関税同盟）の公式報告に基づく。政治情勢は連立政権の安定性を注視。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "実業家出身のサム・マテカネ首相が率いるRFP（繁栄のための革命）政権は、官民連携による行政の効率化を推進していますが、伝統的な既成政党による牽制と連立内の不協和音が改革のスピードを左右しています。",
+        "evidence": ["SRC_Lesotho_Governance_Update_2025", "SRC_Afrobarometer_LSO"],
+        "confidence": 0.8
+      },
+      {
+        "claim": "レソト・ハイランド水利計画（LHWP）のフェーズ2が進行中であり、南アフリカへの水輸出によるロイヤリティ収入が長期的な国家財政の柱として不可欠な役割を果たしています。",
+        "evidence": ["SRC_LHDA_Annual_Report_2025", "SRC_DWS_South_Africa_Water_Supply"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "米国のAGOA（アフリカ成長機会法）を活用した繊維・アパレル産業は、主要な雇用創出源ですが、他国との競争激化や労働コストの上昇により、輸出競争力の維持が課題となっています。",
+        "evidence": ["SRC_USAID_Trade_Brief", "SRC_Lesotho_Textile_Association"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "「南部アフリカの給水塔」と呼ばれる豊富な水資源と、世界最高水準のダイヤモンド（大型・高品質）を産出する鉱山が経済を支えています。",
+        "notable_resources": [
+          { 
+            "name": "水資源 (LHWP)", 
+            "role": "最大の輸出資源。ダム・トンネル網を通じて南アフリカのハウトン州（ヨハネスブルグ等）に水を供給し、見返りに現金と電力を獲得。", 
+            "evidence": ["SRC_LHDA_Project_PhaseII"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "ダイヤモンド (レツェング鉱山等)", 
+            "role": "カラットあたりの単価が世界で最も高いことで知られる。大型の高品質ダイヤモンドの産出が中心。", 
+            "evidence": ["SRC_Gem_Diamonds_Annual_Report"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "羊毛・モヘア", 
+            "role": "伝統的な農業セクターの柱。山岳地帯の農村部における主要な現金収入源。", 
+            "evidence": ["SRC_FAO_Agriculture_Lesotho"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "憲法君主制の下、レツィエ3世国王が国民統合の象徴として安定感を提供していますが、歴史的に軍の政治介入や頻繁な連立政権の崩壊が繰り返されており、現政権の議会運営が鍵となります。",
+        "key_actors": [
+          { "name": "サム・マテカネ", "role": "首相。レソト一の大富豪。汚職撲滅とビジネス手法による国家再建を掲げる。" },
+          { "name": "レツィエ3世", "role": "国王。政治的実権はないが、社会的混乱期における唯一の調停者として絶大な信頼を得ている。" },
+          { "name": "レソト国防軍 (LDF)", "role": "過去にクーデター関与の歴史があるが、現在はSADC（南部アフリカ開発共同体）の支援を受けた改革によりプロフェッショナリズムの維持に努めている。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "南アフリカ経済と不可分であり、共通通貨圏（CMA）に属します。SACU（南部アフリカ関税同盟）からの関税分配金が政府歳入の約4〜5割を占めるため、南アフリカの輸入状況に財政が強く左右される脆弱性を持っています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:05:00+09:00",
+      "country_iso3": "SWZ",
+      "country_name_ja": "エスワティニ王国",
+      "country_name_en": "Kingdom of Eswatini",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済データはSACUおよびIMFを参照。政治的動向は王室の発表と反体制派の報告をクロスチェック。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "国王ムスワティ3世による絶対君主制の下、政党活動が実質的に禁止される「ティンクンドラ（Tinkhundla）」制度が維持されていますが、若年層を中心とした民主化要求の火種は消えておらず、社会的不安が潜在しています。",
+        "evidence": ["SRC_Human_Rights_Watch_SWZ_2025", "SRC_Amnesty_International_Report"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "政府歳入の約半分を南部アフリカ関税同盟（SACU）からの分配金に依存しており、南アフリカ経済の動向が国家財政の安定性に直結する極めて脆弱な構造です。",
+        "evidence": ["SRC_IMF_Article_IV_SWZ_2024", "SRC_SACU_Revenue_Report"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "「スワジ・ゴールド」とも呼ばれる高品質な砂糖の輸出が経済の柱ですが、近年は製造業（飲料濃縮液や繊維）の育成により、近隣諸国への輸出多角化を図っています。",
+        "evidence": ["SRC_Eswatini_Sugar_Association", "SRC_World_Bank_Trade_Data"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "肥沃な土地と豊富な水資源を活かした大規模農業が主軸です。鉱物資源は限定的ですが、高品質な石炭と金の採掘が行われています。",
+        "notable_resources": [
+          { 
+            "name": "砂糖 (Sugar Cane)", 
+            "role": "最大の農産品。EUや南アフリカが主要市場。国内最大の雇用創出源の一つ。", 
+            "evidence": ["SRC_ESA_Annual_Review"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "飲料濃縮液", 
+            "role": "コカ・コーラ社などの世界的企業が拠点を置き、アフリカ全域への輸出ハブとなっている重要産業。", 
+            "evidence": ["SRC_Eswatini_Investment_Promotion_Authority"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "石炭 (Anthracite)", 
+            "role": "高品質な無煙炭を産出。主に南アフリカの製鉄業向けに輸出。", 
+            "evidence": ["SRC_Ministry_of_Natural_Resources_SWZ"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "国王が三権（立法・行政・司法）の頂点に立つ伝統的な統治体制が続いています。2021年の大規模な反政府デモ以降、治安当局による監視が強化されていますが、抜本的な政治対話は停滞しています。",
+        "key_actors": [
+          { "name": "ムスワティ3世", "role": "国王。1986年即位。伝統と権威の象徴であり、実質的な最高意思決定者。" },
+          { "name": "PUDEMO (人民統一民主運動)", "role": "最大勢力の反体制組織（非合法）。複数政党制の導入を求めて国外からも活動。" },
+          { "name": "ラッセル・ドラミニ", "role": "首相。国王により任命。実務的な行政執行と王室への忠誠を担う。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "南アフリカ経済と強く統合されており、通貨リランゲニは南ア・ランドと等価固定されています。小規模な国内市場を補うため、マツァパ工業団地などのインフラを介した輸出志向型工業化を推進しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:10:00+09:00",
+      "country_iso3": "BWA",
+      "country_name_ja": "ボツワナ共和国",
+      "country_name_en": "Republic of Botswana",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "統計データはボツワナ統計局およびIMFにより高い透明性が確保されている。新政権の政策具体化プロセスを注視。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年10月の総選挙でドゥマ・ボコ率いるUDC（民主変革連合）が勝利し、独立以来58年間続いたBDP（ボツワナ民主党）の一党優位体制に終止符を打ち、平和的な政権交代を果たしました。",
+        "evidence": ["SRC_IEC_Botswana_2024", "SRC_SADC_Election_Observation"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "ダイヤモンド市場におけるラボ・グロウン（人工）ダイヤモンドのシェア拡大により、天然石への依存が高い国家財政は中長期的な減収リスクに直面しており、経済多角化が生存戦略となっています。",
+        "evidence": ["SRC_De_Beers_Insight_2025", "SRC_Bank_of_Botswana_Annual_Report"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "デ・ビアス社との新たな販売契約により、国営オークション会社（Okavango Diamond Company）への原石配分比率が段階的に引き上げられ（最終的に50%）、川下部門の自国化（精製・加工）による雇用創出を狙っています。",
+        "evidence": ["SRC_Government_DeBeers_Accord_2023"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の高品質ダイヤモンドを産出する一方で、近年は銅、ニッケル、さらには石炭の輸出拡大を図っています。また、国土の約4割を占める保護区を活用した観光業も重要な柱です。",
+        "notable_resources": [
+          { 
+            "name": "ダイヤモンド (ジュワネン鉱山等)", 
+            "role": "世界最高水準の価値を誇る。デブスワナ（政府とデ・ビアスのJV）が運営し、国家歳入の約3分の1を占める。", 
+            "evidence": ["SRC_Debswana_Performance_Review"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "観光資源 (オカバンゴ・デルタ)", 
+            "role": "世界遺産。ハイエンド観光に特化し、GDPの約1割、雇用の重要な受け皿となっている。", 
+            "evidence": ["SRC_Botswana_Tourism_Organisation"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "銅・ニッケル", 
+            "role": "カラハリ・カッパーベルトでの新規開発が進展。エネルギー移行に伴う重要鉱物需要を取り込み、石油依存ならぬ「ダイヤモンド依存」からの脱却を目指す。", 
+            "evidence": ["SRC_Sandfire_Resources_Update"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "アフリカで最も安定した民主主義国家と評価されます。歴史的な政権交代を経ても制度的安定性は維持されており、法の支配と良好な投資環境が継続しています。",
+        "key_actors": [
+          { "name": "ドゥマ・ボコ", "role": "大統領、UDCリーダー。人権弁護士出身。若年層の失業解消と最低賃金の引き上げ、透明性の向上を掲げる。" },
+          { "name": "モクウィツィ・マシシ", "role": "前大統領。敗北をいち早く認め、平和的な政権移譲を主導したことで民主主義の伝統を強化した。" },
+          { "name": "デ・ビアス (De Beers Group)", "role": "国家経済における最大のパートナー。新政権との良好な関係維持と、ダイヤモンド市場の立て直しが共通の課題。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "高中所得国（Upper Middle Income）に分類されますが、ダイヤモンドへの過度な依存が構造的な脆弱性です。新政権は、デジタル経済の育成、農業の近代化、および再生可能エネルギーへの投資を通じて、持続可能な成長モデルへの転換を急いでいます。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:15:00+09:00",
+      "country_iso3": "ZMB",
+      "country_name_ja": "ザンビア共和国",
+      "country_name_en": "Republic of Zambia",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "経済データはIMFおよびザンビア銀行（BoZ）の統計に基づく。2026年総選挙に向けた政治動向は現地メディアの予測を含む。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2026年8月の総選挙を控え、ハカインデ・ヒチレマ大統領（UPND）の再選戦略と、野党による生活費高騰を争点とした攻勢が激化しており、政治的リスクが一時的に高まっています。",
+        "evidence": ["SRC_ECZ_Election_Timetable", "SRC_Zambia_Political_Pulse_2026"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "ユーロ債を含む対外債務の再編が2024年に完了したことで、国際金融市場への復帰と外資誘致が加速しており、特に鉱山セクターへの巨額投資がGDP成長を牽引しています。",
+        "evidence": ["SRC_IMF_Debt_Restructuring_Review", "SRC_Zambia_Ministry_of_Finance"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "エルニーニョ現象に伴う干魃でカリバダムの水位が低下し、電力不足が深刻化した経験から、太陽光発電への急速なシフトと、近隣国（DRC、ナミビア）との電力融通網の強化を進めています。",
+        "evidence": ["SRC_ZESCO_Energy_Outlook_2026", "SRC_SAPP_Regional_Report"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の銅生産国であり、電気自動車（EV）サプライチェーンに不可欠なコバルトや、高品質なエメラルド、近年発見されたスギライトなどの重要鉱物を多数保有しています。",
+        "notable_resources": [
+          { 
+            "name": "銅 (Copper)", 
+            "role": "国家の生命線。モパニ鉱山やKCM（コンコラ）の再編完了により、2030年までの年間300万トン生産という野心的な目標を掲げている。", 
+            "evidence": ["SRC_Ministry_of_Mines_ZMB"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "コバルト・ニッケル", 
+            "role": "EVバッテリー向け重要鉱物。隣国DRCとの「EVバッテリー特区」構想により、国内での精錬・加工（バリューチェーン）の構築を目指している。", 
+            "evidence": ["SRC_Zambia_DRC_Cooperation_Agreement"], 
+            "confidence": 0.85 
+          },
+          { 
+            "name": "エメラルド", 
+            "role": "カゲム鉱山が世界最大級の供給源。宝石用原石として安定した外貨獲得源となっている。", 
+            "evidence": ["SRC_Gemfields_Kagem_Report"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "南部アフリカで最も安定した民主主義の一つですが、選挙が近づくにつれ、集会の自由や言論統制を巡る与野党の法的な攻防が激化しています。",
+        "key_actors": [
+          { "name": "ハカインデ・ヒチレマ (HH)", "role": "大統領。実業家出身。債務再編の成功を実績とし、経済の近代化と法の支配を掲げる。" },
+          { "name": "エドガー・ルング", "role": "前大統領。政界復帰を模索し、現政権の物価高騰を厳しく批判。野党連合の核となる可能性。" },
+          { "name": "ロビト回廊 (Lobito Corridor)", "role": "米国・欧州が支援する巨大物流インフラ。ザンビアの鉱物輸出を大西洋側へバイパスする戦略的プロジェクト。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "銅価格への依存度が依然として高いものの、ロビト回廊による物流コスト低減や、農業の近代化、テックハブ化による多角化を推進しています。アフリカ大陸自由貿易圏（AfCFTA）を活用した地域内貿易の拡大も重点項目です。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:53:00+09:00",
+      "country_iso3": "ZWE",
+      "country_name_ja": "ジンバブエ共和国",
+      "country_name_en": "Republic of Zimbabwe",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "通貨価値の変動が激しく、公式統計と実態（闇市場レート）の乖離が大きいため、マクロ経済指標の解釈には慎重を要する。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年に導入された金裏付けの新通貨「ZiG」は、初期の安定期間を経て再び減価圧力にさらされており、国内経済のドル化回帰と物価高騰が政権の最大の弱点となっています。",
+        "evidence": ["SRC_RBZ_Monetary_Policy_2025", "SRC_IMF_ZWE_Consultation"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "アフリカ最大級の埋蔵量を誇るリチウム資源を巡り、中国企業による巨額の精錬施設投資が加速しており、同国は世界のEVサプライチェーンにおける戦略的要衝としての地位を固めています。",
+        "evidence": ["SRC_Ministry_of_Mines_ZWE", "SRC_Huayou_Cobalt_Annual_Report"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "野党CCCの分裂と主要指導者の離脱により、ZANU-PFの一党優位体制が事実上さらに強化されており、次期選挙に向けた民主的な対抗軸が極めて脆弱な状態にあります。",
+        "evidence": ["SRC_ZEC_Election_Updates", "SRC_Political_Risk_ZWE_2026"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "「鉱業国家」として金、白金族、クロム、そして新興のリチウムを擁します。政府は未加工鉱石の輸出禁止措置（バリューアディション政策）を通じて国内産業の育成を強硬に推進しています。",
+        "notable_resources": [
+          { 
+            "name": "金 (Gold)", 
+            "role": "最大の輸出資源であり、外貨獲得の柱。小規模採掘者（Artisanal miners）による生産が大きな割合を占めるが、密輸が深刻な課題。", 
+            "evidence": ["SRC_Fidelity_Gold_Refiners"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "リチウム (Lithium)", 
+            "role": "世界有数の埋蔵量。華友コバルトや中鉱資源（Sinomine）などが大規模鉱山を操業。精錬プロセスの国内化が進行中。", 
+            "evidence": ["SRC_Bikita_Minerals_Update"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "白金族金属 (PGM)", 
+            "role": "世界第3位の埋蔵量。グレート・ダイク地帯に集中。南アフリカ系企業（Zimplats等）が主要プレーヤー。", 
+            "evidence": ["SRC_Impala_Platinum_Reports"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "エマーソン・ムナンガグワ大統領の下で治安機関を用いた締め付けが継続。2024年のSADC（南部アフリカ開発共同体）議長国就任を機に国際的孤立の脱却を図っていますが、人権状況への批判は根強いままです。",
+        "key_actors": [
+          { "name": "エマーソン・ムナンガグワ", "role": "大統領。ZANU-PF党首。「クロコダイル」の異名を持ち、軍との強力なパイプを背景に権力を掌握。" },
+          { "name": "ZANU-PF (ジンバブエ・アフリカ民族同盟・愛国戦線)", "role": "1980年独立以来の与党。行政、司法、軍を網羅する強固な利権ネットワークを保持。" },
+          { "name": "ネルソン・チャミサ", "role": "元CCC党首。野党の顔だったが、党内の内紛と弾圧により離脱。新勢力の結集を模索中。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "重い債務負担により国際金融機関からの新規融資が途絶えており、資源輸出と周辺国（主に中国）からの投資に依存。農業部門ではタバコ輸出が好調ですが、気候変動によるトウモロコシの不作が食料安全保障を脅かしています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:54:00+09:00",
+      "country_iso3": "MOZ",
+      "country_name_ja": "モザンビーク共和国",
+      "country_name_en": "Republic of Mozambique",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済・資源データはTotalEnergiesおよびIMFの報告に基づく。政治情勢は2024年選挙後の抗議活動と現地の治安報告を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年10月の総選挙で与党FRELIMOのダニエル・チャポ氏が勝利しましたが、不正を訴えるヴェナンシオ・モンドラーネ氏支持派による前例のない規模の抗議デモが発生し、政権の正統性と政治的安定が揺らいでいます。",
+        "evidence": ["SRC_CNE_Mozambique_2024", "SRC_Human_Rights_Watch_MOZ"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "北部カボ・デルガード州のイスラム過激派「アンサール・アル・スンナ」による活動が継続しており、SADCミッション（SAMIM）の撤退後、ルワンダ軍の支援が治安維持の要となっていますが、LNGプロジェクトの完全再開には依然としてリスクが残ります。",
+        "evidence": ["SRC_ACLED_Cabo_Delgado_2025", "SRC_SAMIM_Withdrawal_Report"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "ロヴマ盆地の巨大な天然ガス（LNG）プロジェクト（Area 1 & Area 4）に加え、世界最大級の埋蔵量を誇るグラファイト（石墨）がEVバッテリーのサプライチェーンにおける戦略的資源として急浮上しています。",
+        "evidence": ["SRC_TotalEnergies_Mozambique_LNG_Update", "SRC_Syrah_Resources_Balama"],
+        "confidence": 0.95
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "アフリカ有数のエネルギー・鉱物資源のポテンシャルを有しており、特に液化天然ガス（LNG）は国家経済を根本的に変える可能性を秘めています。また、石炭、グラファイト、チタン鉄鉱などの輸出も盛んです。",
+        "notable_resources": [
+          { 
+            "name": "天然ガス (LNG)", 
+            "role": "Area 1（TotalEnergies主導）とArea 4（ExxonMobil/Eni）の巨大開発。Eniの浮体式LNG（Coral Sul）は既に生産を開始。輸出本格化により世界的なガス供給源を目指す。", 
+            "evidence": ["SRC_Eni_Coral_Sul_Production"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "グラファイト (石墨)", 
+            "role": "カボ・デルガード州バラマ鉱山は世界最大級。テスラ等のEVメーカーがサプライチェーンの多様化（脱中国依存）を目指す中で極めて重要性が高い。", 
+            "evidence": ["SRC_Syrah_Resources_Market_Outlook"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "石炭 (Coal)", 
+            "role": "テテ州を中心とした輸出。かつての最大輸出品目だが、環境規制と国際価格の影響でシェアは低下傾向。", 
+            "evidence": ["SRC_Vulcan_Green_Steel_Tete"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1975年の独立以来FRELIMOが一貫して統治していますが、2024年の選挙後の混乱は、若年層の不満とデジタルツールを通じた組織的抗議により、これまでにない体制への挑戦となっています。北部の紛争解決が経済成長の絶対条件です。",
+        "key_actors": [
+          { "name": "ダニエル・チャポ", "role": "大統領。FRELIMOの新世代リーダー。党の支配維持と経済再生、治安回復の重責を担う。" },
+          { "name": "ヴェナンシオ・モンドラーネ", "role": "野党勢力のカリスマ。PODEMOS党を支持基盤にSNSを駆使して若年層を動員。政府による弾圧を逃れ潜伏中との情報。" },
+          { "name": "ルワンダ国防軍 (RDF)", "role": "カボ・デルガード州のガス施設周辺を警備。モザンビーク政府にとって最も信頼できる軍事パートナー。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "農業が雇用の大部分を占めますが、GDP成長は資源・エネルギーセクターに極端に依存しています。過去の「隠し債務事件」による国際的信用失墜からの回復途上にあり、IMF支援下での財政規律強化が続いています。サイクロン等の気候変動リスクへの脆弱性も課題です。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:55:00+09:00",
+      "country_iso3": "MDG",
+      "country_name_ja": "マダガスカル共和国",
+      "country_name_en": "Republic of Madagascar",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済統計はIMFおよびマダガスカル中央銀行（BFM）を参照。政治情勢は2023年大統領選後の野党の動向を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "アンドリー・ラジョエリナ大統領による2期目の政権運営は、選挙の正当性を巡る野党側の根強い不信感と、主要なインフラ整備（IEM計画）の進捗の遅れにより、社会的な不安定さを内包しています。",
+        "evidence": ["SRC_CENI_Madagascar_2023", "SRC_Crisis_Group_MDG"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "世界最大の生産量を誇るバニラ産業が、国際価格の下落と政府による価格統制の失敗により混乱しており、外貨獲得と農家所得に深刻な打撃を与えています。",
+        "evidence": ["SRC_World_Bank_Madagascar_Economic_Update", "SRC_Vanilla_Market_Review_2025"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "エネルギー移行に不可欠なニッケル、コバルト（アンバトビー鉱山）、およびグラファイトの供給源として国際的な重要性が高まっており、これら鉱物資源の収益最大化が国家戦略の核心です。",
+        "evidence": ["SRC_Ambatovy_Project_Status", "SRC_NextSource_Materials_Molo"],
+        "confidence": 0.95
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "独自の生態系を持つ生物多様性の宝庫であると同時に、ハイテク産業に不可欠な重要鉱物と、世界市場を独占する香料資源（バニラ、クローブ）を併せ持つ特異な資源構造を有しています。",
+        "notable_resources": [
+          { 
+            "name": "バニラ", 
+            "role": "世界シェアの約80%を占める絶対的な輸出品目。品質維持と価格の安定化、さらにはマネーロンダリング（ローズウッド密輸との関連）の防止が課題。", 
+            "evidence": ["SRC_Ministry_of_Trade_MDG"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "ニッケル・コバルト", 
+            "role": "アンバトビー（Ambatovy）鉱山が主軸。住友商事等が出資するアフリカ最大級の鉱山プロジェクトであり、EVバッテリー需要の拡大を追い風とする。", 
+            "evidence": ["SRC_Sumitomo_Corp_Review"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "グラファイト（石墨）", 
+            "role": "モロ（Molo）鉱山などで高品質なグラファイトを産出。テスラ等のEVメーカーがサプライヤーの多様化を図る中で注目を集めている。", 
+            "evidence": ["SRC_IEA_Critical_Minerals_2025"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "ラジョエリナ大統領が「マダガスカル新興イニシアティブ（IEM）」を掲げ、道路、電力、衛生の改善を推進していますが、野党の分断と対立、そして汚職問題が統治能力の足枷となっています。軍部は伝統的に政治に関与する傾向があり、その動向が常に注目されます。",
+        "key_actors": [
+          { "name": "アンドリー・ラジョエリナ", "role": "大統領。元DJ・実業家。メディア戦略に長け、強力な権力基盤を維持。フランス国籍保有を巡る論争が再燃の火種。" },
+          { "name": "マルク・ラヴァルマナナ", "role": "元大統領、最大野党指導者。ラジョエリナの宿敵であり、支持層を動員しての抗議活動を継続。" },
+          { "name": "マダガスカル軍", "role": "政治的危機における仲裁者または権力バランスの決定者としての役割を歴史的に持つ。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "農業（バニラ、米、ライチ）と観光業、鉱業が三本柱です。島国ゆえの脆弱なインフラ（特に電力不足と未舗装路）が民間投資を阻害しています。南部の慢性的干ばつは経済成長を相殺するほどの人道的・財政的負担となっています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:56:00+09:00",
+      "country_iso3": "MWI",
+      "country_name_ja": "マラウイ共和国",
+      "country_name_en": "Republic of Malawi",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "経済データはIMFのECF（拡大信用供与措置）レビューおよびマラウイ準備銀行の統計に基づく。政治情勢は2025年総選挙に向けた政党再編を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年のチリマ副大統領の急逝により、与党MCPとUTMの「トンセ連合」が事実上崩壊し、2025年9月の総選挙はラザルス・チャクウェラ大統領と野党DPP（ピーター・ムタリカ元大統領）の激しい一騎打ちとなる見通しです。",
+        "evidence": ["SRC_Malawi_Electoral_Commission_2025", "SRC_Political_Risk_MWI"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "深刻な外貨不足（Forex Crisis）と30%を超える高インフレが続いており、IMFの支援プログラムを通じた財政再建と、農業輸出の多角化が国家の最優先課題となっています。",
+        "evidence": ["SRC_IMF_Malawi_ECF_Review_2025", "SRC_RBM_Monetary_Policy"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "「タバコ後」の経済を支える柱として、ソンウェ・ヒル等のレアアース（希土類）プロジェクトや、カエレケラ・ウラン鉱山の再開など、鉱業セクターへの投資誘致を戦略的に加速させています。",
+        "evidence": ["SRC_Ministry_of_Mining_MWI", "SRC_Mkango_Resources_Update"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "伝統的なタバコ、茶、砂糖の輸出に加え、次世代エネルギー・テックに不可欠な重要鉱物の埋蔵が確認されており、農業国家から鉱物資源国への脱皮を目指しています。",
+        "notable_resources": [
+          { 
+            "name": "タバコ", 
+            "role": "現在も外貨獲得の約50%を占める。世界的な需要減退を見越し、政府は豆類（マメ科植物）や大麻（医療用・産業用）への転換を推奨中。", 
+            "evidence": ["SRC_Tobacco_Commission_MWI"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "レアアース (希土類)", 
+            "role": "ソンウェ・ヒル（Songwe Hill）プロジェクト等が進行中。EVバッテリーや防衛産業向けに、中国以外の供給源として欧米諸国から注目されている。", 
+            "evidence": ["SRC_Critical_Minerals_Africa_2025"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "ウラン", 
+            "role": "カエレケラ（Kayelekera）鉱山。価格低迷により停止していたが、世界的な原子力回帰により再開に向けた準備が進展。", 
+            "evidence": ["SRC_Lotus_Resources_Update"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "「アフリカの温かい心」と称される通り、歴史的に平和な国ですが、生活コスト高騰への不満や、汚職撲滅運動の停滞、副大統領死亡事故を巡る陰謀論などが社会的な緊張を生んでいます。",
+        "key_actors": [
+          { "name": "ラザルス・チャクウェラ", "role": "大統領、MCP党首。元牧師。汚職一掃と経済改革「Malawi 2063」を掲げるが、実績への評価が分かれている。" },
+          { "name": "ピーター・ムタリカ", "role": "元大統領、最大野党DPP党首。80代半ばながら次期大統領選への出馬を表明し、現政権の経済失政を追及。" },
+          { "name": "マラウイ国防軍 (MDF)", "role": "極めて高いプロフェッショナリズムを持ち、政治的中立を維持。災害救助や平和維持活動で重要な役割を果たす。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "内陸国ゆえの物流コストの高さと、気候変動（サイクロン）による農業への打撃が構造的な脆弱性です。現在はムパタマンガ水力発電プロジェクト等のインフラ整備により、エネルギー自給率向上と製造業育成を図っています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T12:58:00+09:00",
+      "country_iso3": "TZA",
+      "country_name_ja": "タンザニア連合共和国",
+      "country_name_en": "United Republic of Tanzania",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "経済データはタンザニア国立統計局（NBS）およびIMF、世界銀行の2025年末レビューに基づく。政治情勢は2025年総選挙の結果を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2025年後半に実施された総選挙において、サミア・スルフ・ハッサン大統領と与党CCM（タンザニア革命党）が勝利し、前政権の強権路線からの決別と民主的な開放路線を継続する信任を得ました。",
+        "evidence": ["SRC_NEC_Tanzania_2025_Results", "SRC_AU_Election_Observation"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "東アフリカ標準軌鉄道（SGR）の全線開通とダルエスサラーム港の近代化（DP Worldの参入）により、ルワンダ、ブルンジ、コンゴ民主共和国東部を繋ぐ「中央回廊」の物流ハブとしての地位が確立されました。",
+        "evidence": ["SRC_TRC_SGR_Update_2026", "SRC_DP_World_Dar_Es_Salaam_Impact"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "シェルおよびエクイノールとのLNG（液化天然ガス）開発に関する最終投資決定（FID）が近づいており、2030年代のガス輸出開始に向けた国家経済の構造転換が本格化しています。",
+        "evidence": ["SRC_TPDC_LNG_Negotiations", "SRC_Equinor_TZA_Outlook"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "リチウムイオン電池に不可欠なグラファイト（石墨）の生産において、世界有数の供給源としての存在感を高めており、中国以外のサプライチェーン構築を急ぐ欧米諸国からの投資が急増しています。",
+        "evidence": ["SRC_Black_Rock_Mining_Mahenge", "SRC_Critical_Minerals_Africa_2026"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "金が伝統的な最大の輸出品目ですが、近年は沖合の巨大天然ガス田と、EV市場で需要が急騰しているグラファイト、レアアースが国家戦略の核心に浮上しています。",
+        "notable_resources": [
+          { 
+            "name": "金 (Gold)", 
+            "role": "最大の輸出資源であり、外貨獲得の柱。北部のビクトリア湖周辺に主要鉱山が集中。国際価格の高騰が財政を下支えしている。", 
+            "evidence": ["SRC_Bank_of_Tanzania_Annual_Report"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "天然ガス (LNG)", 
+            "role": "南部の沖合に巨大な埋蔵量を確認。国内発電の半分以上を既にガスが担っており、今後は輸出による莫大な収益が期待されている。", 
+            "evidence": ["SRC_Tanzania_Energy_Congress_2025"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "グラファイト (Graphite)", 
+            "role": "リディアナ、マヘンゲ等の鉱山で高品質な石墨を産出。脱中国依存を目指すテスラ等のEVサプライチェーンにおける重要拠点。", 
+            "evidence": ["SRC_Volt_Resources_Updates"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "1961年の独立以来、内戦を経験していない稀有な安定性を誇ります。サミア政権下で野党との対話や言論の自由が回復し、投資家保護の法的枠組みも強化されました。",
+        "key_actors": [
+          { "name": "サミア・スルフ・ハッサン", "role": "大統領。タンザニア初の女性国家元首。経済開放と外資誘致、地域外交の強化を主導。" },
+          { "name": "CCM (タンザニア革命党)", "role": "アフリカで最も長く権力を握る政党の一つ。強固な地方組織を背景に安定した統治を継続。" },
+          { "name": "カシム・マジャリワ", "role": "首相。実務面での行政執行と、サステナブルなインフラ開発の監督を担う。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "農業（カシューナッツ、コーヒー、綿花）が雇用の大部分を占めますが、GDP成長の牽引役は建設業、鉱業、観光業に移っています。ザンジバル島を含めた観光資源の活用も活発です。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T13:05:00+09:00",
+      "country_iso3": "BDI",
+      "country_name_ja": "ブルンジ共和国",
+      "country_name_en": "Republic of Burundi",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "経済データはIMFおよびブルンジ共和国中央銀行（BRB）を参照。政治情勢は2025年立法府選挙および2027年大統領選に向けた動向を反映。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "2024年初頭からのルワンダとの国境閉鎖により、域内貿易が停滞し、物資不足と価格高騰が加速。国内経済は極めて厳しい局面にあります。",
+        "evidence": ["SRC_EAC_Trade_Report_2025", "SRC_WFP_Burundi_Update"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ンダイシミエ大統領は国際社会との関係改善を進める一方で、党内強硬派とのバランスに苦慮しており、2027年の大統領選を巡る権力闘争が潜在的なリスクとなっています。",
+        "evidence": ["SRC_Crisis_Group_BDI_2025", "SRC_Human_Rights_Watch_Burundi"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "ムソンガティ鉱山のニッケル（世界有数の埋蔵量）やガカラ鉱山のレアアースを巡り、国家収益最大化のための契約見直しを強化しており、資源ナショナリズムの傾向が強まっています。",
+        "evidence": ["SRC_Ministry_of_Mines_BDI", "SRC_Critical_Minerals_Africa_2026"],
+        "confidence": 0.9
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界最大級のニッケル鉱床に加え、レアアース、金、タングステンなどの戦略的鉱物を保有しています。農業では高品質なコーヒーと茶が外貨獲得の柱です。",
+        "notable_resources": [
+          { 
+            "name": "ニッケル (Nickel)", 
+            "role": "ムソンガティ（Musongati）に巨大な埋蔵。EVバッテリー需要で注目されるが、インフラ（電力・鉄道）不足が開発の障壁。", 
+            "evidence": ["SRC_BMM_Musongati_Project"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "レアアース (希土類)", 
+            "role": "ガカラ（Gakara）鉱山。アフリカで数少ない稼働可能なレアアース拠点の一つ。政府による輸出停止・契約再交渉が進行中。", 
+            "evidence": ["SRC_Rainbow_Rare_Earths_Update"], 
+            "confidence": 0.9 
+          },
+          { 
+            "name": "コーヒー・茶", 
+            "role": "伝統的な主要輸出産品。外貨獲得の約8割を占めるが、天候不順と肥料不足により生産量が不安定。", 
+            "evidence": ["SRC_ARFIC_Burundi_Coffee"], 
+            "confidence": 0.85 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "与党CNDD-FDDによる一党優位体制が続いています。ンダイシミエ大統領は「開発」を優先し、ンクルンジザ前大統領時代の抑圧からの緩やかな脱却を試みていますが、治安機関による言論統制は依然として根強く残っています。",
+        "key_actors": [
+          { "name": "エヴァリスト・ンダイシミエ", "role": "大統領。軍出身。経済再生と外交的孤立の解消を目指すが、隣国ルワンダとの対立がアキレス腱。" },
+          { "name": "CNDD-FDD", "role": "与党。かつての反政府勢力。軍および地方組織に強固な基盤を持ち、国家機構を完全に掌握。" },
+          { "name": "RED-Tabara", "role": "コンゴ民主共和国東部を拠点とする反政府武装組織。ルワンダからの支援を疑われており、ブルンジ治安上の最大脅威。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "世界で最も貧しい国の一つであり、自給的農業が雇用の9割を占めます。慢性的な外貨不足により、燃料、医薬品、肥料の輸入が滞っており、パラレルマーケットでの為替レート乖離が激化しています。"
+      }
+    }
   }
 ]
