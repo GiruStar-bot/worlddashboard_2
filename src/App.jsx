@@ -12,17 +12,73 @@ import {
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v6.1 - Deep Intelligence Expansion (Fix)
- * - Fix: JSONデータが単一オブジェクトの場合でも読み込めるようにロジックを修正
+ * WorldDashboard v6.2 - Deep Intelligence Expansion (Embedded Fix)
+ * - Fix: 外部JSON読み込みエラーを回避するため、レポートデータをコード内に直接埋め込みました。
+ * - これにより、コンゴ民主共和国(COD)を選択した際、確実にレポートボタンが表示されます。
  * - Fix: WorldMap内の変数の参照エラー(minRisk -> minR)を修正
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
-const PIE_COLOURS = ['#22d3ee', '#818cf8', '#f43f5e', '#fbbf24', '#34d399', '#f472b6'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
-const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
-// 注意: ファイル名のタイプミス(Afreica)はユーザー環境に合わせて維持しています
-const REPORT_DATA_URL = "Afreica_countries_reports.json";
+
+// ==========================================
+// STATIC REPORT DATA (Embedded for Stability)
+// 外部ファイルの読み込みエラーを防ぐため、ここに直接データを持ちます
+// ==========================================
+const LOCAL_REPORT_DATA = [
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T08:59:19+09:00",
+      "country_iso3": "COD",
+      "country_name_ja": "コンゴ民主共和国",
+      "country_name_en": "Democratic Republic of the Congo",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "Sources include UN, IMF, think tanks; data partly missing."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "The DRC’s vast critical mineral wealth (e.g. ∼70% of global cobalt) has not translated into prosperity due to chronic conflict and weak governance.",
+        "evidence": ["SRC_001", "SRC_003"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "Armed groups (e.g. M23) backed by neighboring states (Rwanda, Uganda) fuel violence and economic disruption, deterring investment.",
+        "evidence": ["SRC_002", "SRC_004"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "Regionally, the DRC is a trade and transit hub (in SADC and COMESA) with major corridors (e.g. Durban-Kolwezi) and is now part of AfCFTA/EAC, making its stability a continental concern.",
+        "evidence": ["SRC_006", "SRC_010"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "The DRC possesses vast mineral wealth (copper, cobalt, gold, coltan, etc.) and dominates global cobalt supply, but this has not ensured economic development.",
+        "notable_resources": [
+          { "name": "cobalt", "role": "World’s largest producer (72% of global output in 2021), key for EV batteries", "evidence": ["SRC_001"], "confidence": 0.9 },
+          { "name": "copper", "role": "Major global supplier (4th largest producer, ∼8% of world output in 2021)", "evidence": ["SRC_001"], "confidence": 0.9 },
+          { "name": "coltan/tantalum", "role": "Significant share of global supply (∼30% of global coltan from Great Lakes region, critical for electronics)", "evidence": ["SRC_004"], "confidence": 0.8 },
+          { "name": "gold", "role": "Notable gold production (important export and artisanal economy)", "evidence": ["SRC_003"], "confidence": 0.7 }
+        ]
+      },
+      "political_stability": {
+        "summary": "Persistent armed conflict, weak governance, and regional interventions make the DRC highly unstable despite its resource wealth.",
+        "key_actors": [
+           { "name": "M23 Rebels", "role": "Insurgent Group" },
+           { "name": "Gov Forces", "role": "State Military" },
+           { "name": "Regional Powers", "role": "Intervention" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "A large, resource-rich economy central to regional trade (member of SADC, COMESA) but with low value-added diversification."
+      }
+    }
+  }
+];
 
 // 国名マッピング (Numeric ID -> ISO3)
 const ISO_MAP = {
@@ -107,11 +163,10 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
 
   const getColour = useCallback((risk) => {
     if (risk == null) return '#1e293b';
-    // FIX: minRisk, maxRisk -> minR, maxR に修正
     const t = (risk - minR) / (maxR - minR || 1);
     if (t < 0.5) return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
     return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
-  }, [minR, maxR]); // 修正済み
+  }, [minR, maxR]); 
 
   const geoStyle = useMemo(() => ({
     default: { outline: 'none', transition: 'fill 0.3s ease' },
@@ -157,7 +212,7 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
 });
 
 // ==========================================
-// 2. Deep Dive Report Panel (New Feature)
+// 2. Deep Dive Report Panel
 // ==========================================
 const DeepReportPanel = ({ report, onClose }) => {
   if (!report) return null;
@@ -254,7 +309,7 @@ const DeepReportPanel = ({ report, onClose }) => {
 };
 
 // ==========================================
-// 3. CountryDetails Component (右パネル)
+// 3. CountryDetails Component
 // ==========================================
 const Metric = ({ label, value, icon: Icon, color = "text-cyan-400" }) => (
   <div className="p-4 bg-white/[0.03] border border-white/[0.06] rounded-2xl hover:bg-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 flex flex-col items-start group shadow-lg">
@@ -343,7 +398,7 @@ const CountryDetails = ({ country, onClose, onShowReport, hasReport }) => {
 };
 
 // ==========================================
-// 4. Global Stream Panel (下部パネル)
+// 4. Global Stream Panel
 // ==========================================
 const FeedColumn = ({ source, isExpanded }) => {
   const [news, setNews] = useState([]);
@@ -483,27 +538,26 @@ export default function App() {
   // マスタデータとレポートデータをロード
   useEffect(() => {
     const baseUrl = window.location.hostname.includes('github.io') ? "/worlddashboard_2/" : "/";
-    Promise.all([
-      fetch(`${baseUrl}worlddash_global_master.json`).then(res => res.json()),
-      fetch(`${baseUrl}${REPORT_DATA_URL}`).then(res => res.json()).catch(err => {
-        console.warn("Report data fetch failed, continuing without reports.", err);
-        return [];
-      }) 
-    ]).then(([masterData, reportData]) => {
-      setData(masterData);
-      
-      // FIX: レポートデータの処理を強化 (ArrayでもObjectでも対応)
-      const reportMap = {};
-      const reportList = Array.isArray(reportData) ? reportData : [reportData]; // 配列化
+    
+    // マスタデータのみ外部取得、レポートはローカル変数を使用
+    fetch(`${baseUrl}worlddash_global_master.json`)
+      .then(res => res.json())
+      .then(masterData => {
+        setData(masterData);
+        
+        // レポートデータの処理 (ローカル変数 LOCAL_REPORT_DATA を使用)
+        const reportMap = {};
+        const reportList = Array.isArray(LOCAL_REPORT_DATA) ? LOCAL_REPORT_DATA : [LOCAL_REPORT_DATA];
 
-      reportList.forEach(r => {
-        if (r && r.meta && r.meta.country_iso3) {
-          reportMap[r.meta.country_iso3] = r;
-        }
-      });
-      
-      setReports(reportMap);
-    }).catch(e => console.error("Data load failed", e));
+        reportList.forEach(r => {
+          if (r && r.meta && r.meta.country_iso3) {
+            reportMap[r.meta.country_iso3] = r;
+          }
+        });
+        
+        setReports(reportMap);
+      })
+      .catch(e => console.error("Master data load failed", e));
   }, []);
 
   const toggleFs = () => {
@@ -529,7 +583,7 @@ export default function App() {
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v6.1
+       CONNECTING_NEXUS_v6.2
     </div>
   );
 
@@ -545,7 +599,7 @@ export default function App() {
           <div className="p-2 bg-cyan-500/10 rounded-xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
             <Globe className="text-cyan-400 animate-pulse" size={24} />
           </div>
-          <div><h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1><div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v6.1</div></div>
+          <div><h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1><div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v6.2</div></div>
         </div>
 
         <div className="hidden md:flex flex-1 items-center justify-center pointer-events-none">
