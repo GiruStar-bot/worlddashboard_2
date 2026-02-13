@@ -705,5 +705,625 @@
       "economic_structure": {
         "summary": "運河関連サービス、建設、金融に依存するサービス経済。鉱業停止による穴埋めが必要。", "evidence": [] }
     }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:30:00+09:00",
+      "country_iso3": "BRA",
+      "country_name_ja": "ブラジル連邦共和国",
+      "country_name_en": "Federative Republic of Brazil",
+      "confidence": {
+        "overall": 0.95,
+        "notes": "ブラジル中央銀行、IBGE（地理統計院）、BNDES（国立社会経済開発銀行）レポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ルーラ政権下でアマゾンの森林伐採率が劇的に低下し、COP30（ベレン開催）の議長国として『環境大国』の威信を回復。国際的な気候資金（アマゾン基金等）の呼び込みに成功しています。",
+        "evidence": ["SRC_INPE_Deforestation_Data", "SRC_Amazon_Fund_Donations"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "農業（大豆・トウモロコシ）の豊作と原油輸出の拡大が貿易黒字を押し上げ、レアル相場を安定させていますが、財政規律（新財政枠組み）の遵守に対する市場の懸念は消えていません。",
+        "evidence": ["SRC_CONAB_Harvest_Forecast", "SRC_Central_Bank_Fiscal_Report"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "BRICS拡大の主導役としてグローバル・サウスの声を代弁しつつ、中国との経済的結びつきを深める一方で、欧米との関係も維持する等距離外交を展開しています。",
+        "evidence": ["SRC_Itamaraty_Foreign_Policy_Review", "SRC_Brazil_China_Trade_Stats"],
+        "confidence": 0.95
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界最大の農業輸出力と、プレソルト油田による石油生産力、そして鉄鉱石などの鉱物資源を持つ資源超大国です。",
+        "notable_resources": [
+          { "name": "プレソルト石油", "role": "深海油田。世界有数の産油国としての地位を確立。", "evidence": ["SRC_Petrobras_Production_Report"], "confidence": 0.98 },
+          { "name": "ニオブ", "role": "世界シェア90%以上。特殊鋼に不可欠なレアメタル。", "evidence": ["SRC_CBMM_Niobium_Market"], "confidence": 0.99 },
+          { "name": "アグリビジネス", "role": "世界の食料庫。大豆、肉類、砂糖、コーヒーのトップ生産国。", "evidence": ["SRC_USDA_Brazil_Outlook"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ルーラ大統領と議会（セントロン勢力が優勢）との緊張関係が続いていますが、決定的な対立は回避されています。ボルソナロ派の影響力は低下傾向にあります。",
+        "key_actors": [
+           { "name": "ルイス・イナシオ・ルーラ・ダ・シルバ", "role": "大統領。貧困対策と国際的地位向上に注力。", "evidence": [] },
+           { "name": "フェルナンド・ハダッド", "role": "財務相。市場との対話を重視する実務家。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "一次産品輸出への依存度が高いですが、航空機（Embraer）などの高度な製造業も存在。内需主導の成長も底堅いです。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:35:00+09:00",
+      "country_iso3": "ARG",
+      "country_name_ja": "アルゼンチン共和国",
+      "country_name_en": "Argentine Republic",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "INDEC（統計局）、IMFプログラム審査報告書に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ハビエル・ミレイ大統領による『チェーンソー改革』の結果、財政黒字化を達成しハイパーインフレの危機は脱しましたが、実体経済の縮小と貧困率の急上昇という社会的コストを伴っています。",
+        "evidence": ["SRC_Ministry_Economy_Fiscal_Surplus", "SRC_UCA_Poverty_Observatory"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "バカ・ムエルタ（Vaca Muerta）シェール層からの石油・ガス増産とパイプライン整備により、エネルギー純輸出国への転換を果たし、外貨不足の解消に向けた最大の希望となっています。",
+        "evidence": ["SRC_Energy_Secretariat_Production_Data", "SRC_Vaca_Muerta_Investment"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "リチウム生産が急拡大しており、チリを抜いて南米最大、世界第3位の生産国となる見通しで、規制緩和により外資の参入が加速しています。",
+        "evidence": ["SRC_CAEM_Mining_Outlook", "SRC_Lithium_Export_Growth"],
+        "confidence": 0.9 }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界第2位のシェールガス埋蔵量と肥沃なパンパ（農地）。リチウム・トライアングルの一角。",
+        "notable_resources": [
+          { "name": "シェールガス・オイル", "role": "バカ・ムエルタ。経済再建の切り札。", "evidence": ["SRC_YPF_Annual_Plan"], "confidence": 0.95 },
+          { "name": "リチウム", "role": "塩湖からの生産。連邦制により州政府が採掘権を持つため開発が早い。", "evidence": ["SRC_Argentina_Lithium_Projects"], "confidence": 0.92 },
+          { "name": "大豆・小麦", "role": "伝統的な外貨獲得源。干ばつリスクがある。", "evidence": ["SRC_Rosario_Board_of_Trade"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ミレイ政権は議会少数派ですが、国民の現状打破への期待を背景に改革を強行。労組によるゼネストや社会不安が最大のリスクです。",
+        "key_actors": [
+           { "name": "ハビエル・ミレイ", "role": "大統領。リバタリアン。「自由万歳」を叫び、公的支出を削減。", "evidence": [] },
+           { "name": "ルイス・カプト", "role": "経済相。インフレ抑制と為替安定化の司令塔。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "繰り返される債務危機からの脱却を目指す調整局面。農業とエネルギー、鉱業が成長の柱。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:40:00+09:00",
+      "country_iso3": "COL",
+      "country_name_ja": "コロンビア共和国",
+      "country_name_en": "Republic of Colombia",
+      "confidence": {
+        "overall": 0.88,
+        "notes": "コロンビア中央銀行、Ecopetrolレポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ペトロ政権の『完全な平和』構想は、ELN（民族解放軍）など武装勢力との交渉難航と治安悪化により行き詰まりを見せており、地方部での国家統治能力の低下が懸念されています。",
+        "evidence": ["SRC_Peace_Process_Status_Report", "SRC_Indepaz_Violence_Monitor"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "新規の石油・ガス探査契約を停止する脱化石燃料政策を進めていますが、主要歳入源である石油輸出の減少と代替産業（観光・再エネ）の育成のタイムラグが、財政と貿易収支を圧迫しています。",
+        "evidence": ["SRC_MinEnergia_Transition_Plan", "SRC_Ecopetrol_Reserve_Decline"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "アマゾン地域の森林保護とコカ栽培代替プログラムを国際社会の支援を受けて推進していますが、麻薬生産量は依然として高水準です。",
+        "evidence": ["SRC_UNODC_Coca_Cultivation_Survey", "SRC_Amazon_Protection_Fund"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "石油と石炭が輸出の過半。エメラルドや金、そして豊かな生物多様性が資源。",
+        "notable_resources": [
+          { "name": "石油", "role": "最大の外貨獲得源だが、埋蔵量は減少傾向。政権は依存脱却を目指す。", "evidence": ["SRC_ACP_Oil_Outlook"], "confidence": 0.95 },
+          { "name": "コーヒー（アラビカ種）", "role": "高品質コーヒーの代名詞。気候変動の影響を受けている。", "evidence": ["SRC_FNC_Coffee_Exports"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "グスタボ・ペトロ大統領（左派）の支持率は低下。議会での連立解消により改革法案（医療、年金）が停滞。",
+        "key_actors": [
+           { "name": "グスタボ・ペトロ", "role": "大統領。元ゲリラ。気候変動対策と社会正義を掲げる。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "資源依存経済からの転換期。不確実性の高まりにより民間投資が低迷しています。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:45:00+09:00",
+      "country_iso3": "CHL",
+      "country_name_ja": "チリ共和国",
+      "country_name_en": "Republic of Chile",
+      "confidence": {
+        "overall": 0.92,
+        "notes": "チリ中央銀行、Cochilco（銅委員会）データに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "『国家リチウム戦略』に基づき、国営企業（Codelco、Enami）が過半数出資する形での官民パートナーシップ開発が進んでいますが、投資決定の遅れによりアルゼンチンなどにシェアを奪われつつあります。",
+        "evidence": ["SRC_National_Lithium_Strategy_Update", "SRC_SQM_Codelco_Deal"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "世界最大の銅生産国として、品位低下や水不足といった課題に対し、海水淡水化プラントの建設や自動化技術の導入で生産維持を図っています。",
+        "evidence": ["SRC_Cochilco_Copper_Production", "SRC_Mining_Water_Consumption"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "北部砂漠地帯でのグリーン水素生産プロジェクトが具体化し始め、欧州やアジア向けの次世代エネルギー輸出拠点としてのポテンシャルを開花させつつあります。",
+        "evidence": ["SRC_Green_Hydrogen_Strategy_Chile", "SRC_H2_Magallanes_Project"],
+        "confidence": 0.9 }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界一の銅埋蔵量と、世界最大級のリチウム埋蔵量。太陽光放射量が世界最高レベル（アタカマ砂漠）。",
+        "notable_resources": [
+          { "name": "銅", "role": "国家経済の屋台骨。世界の電化需要を支える。", "evidence": ["SRC_Codelco_Annual_Report"], "confidence": 0.99 },
+          { "name": "リチウム", "role": "アタカマ塩湖。低コスト生産が可能だが、環境規制と国家管理が強化。", "evidence": ["SRC_Albemarle_Chile_Ops"], "confidence": 0.95 },
+          { "name": "太陽光・風力", "role": "グリーン水素のコスト競争力を世界一にする源泉。", "evidence": ["SRC_Ministry_Energy_Renewables"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ガブリエル・ボリッチ政権（左派）は現実路線へ修正。新憲法制定プロセスは二度の国民投票否決を経て終了し、制度的な不確実性は後退しました。",
+        "key_actors": [
+           { "name": "ガブリエル・ボリッチ", "role": "大統領。社会改革と財政責任のバランスに苦心。", "evidence": [] },
+           { "name": "ホセ・アントニオ・カスト", "role": "共和党党首（右派）。治安悪化を背景に支持を伸ばす。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "鉱業輸出主導型。健全な財政と金融システムを持つ南米の優等生ですが、生産性向上と格差是正が課題。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:50:00+09:00",
+      "country_iso3": "PER",
+      "country_name_ja": "ペルー共和国",
+      "country_name_en": "Republic of Peru",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "ペルー中央準備銀行、エネルギー鉱山省レポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "世界第2位の銅生産国であり、中国企業（Las Bambas等）による投資が鉱業セクターを牽引していますが、地域コミュニティによる抗議活動や道路封鎖が操業リスクとして常在しています。",
+        "evidence": ["SRC_Minem_Mining_Stats", "SRC_Social_Conflict_Report_Peru"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "中国主導で建設されたチャンカイ（Chancay）メガポートが開港し、南米太平洋岸における対アジア貿易のハブとして、ブラジルなど近隣国からの物流も取り込み始めています。",
+        "evidence": ["SRC_Chancay_Port_Operations", "SRC_Cosco_Shipping_Peru_Strategy"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "政治的混乱（大統領の頻繁な交代や議会との対立）が続いていますが、独立性の高い中央銀行によるマクロ経済運営により、通貨ソルとインフレ率は比較的安定しています。",
+        "evidence": ["SRC_BCRP_Inflation_Targeting", "SRC_Political_Instability_Index"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "銅、金、銀、亜鉛などの多種多様な鉱物資源。漁業（アンチョビ）とアグリビジネス（ブルーベリー、アボカド）も強力。",
+        "notable_resources": [
+          { "name": "銅", "role": "輸出の約3割。新規プロジェクトのパイプラインは豊富だが、社会的許容性が鍵。", "evidence": ["SRC_SNMPE_Copper_Report"], "confidence": 0.95 },
+          { "name": "農産物", "role": "砂漠地帯の灌漑農業により、果物輸出が急増中。", "evidence": ["SRC_Midagri_Agroexport_Data"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ディナ・ボルアルテ政権は低支持率ながら存続。議会の分断が激しく、抜本的な改革は困難。「政治と経済の分離」現象が見られます。",
+        "key_actors": [
+           { "name": "ディナ・ボルアルテ", "role": "大統領。暫定的な性格が強いが、任期満了を目指す。", "evidence": [] },
+           { "name": "フリオ・ベラルデ", "role": "中央銀行総裁。長年その職にあり、経済安定の守護神。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "鉱業依存型。インフォーマルセクター（非正規雇用）が労働力の7割を占め、生産性が低い。"
+      }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T21:55:00+09:00",
+      "country_iso3": "VEN",
+      "country_name_ja": "ベネズエラ・ボリバル共和国",
+      "country_name_en": "Bolivarian Republic of Venezuela",
+      "confidence": {
+        "overall": 0.65,
+        "notes": "OPECデータ、独立系NGO、米国務省レポートに基づく推計。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "米国による制裁の一部緩和（ライセンス発行）により、Chevron等の西側企業が限定的に操業を再開し、原油生産量は底を打ちましたが、インフラ老朽化により大幅な増産は困難です。",
+        "evidence": ["SRC_OPEC_Venezuela_Production", "SRC_OFAC_General_License_41"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "マドゥロ政権は2024年の選挙プロセスを巡る論争後も権力を維持し、ガイアナのエセキボ地域領有権問題をナショナリズム高揚のために利用し、地域の緊張を高めています。",
+        "evidence": ["SRC_Essequibo_Referendum_Aftermath", "SRC_UN_Fact_Finding_Mission"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "ハイパーインフレは収束傾向にありますが、事実上のドル化が進んでおり、貧困と格差は極端なレベルにあります。数百万人の難民・移民が周辺国へ流出を続けています。",
+        "evidence": ["SRC_OVF_Inflation_Index", "SRC_R4V_Migration_Stats"],
+        "confidence": 0.95
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界最大の確認原油埋蔵量（超重質油）を有しますが、投資不足で「座ったままの宝」状態。金やコルトンなどの違法採掘（鉱山アーチ）が環境破壊と犯罪の源。",
+        "notable_resources": [
+          { "name": "超重質油（オリノコベルト）", "role": "精製に希釈剤が必要。ポテンシャルは巨大だがコストが高い。", "evidence": ["SRC_PDVSA_Reserves"], "confidence": 0.98 },
+          { "name": "天然ガス", "role": "トリニダード・トバゴとの共同開発（ドラゴン・ガス田）が進展中。", "evidence": ["SRC_Shell_Venezuela_Gas_Deal"], "confidence": 0.88 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ニコラス・マドゥロ大統領による権威主義体制が固定化。軍部と最高裁を掌握し、野党を分断・無力化。",
+        "key_actors": [
+           { "name": "ニコラス・マドゥロ", "role": "大統領。制裁を生き延び、外交的孤立からの脱却を図る。", "evidence": [] },
+           { "name": "マリア・コリーナ・マチャド", "role": "野党指導者。国民的人気は高いが、公職追放処分を受けている。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "石油モノカルチャーの崩壊後、インフォーマル経済と送金、違法ビジネスが混在する歪な構造。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:00:00+09:00",
+      "country_iso3": "ECU",
+      "country_name_ja": "エクアドル共和国",
+      "country_name_en": "Republic of Ecuador",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "エクアドル中央銀行、治安当局発表に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "『国内武力紛争状態』宣言以降、軍を動員した麻薬カルテル掃討作戦が継続しており、治安は一進一退ですが、主要港（グアヤキル）でのコカイン押収量は増加しています。",
+        "evidence": ["SRC_Security_State_Emergency_Decree", "SRC_Police_Drug_Seizure_Stats"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "ヤスニ国立公園（ITTブロック）での石油採掘停止を求める国民投票の結果を受け、日量数万バレルの減産が避けられず、代替財源の確保と財政赤字の拡大が深刻な課題です。",
+        "evidence": ["SRC_Yasuni_Referendum_Implementation", "SRC_Petroecuador_Production_Loss"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "ノボア政権は、治安対策と経済活性化の両立を目指し、米国との安保協力強化や、若年層向けの雇用創出プログラムを推進しています。",
+        "evidence": ["SRC_Noboa_Plan_Fenix", "SRC_US_Ecuador_Security_Assistance"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "石油が輸出の柱。バナナ、エビ、カカオなどの農水産物が豊富。銅や金の鉱山開発ポテンシャルが高い。",
+        "notable_resources": [
+          { "name": "石油", "role": "国家歳入の約3割。老朽化と環境規制で増産は困難。", "evidence": ["SRC_Central_Bank_Oil_Revenue"], "confidence": 0.95 },
+          { "name": "バナナ・エビ", "role": "世界トップクラスの輸出国。中国市場の需要増が追い風。", "evidence": ["SRC_Export_Association_Data"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ダニエル・ノボア大統領（中道右派）は、治安悪化への断固たる対応で支持を得ていますが、議会での基盤は弱いです。",
+        "key_actors": [
+           { "name": "ダニエル・ノボア", "role": "大統領。若き実業家出身。再選を目指す。", "evidence": [] },
+           { "name": "麻薬犯罪組織", "role": "メキシコ系カルテルと結びつき、国家の安全を脅かす。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "ドル化経済（インフレは低いが、競争力調整が困難）。石油価格変動と治安コスト増大がリスク。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:05:00+09:00",
+      "country_iso3": "BOL",
+      "country_name_ja": "ボリビア多民族国",
+      "country_name_en": "Plurinational State of Bolivia",
+      "confidence": {
+        "overall": 0.75,
+        "notes": "ボリビア中央銀行、YLB（国営リチウム公社）レポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "世界最大のリチウム資源量（ウユニ塩湖）を有しながら、技術的課題と国家管理モデルの非効率性により商業生産が遅れており、中国・ロシア企業との提携によるDLE（直接抽出）技術の導入を急いでいます。",
+        "evidence": ["SRC_USGS_Lithium_Reserves", "SRC_YLB_China_Russia_Agreements"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "天然ガスの輸出（ブラジル・アルゼンチン向け）が埋蔵量枯渇により急減し、外貨準備高の枯渇と燃料輸入コストの増大が経済危機を招いています。",
+        "evidence": ["SRC_YPFB_Gas_Export_Decline", "SRC_Central_Bank_Reserves_Crisis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "与党MAS（社会主義運動）内部でのアルセ大統領とモラレス元大統領の権力闘争が激化し、道路封鎖などの社会的混乱が頻発、政治的安定が損なわれています。",
+        "evidence": ["SRC_MAS_Internal_Split_Analysis", "SRC_Social_Unrest_Monitor"],
+        "confidence": 0.9 }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "リチウム、天然ガス、スズ、銀、亜鉛。リチウムは「眠れる巨人」。",
+        "notable_resources": [
+          { "name": "リチウム", "role": "世界埋蔵量の約2割。産業化が進めばゲームチェンジャーとなる。", "evidence": ["SRC_YLB_Industrialization_Plan"], "confidence": 0.9 },
+          { "name": "天然ガス", "role": "かつてのドル箱。探査投資不足で生産減退が止まらない。", "evidence": ["SRC_Hydrocarbons_Chamber_Report"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "左派政権だが内部抗争が激しい。2025年選挙に向けた対立が先鋭化。",
+        "key_actors": [
+           { "name": "ルイス・アルセ", "role": "大統領。経済テクノクラート出身だが、危機対応に苦慮。", "evidence": [] },
+           { "name": "エボ・モラレス", "role": "元大統領。先住民層に根強い支持を持ち、復権を狙う。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "国家主導型経済。ガス輸出収入の減少により、財政と通貨（ボリビアーノ）の維持が困難になっています。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:10:00+09:00",
+      "country_iso3": "PRY",
+      "country_name_ja": "パラグアイ共和国",
+      "country_name_en": "Republic of Paraguay",
+      "confidence": {
+        "overall": 0.88,
+        "notes": "パラグアイ中央銀行、イタイプ二国間委員会レポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "南米で唯一台湾との外交関係を維持しており、台湾からの経済支援を受けつつも、農産物（大豆・牛肉）の輸出先として中国市場へのアクセスを求める農牧業団体の圧力が強まっています。",
+        "evidence": ["SRC_Paraguay_Taiwan_Relations", "SRC_Soybean_Export_Lobby"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "イタイプ・ダム（ブラジルとの共有）の余剰電力を活用したビットコイン・マイニングやグリーン水素製造への投資誘致が進んでいますが、電力料金の再交渉が両国間の懸案事項です。",
+        "evidence": ["SRC_Itaipu_Treaty_Renegotiation", "SRC_Crypto_Mining_Investments"],
+        "confidence": 0.9 },
+      {
+        "claim": "ペニャ政権下でマクロ経済の安定と低税率を維持し、近隣国（アルゼンチン、ブラジル）からの投資逃避地としての地位を固め、製造業（マキラ）の成長を促しています。",
+        "evidence": ["SRC_Maquila_Industry_Growth", "SRC_FDI_Inflow_Paraguay"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "世界有数の水力発電能力（電力輸出国）と肥沃な農地。",
+        "notable_resources": [
+          { "name": "水力エネルギー", "role": "100%再エネ電力。安価な電力が産業誘致の武器。", "evidence": ["SRC_ANDE_Electricity_Data"], "confidence": 0.98 },
+          { "name": "大豆・牛肉", "role": "世界的な輸出国。経済成長は天候に左右される。", "evidence": ["SRC_CAPECO_Soy_Stats"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "コロラド党による長期支配が継続。サンティアゴ・ペニャ大統領は党内実力者（カルテス元大統領）の影響下にあるとされる。",
+        "key_actors": [
+           { "name": "サンティアゴ・ペニャ", "role": "大統領。元財務相。親ビジネス政策を推進。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "農業と電力輸出に依存。インフォーマル経済の比率が高い（密輸など）。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:15:00+09:00",
+      "country_iso3": "URY",
+      "country_name_ja": "ウルグアイ東方共和国",
+      "country_name_en": "Oriental Republic of Uruguay",
+      "confidence": {
+        "overall": 0.92,
+        "notes": "ウルグアイ中央銀行、Uruguay XXI（投資促進機関）に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "南米で最も政治的・社会的に安定した『民主主義の優等生』であり、強力な制度的信頼性を背景に、地域のイノベーション・ハブおよび物流ゲートウェイとしての地位を確立しています。",
+        "evidence": ["SRC_Democracy_Index_Ranking", "SRC_Tech_Sector_Growth"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "電力の98%を再生可能エネルギー（風力、水力、バイオマス）で賄うグリーン転換の成功例であり、現在は第2段階としてグリーン水素の輸出とe-fuel生産に向けた投資を加速させています。",
+        "evidence": ["SRC_Energy_Transition_Report", "SRC_H2U_Hydrogen_Roadmap"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "メルコスール（南米南部共同市場）の枠組みに縛られず、中国との二国間FTA交渉を独自に進めようとしており、ブロック内の結束と柔軟性の間で議論を呼んでいます。",
+        "evidence": ["SRC_Uruguay_China_FTA_Talks", "SRC_Mercosur_Summit_Debate"],
+        "confidence": 0.9 }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "豊富な水と農地。風力資源が極めて良好。",
+        "notable_resources": [
+          { "name": "セルロース（パルプ）", "role": "主要輸出品。UPM等の大規模工場が稼働。", "evidence": ["SRC_Pulp_Export_Data"], "confidence": 0.95 },
+          { "name": "ソフトウェア産業", "role": "一人当たりソフトウェア輸出額はラテンアメリカ首位。", "evidence": ["SRC_CUTI_IT_Sector_Report"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "中道右派と中道左派（拡大戦線）が交互に政権を担う安定した二大ブロック制。ラカジェ・ポウ政権（中道右派）は高い支持を維持。",
+        "key_actors": [
+           { "name": "ルイス・ラカジェ・ポウ", "role": "大統領。自由貿易と財政規律を重視。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "アグリビジネス、サービス、物流がバランスよく発展。高所得国入り目前。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:20:00+09:00",
+      "country_iso3": "GUY",
+      "country_name_ja": "ガイアナ共和国",
+      "country_name_en": "Cooperative Republic of Guyana",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "IMF、ExxonMobil生産データ、ガイアナ財務省レポートに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "スタブロック鉱区からの原油生産急増により、世界最高の経済成長率（年率20-30%超）を維持しており、南米の最貧国から一人当たりGDPで地域トップクラスへ急上昇しています。",
+        "evidence": ["SRC_IMF_Guyana_Growth_Forecast", "SRC_ExxonMobil_Stabroek_Output"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "隣国ベネズエラによるエセキボ地域の領有権主張と軍事的威嚇に対し、米国や英国との防衛協力を強化し、国連安保理非常任理事国として国際世論の喚起に努めています。",
+        "evidence": ["SRC_Essequibo_Dispute_Updates", "SRC_US_Guyana_Defense_Partnership"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "石油収入を原資とした『低炭素開発戦略2030』の下、ガス火力発電所や道路・橋梁などのインフラ整備、教育・医療への投資を一気に進めていますが、インフレと吸収能力（Absorptive Capacity）の不足が課題です。",
+        "evidence": ["SRC_LCDS_2030_Implementation", "SRC_Gas_to_Energy_Project"],
+        "confidence": 0.9 }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "人口80万人に対し、確認埋蔵量110億バレル超という圧倒的な一人当たり石油資源量。",
+        "notable_resources": [
+          { "name": "沖合原油（ライト・スイート）", "role": "低炭素強度の高品質原油。ExxonMobilコンソーシアムが開発。", "evidence": ["SRC_Hess_Corp_Report"], "confidence": 0.99 },
+          { "name": "森林（炭素クレジット）", "role": "国土の85%が熱帯雨林。Hess社へのカーボンクレジット販売実績あり。", "evidence": ["SRC_ART_TREES_Credits"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "インド系（PPP/C）とアフリカ系（PNC/R）の民族対立が政治の基軸。現在はPPP/C政権が石油収入を背景に支持を固める。",
+        "key_actors": [
+           { "name": "イルファーン・アリ", "role": "大統領。急速な開発と国際連携を主導。", "evidence": [] },
+           { "name": "ExxonMobil", "role": "主要な開発オペレーター。国の経済命運を左右する存在。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "石油ブームによるハイパー成長。オランダ病（非石油部門の衰退）の回避が最大の政策課題。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:25:00+09:00",
+      "country_iso3": "SUR",
+      "country_name_ja": "スリナム共和国",
+      "country_name_en": "Republic of Suriname",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "スリナム中央銀行、TotalEnergies発表に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "隣国ガイアナに続き、沖合第58鉱区での大規模油田開発（TotalEnergiesとAPA）の最終投資決定（FID）が下され、本格的な産油国への道筋が確定しました。",
+        "evidence": ["SRC_Block_58_FID_Announcement", "SRC_Staatsolie_Production_Forecast"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "長年の経済危機と債務デフォルトからの回復途上にあり、IMFプログラムの下での緊縮財政と通貨切り下げが国民生活を圧迫、抗議デモが発生するなどの社会的不安が続いています。",
+        "evidence": ["SRC_IMF_Suriname_Review", "SRC_Cost_of_Living_Protests"],
+        "confidence": 0.9 },
+      {
+        "claim": "サントキ政権は、オランダ（旧宗主国）や米国との関係修復を進めるとともに、石油収入の将来的な管理体制（ソブリン・ウエルス・ファンド）の整備に着手しています。",
+        "evidence": ["SRC_Sovereign_Wealth_Fund_Act", "SRC_Foreign_Relations_Reset"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "石油・ガスのポテンシャルに加え、ボーキサイトと金が従来の主力輸出資源。",
+        "notable_resources": [
+          { "name": "沖合石油", "role": "「第二のガイアナ」となる可能性。2028年頃からの生産開始を目指す。", "evidence": ["SRC_WoodMac_Suriname_Outlook"], "confidence": 0.92 },
+          { "name": "金", "role": "現在の最大輸出品目。Newmontなどが操業。", "evidence": ["SRC_Gold_Mining_Stats"], "confidence": 0.95 }
+        ]
+      },
+      "political_stability": {
+        "summary": "チャン・サントキ大統領（VHP）による連立政権。前政権（ボーターセ）の負の遺産処理に追われる。汚職対策と経済再建が信任の鍵。",
+        "key_actors": [
+           { "name": "チャン・サントキ", "role": "大統領。元警察長官。法の支配と経済規律を重視。", "evidence": [] },
+           { "name": "ロニー・ブランス", "role": "副大統領。元ゲリラ指導者。政治的影響力を保持。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "資源依存経済。石油収入が入るまでの数年間をどう乗り切るかが課題。", "evidence": [] }
+    }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T22:30:00+09:00",
+      "country_iso3": "TTO",
+      "country_name_ja": "トリニダード・トバゴ共和国",
+      "country_name_en": "Republic of Trinidad and Tobago",
+      "confidence": {
+        "overall": 0.88,
+        "notes": "トリニダード・トバゴ中央銀行、エネルギー省データに基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "国内ガス田の成熟化による生産減退に対応するため、米国のライセンスを得てベネズエラ領内のドラゴン・ガス田を共同開発し、LNGプラント（Atlantic LNG）の稼働率を維持する戦略を進めています。",
+        "evidence": ["SRC_Dragon_Gas_Field_Deal", "SRC_LNG_Production_Decline"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "カリブ海最大の工業国として、アンモニアやメタノールの世界的な輸出国ですが、脱炭素の潮流の中でグリーン水素への転換（既存インフラの活用）を模索しています。",
+        "evidence": ["SRC_Ammonia_Export_Ranking", "SRC_Green_Hydrogen_Roadmap"],
+        "confidence": 0.9 },
+      {
+        "claim": "凶悪犯罪（ギャング抗争）の増加が社会問題化しており、治安対策が政権の最優先事項となる一方で、エネルギー部門以外の経済多角化（観光、製造業）は遅れています。",
+        "evidence": ["SRC_Crime_Statistics_TT", "SRC_Diversification_Challenges"],
+        "confidence": 0.88
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "カリブ海唯一の石油・ガス経済。高度な石油化学プラント群を有しています。",
+        "notable_resources": [
+          { "name": "天然ガス・LNG", "role": "経済の柱。周辺国（ベネズエラ、ガイアナ、スリナム）のガスハブ化を狙う。", "evidence": ["SRC_Energy_Chamber_Report"], "confidence": 0.95 },
+          { "name": "石油化学製品", "role": "アンモニア、メタノール、尿素。肥料価格高騰の恩恵を受ける。", "evidence": ["SRC_Petrochemical_Export_Data"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "PNM（人民国家運動）とUNC（統一国民会議）の二大政党制。人種（アフリカ系とインド系）が投票行動に影響。ローリー政権はエネルギー外交に注力。",
+        "key_actors": [
+           { "name": "キース・ローリー", "role": "首相。エネルギー安全保障の確保に奔走。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "エネルギー部門がGDPの約4割。ガス生産量減少による長期的な縮小リスクに直面。", "evidence": [] }
+    }
   }
 ]
