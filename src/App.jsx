@@ -12,18 +12,16 @@ import {
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 
 /**
- * WorldDashboard v6.0 - Deep Intelligence Expansion
- * - 新機能: "Deep Dive Report" パネルの実装。
- * 特定国の詳細レポート（JSON）がある場合、ステータスパネルの左側に拡張表示します。
- * - 統合: 基本データ(Master)と詳細レポート(Reports)をISOコードで動的にリンク。
- * - UI: 長文テキストを読みやすくするための、有機的な硝子カードレイアウト。
+ * WorldDashboard v6.1 - Deep Intelligence Expansion (Fix)
+ * - Fix: JSONデータが単一オブジェクトの場合でも読み込めるようにロジックを修正
+ * - Fix: WorldMap内の変数の参照エラー(minRisk -> minR)を修正
  */
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
 const PIE_COLOURS = ['#22d3ee', '#818cf8', '#f43f5e', '#fbbf24', '#34d399', '#f472b6'];
 const RSS_API = "https://api.rss2json.com/v1/api.json?rss_url=";
 const DEFAULT_FEED = "https://feeds.bbci.co.uk/news/world/rss.xml";
-// 追加: レポートデータのパス (publicフォルダ内)
+// 注意: ファイル名のタイプミス(Afreica)はユーザー環境に合わせて維持しています
 const REPORT_DATA_URL = "Afreica_countries_reports.json";
 
 // 国名マッピング (Numeric ID -> ISO3)
@@ -109,10 +107,11 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
 
   const getColour = useCallback((risk) => {
     if (risk == null) return '#1e293b';
+    // FIX: minRisk, maxRisk -> minR, maxR に修正
     const t = (risk - minR) / (maxR - minR || 1);
     if (t < 0.5) return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
     return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
-  }, [minR, maxR]);
+  }, [minR, maxR]); // 修正済み
 
   const geoStyle = useMemo(() => ({
     default: { outline: 'none', transition: 'fill 0.3s ease' },
@@ -486,18 +485,23 @@ export default function App() {
     const baseUrl = window.location.hostname.includes('github.io') ? "/worlddashboard_2/" : "/";
     Promise.all([
       fetch(`${baseUrl}worlddash_global_master.json`).then(res => res.json()),
-      fetch(`${baseUrl}${REPORT_DATA_URL}`).then(res => res.json()).catch(() => []) // レポートは失敗しても空配列で続行
+      fetch(`${baseUrl}${REPORT_DATA_URL}`).then(res => res.json()).catch(err => {
+        console.warn("Report data fetch failed, continuing without reports.", err);
+        return [];
+      }) 
     ]).then(([masterData, reportData]) => {
       setData(masterData);
-      // レポートデータをISOコードをキーにしたオブジェクトに変換
+      
+      // FIX: レポートデータの処理を強化 (ArrayでもObjectでも対応)
       const reportMap = {};
-      if (Array.isArray(reportData)) {
-        reportData.forEach(r => {
-          if (r.meta && r.meta.country_iso3) {
-            reportMap[r.meta.country_iso3] = r;
-          }
-        });
-      }
+      const reportList = Array.isArray(reportData) ? reportData : [reportData]; // 配列化
+
+      reportList.forEach(r => {
+        if (r && r.meta && r.meta.country_iso3) {
+          reportMap[r.meta.country_iso3] = r;
+        }
+      });
+      
       setReports(reportMap);
     }).catch(e => console.error("Data load failed", e));
   }, []);
@@ -525,7 +529,7 @@ export default function App() {
   if (!data) return (
     <div className="h-screen flex flex-col items-center justify-center text-cyan-400 animate-pulse font-mono bg-slate-950 tracking-[1em]">
        <Globe size={60} className="mb-10 opacity-30 animate-spin-slow" />
-       CONNECTING_NEXUS_v6.0
+       CONNECTING_NEXUS_v6.1
     </div>
   );
 
@@ -541,7 +545,7 @@ export default function App() {
           <div className="p-2 bg-cyan-500/10 rounded-xl border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
             <Globe className="text-cyan-400 animate-pulse" size={24} />
           </div>
-          <div><h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1><div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v6.0</div></div>
+          <div><h1 className="text-xl font-bold tracking-[0.3em] text-white flex items-center gap-2 uppercase tracking-tighter">WORLD<span className="text-cyan-400 opacity-90">DASH</span></h1><div className="text-[8px] text-slate-500 font-semibold uppercase tracking-[0.5em] mt-0.5 opacity-70">Global_Intelligence_Nexus_v6.1</div></div>
         </div>
 
         <div className="hidden md:flex flex-1 items-center justify-center pointer-events-none">
