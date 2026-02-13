@@ -112,7 +112,7 @@ const WorldMap = React.memo(({ data, onCountryClick, onHover, selectedIso }) => 
     const t = (risk - minR) / (maxR - minR || 1);
     if (t < 0.5) return mixColours(COLOUR_LOW, COLOUR_MID, t / 0.5);
     return mixColours(COLOUR_MID, COLOUR_HIGH, (t - 0.5) / 0.5);
-  }, [minRisk, maxRisk]);
+  }, [minR, maxR]);
 
   const geoStyle = useMemo(() => ({
     default: { outline: 'none', transition: 'fill 0.3s ease' },
