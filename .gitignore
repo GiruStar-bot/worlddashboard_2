@@ -1,3 +1,22 @@
-Logslogs.log
-npm-debug.logyarn-debug.log*yarn-error.log*pnpm-debug.log*lerna-debug.log*Node modulesnode_modulesdistdist-ssr*.localEditor directories and files.vscode/*!.vscode/extensions.json.idea.DS_Store*.suo*.ntvs*.njsproj*.sln*.sw?
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node modules
 node_modules
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Editor directories
+.vscode/
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
