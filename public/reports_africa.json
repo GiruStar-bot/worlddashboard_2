@@ -1,0 +1,54 @@
+[
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-13T08:59:19+09:00",
+      "country_iso3": "COD",
+      "country_name_ja": "コンゴ民主共和国",
+      "country_name_en": "Democratic Republic of the Congo",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "Sources include UN, IMF, think tanks; data partly missing."
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "DRコンゴの莫大な重要鉱物資源（世界のコバルトの約70%など）は、慢性的な紛争とガバナンスの欠如により、繁栄には結びついていません。",
+        "evidence": ["SRC_001", "SRC_003"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "近隣諸国（ルワンダ、ウガンダ）の支援を受けた武装勢力（M23など）が暴力と経済的混乱を助長し、投資を阻害しています。",
+        "evidence": ["SRC_002", "SRC_004"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "地域的には、DRコンゴはSADCおよびCOMESAにおける貿易・輸送のハブであり、主要回廊（ダーバン-コルウェジなど）を有し、現在はAfCFTA/EACの一部でもあるため、その安定は大陸全体の懸念事項です。",
+        "evidence": ["SRC_006", "SRC_010"],
+        "confidence": 0.8
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "DRコンゴは莫大な鉱物資源（銅、コバルト、金、コルタンなど）を保有し、世界のコバルト供給を独占していますが、これが経済発展を保証するには至っていません。",
+        "notable_resources": [
+          { "name": "コバルト", "role": "世界最大の生産国（2021年世界生産の72%）、EVバッテリーに不可欠", "evidence": ["SRC_001"], "confidence": 0.9 },
+          { "name": "銅", "role": "主要な世界的供給国（第4位の生産国、2021年世界生産の約8%）", "evidence": ["SRC_001"], "confidence": 0.9 },
+          { "name": "コルタン/タンタル", "role": "世界供給の重要なシェア（大湖地域からのコルタンは世界の約30%、エレクトロニクスに不可欠）", "evidence": ["SRC_004"], "confidence": 0.8 },
+          { "name": "金", "role": "注目すべき金の生産（重要な輸出品および小規模採掘経済）", "evidence": ["SRC_003"], "confidence": 0.7 }
+        ]
+      },
+      "political_stability": {
+        "summary": "資源の豊かさにもかかわらず、持続的な武力紛争、弱いガバナンス、地域的な介入により、DRコンゴは極めて不安定です。",
+        "key_actors": [
+           { "name": "M23（3月23日運動）", "role": "反政府武装勢力" },
+           { "name": "コンゴ国軍 (FARDC)", "role": "政府軍" },
+           { "name": "ワザレンド (Wazalendo)", "role": "親政府民兵連合" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "地域貿易（SADC、COMESA加盟）の中心となる大規模な資源国ですが、付加価値の高い多角化は進んでいません。"
+      }
+    }
+  }
+]
