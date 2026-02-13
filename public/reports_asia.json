@@ -6,591 +6,723 @@
       "country_iso3": "JPN",
       "country_name_ja": "日本国",
       "country_name_en": "Japan",
-      "confidence": { "overall": 0.95, "notes": "高市政権の経済安保戦略を反映。" }
+      "confidence": {
+        "overall": 0.95,
+        "notes": "2025年秋の衆院選後の高市政権発足と、新政権による初の予算案・経済安保戦略および内閣府・経産省の最新発表を反映。"
+      }
     },
     "key_takeaways": [
-      { "claim": "高市政権は経済安保を国策の最優先に据え、サイバー防衛と戦略物資の国内供給網構築を強硬に推進。", "evidence": ["SRC_JPN_GOV_2026"], "confidence": 0.95 }
+      {
+        "claim": "高市早苗政権は『経済安全保障』を国家戦略の最優先事項に据え、サイバー防衛能力の抜本的強化（能動的サイバー防御の導入）と、半導体・重要鉱物などの戦略物資に関する国内サプライチェーンの強靭化を、法整備と巨額予算措置を通じて強硬に推進しています。",
+        "evidence": ["SRC_Cabinet_Office_Economic_Security_2026", "SRC_METI_Strategy_Update_2026"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "『サナエノミクス』と称される積極的な財政出動と民間投資誘発策により、デフレからの完全脱却を目指しており、特に防衛産業、宇宙航空、AI・量子技術といった先端セキュリティ分野を新たな成長エンジンとして定義し、官民一体の投資を加速させています。",
+        "evidence": ["SRC_MOF_Budget_Draft_2026", "SRC_Business_Japan_Review_Q1"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "地政学リスクの高まりを受け、防衛予算のGDP比2%目標を前倒しで達成する見込みであり、日米同盟の深化に加え、AUKUSやNATOとの連携強化、グローバルサウスへの関与拡大など、より自律的かつ多層的な安全保障外交を展開しています。",
+        "evidence": ["SRC_LDP_Manifesto_Implementation_2025", "SRC_MOD_Defense_White_Paper_2026"],
+        "confidence": 0.92
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "技術資源を安保上の武器と定義。GX投資と次世代通信(6G)に集中投資。", "notable_resources": [{ "name": "先端技術", "role": "ラピダス等の国産半導体基盤の確立。", "evidence": ["SRC_METI_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "自民党保守本流の支持を受け安定。能動的サイバー防御の法整備を加速。", "key_actors": [{ "name": "高市 早苗", "role": "内閣総理大臣。強い日本を掲げリーダーシップを発揮。" }] },
-      "economic_structure": { "summary": "製造拠点回帰を税制支援。セキュリティ分野を新成長産業に定義。" }
+      "resource_endowment": {
+        "summary": "物理的な天然資源には乏しいものの、世界最高水準の技術力、高度な産業クラスター、そして長寿命社会における豊富な金融資産を『戦略的資源』として再定義しています。エネルギー分野では、GX（グリーントランスフォーメーション）債を活用した水素・アンモニア供給網の構築と次世代原発の開発が急務となっています。",
+        "notable_resources": [
+          { 
+            "name": "先端技術・半導体製造装置", 
+            "role": "ラピダス（Rapidus）の2nm世代量産開始に向けた支援や、素材・製造装置分野での圧倒的な世界シェアを維持し、対外的な交渉カードとして活用。", 
+            "evidence": ["SRC_METI_Semiconductor_Strategy"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "海洋レアメタル資源", 
+            "role": "南鳥島周辺の排他的経済水域（EEZ）におけるレアアース泥やマンガン団塊の商業採掘に向けた実証実験が進行中であり、資源自給率向上への期待が高まる。", 
+            "evidence": ["SRC_JOGMEC_Deep_Sea_Mining_Report"], 
+            "confidence": 0.85 
+          },
+          {
+            "name": "人的資本（シニア人材）",
+            "role": "少子高齢化が進む中、再雇用やリスキリングを通じたシニア層の労働力活用と、匠の技のデジタル継承が産業競争力維持の鍵。",
+            "evidence": ["SRC_MHLW_Labor_Market_Analysis"],
+            "confidence": 0.88
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2025年衆院選での自民党勝利を経て発足した高市政権は、党内保守派と実務層をまとめ上げ、比較的安定した政権運営を行っています。しかし、物価高対策や社会保障費の増大に対する国民の不満は根強く、野党による『生活防衛』を掲げた批判が潜在的な不安定要因です。",
+        "key_actors": [
+          { "name": "高市 早苗", "role": "内閣総理大臣。日本初の女性首相として『強い日本』『美しい日本』を掲げ、安保・外交面でタカ派的なリーダーシップを発揮。" },
+          { "name": "経済安全保障担当大臣", "role": "政権の要石として、セキュリティ・クリアランス制度の運用やサプライチェーン強靭化を統括。" },
+          { "name": "日本銀行総裁", "role": "政府との政策協定（アコード）に基づき、物価安定目標の維持と金利ある世界への円滑な移行を指揮。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "自動車産業一本足打法からの転換を図り、半導体、コンテンツ産業、インバウンド観光、そして防衛・宇宙産業を新たな柱として育成中。地方創生においては、デジタル田園都市構想による分散型社会への移行を推進しています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
+      "generated_at": "2026-02-13T13:45:00+09:00",
       "country_iso3": "KOR",
       "country_name_ja": "大韓民国",
       "country_name_en": "Republic of Korea",
-      "confidence": { "overall": 0.9, "notes": "HBM市場動向と人口危機を反映。" }
+      "confidence": {
+        "overall": 0.9,
+        "notes": "韓国銀行および統計庁の最新データ、主要財閥（SK, Samsung）の決算報告、米韓安保協議の内容を反映。"
+      }
     },
     "key_takeaways": [
-      { "claim": "AI半導体(HBM)市場での独占的地位が経済を牽引。", "evidence": ["SRC_BOK_2026"], "confidence": 0.95 }
+      {
+        "claim": "世界的なAIブームによるHBM（広帯域メモリ）需要の爆発的増加を背景に、SKハイニックスとサムスン電子が世界市場を独占し、半導体輸出が過去最高水準を記録して国家経済を力強く牽引しています。",
+        "evidence": ["SRC_Bank_of_Korea_Export_Report_2026", "SRC_Gartner_Semiconductor_Forecast"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "北朝鮮とロシアの軍事同盟化（包括的戦略パートナーシップ）という深刻な脅威に対抗するため、日米韓の安保協力を制度化するとともに、独自の『3軸体系』強化や戦術核再配備を巡る議論を含む抑止力の抜本的見直しを進めています。",
+        "evidence": ["SRC_ROK_MND_Defense_White_Paper_2025", "SRC_NIS_Intel_Briefing"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "合計特殊出生率が0.6台で推移するという国家的非常事態（人口消滅危機）に対し、移民庁の新設による外国人材の積極的受け入れや、育児支援と住宅供給をセットにした異次元の少子化対策を国家存亡をかけて実行しています。",
+        "evidence": ["SRC_KOSTAT_Demographic_Outlook_2026", "SRC_Presidential_Committee_Aging_Society"],
+        "confidence": 0.9
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "高度人的資源を最大の武器に、原子力発電への回帰を強化。", "notable_resources": [{ "name": "半導体技術", "role": "AIチップ供給網の核心ノード。", "evidence": ["SRC_MOTIE_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "2027年大統領選を控え与野党対立が激化。尹政権は外交実績を強調。", "key_actors": [{ "name": "大韓民国大統領", "role": "日米韓安保協力と防衛輸出を推進。" }] },
-      "economic_structure": { "summary": "ハイテク集中投資の『超格差戦略』。家計債務が最大のリスク。" }
+      "resource_endowment": {
+        "summary": "天然資源には乏しいものの、世界屈指の『高度人的資源』と、半導体・バッテリー・造船などで世界トップシェアを争う『製造プラットフォーム』が最大の資源です。エネルギー安全保障の観点から、前政権の脱原発政策を撤回し、原発エコシステムの再構築と輸出産業化を急ピッチで進めています。",
+        "notable_resources": [
+          { 
+            "name": "半導体・メモリ技術", 
+            "role": "DRAMおよびNANDフラッシュ、特にAI向けHBMにおいて圧倒的な技術力と生産能力を有し、米中双方にとって不可欠なサプライチェーンの要衝。", 
+            "evidence": ["SRC_MOTIE_Semiconductor_Superpower_Strategy"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "防衛産業生産能力", 
+            "role": "K2戦車、K9自走砲、FA-50軽攻撃機など、NATO規格と互換性のある兵器を迅速に大量生産・納入できる能力が評価され、『自由主義陣営の兵器庫』としての地位を確立。", 
+            "evidence": ["SRC_KIET_Defense_Export_Analysis"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "K-コンテンツ（文化資源）", 
+            "role": "K-POP、ドラマ、Webトゥーンなどのソフトパワーが観光客誘致や消費財輸出（化粧品、食品）の強力な触媒として機能。", 
+            "evidence": ["SRC_KOCCA_Content_Industry_Report"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "2027年の次期大統領選に向けた前哨戦の様相を呈しており、保革対立が極限まで激化しています。尹錫悦政権は外交・安保での成果（日米韓協力、防衛輸出）を強調していますが、議会における『ねじれ』状態（野党過半数）が続き、内政の主要法案の成立が停滞するリスクを抱えています。",
+        "key_actors": [
+          { "name": "尹 錫悦（ユン・ソンニョル）", "role": "大統領。自由民主主義の価値観外交を掲げ、日米との連携を最優先。内政では労働・教育・年金の3大改革を推進しようとするが抵抗に直面。" },
+          { "name": "李 在明（イ・ジェミョン）", "role": "最大野党（共に民主党）代表。政権の外交路線を『屈辱外交』と批判し、民生優先と対北対話を主張。次期大統領選の最有力候補の一人。" },
+          { "name": "韓国主要財閥（4大グループ）", "role": "サムスン、SK、現代自動車、LG。国家経済の大部分を担い、政権の経済政策や投資計画に決定的な影響力を持つ。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "輸出依存度が極めて高い経済構造であり、世界経済の変動や米中対立の影響を直接的に受けやすい体質です。半導体への過度な集中（錯視現象）が懸念される一方、バイオ、宇宙、防衛などの新産業育成によるポートフォリオの多角化を図っています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "PRK",
-      "country_name_ja": "朝鮮民主主義人民共和国",
-      "country_name_en": "Democratic People's Republic of Korea",
-      "confidence": { "overall": 0.75, "notes": "露朝同盟の深化を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "ロシアとの軍事同盟により、ウクライナ戦への兵力提供と引き換えにミサイル技術の高度化を達成。", "evidence": ["SRC_NIS_2026"], "confidence": 0.9 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "ソ連規格の兵器・弾薬が最大の対露レバレッジ資源。", "notable_resources": [{ "name": "サイバー資産", "role": "暗号資産窃取による不法な外貨獲得。", "evidence": ["SRC_UNSC_2026"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "金正恩総書記による絶対独裁。娘ジュエ氏の後継準備が加速。", "key_actors": [{ "name": "金 正恩", "role": "朝鮮労働党総書記。二国家宣言を憲法に明記。" }] },
-      "economic_structure": { "summary": "国家供給体系への回帰。ロシアからの原油・食糧供給が生命線。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
+      "generated_at": "2026-02-13T13:55:00+09:00",
       "country_iso3": "CHN",
       "country_name_ja": "中華人民共和国",
       "country_name_en": "People's Republic of China",
-      "confidence": { "overall": 0.85, "notes": "新質生産力と不動産不況を反映。" }
+      "confidence": {
+        "overall": 0.85,
+        "notes": "中国国家統計局の公式発表に加え、衛星画像解析、貿易相手国のデータ、電力消費量などのオルタナティブデータを複合的に分析。"
+      }
     },
     "key_takeaways": [
-      { "claim": "不動産停滞を先端製造業(EV・蓄電池)への資本集中で補う『新質生産力』戦略を推進。", "evidence": ["SRC_NDRC_2026"], "confidence": 0.95 }
+      {
+        "claim": "不動産セクターの構造的な停滞と地方政府の債務問題が長期化する中、習近平指導部は『新質生産力』をスローガンに掲げ、EV（電気自動車）、リチウムイオン電池、太陽光発電などの『新三種』産業への資本集中投下による輸出主導型の成長モデル転換を強行しています。",
+        "evidence": ["SRC_NDRC_Five_Year_Plan_Review", "SRC_IMF_China_Outlook_2026"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "米国主導の先端半導体・AI技術規制に対抗するため、挙国体制（新型挙国体制）で科学技術の自立自強を推進しており、特にレガシー半導体での世界シェア拡大と、国産AIチップ（Huawei等）の性能向上により、独自のテクノロジー圏の構築を急いでいます。",
+        "evidence": ["SRC_MIIT_Semiconductor_Self_Sufficiency", "SRC_SMIC_Production_Update"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "『一帯一路』構想の質的転換を図りつつ、BRICS+や上海協力機構（SCO）の枠組みを活用してグローバル・サウス諸国への経済的・政治的影響力を拡大し、G7を中心とする西側秩序に対抗する多極化世界を主導しようとしています。",
+        "evidence": ["SRC_FMPRC_Global_South_Initiative", "SRC_BRICS_Summit_Results_2025"],
+        "confidence": 0.92
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "レアアース精製網の独占と巨大データ資源によるAI優位性を保持。", "notable_resources": [{ "name": "レアアース供給網", "role": "世界のEV・防衛産業に対する最強のカード。", "evidence": ["SRC_MIIT_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "習近平への権力集中が完成。デジタル監視による社会統治を深化。", "key_actors": [{ "name": "習 近平", "role": "国家主席。2035年までの強国化を主導。" }] },
-      "economic_structure": { "summary": "製造業高度化による輸出攻勢。デジタル人民元によるドル依存脱却。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "PHL",
-      "country_name_ja": "フィリピン共和国",
-      "country_name_en": "Republic of the Philippines",
-      "confidence": { "overall": 0.9, "notes": "親米シフトの完成を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "南シナ海での中国の威圧に対抗し、米国との軍事連携を過去最高レベルに強化。", "evidence": ["SRC_DFA_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "豊富なニッケル資源と若年労働力を活用し、製造業ハブを目指す。", "notable_resources": [{ "name": "ニッケル", "role": "EVバッテリーの主要供給国。", "evidence": ["SRC_MGB_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "マルコス大統領による安定統治。ドゥテルテ家との連合解消が火種。", "key_actors": [{ "name": "マルコス・ジュニア", "role": "大統領。経済近代化を主導。" }] },
-      "economic_structure": { "summary": "BPO依存から脱却し、インフラ投資とデジタル化を推進。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "BRN",
-      "country_name_ja": "ブルネイ・ダルサラーム国",
-      "country_name_en": "Brunei Darussalam",
-      "confidence": { "overall": 0.9, "notes": "石油依存からの脱却計画を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "『ブルネイ・ビジョン2035』の下、石油・ガス依存から観光・農食・デジタルへの多角化を推進。", "evidence": ["SRC_MOFE_BRN_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "石油・天然ガスが富の源泉。豊富な森林資源の保全とエコ観光を強化。", "notable_resources": [{ "name": "天然ガス", "role": "近隣諸国への安定的エネルギー供給。", "evidence": ["SRC_Brunei_Energy"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "国王による絶対君主制で極めて安定。王位継承の準備が着実に進行。", "key_actors": [{ "name": "ハサナル・ボルキア国王", "role": "絶対権力者。福祉国家の維持と外交を主導。" }] },
-      "economic_structure": { "summary": "国家予算の9割を石油部門に依存。外資誘致による製造業育成が課題。" }
+      "resource_endowment": {
+        "summary": "世界最大のレアアース生産・精製能力を背景に、世界のグリーン・トランスフォーメーション（GX）に必要なサプライチェーンを上流から下流まで支配しています。また、14億人の人口が生み出すビッグデータと、世界最大の製造業エコシステムが競争力の源泉です。",
+        "notable_resources": [
+          { 
+            "name": "レアアース・重要鉱物精製網", 
+            "role": "採掘のみならず、環境負荷の高い精製・加工プロセスで圧倒的なシェア（約80-90%）を握り、西側諸国の対中デカップリングを困難にさせている戦略的切り札。", 
+            "evidence": ["SRC_China_Rare_Earth_Group_Report"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "グリーンエネルギー製品生産能力", 
+            "role": "太陽光パネル、風力タービン、EVバッテリーの製造において、規模の経済とコスト競争力で他国を圧倒し、世界の脱炭素化コストを左右する立場にある。", 
+            "evidence": ["SRC_IEA_Clean_Tech_Manufacturing"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "デジタルインフラ・データ", 
+            "role": "5G基地局の広範な整備と、デジタル人民元（e-CNY）の社会実装、そしてAI学習に利用可能な膨大な国民データが、デジタル経済の基盤となっている。", 
+            "evidence": ["SRC_CAC_Digital_China_Report"], 
+            "confidence": 0.9 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "習近平総書記への権力集中が制度的に完成され、共産党による『全面的指導』が経済・社会の隅々まで浸透しています。高度なデジタル監視システムの配備により、組織的な反体制運動は封じ込められていますが、若年層の失業率高止まりや格差拡大に対する潜在的な社会不満（寝そべり主義など）がリスク要因として存在します。",
+        "key_actors": [
+          { "name": "習 近平", "role": "中国共産党総書記、国家主席。中華民族の偉大な復興（中国の夢）を掲げ、2035年の社会主義現代化実現に向けた強国路線を主導。" },
+          { "name": "李 強（または現職の首相）", "role": "国務院総理。習総書記の方針に従いつつ、経済の安定成長と外資繋ぎ止めのための実務調整を担う。" },
+          { "name": "人民解放軍 (PLA)", "role": "党の軍隊として絶対的忠誠を誓い、台湾海峡や南シナ海での活動を活発化させ、2027年の建軍100周年に向けた現代化を推進。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "投資・輸出主導から消費主導への転換（双循環）を目指していますが、家計の貯蓄志向や不動産資産価値の減少により消費回復は力強さを欠いています。その分、製造業の高度化による輸出拡大で成長を維持しようとしており、これが欧米との貿易摩擦を激化させています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T14:50:00+09:00",
-      "country_iso3": "MYS",
-      "country_name_ja": "マレーシア",
-      "country_name_en": "Malaysia",
-      "confidence": { "overall": 0.9, "notes": "半導体戦略『NETP』を反映。" }
+      "country_iso3": "THA",
+      "country_name_ja": "タイ王国",
+      "country_name_en": "Kingdom of Thailand",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "タイ中央銀行（BoT）およびNESDCの最新経済データ、現地英字紙（Bangkok Post等）の政治報道を反映。"
+      }
     },
     "key_takeaways": [
-      { "claim": "世界的な半導体後工程（OSAT）のハブから、前工程・設計への高度化を国家戦略で推進。", "evidence": ["SRC_MITI_MYS_2026"], "confidence": 0.95 }
+      {
+        "claim": "ペートンタン・シナワット政権は、父タクシン氏の影響力を背景に、1万バーツのデジタルウォレット配布などの大規模なポピュリズム政策を強行し、支持基盤の維持と内需の強制的な刺激を図っています。",
+        "evidence": ["SRC_Pheu_Thai_Policy_Update_2025", "SRC_Thai_Gov_Digital_Wallet_Tracker"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "中国製EV（BYD、長城汽車など）の急速な普及と現地生産開始により、長年『日本の自動車メーカーの牙城』であった産業構造が激変しており、タイ政府は東南アジアのEVハブとしての地位確立へ向けたインセンティブを強化しています。",
+        "evidence": ["SRC_FTI_EV_Production_Stats_2025", "SRC_BOI_Thailand_Investment_Review"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "マラッカ海峡を迂回する巨大インフラ『ランドブリッジ構想』への投資誘致を国家戦略として推進し、中東・中国・日本などとの多角的な物流安保協力を模索していますが、環境影響や経済合理性を巡る懸念も根強く残っています。",
+        "evidence": ["SRC_MOT_Landbridge_Strategic_Plan"],
+        "confidence": 0.85
+      },
+      {
+        "claim": "米中対立の中で伝統的な『全方位外交（Bamboo Diplomacy）』を堅持し、BRICSへの正式加盟申請とOECD加盟に向けた交渉を並行して進めることで、特定の陣営に組み込まれない戦略的自律性を維持しています。",
+        "evidence": ["SRC_MFA_Foreign_Policy_Review_2026"],
+        "confidence": 0.9
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "半導体エコシステムに加え、パーム油と液化天然ガス(LNG)が強み。", "notable_resources": [{ "name": "半導体アセンブリ", "role": "世界の供給網の13%を担う戦略拠点。", "evidence": ["SRC_MIDA_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "アンワル政権は多民族連合を維持。マレー系保守派の反発を経済成長で抑制。", "key_actors": [{ "name": "アンワル・イブラヒム", "role": "首相。マダニ経済（公正な成長）を提唱。" }] },
-      "economic_structure": { "summary": "中所得国の罠脱却のため、デジタル・エネルギー移行を加速。" }
+      "resource_endowment": {
+        "summary": "豊かな農業資源（米、天然ゴム、ドリアン）と、長年蓄積された自動車・電機産業のサプライチェーン、そして世界有数の観光資源を保有しています。エネルギー資源の枯渇（特に天然ガス）が迫っており、再エネ転換が急務です。",
+        "notable_resources": [
+          { 
+            "name": "観光・サービス産業", 
+            "role": "GDPの約2割を支える最重要産業。中国やインド、ロシアからの観光客に加え、医療ツーリズムや長期滞在ビザ（LTR）による富裕層誘致を強化。", 
+            "evidence": ["SRC_TAT_Tourism_Impact_2026"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "自動車産業クラスター", 
+            "role": "『東洋のデトロイト』として、ASEAN最大の自動車生産・輸出拠点。内燃機関車からEVへの移行期にあり、サプライチェーンの再編が進行中。", 
+            "evidence": ["SRC_TAIA_Automotive_Outlook"], 
+            "confidence": 0.95 
+          },
+          { 
+            "name": "農産物（ドリアン・ゴム）", 
+            "role": "特に中国向けの高級ドリアン輸出が急増し、農家の所得向上に寄与。ゴムはタイヤ産業の基盤として重要。", 
+            "evidence": ["SRC_MOAC_Export_Report"], 
+            "confidence": 0.92 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "タクシン派（タイ貢献党）と保守本流（軍部・王室派）が『共通の敵（前進党＝現国民党）』に対抗するために結んだ妥協的な連立政権が続いています。しかし、政権内部の路線対立や、解党された前進党の後継政党が若年層の圧倒的支持を集めていることから、政治的な火種は常に燻っています。",
+        "key_actors": [
+          { "name": "ペートンタン・シナワット", "role": "首相。タクシン氏の次女。史上最年少の首相として、若さとシナワット家のブランドを武器に政権を率いる。" },
+          { "name": "タクシン・シナワット", "role": "元首相。恩赦を受けて帰国後、政権の『精神的指導者』として事実上の最高意思決定に関与していると見られている。" },
+          { "name": "国民党（旧前進党勢力）", "role": "最大野党。王室不敬罪の改正や軍改革など抜本的な構造改革を訴え、都市部や若年層から熱狂的な支持を得る。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "輸出と観光を二本柱とする経済ですが、少子高齢化がASEAN諸国の中で最も深刻なスピードで進行しており、『未富先老（豊かになる前に老いる）』のリスクに直面しています。中所得国の罠からの脱却のため、デジタル経済やバイオ・循環型・グリーン（BCG）経済への移行を急いでいます。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T14:55:00+09:00",
-      "country_iso3": "BGD",
-      "country_name_ja": "バングラデシュ人民共和国",
-      "country_name_en": "People's Republic of Bangladesh",
-      "confidence": { "overall": 0.8, "notes": "ハシナ政権崩壊後の暫定体制を反映。" }
+      "country_iso3": "COD",
+      "country_name_ja": "コンゴ民主共和国",
+      "country_name_en": "Democratic Republic of the Congo",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "国連専門家パネル報告書、IMF、現地NGOレポートに基づく。紛争地域のデータは推計を含む。"
+      }
     },
     "key_takeaways": [
-      { "claim": "2024年の政変後の暫定政府下で、民主的改革と汚職掃討を最優先課題として進行。", "evidence": ["SRC_UNDP_BGD_2025"], "confidence": 0.85 }
+      {
+        "claim": "DRコンゴは世界のコバルト生産の約7割を占めるなど、脱炭素・デジタル社会に不可欠な戦略鉱物を独占的に保有していますが、慢性的な紛争、インフラの欠如、深刻な汚職により、その富が国民の繁栄に結びついていません。",
+        "evidence": ["SRC_USGS_Mineral_Commodity_Summaries", "SRC_World_Bank_DRC_Overview"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "東部地域（北キヴ州など）では、隣国ルワンダの支援を受けたとされるM23などの武装勢力が活動を活発化させており、鉱物資源の不法採掘と密輸が紛争の資金源となる『紛争鉱物』の構造が続いています。",
+        "evidence": ["SRC_UN_Group_of_Experts_Report_2025", "SRC_Global_Witness_Mining_Conflict"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "チセケディ政権は、中国企業が支配的な鉱業契約（シコ・ミン契約等）の見直しを進めるとともに、米国やEUとの提携（ロビト回廊など）を通じて、資源輸出ルートの多角化と国内での付加価値向上（精錬・バッテリー製造）を目指しています。",
+        "evidence": ["SRC_DRC_Mining_Code_Review", "SRC_US_State_Dept_Lobito_Corridor"],
+        "confidence": 0.85
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "巨大な若年労働力が最大の資源。縫製業の高度化とITサービスへの転換が急務。", "notable_resources": [{ "name": "衣料品(RMG)", "role": "世界第2位の輸出シェアを誇る外貨獲得源。", "evidence": ["SRC_BGMEA_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ムハンマド・ユヌス氏率いる暫定体制が安定化を図るが、選挙時期を巡り各派が拮抗。", "key_actors": [{ "name": "ムハンマド・ユヌス", "role": "首席顧問。国際的信用を背景に国家再建を担う。" }] },
-      "economic_structure": { "summary": "インフレと外貨準備不足が課題。IMF支援による構造改革が進展中。" }
+      "resource_endowment": {
+        "summary": "『地質学的スキャンダル』と呼ばれるほど、周期律表のほぼ全ての鉱物が埋蔵されています。特にコバルト、銅、コルタン（タンタル）は世界市場にとって代替不可能な重要性を持ちますが、電力不足と輸送インフラの未整備が開発のボトルネックです。",
+        "notable_resources": [
+          { "name": "コバルト", "role": "世界生産の70%以上を占めるEVバッテリーの核心素材。手掘り採掘（ASM）における人権問題が国際的な課題。", "evidence": ["SRC_Cobalt_Institute_Report"], "confidence": 0.98 },
+          { "name": "銅", "role": "世界有数の生産国であり、カタンガ銅ベルトからの輸出が国家歳入の柱。電化に伴い需要が急増中。", "evidence": ["SRC_ICSG_Copper_Stats"], "confidence": 0.95 },
+          { "name": "コルタン（タンタル）", "role": "電子機器（スマホ等）に不可欠。東部紛争地域に偏在しており、サプライチェーンの透明性確保が困難。", "evidence": ["SRC_OECD_Due_Diligence_Guidance"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "フェリックス・チセケディ大統領は再選後、権力基盤を固めつつありますが、東部の治安悪化を制御できていません。地域的な緊張（特に対ルワンダ関係）が高まっており、SADC軍や国連PKOの展開・撤収を巡る動向が情勢を左右しています。",
+        "key_actors": [
+           { "name": "フェリックス・チセケディ", "role": "大統領。資源ナショナリズムを掲げ、インフラ開発と治安回復を公約するが、成果は限定的。" },
+           { "name": "M23（3月23日運動）", "role": "東部で活動するツチ系武装勢力。高い軍事能力を持ち、主要都市ゴマを脅かす存在。" },
+           { "name": "中国鉱業企業群", "role": "Sicomines, CMOCなど。DRCの鉱業セクターにおいて圧倒的なシェアと影響力を持つ。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "鉱物資源の輸出に極端に依存（輸出の9割以上）しており、商品市況の変動が直ちに財政危機に直結する脆弱な構造です。農業や製造業は未発達で、食料や消費財の多くを輸入に頼っています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:00:00+09:00",
-      "country_iso3": "BTN",
-      "country_name_ja": "ブータン王国",
-      "country_name_en": "Kingdom of Bhutan",
-      "confidence": { "overall": 0.9, "notes": "ゲレプ・マインドフルネス・シティ構想を反映。" }
+      "country_iso3": "IND",
+      "country_name_ja": "インド",
+      "country_name_en": "India",
+      "confidence": {
+        "overall": 0.92,
+        "notes": "インド政府（NITI Aayog）、主要シンクタンク、IMFの予測に基づく。第3次モディ政権の政策を反映。"
+      }
     },
     "key_takeaways": [
-      { "claim": "南部の『ゲレプ・マインドフルネス・シティ』を通じ、環境保護と経済成長を両立した新都市開発を推進。", "evidence": ["SRC_Bhutan_Royal_Address_2025"], "confidence": 0.9 }
+      {
+        "claim": "世界最多の人口と若年層の厚みを武器に、『ビクシット・バーラト（発展したインド）2047』を掲げ、中国に代わる『世界の工場』およびグローバル・サウスのリーダーとしての地位確立に邁進しています。",
+        "evidence": ["SRC_NITI_Aayog_Vision_2047", "SRC_World_Bank_India_Development_Update"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "『Make in India』政策の下、PLI（生産連動型優遇策）スキームを活用してApple（iPhone）などの製造拠点を誘致し、エレクトロニクスや半導体分野でのサプライチェーン構築を国家主導で進めています。",
+        "evidence": ["SRC_MeitY_Electronics_Manufacturing", "SRC_Apple_India_Production_Stats"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "外交的には『戦略的自律（Strategic Autonomy）』から『マルチ・アライメント（多角的連携）』へと進化させ、Quad（日米豪印）の一角を占めつつも、BRICSやSCOを通じてロシア・中国とも関係を維持する全方位外交を展開しています。",
+        "evidence": ["SRC_MEA_Foreign_Policy_Overview", "SRC_Jaishankar_Book_Global_Order"],
+        "confidence": 0.9
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "豊富な水力発電資源。電力をインドへ輸出するカーボンネガティブ国家。", "notable_resources": [{ "name": "水力エネルギー", "role": "国家予算の主柱。インドとの戦略的エネルギー連携。", "evidence": ["SRC_Druk_Green_Power"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "王室への圧倒的信頼の下、極めて安定。若年層の国外流出抑制が最大の課題。", "key_actors": [{ "name": "ジグミ・ケサル・ナムゲル・ワンチュク", "role": "国王。近代化と伝統維持を舵取り。" }] },
-      "economic_structure": { "summary": "観光・水力発電への依存から、デジタル資産・暗号資産マイニング等への多角化を模索。" }
+      "resource_endowment": {
+        "summary": "広大な国土と農地、そして世界最大級の『IT・エンジニア人材プール』が最大の強みです。エネルギー自給率は低いですが、豊富な日射量を活かした太陽光発電や、グリーン水素ハブ化に向けた投資を加速させています。",
+        "notable_resources": [
+          { "name": "IT・STEM人材", "role": "世界のテック企業のCEOや開発拠点を支える人材供給源。英語力と数理能力に長けた若年層が豊富。", "evidence": ["SRC_NASSCOM_Talent_Report"], "confidence": 0.95 },
+          { "name": "巨大な国内市場", "role": "14億人の消費市場。中間層の拡大により、将来的には世界最大の消費地の一つとなる潜在力。", "evidence": ["SRC_WEF_Consumer_Market_India"], "confidence": 0.92 },
+          { "name": "トリウム・希少鉱物", "role": "世界最大のトリウム埋蔵量を持ち、将来の原子力燃料として期待。また、リチウム等の探査も強化中。", "evidence": ["SRC_Department_of_Atomic_Energy_India"], "confidence": 0.85 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ナレンドラ・モディ首相（BJP）の強力なリーダーシップの下、政治的安定を維持しています。ヒンドゥー・ナショナリズムの高まりが宗教的マイノリティとの摩擦を生んでいますが、高い経済成長率が政権への支持を支えています。",
+        "key_actors": [
+           { "name": "ナレンドラ・モディ", "role": "首相。強力なカリスマ性でインフラ整備とデジタル化を推進し、インドの国際的地位向上を実現。" },
+           { "name": "インド人民党 (BJP)", "role": "与党。ヒンドゥー至上主義的傾向を持ちつつ、ビジネスフレンドリーな政策を展開。" },
+           { "name": "リライアンス / アダニ", "role": "インドを代表する財閥。エネルギー、通信、インフラなど国家戦略プロジェクトを一手に引き受ける。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "サービス業（IT・BPO）が先行して発展しましたが、現在は製造業のGDP比率引き上げに注力しています。India Stack（デジタル公共インフラ）の普及により、金融包摂と効率的な行政サービスが急速に進展しています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:05:00+09:00",
-      "country_iso3": "NPL",
-      "country_name_ja": "ネパール連邦民主共和国",
-      "country_name_en": "Federal Democratic Republic of Nepal",
-      "confidence": { "overall": 0.8, "notes": "中印バランス外交を反映。" }
+      "country_iso3": "IDN",
+      "country_name_ja": "インドネシア共和国",
+      "country_name_en": "Republic of Indonesia",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "プラボウォ新政権の政策方針、投資調整庁（BKPM）データに基づく。"
+      }
     },
     "key_takeaways": [
-      { "claim": "インドへの電力輸出合意を基盤に、水力発電を経済回復の主柱として位置づけ。", "evidence": ["SRC_Nepal_India_Power_Pact_2025"], "confidence": 0.9 }
+      {
+        "claim": "プラボウォ政権は、ジョコ・ウィドド前政権の『ダウンストリーミング政策（資源の高付加価値化）』を継承・強化し、ニッケル未加工鉱石の輸出禁止をテコに、世界的なEVバッテリー製造ハブの地位を確立しようとしています。",
+        "evidence": ["SRC_BKPM_Investment_Report_2026", "SRC_Jokowi_Legacy_Analysis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "新首都『ヌサンタラ（IKN）』への首都移転プロジェクトを継続し、ジャワ島への一極集中是正と、カリマンタン島を含む東部地域の経済開発を促進していますが、資金調達と建設の遅れが課題となっています。",
+        "evidence": ["SRC_IKN_Authority_Progress_Report", "SRC_Tempo_Magazine_IKN_Analysis"],
+        "confidence": 0.88
+      },
+      {
+        "claim": "OECD加盟を目指し、法制度の近代化とガバナンス改革を進める一方で、中国との経済的結びつき（高速鉄道、ニッケル精錬）と、米国との安全保障協力のバランスを取る実利的な外交を展開しています。",
+        "evidence": ["SRC_OECD_Accession_Roadmap_Indonesia", "SRC_Kemlu_Foreign_Policy_2026"],
+        "confidence": 0.9
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "ヒマラヤの広大な水力資源。観光と海外送金が経済の生命線。", "notable_resources": [{ "name": "ヒマラヤ観光", "role": "世界最高峰のエベレストを中心とした唯一無二の資源。", "evidence": ["SRC_Nepal_Tourism_Board"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "連立政権の不安定さが続く。中国（一帯一路）とインドの関係維持に苦慮。", "key_actors": [{ "name": "ネパール首相", "role": "中印両大国との利害調整を担う。" }] },
-      "economic_structure": { "summary": "輸入依存の貿易構造。海外出稼ぎ労働者による送金がGDPの約3割を支える。" }
+      "resource_endowment": {
+        "summary": "世界最大のニッケル埋蔵量と生産量を誇り、EV時代の『サウジアラビア』を目指しています。また、石炭、パーム油、天然ゴムの主要輸出国でもあり、広大な国土に多様な資源を有しています。",
+        "notable_resources": [
+          { "name": "ニッケル", "role": "世界埋蔵量の約2割、生産量の約半分を占める。ステンレス向けからバッテリー向けへの転換を国策で推進。", "evidence": ["SRC_USGS_Nickel_Stats"], "confidence": 0.98 },
+          { "name": "石炭（一般炭）", "role": "世界最大の一般炭輸出国。外貨獲得源であるが、国内の脱炭素化（JETP）との両立がジレンマ。", "evidence": ["SRC_ESDM_Coal_Export_Data"], "confidence": 0.95 },
+          { "name": "地熱エネルギー", "role": "世界第2位の地熱発電容量。環太平洋火山帯に位置し、再エネの主力として開発余地が大きい。", "evidence": ["SRC_ThinkGeoEnergy_Report"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "プラボウォ大統領は、ジョコ前大統領の長男を副大統領に据え、現職の高い支持率を継承する形で安定した政権運営をスタートさせました。強権的な手法への懸念はありますが、議会での与党連合の支配力は盤石です。",
+        "key_actors": [
+           { "name": "プラボウォ・スビアント", "role": "大統領。元軍司令官。『強いインドネシア』を掲げ、食料・エネルギーの自給自足を重視。" },
+           { "name": "ギブラン・ラカブミン・ラカ", "role": "副大統領。ジョコ前大統領の長男。若年層へのアピールと前政権との連続性を担保。" },
+           { "name": "中国投資家群", "role": "特にニッケル精錬分野で圧倒的なプレゼンスを持ち、インドネシアの産業高度化を資金・技術面で支える。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "内需主導型の底堅い経済成長（年率5%前後）を維持。資源輸出依存からの脱却を目指し、製造業の育成とデジタル経済の拡大（GoToグループ等）が進んでいます。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:10:00+09:00",
-      "country_iso3": "LKA",
-      "country_name_ja": "スリランカ民主社会主義共和国",
-      "country_name_en": "Democratic Socialist Republic of Sri Lanka",
-      "confidence": { "overall": 0.85, "notes": "デフォルト後の回復プロセスを反映。" }
+      "country_iso3": "MYS",
+      "country_name_ja": "マレーシア",
+      "country_name_en": "Malaysia",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "マレーシア投資開発庁（MIDA）、国家エネルギー移行ロードマップ（NETR）に基づく。"
+      }
     },
     "key_takeaways": [
-      { "claim": "IMFの債務再編完了後、歳入拡大と公的企業の民営化による経済安定化を推進。", "evidence": ["SRC_IMF_Sri_Lanka_2025"], "confidence": 0.9 }
+      {
+        "claim": "『国家半導体戦略（NSS）』に基づき、従来の「後工程（OSAT）」のハブから、より付加価値の高い「前工程（ウェハ製造）」や「IC設計」への産業高度化を推進し、米中対立によるサプライチェーン再編の受け皿として投資を呼び込んでいます。",
+        "evidence": ["SRC_MITI_National_Semiconductor_Strategy", "SRC_MIDA_Investment_Performance"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "アンワル政権は『マダニ経済（MADANI Economy）』フレームワークの下、財政規律の回復と補助金改革（燃料補助金の合理化）を進めつつ、グリーンエネルギーやデジタル経済への構造転換を図っています。",
+        "evidence": ["SRC_MOF_Madani_Economy_Framework", "SRC_Economy_Ministry_Subsidy_Reform"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "ジョホール州とシンガポールを結ぶ『柔新経済特区（JS-SEZ）』の開発が加速しており、コスト競争力と高度なインフラを融合させたクロスボーダーな経済圏の形成が進んでいます。",
+        "evidence": ["SRC_Johor_Singapore_SEZ_MOU", "SRC_CNA_SEZ_Analysis"],
+        "confidence": 0.88
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "戦略的港湾拠点（コロンボ港）と、紅茶・スパイス・宝石の輸出資産。", "notable_resources": [{ "name": "港湾物流", "role": "インド洋の海上交通路（SLOC）の要衝。", "evidence": ["SRC_SLPA_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ディサナヤカ政権の下、汚職撲滅と社会保障強化を掲げ安定を図るが、生活コスト増への不満がリスク。", "key_actors": [{ "name": "アヌラ・クマラ・ディサナヤカ", "role": "大統領。左派勢力を率いシステム改革を主導。" }] },
-      "economic_structure": { "summary": "観光業の急回復。輸入規制緩和による経済の正常化が進行中。" }
+      "resource_endowment": {
+        "summary": "石油・天然ガスの純輸出国であり、パーム油の世界的な生産拠点です。これに加え、ペナン島を中心とした半導体・電気電子産業のエコシステムが、長年培われた『産業的資源』として機能しています。",
+        "notable_resources": [
+          { "name": "半導体・電気電子産業基盤", "role": "世界の半導体パッケージング・テスト市場の約13%を占める。Intel, Infineon等の大型投資が集中。", "evidence": ["SRC_MIDA_E&E_Industry_Report"], "confidence": 0.98 },
+          { "name": "石油・天然ガス", "role": "ペトロナス（国営石油会社）が国内外で活動。LNGの安定供給国として日本等にとって重要。", "evidence": ["SRC_Petronas_Annual_Report"], "confidence": 0.95 },
+          { "name": "パーム油", "role": "インドネシアに次ぐ世界2位の生産国。バイオ燃料としての活用や持続可能性認証（MSPO）の普及を推進。", "evidence": ["SRC_MPOB_Palm_Oil_Stats"], "confidence": 0.92 }
+        ]
+      },
+      "political_stability": {
+        "summary": "アンワル・イブラヒム首相率いる連立政権は、かつての政敵同士が手を組むことで議会の安定多数を確保しています。しかし、保守的なマレー系イスラム教徒層の支持を取り込んだ野党（国盟・PN）の伸長が続いており、宗教・人種問題を巡る社会的分断がリスクです。",
+        "key_actors": [
+           { "name": "アンワル・イブラヒム", "role": "首相。改革派のリーダーとして、経済構造改革と汚職撲滅、および多民族融和を掲げる。" },
+           { "name": "国民連盟 (PN)", "role": "野党連合。PAS（イスラム党）を主体とし、マレー系住民の権利擁護を訴え勢力を拡大。" },
+           { "name": "ジョホール州スルタン", "role": "現在の国王（アゴン）。実業界に明るく、政治的にも積極的な発言を行い、安定の調整役を担う。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "中所得国の罠からの脱却を目指す『高所得国入り』目前の経済です。データセンターの誘致ラッシュ（東南アジア最大級）が起きており、デジタル・ハブとしての地位を固めつつあります。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:15:00+09:00",
-      "country_iso3": "AFG",
-      "country_name_ja": "アフガニスタン・イスラム首長国",
-      "country_name_en": "Islamic Emirate of Afghanistan",
-      "confidence": { "overall": 0.65, "notes": "タリバン統治下の推定データ。" }
+      "country_iso3": "MMR",
+      "country_name_ja": "ミャンマー連邦共和国",
+      "country_name_en": "Republic of the Union of Myanmar",
+      "confidence": {
+        "overall": 0.7,
+        "notes": "信頼できる公式統計が存在せず、現地独立メディア、国連機関、紛争モニタリング団体の報告を総合。"
+      }
     },
     "key_takeaways": [
-      { "claim": "国際的な承認を欠く中、中国や近隣諸国への鉱物資源輸出を通じた経済存続を模索。", "evidence": ["SRC_Taliban_MOM_2026"], "confidence": 0.8 }
+      {
+        "claim": "2021年のクーデター以降続く内戦により、国軍（SAC）は国土の多くの部分（特に国境地帯）の実効支配を喪失しており、複数の民族武装勢力（EAO）と国民防衛隊（PDF）が割拠する『国家の断片化』が進行しています。",
+        "evidence": ["SRC_Special_Advisory_Council_Myanmar_Report", "SRC_ISP_Myanmar_Conflict_Map"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "中国は国境付近の安定と『中国ミャンマー経済回廊（CMEC）』の利権を守るため、国軍と有力な武装勢力の双方に関与し、停戦の仲介を試みるなど、紛争の行方を左右する最大のアクターとなっています。",
+        "evidence": ["SRC_USIP_China_Myanmar_Relations", "SRC_Irrawaddy_China_Influence"],
+        "confidence": 0.88
+      },
+      {
+        "claim": "正規経済は崩壊状態にあり、麻薬密造、オンライン詐欺、違法カジノなどの『地下経済』が拡大し、周辺国（タイ、ラオス、中国）の治安を脅かす国際的な犯罪ハブと化しています。",
+        "evidence": ["SRC_UNODC_Opium_Survey_Myanmar", "SRC_US_State_Dept_Trafficking_Report"],
+        "confidence": 0.92
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "リチウム、希土類、銅などの莫大な未開発資源。開発インフラの欠如が課題。", "notable_resources": [{ "name": "リチウム", "role": "EV時代における『次世代の石油』としての潜在力。", "evidence": ["SRC_USGS_Afghanistan"], "confidence": 0.85 }] },
-      "political_stability": { "summary": "タリバンによる厳格な一元的統治。反政府勢力IS-Kとの武力衝突が治安上の懸念。", "key_actors": [{ "name": "ハイバトゥラー・アクンザダ", "role": "最高指導者。カンダハルから宗教的・政治的命令を下す。" }] },
-      "economic_structure": { "summary": "人道支援への依存が続くが、自国資源による自立を目指す。女子教育制限が国際支援の壁。" }
+      "resource_endowment": {
+        "summary": "天然ガス、ヒスイ・ルビー等の宝石、そして重希土類（レアアース）など豊かな資源を持ちますが、これらが紛争の資金源となっています。特にカチン州のレアアースは中国への主要供給源として戦略的重要性を持ちます。",
+        "notable_resources": [
+          { "name": "重希土類（ジスプロシウム等）", "role": "中国の精錬業者が依存する供給源。国境地帯の武装勢力が管理し、環境規制無視の採掘が行われている。", "evidence": ["SRC_Global_Witness_Myanmar_Rare_Earths"], "confidence": 0.95 },
+          { "name": "天然ガス", "role": "ヤダナ、シュエ等のガス田からタイや中国へパイプライン輸出。国軍の数少ない安定した外貨獲得源。", "evidence": ["SRC_MOGE_Export_Data_Analysis"], "confidence": 0.9 },
+          { "name": "ヒスイ・宝石", "role": "世界最高品質のヒスイを産出。大部分が密輸され、巨額の利益が軍や武装勢力に流れている。", "evidence": ["SRC_EITI_Myanmar_Jade_Report"], "confidence": 0.85 }
+        ]
+      },
+      "political_stability": {
+        "summary": "『失敗国家』の様相を呈しています。ミン・アウン・フライン総司令官率いる軍事政権は、選挙の実施を模索していますが、国民の抵抗は根強く、正当性は皆無です。アウン・サン・スー・チー氏は拘束されたままであり、民主派勢力（NUG）は武装闘争路線を継続しています。",
+        "key_actors": [
+           { "name": "ミン・アウン・フライン", "role": "国軍総司令官。クーデターを首謀。軍内部での統率力低下や責任論も囁かれる。", "evidence": [] },
+           { "name": "国民統一政府 (NUG)", "role": "民主派による並行政府。PDF（国民防衛隊）を指揮し、国際社会への承認を働きかける。", "evidence": [] },
+           { "name": "スリー・ブラザーフッド同盟", "role": "MNDAA, TNLA, AAによる強力な民族武装勢力連合。シャン州北部などで国軍を圧倒。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "電力不足、通貨チャットの暴落、外資の撤退により、国民生活は困窮しています。経済活動は自給自足的な農業と、中露など一部の国との資源貿易、そして拡大するブラックマーケットによって辛うじて維持されています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:20:00+09:00",
-      "country_iso3": "TJK",
-      "country_name_ja": "タジキスタン共和国",
-      "country_name_en": "Republic of Tajikistan",
-      "confidence": { "overall": 0.8, "notes": "水力発電とアフガン国境リスクを反映。" }
+      "country_iso3": "SAU",
+      "country_name_ja": "サウジアラビア王国",
+      "country_name_en": "Kingdom of Saudi Arabia",
+      "confidence": {
+        "overall": 0.9,
+        "notes": "ビジョン2030進捗レポート、サウジ中央銀行（SAMA）、アラムコ年次報告書に基づく。"
+      }
     },
     "key_takeaways": [
-      { "claim": "ログン・ダムの建設を加速し、中央アジアのエネルギー供給国としての地位確立を狙う。", "evidence": ["SRC_World_Bank_TJK_2026"], "confidence": 0.9 }
+      {
+        "claim": "ムハンマド皇太子（MBS）主導の『ビジョン2030』が中間点を過ぎ、NEOMやディルイーヤなどのギガプロジェクトへの巨額投資を通じて、石油依存経済からの脱却と観光・エンタメ・物流ハブへの転換を強行に進めています。",
+        "evidence": ["SRC_Vision_2030_Progress_Report", "SRC_PIF_Annual_Report"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "外交面では『サウジ・ファースト』を鮮明にし、米国との安全保障条約締結を交渉しつつ、中国との経済蜜月やイランとの国交正常化を維持するなど、多極化世界における自律的なミドルパワーとしての地位を確立しました。",
+        "evidence": ["SRC_MOFA_Saudi_Diplomatic_Review", "SRC_Riyadh_Summit_Declarations"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "OPEC+における価格決定権を維持しつつ、世界最大級の水素生産プラント建設や炭素回収技術（CCUS）への投資を行い、脱炭素時代においてもエネルギー超大国としての地位を維持する『サーキュラー・カーボン・エコノミー』を推進しています。",
+        "evidence": ["SRC_Ministry_of_Energy_Saudi_Green_Initiative", "SRC_Aramco_Sustainability_Report"],
+        "confidence": 0.9 }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "パミール高原の豊富な水力とアルミニウム生産。レアメタルの埋蔵も有望。", "notable_resources": [{ "name": "アルミニウム", "role": "TALCO社による主要輸出製品。", "evidence": ["SRC_TALCO_Report"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ラフモン大統領による長期政権。アフガン国境警備のためロシア・中国の支援に依存。", "key_actors": [{ "name": "エモマリ・ラフモン", "role": "大統領。世襲を見据えた権力基盤の強化を継続。" }] },
-      "economic_structure": { "summary": "海外送金（主にロシアから）への依存度が高い。水力発電による経済自立を模索。" }
+      "resource_endowment": {
+        "summary": "世界最大級の石油埋蔵量と最低水準の採掘コストを誇り、これを原資に公的投資基金（PIF）を通じて世界中に投資しています。また、広大な砂漠と日射量を活かした太陽光発電、および紅海沿岸の観光資源が新たな富の源泉です。",
+        "notable_resources": [
+          { "name": "原油", "role": "世界経済の血液であり、サウジの地政学的影響力の源泉。スイング・プロデューサーとして市場をコントロール。", "evidence": ["SRC_OPEC_Monthly_Oil_Market_Report"], "confidence": 0.98 },
+          { "name": "公的投資基金 (PIF)", "role": "総資産数千億ドル規模のソブリン・ウエルス・ファンド。国内の新産業育成と海外の戦略的資産獲得のエンジン。", "evidence": ["SRC_SWF_Institute_Rankings"], "confidence": 0.95 },
+          { "name": "グリーン水素・アンモニア", "role": "NEOMで建設中の世界最大級のプラントにより、再生可能エネルギーの輸出用キャリアとして開発。", "evidence": ["SRC_NEOM_Hydrogen_Project"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ムハンマド皇太子への権力集中が完了し、極めて安定したトップダウンの統治が行われています。若年層に対し、宗教警察の権限縮小やエンターテインメントの解禁といった社会的自由を与えることで、強固な支持基盤を築いています。",
+        "key_actors": [
+           { "name": "ムハンマド・ビン・サルマン (MBS)", "role": "皇太子兼首相。事実上の君主。大胆な改革と冷徹な権力行使で国の改造を断行。", "evidence": [] },
+           { "name": "サルマン国王", "role": "国家元首。高齢であり、象徴的な存在として国の統一と伝統を体現。", "evidence": [] },
+           { "name": "サウジアラムコ", "role": "国営石油会社。国家財政の大半を支え、技術革新や産業多角化の実務部隊としても機能。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "石油部門が依然としてGDPと輸出の太宗を占めますが、非石油部門（観光、建設、金融）の成長率が石油部門を上回る傾向が定着しつつあります。eスポーツやスポーツイベントへの投資も、経済多角化と国家ブランディングの一環です。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:25:00+09:00",
-      "country_iso3": "KGZ",
-      "country_name_ja": "キルギス共和国",
-      "country_name_en": "Kyrgyz Republic",
-      "confidence": { "overall": 0.85, "notes": "金鉱山国有化後の動向を反映。" }
+      "country_iso3": "IRN",
+      "country_name_ja": "イラン・イスラム共和国",
+      "country_name_en": "Islamic Republic of Iran",
+      "confidence": {
+        "overall": 0.8,
+        "notes": "IAEA報告、西側情報機関の分析、イラン国営メディアの報道を総合的に評価。"
+      }
     },
     "key_takeaways": [
-      { "claim": "クムトール金鉱山の完全掌握を背景に、国家歳入の安定とインフラ投資を推進。", "evidence": ["SRC_Kumtor_Annual_2025"], "confidence": 0.9 }
+      {
+        "claim": "核合意（JCPOA）の再建が絶望的となる中、ウラン濃縮度を兵器級に近いレベルまで高めており、『核の敷居国』としての地位を固め、対外的な抑止力と交渉カードとして利用しています。",
+        "evidence": ["SRC_IAEA_Iran_Safeguards_Report_2026", "SRC_Arms_Control_Association_Analysis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "『抵抗の枢軸』と呼ばれる親イラン民兵ネットワーク（ヒズボラ、フーシ派、イラク民兵等）への支援を通じて、イスラエルや米国に対する非対称的な圧力を維持し、中東域内での影響力を投射し続けています。",
+        "evidence": ["SRC_CENTCOM_Posture_Statement", "SRC_CSIS_Iranian_Proxies_Report"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "欧米の制裁下においても、中国への石油輸出（ゴースト・タンカー利用）やロシアとの軍事協力（ドローン・ミサイル供給）を拡大することで経済的な生存を図り、『東方シフト』戦略を鮮明にしています。",
+        "evidence": ["SRC_Kpler_Oil_Export_Data", "SRC_RUSI_Iran_Russia_Cooperation"],
+        "confidence": 0.9
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "金と水力発電。中央アジアの物流中継地としての『再輸出』拠点機能。", "notable_resources": [{ "name": "金鉱石", "role": "外貨獲得の柱。国家経済の約1割を占める。", "evidence": ["SRC_Central_Bank_KGZ"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "ジャパロフ政権下で大統領権限を強化。タジキスタンとの国境問題解決が最優先。", "key_actors": [{ "name": "サディル・ジャパロフ", "role": "大統領。ポピュリズムを背景に強権的な改革を推進。" }] },
-      "economic_structure": { "summary": "中国・キルギス・ウズベキスタン鉄道（CKU）計画による物流ハブ化を目指す。" }
+      "resource_endowment": {
+        "summary": "世界第2位の天然ガス埋蔵量と第4位の原油埋蔵量を持ち、潜在的なエネルギー超大国です。また、高い教育水準を持つ人口と、制裁下で独自に発展させた軍事・工業技術基盤（ミサイル、ドローン、ナノテク）を有しています。",
+        "notable_resources": [
+          { "name": "天然ガス・原油", "role": "制裁により開発と輸出が制限されているが、中国への安値輸出が国家財政を支える生命線。", "evidence": ["SRC_EIA_Iran_Energy_Outlook"], "confidence": 0.95 },
+          { "name": "軍事技術産業", "role": "シャヘド自爆ドローンや弾道ミサイルの国産化に成功し、ロシア等への輸出を通じて外貨と政治的影響力を獲得。", "evidence": ["SRC_Jane's_Defense_Industry_Iran"], "confidence": 0.92 },
+          { "name": "地理的要衝", "role": "ホルムズ海峡の北岸を支配し、世界の石油供給のチョークポイントを扼する能力を持つ。", "evidence": ["SRC_Stratfor_Geopolitical_Analysis"], "confidence": 0.98 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ハメネイ最高指導者の高齢化に伴い、後継問題を巡る水面下の権力闘争が進行しています。体制内では革命防衛隊（IRGC）の影響力が増大しており、軍事化が進んでいます。国内ではヒジャブ問題に端を発する国民（特に女性と若者）の不満が根強く、体制は抑圧的な統制を強化しています。",
+        "key_actors": [
+           { "name": "アリ・ハメネイ", "role": "最高指導者。最終決定権者。反米・反イスラエルのイデオロギーを堅持し、『抵抗経済』を提唱。", "evidence": [] },
+           { "name": "イスラム革命防衛隊 (IRGC)", "role": "体制守護のための精鋭部隊。軍事だけでなく、経済の主要セクター（建設、通信、エネルギー）を掌握する国家内国家。", "evidence": [] },
+           { "name": "マスード・ペゼシュキアン（または現職大統領）", "role": "大統領。保守強硬派が支配する体制内で、限定的な改革や対外融和を模索するが権限は制限されている。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "慢性的な高インフレ、通貨リアルの暴落、失業問題に苦しんでいます。制裁により国際金融システムから排除されているため、物々交換貿易や暗号資産、非公式な送金システム（ハワラ）に依存した歪な経済構造となっています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:30:00+09:00",
-      "country_iso3": "UZB",
-      "country_name_ja": "ウズベキスタン共和国",
-      "country_name_en": "Republic of Uzbekistan",
-      "confidence": { "overall": 0.9, "notes": "ミルジヨエフ改革の進展を反映。" }
+      "country_iso3": "ISR",
+      "country_name_ja": "イスラエル国",
+      "country_name_en": "State of Israel",
+      "confidence": {
+        "overall": 0.85,
+        "notes": "イスラエル国防軍（IDF）発表、中央統計局データ、現地シンクタンク（INSS）の戦略分析に基づく。"
+      }
     },
     "key_takeaways": [
-      { "claim": "『新ウズベキスタン』構想の下、経済開放と民営化を加速し、外資誘致を過去最大規模で進行中。", "evidence": ["SRC_Investment_UZB_2026"], "confidence": 0.95 }
+      {
+        "claim": "ガザ紛争および北部戦線（ヒズボラ対立）の長期化を受け、国家安全保障戦略を根本から見直し、テクノロジー依存の防衛から、地上兵力の増強と緩衝地帯の恒久化を含む『実力による安全確保』へとシフトしています。",
+        "evidence": ["SRC_INSS_Strategic_Assessment_2026", "SRC_IDF_Multi_Year_Plan"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "戦争経済への移行により財政赤字が拡大し、格付け機関による格下げ等の影響が出ていますが、基幹産業であるハイテク・セクター（サイバーセキュリティ、防衛技術）は依然として底堅く、戦時下でのイノベーション（Battle-tested technology）が輸出を支えています。",
+        "evidence": ["SRC_Bank_of_Israel_Fiscal_Report", "SRC_IVC_Tech_Investment_Data"],
+        "confidence": 0.9 },
+      {
+        "claim": "サウジアラビアなどアラブ諸国との国交正常化プロセスは停滞していますが、イランの脅威を共有するという点での水面下の安全保障協力は維持されており、地域統合の火種は消えていません。",
+        "evidence": ["SRC_Abraham_Accords_Peace_Institute", "SRC_Regional_Security_Briefing"],
+        "confidence": 0.85
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "天然ガス、金、綿花に加え、ウラン生産でも世界有数。ガス加工（化学産業）への転換。", "notable_resources": [{ "name": "天然ガス加工", "role": "原料輸出から高付加価値製品への移行を戦略的に推進。", "evidence": ["SRC_Uzbekneftegaz_2026"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "ミルジヨエフ大統領による安定統治。周辺国との関係改善により域内リーダーシップを強化。", "key_actors": [{ "name": "シャフカト・ミルジヨエフ", "role": "大統領。中央アジアのハブ化を提唱。" }] },
-      "economic_structure": { "summary": "急速な工業化とデジタル経済への移行。WTO加盟に向けた法整備を完了。" }
+      "resource_endowment": {
+        "summary": "天然資源（東地中海のガス田）によるエネルギー自給を達成しています。最大の資源は『スタートアップ・ネーション』として知られる人的資本とエコシステムであり、軍隊（8200部隊等）が技術人材の育成機関として機能しています。",
+        "notable_resources": [
+          { "name": "サイバー・防衛技術", "role": "アイアンドーム等の防空システムや攻撃的サイバー能力。国家の生存を支えると共に、主要な外貨獲得源。", "evidence": ["SRC_SIPRI_Arms_Trade_Database"], "confidence": 0.98 },
+          { "name": "天然ガス（リヴァイアサン、タマル）", "role": "エネルギー自給だけでなく、エジプトやヨルダンへの輸出を通じて近隣国との関係をつなぐ戦略物資。", "evidence": ["SRC_Ministry_of_Energy_Gas_Export"], "confidence": 0.95 },
+          { "name": "水・農業技術", "role": "淡水化技術や点滴灌漑。気候変動に直面する世界に対して提供可能なソリューション。", "evidence": ["SRC_Israel_Water_Authority"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "ネタニヤフ首相は、史上最も右寄りの連立政権を率いており、戦時下の指導力をアピールすることで延命を図っています。しかし、人質問題への対応や戦後のガザ統治構想を巡り国内世論は二分されており、超正統派（ハレディ）の徴兵免除問題を巡る最高裁判決も政権の不安定要因です。",
+        "key_actors": [
+           { "name": "ベンヤミン・ネタニヤフ", "role": "首相。政治的サバイバルの達人。右派支持層を固め、国際的な圧力に対しても強硬姿勢を崩さない。", "evidence": [] },
+           { "name": "イスラエル国防軍 (IDF)", "role": "国民皆兵の軍隊。社会の最も信頼される組織だが、政治指導部との間で作戦方針を巡る緊張も見られる。", "evidence": [] },
+           { "name": "ハイテク産業界", "role": "経済の牽引役。司法改革反対運動の中心となるなど、リベラルで世俗的な価値観を持つ勢力。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "知識集約型経済であり、GDPに占めるR&D支出の割合は世界トップクラスです。しかし、戦争による予備役動員が労働力不足を招いており、建設・農業分野での外国人労働者への依存度が高まっています。"
+      }
     }
   },
   {
     "meta": {
       "schema_version": "1.0",
       "generated_at": "2026-02-13T15:35:00+09:00",
-      "country_iso3": "TKM",
-      "country_name_ja": "トルクメニスタン",
-      "country_name_en": "Turkmenistan",
-      "confidence": { "overall": 0.75, "notes": "極めて閉鎖的なデータ。ガス外交の転換を注視。" }
-    },
-    "key_takeaways": [
-      { "claim": "トランス・カスピ海パイプライン（TCP）を通じた欧州へのガス輸出検討を本格化させ、市場多角化を模索。", "evidence": ["SRC_Turkmen_Gas_Review_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "世界第4位の天然ガス埋蔵量。ガルクィヌィシュ・ガス田の拡張を進行。", "notable_resources": [{ "name": "天然ガス", "role": "中国へのパイプライン供給が外貨源の大部分。", "evidence": ["SRC_EIA_Turkmenistan"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ベルディムハメドフ家による事実上の世襲・共同統治。極めて強固な治安体制。", "key_actors": [{ "name": "セルダル・ベルディムハメドフ", "role": "大統領。父グルバングルィ氏の強い影響下で実務を担う。" }] },
-      "economic_structure": { "summary": "ガス輸出への単一依存。化学・肥料産業への多角化を国家プロジェクトで推進。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T15:40:00+09:00",
-      "country_iso3": "SYR",
-      "country_name_ja": "シリア・アラブ共和国",
-      "country_name_en": "Syrian Arab Republic",
-      "confidence": { "overall": 0.6, "notes": "復興停滞と制裁の影響を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "アラブ連盟復帰後も、経済復興に向けた外資流入は西側諸国の制裁により極めて限定的。", "evidence": ["SRC_Arab_League_Briefing_2026"], "confidence": 0.8 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "石油・ガスの潜在力はあるがインフラが損壊。農業（地中海産品）の再生を模索。", "notable_resources": [{ "name": "地中海貿易拠点", "role": "タルトゥース、ラタキア港の戦略的価値（ロシアの拠点）。", "evidence": ["SRC_SYR_Transport_Report"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "アサド政権が主要都市を掌握。北部でのトルコ軍、北東部のクルド勢力との膠着が続く。", "key_actors": [{ "name": "バシャール・アル＝アサド", "role": "大統領。中東諸国との関係正常化による経済支援を狙う。" }] },
-      "economic_structure": { "summary": "ハイパーインフレと物資不足。イラン、ロシアによる軍事・経済支援に完全に依存。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T15:45:00+09:00",
-      "country_iso3": "OMN",
-      "country_name_ja": "オマーン国",
-      "country_name_en": "Sultanate of Oman",
-      "confidence": { "overall": 0.9, "notes": "グリーン水素戦略を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "世界最大の『グリーン水素』輸出国を目指し、ドゥクム経済特区で大規模プラントの稼働を開始。", "evidence": ["SRC_Hydrom_Oman_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "石油に加え、広大な未利用地と太陽光・風力を活かした新エネルギー資源。", "notable_resources": [{ "name": "グリーン水素", "role": "脱炭素時代の世界的エネルギー供給ハブ。", "evidence": ["SRC_IEA_Oman_Hydrogen"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ハイサム国王による安定統治。中立・仲介外交を継承し中東の緩衝材として機能。", "key_actors": [{ "name": "ハイサム・ビン・ターリク", "role": "国王。経済多角化『オマーン2040』を主導。" }] },
-      "economic_structure": { "summary": "財政再建を優先。ドゥクム港を軸とした物流・産業多角化を推進。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T15:50:00+09:00",
-      "country_iso3": "YEM",
-      "country_name_ja": "イエメン共和国",
-      "country_name_en": "Republic of Yemen",
-      "confidence": { "overall": 0.6, "notes": "紅海情勢と国内分断を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "紅海の商船攻撃を継続するフーシ派と政府軍の対立が続き、人道危機と分断が慢性化。", "evidence": ["SRC_UN_Yemen_Crisis_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "紅海の入り口、バーブル・マンデブ海峡の圧倒的地政学的価値。未開発の石油。 ", "notable_resources": [{ "name": "バブ・エル・マンデブ海峡", "role": "世界の海上貿易の急所をコントロールする位置。", "evidence": ["SRC_IMO_Security_Report"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "極めて不安定。サウジアラビアの介入継続と、イランの支援を受けるフーシ派の拮抗。", "key_actors": [{ "name": "フーシ派指導部", "role": "紅海攻撃を通じて国際的なレバレッジを誇示。" }] },
-      "economic_structure": { "summary": "壊滅状態。海外送金と支援に依存。不法な武器・物資のグレー市場が支配的。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T15:55:00+09:00",
-      "country_iso3": "QAT",
-      "country_name_ja": "カタール国",
-      "country_name_en": "State of Qatar",
-      "confidence": { "overall": 0.95, "notes": "北フィールド拡張計画を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "ノース・フィールド拡張によりLNG生産能力を世界最大レベルに引き上げ、エネルギー安保の覇権を強化。", "evidence": ["SRC_Qatar_Energy_2026"], "confidence": 0.98 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "世界最大の単一ガス田。外交仲介力という強力な『ソフト・リソース』。", "notable_resources": [{ "name": "LNG (液化天然ガス)", "role": "欧州・アジアのエネルギー不足を解消する戦略資源。", "evidence": ["SRC_Wood_Mackenzie_Qatar"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "首長家による安定。イスラエル・パレスチナ、米欧間の重要仲介者としての地位を確立。", "key_actors": [{ "name": "タミーム・ビン・ハマド", "role": "首長。小国ながら世界的な影響力を駆使した『ニッチ外交』を主導。" }] },
-      "economic_structure": { "summary": "ガス収入を教育・金融・ITに再投資。ドーハを世界の対話ハブとして育成。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T16:00:00+09:00",
-      "country_iso3": "JOR",
-      "country_name_ja": "ヨルダン・ハシミテ王国",
-      "country_name_en": "Hashemite Kingdom of Jordan",
-      "confidence": { "overall": 0.85, "notes": "難民問題と水危機を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "ガザ情勢による国内の反イスラエル感情と、シリア・イラクからの難民負担を抱える極めて困難な均衡を維持。", "evidence": ["SRC_Jordan_Royal_Court_2026"], "confidence": 0.9 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "資源貧国だが、死海のリン鉱石と戦略的な地政学的中立性が資源。", "notable_resources": [{ "name": "リン鉱石", "role": "世界の肥料生産における主要供給源の一つ。", "evidence": ["SRC_Jordan_Phosphate_Mining"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "アブドゥッラー国王による安定。若年層の失業とイスラエルとの平和条約への反発がリスク。", "key_actors": [{ "name": "アブドゥッラー2世", "role": "国王。地域の安定を支える『静かなハブ』としての役割を強調。" }] },
-      "economic_structure": { "summary": "米国・湾岸諸国からの経済支援に依存。観光業とITアウトソーシングを強化中。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T16:05:00+09:00",
-      "country_iso3": "LBN",
-      "country_name_ja": "レバノン共和国",
-      "country_name_en": "Lebanese Republic",
-      "confidence": { "overall": 0.6, "notes": "金融崩壊と国境紛争の影響を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "イスラエルとの軍事衝突によるインフラ破壊と国家破綻状態の深化が、ヒズボラの政治的支配力を強化。", "evidence": ["SRC_OCHA_Lebanon_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "地中海沖の天然ガス。経済再建の唯一の希望だが、安保不安により開発は停滞。", "notable_resources": [{ "name": "東地中海ガス田", "role": "将来的なエネルギー供給国としての潜在力。", "evidence": ["SRC_LPA_Lebanon"], "confidence": 0.8 }] },
-      "political_stability": { "summary": "事実上の統治崩壊。大統領不在の長期化と、ヒズボラによる独自の軍事・社会行政の支配。", "key_actors": [{ "name": "ハサン・ナスララ", "role": "ヒズボラ事務局長。国家軍を上回る実力組織を率い、対イスラエル戦を主導。" }] },
-      "economic_structure": { "summary": "ハイパーインフレとドルの流通による非公式化。ディアスポラ（海外移住者）からの送金のみが国民生活を支える。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T16:10:00+09:00",
-      "country_iso3": "PSE",
-      "country_name_ja": "パレスチナ",
-      "country_name_en": "Palestine",
-      "confidence": { "overall": 0.65, "notes": "ガザ復興と西岸地区の緊張を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "ガザ地区の暫定統治体制の構築と、西岸地区での自治政府（PA）の機能不全が併走する極限状態。", "evidence": ["SRC_UNRWA_Gaza_Reconstruction_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "ガザ沖のガス田（ガザ・マリーン）の開発が、将来の自立に向けた経済的悲願。", "notable_resources": [{ "name": "人的レジリエンス", "role": "極限状況下での高度な教育水準とネットワーク。", "evidence": ["SRC_PCBS_Palestine"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "極めて不安定。ガザの戦後処理を巡るイスラエル、アラブ諸国、国際社会の利害が対立。", "key_actors": [{ "name": "パレスチナ自治政府大統領", "role": "統治能力の低下と後継者問題に直面。" }] },
-      "economic_structure": { "summary": "イスラエルによる就労制限と税収送金の差し押さえにより、経済は深刻な衰退。復興資金の管理が焦点。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "IND",
-      "country_name_ja": "インド",
-      "country_name_en": "India",
-      "confidence": { "overall": 0.92, "notes": "第3次モディ政権の経済・外交方針を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "『ビクシット・バーラト（発展したインド）2047』に向け、グローバル・サプライチェーンの代替拠点としての地位を確立。", "evidence": ["SRC_NITI_Aayog_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "世界最大の人口と高度なIT人材。デジタル・インフラ(India Stack)が社会変革の資源。", "notable_resources": [{ "name": "IT人材", "role": "世界のAI・テック開発のハブへ進化。", "evidence": ["SRC_NASSCOM_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "モディ政権の強力な指導力。国民統合の核として経済成長を機能させている。", "key_actors": [{ "name": "ナレンドラ_モディ", "role": "首相。製造業振興と外交的地位向上を牽引。" }] },
-      "economic_structure": { "summary": "『Make in India』による製造業強化。クリーンエネルギーへの大規模投資。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "IDN",
-      "country_name_ja": "インドネシア共和国",
-      "country_name_en": "Republic of Indonesia",
-      "confidence": { "overall": 0.9, "notes": "プラボウォ政権のニッケル戦略を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "プラボウォ政権は資源ナショナリズムを継承し、EVバッテリーの世界的ハブ化を強行。", "evidence": ["SRC_BKPM_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "世界最大のニッケル埋蔵量。石炭、パーム油の主要輸出国。", "notable_resources": [{ "name": "ニッケル", "role": "EV革命の鍵を握る資源。", "evidence": ["SRC_MEMR_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "プラボウォ大統領の下、軍部・旧政権勢力が結束。政治的安定は高い。", "key_actors": [{ "name": "プラボウォ・スビアント", "role": "大統領。食料・エネルギー自給を強調。" }] },
-      "economic_structure": { "summary": "川下産業化の徹底。中立外交により中米双方からの投資を誘致。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "MMR",
-      "country_name_ja": "ミャンマー連邦共和国",
-      "country_name_en": "Republic of the Union of Myanmar",
-      "confidence": { "overall": 0.7, "notes": "内戦による分断情勢を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "国軍の統治能力が低下し、周辺部では民族武装勢力が実効支配を広げる『断片化』が進行。", "evidence": ["SRC_ACLED_2026"], "confidence": 0.85 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "天然ガス、宝石、希土類を保有。管理主体が分散し紛争資金源化。", "notable_resources": [{ "name": "重希土類", "role": "中国への主要供給源。", "evidence": ["SRC_Global_Witness_2026"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "事実上の失敗国家。国軍による強行選挙は国際的正当性を欠く。", "key_actors": [{ "name": "ミン・アウン・フライン", "role": "国軍トップ。内部離反に直面。" }] },
-      "economic_structure": { "summary": "公式経済は崩壊状態。中露との貿易とグレー経済が体制を支える。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "PAK",
-      "country_name_ja": "パキスタン・イスラム共和国",
-      "country_name_en": "Islamic Republic of Pakistan",
-      "confidence": { "overall": 0.75, "notes": "IMF支援と政治混乱を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "深刻なインフレが軍部主導体制への抵抗を強め、民衆の抗議活動が常態化。", "evidence": ["SRC_IMF_2025"], "confidence": 0.9 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "若年人口と農業資源。国内石炭利用による電力安定化を推進。", "notable_resources": [{ "name": "若年人口", "role": "海外労働者送金が外貨の生命線。", "evidence": ["SRC_PBS_2026"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "軍部の介入に対する批判。拘束中のカーン元首相の支持層が強力な対抗軸。", "key_actors": [{ "name": "シェバズ・シャリフ", "role": "首相。軍部の支持を得て経済再建を担う。" }] },
-      "economic_structure": { "summary": "債務返済に追われる脆弱な財政。徴税能力の強化が課題。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "IRN",
-      "country_name_ja": "イラン・イスラム共和国",
-      "country_name_en": "Islamic Republic of Iran",
-      "confidence": { "overall": 0.8, "notes": "核開発と域内対立を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "核濃縮レベルが兵器級に接近。中露との軍事・経済協力を深化させ対抗。", "evidence": ["SRC_IAEA_2026"], "confidence": 0.9 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "石油・ガスの巨大な埋蔵。中国への影の輸出により制裁を迂回。", "notable_resources": [{ "name": "天然ガス", "role": "世界第2位の埋蔵。国内需要増が輸出の足枷。", "evidence": ["SRC_OPEC_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "保守強硬派が権力を掌握。ハメネイ後継問題が現実味を帯びる。", "key_actors": [{ "name": "最高指導者ハメネイ", "role": "絶対権力者。反イスラエル路線を堅持。" }] },
-      "economic_structure": { "summary": "制裁適応のため独自技術（ドローン等）を発達。インフレが最大のリスク。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "SAU",
-      "country_name_ja": "サウジアラビア王国",
-      "country_name_en": "Kingdom of Saudi Arabia",
-      "confidence": { "overall": 0.9, "notes": "ビジョン2030の進捗を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "MBSの下、NEOM等のメガプロジェクトを通じた非石油部門の急成長を推進。", "evidence": ["SRC_SAMA_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "圧倒的な石油と、グリーン水素供給拠点としての潜在力。", "notable_resources": [{ "name": "低コスト石油", "role": "世界市場に対する最強のレバレッジ。", "evidence": ["SRC_Aramco_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "MBSへの権力集中が完成。若年層の支持は高いが王族内の不満を抑制。", "key_actors": [{ "name": "ムハンマド・ビン・サルマン", "role": "皇太子・首相。脱石油と社会改革を主導。" }] },
-      "economic_structure": { "summary": "公的投資基金（PIF）主導の産業育成。石油価格リスクの分散が急務。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "ISR",
-      "country_name_ja": "イスラエル国",
-      "country_name_en": "State of Israel",
-      "confidence": { "overall": 0.85, "notes": "紛争後の安保環境を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "イランとの対決を見据えた多層的な防衛体制を構築。国内経済の強靭性が試される局面。", "evidence": ["SRC_IDF_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "天然ガス自給と、世界最高水準のサイバー・軍事技術資源。", "notable_resources": [{ "name": "サイバーセキュリティ", "role": "諜報・防衛市場における中心的存在。", "evidence": ["SRC_IATI_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "ネタニヤフ首相は右派結束で政権維持。パレスチナ問題を巡る分断は深刻。", "key_actors": [{ "name": "ベンヤミン・ネタニヤフ", "role": "首相。イラン核開発阻止を究極目標に掲げる。" }] },
-      "economic_structure": { "summary": "ハイテクとガス輸出が支柱。格下げリスクと予備役動員の長期化が懸念。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
       "country_iso3": "KAZ",
       "country_name_ja": "カザフスタン共和国",
       "country_name_en": "Republic of Kazakhstan",
-      "confidence": { "overall": 0.9, "notes": "バランス外交とウラン戦略を反映。" }
+      "confidence": {
+        "overall": 0.9,
+        "notes": "カザフスタン国家経済省、カザトムプロム（国営原子力企業）のレポートに基づく。"
+      }
     },
     "key_takeaways": [
-      { "claim": "世界最大のウラン生産国として原子力回帰の恩恵を最大化。核燃料サイクルへの参入を狙う。", "evidence": ["SRC_Kazatomprom_2026"], "confidence": 0.98 }
+      {
+        "claim": "世界最大のウラン生産国（世界シェア約40%）としての地位を活かし、世界的な原子力発電回帰の潮流に乗って、単なる原料輸出から核燃料サイクルの高付加価値分野への参入を目指しています。",
+        "evidence": ["SRC_Kazatomprom_Annual_Review", "SRC_WNA_Uranium_Market_Report"],
+        "confidence": 0.98
+      },
+      {
+        "claim": "トカエフ大統領は、ロシア、中国、西側諸国の間でバランスを取る『多角外交』を巧みに展開し、ロシアへの制裁迂回ルートとして警戒されつつも、欧州向けのエネルギー・物流の代替ルート（トランス・カスピ海輸送路）としての重要性を高めています。",
+        "evidence": ["SRC_Akorda_Foreign_Policy_Concept", "SRC_Middle_Corridor_Development"],
+        "confidence": 0.92
+      },
+      {
+        "claim": "『新しいカザフスタン』改革の下、初代大統領ナザルバエフの影響力を排除し、政治・経済の寡占構造の是正を進めていますが、インフレやエネルギーインフラの老朽化に対する国民の不満が依然としてリスク要因です。",
+        "evidence": ["SRC_Kazakhstan_Economic_Update", "SRC_Central_Asia_Barometer"],
+        "confidence": 0.88
+      }
     ],
     "analysis": {
-      "resource_endowment": { "summary": "石油・ガスに加え、中央アジア最大のウランとレアメタル資源。", "notable_resources": [{ "name": "ウラン", "role": "世界供給の4割を占める脱炭素のキー資源。", "evidence": ["SRC_WNA_2026"], "confidence": 0.98 }] },
-      "political_stability": { "summary": "トカエフ大統領による安定統治。中露米欧の均衡を図る多角外交。", "key_actors": [{ "name": "カシムジョマルト・トカエフ", "role": "大統領。外交・経済の実務派。" }] },
-      "economic_structure": { "summary": "物流（中欧班列）と金融ハブ化を推進。ロシア経済の変動リスクを警戒。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "ARE",
-      "country_name_ja": "アラブ首長国連邦",
-      "country_name_en": "United Arab Emirates",
-      "confidence": { "overall": 0.95, "notes": "AIハブとしての地位を反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "AI産業を国家の第2の柱に。独自のLLM開発と大規模計算インフラを加速。", "evidence": ["SRC_UAE_AI_2026"], "confidence": 0.95 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "アブダビの石油と、ドバイの信用・高度人的資源が融合。", "notable_resources": [{ "name": "AI計算力", "role": "中東・アフリカ圏のデジタル主権を支えるハブ。", "evidence": ["SRC_G42_2026"], "confidence": 0.9 }] },
-      "political_stability": { "summary": "MBZによる盤石の統治。域内で最も安定した投資環境を維持。", "key_actors": [{ "name": "ムハンマド・ビン・ザーイド", "role": "大統領。グローバル・プレイヤーとしての地位を確立。" }] },
-      "economic_structure": { "summary": "金融・ハイテクがGDPの過半。宇宙産業への進出も顕著。" }
-    }
-  },
-  {
-    "meta": {
-      "schema_version": "1.0",
-      "generated_at": "2026-02-13T14:45:00+09:00",
-      "country_iso3": "IRQ",
-      "country_name_ja": "イラク共和国",
-      "country_name_en": "Republic of Iraq",
-      "confidence": { "overall": 0.7, "notes": "石油安定と腐敗リスクを反映。" }
-    },
-    "key_takeaways": [
-      { "claim": "石油生産を過去最高水準へ。インフラ復興を図るが政治的腐敗が障壁。", "evidence": ["SRC_Iraq_Oil_2026"], "confidence": 0.9 }
-    ],
-    "analysis": {
-      "resource_endowment": { "summary": "世界第5位の石油。気候変動による水不足が農業と安定へのリスク。", "notable_resources": [{ "name": "原油", "role": "国家歳入の9割以上。OPEC+の枠組み内での最大化。", "evidence": ["SRC_OPEC_2026"], "confidence": 0.95 }] },
-      "political_stability": { "summary": "シーア派、スンニ派、クルド間の不安定な分立。イランの影響力増大が懸念。", "key_actors": [{ "name": "スーダーニー", "role": "首相。経済改革と周辺対話を推進。" }] },
-      "economic_structure": { "summary": "石油依存からの脱却は難航。電力自給のため再エネ導入を急務としている。" }
+      "resource_endowment": {
+        "summary": "中央アジア最大の経済大国であり、石油、天然ガス、石炭、ウラン、各種レアメタルが豊富です。クリティカル・マテリアル（重要鉱物）の供給源として、EUや米国との連携を強化しています。",
+        "notable_resources": [
+          { "name": "ウラン", "role": "世界の原子力産業にとって不可欠な供給源。価格決定力を持ち、国家の戦略的資産。", "evidence": ["SRC_UxC_Uranium_Data"], "confidence": 0.99 },
+          { "name": "石油（カシャガン、テンギス油田）", "role": "主要な外貨獲得源。輸出ルート（CPCパイプライン）がロシア領内を通るため、ルートの多様化が課題。", "evidence": ["SRC_KMG_Oil_Production_Stats"], "confidence": 0.95 },
+          { "name": "レアアース・レアメタル", "role": "チタン、ベリリウム、タンタルなど。航空宇宙やハイテク産業向けに高い潜在力を持つ。", "evidence": ["SRC_USGS_Kazakhstan_Minerals"], "confidence": 0.9 }
+        ]
+      },
+      "political_stability": {
+        "summary": "2022年の政変（1月の悲劇）を乗り越えたトカエフ大統領は、権力基盤を固め安定政権を維持しています。議会の権限強化や大統領任期制限（1期7年）などの政治改革を行っていますが、実質的なトップダウン型の統治構造は変わっていません。",
+        "key_actors": [
+           { "name": "カシムジョマルト・トカエフ", "role": "大統領。外交官出身の戦略家。中露との友好を保ちつつ、国益を最大化する実利主義を貫く。", "evidence": [] },
+           { "name": "サムルク・カズナ", "role": "国富ファンド。国営企業（石油、鉄道、郵便等）を管理し、GDPの大部分をコントロールする。", "evidence": [] },
+           { "name": "ロシア政府", "role": "安全保障（CSTO）や経済（EAEU）において強い影響力を持つが、ウクライナ侵攻以降、カザフスタンの距離を置く姿勢に直面。", "evidence": [] }
+        ]
+      },
+      "economic_structure": {
+        "summary": "資源輸出依存型経済からの脱却を目指し、農業、IT、金融（アスタナ国際金融センター）の育成に注力しています。カスピ海を経由する東西物流の中継地（ミドル・コリドー）としての地位確立が国家戦略の柱です。"
+      }
     }
   }
 ]
