@@ -30,8 +30,6 @@ const REPORT_FILES = [
   "reports_europe.json",
   "reports_americas.json",
   "reports_oceania.json",
-  // 既存のファイル名も互換性のために残す
-  "Afreica_countries_reports.json" 
 ];
 
 // 国名マッピング (Numeric ID -> ISO3)
