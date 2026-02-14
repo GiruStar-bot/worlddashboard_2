@@ -1901,8 +1901,9 @@
             "economy_score": 80,
             "stability_score": 99
           }
-        },
-        {
+        }
+      },
+      {
         "master": {
           "iso3": "GRL",
           "name": "グリーンランド"
