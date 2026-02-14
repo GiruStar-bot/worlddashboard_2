@@ -286,7 +286,7 @@ export default function App() {
                 </div>
               )}
               {resMetric && (
-                <div className="mt-1 text-[11px] tracking-[0.12em] text-emerald-400/80 truncate max-w-[200px]">
+                <div className="mt-1 text-xs tracking-[0.12em] text-emerald-400/80 truncate max-w-[200px]">
                   {resMetric}
                 </div>
               )}

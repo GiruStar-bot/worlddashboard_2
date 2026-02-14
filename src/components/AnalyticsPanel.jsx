@@ -114,7 +114,7 @@ const AnalyticsPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso })
                     <span className={`text-sm font-bold uppercase tracking-wide transition-colors truncate max-w-[120px] ${isSelected ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                       {c.master.name}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400 px-1.5 py-0.5 border border-white/10 rounded-full shrink-0">
+                    <span className="text-xs font-mono text-slate-400 px-1.5 py-0.5 border border-white/10 rounded-full shrink-0">
                       {iso}
                     </span>
                   </div>
