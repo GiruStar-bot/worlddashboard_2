@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Globe, ChevronUp, Activity, Maximize, Minimize, BarChart2 } from 'lucide-react';
 
 // コンポーネント
@@ -28,6 +28,11 @@ export default function App() {
   const [isFullscreen,          setIsFullscreen]          = useState(false);
   const [activeLayer,           setActiveLayer]           = useState("fsi");
   const [chinaInfluenceData,    setChinaInfluenceData]    = useState(null);
+  const [isLayerMenuOpen,       setIsLayerMenuOpen]       = useState(false);
+  const layerMenuRef = useRef(null);
+  const layerMenuButtonRef = useRef(null);
+  const firstLayerItemRef = useRef(null);
+  const wasLayerMenuOpenRef = useRef(false);
 
   // ── データ取得 ────────────────────────────────────────────
   useEffect(() => {
@@ -82,6 +87,28 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', cb);
   }, []);
 
+  useEffect(() => {
+    if (!isLayerMenuOpen) return;
+    const handleOutside = (e) => {
+      if (layerMenuRef.current && !layerMenuRef.current.contains(e.target)) setIsLayerMenuOpen(false);
+    };
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setIsLayerMenuOpen(false);
+    };
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("keydown", handleEsc);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [isLayerMenuOpen]);
+
+  useEffect(() => {
+    if (isLayerMenuOpen) firstLayerItemRef.current?.focus();
+    else if (wasLayerMenuOpenRef.current) layerMenuButtonRef.current?.focus();
+    wasLayerMenuOpenRef.current = isLayerMenuOpen;
+  }, [isLayerMenuOpen]);
+
   // ── イベントハンドラ ──────────────────────────────────────
   const handleHover = useCallback((iso, pos) => {
     setHoverInfo(iso ? { iso3: iso, ...pos } : null);
@@ -130,28 +157,43 @@ export default function App() {
 
         {/* ステータス + レイヤー選択 */}
         <div className="hidden md:flex flex-1 items-center justify-center">
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] text-slate-500 font-bold uppercase tracking-[0.3em] opacity-70 pointer-events-none">
-              Worldview_Layer:
-            </span>
+          <div className="relative" ref={layerMenuRef}>
             <button
-              onClick={() => setActiveLayer("fsi")}
-              className={`px-4 py-1.5 rounded-full uppercase text-[10px] font-semibold tracking-[0.2em] border transition-all duration-300 active:scale-95
-                ${activeLayer === "fsi"
-                  ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.2)]"
-                  : "bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]"}`}
+              ref={layerMenuButtonRef}
+              onClick={() => setIsLayerMenuOpen(prev => !prev)}
+              aria-expanded={isLayerMenuOpen}
+              aria-haspopup="menu"
+              className="px-4 py-1.5 rounded-full uppercase text-[10px] font-semibold tracking-[0.2em] border transition-all duration-300 active:scale-95 bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]"
             >
-              FSI Risk
+              Layers
             </button>
-            <button
-              onClick={() => setActiveLayer("china")}
-              className={`px-4 py-1.5 rounded-full uppercase text-[10px] font-semibold tracking-[0.2em] border transition-all duration-300 active:scale-95
-                ${activeLayer === "china"
-                  ? "bg-amber-500/20 border-amber-500/50 text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.2)]"
-                  : "bg-white/[0.04] border-white/10 text-slate-400 hover:text-amber-400 hover:bg-white/[0.08]"}`}
-            >
-              China Influence
-            </button>
+            {isLayerMenuOpen && (
+              <div role="menu" aria-label="Layers" className="absolute top-full mt-2 min-w-[14rem] rounded-xl border border-white/15 bg-slate-950/95 backdrop-blur-[20px] p-2 shadow-[0_10px_30px_rgba(0,0,0,0.55)]">
+                <button
+                  ref={firstLayerItemRef}
+                  role="menuitemradio"
+                  aria-checked={activeLayer === "fsi"}
+                  onClick={() => { setActiveLayer("fsi"); setIsLayerMenuOpen(false); }}
+                  className={`w-full text-left px-3 py-2 rounded-lg uppercase text-[10px] font-semibold tracking-[0.2em] border transition-all duration-300 active:scale-95
+                    ${activeLayer === "fsi"
+                      ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.2)]"
+                      : "bg-white/[0.04] border-white/10 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08]"}`}
+                >
+                  Geopolitical Risk
+                </button>
+                <button
+                  role="menuitemradio"
+                  aria-checked={activeLayer === "china"}
+                  onClick={() => { setActiveLayer("china"); setIsLayerMenuOpen(false); }}
+                  className={`w-full text-left mt-2 px-3 py-2 rounded-lg uppercase text-[10px] font-semibold tracking-[0.2em] border transition-all duration-300 active:scale-95
+                    ${activeLayer === "china"
+                      ? "bg-amber-500/20 border-amber-500/50 text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.2)]"
+                      : "bg-white/[0.04] border-white/10 text-slate-400 hover:text-amber-400 hover:bg-white/[0.08]"}`}
+                >
+                  China Influence
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
