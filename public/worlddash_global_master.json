@@ -1248,6 +1248,44 @@
             "stability_score": 75
           }
         }
+      },
+      {
+        "master": {
+          "iso3": "NCL",
+          "name": "ニューカレドニア"
+        },
+        "canonical": {
+          "economy": {
+            "gdp_nominal": {
+              "value": 9300000000
+            },
+            "gdp_growth": {
+              "value": -2.0
+            }
+          },
+          "society": {
+            "population": {
+              "value": 293000
+            }
+          },
+          "risk": {
+            "fsi_total": {
+              "value": 35.0
+            }
+          }
+        },
+        "ui_view": {
+          "headline": "ニューカレドニアはニッケル資源が豊富なフランス領で、独立の是非を巡る対立があります。",
+          "tags": [
+            "Nickel Resources",
+            "French Territory",
+            "Independence Issue"
+          ],
+          "scores": {
+            "economy_score": 65,
+            "stability_score": 70
+          }
+        }
       }
     ],
     "North America": [
