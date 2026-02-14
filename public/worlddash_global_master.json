@@ -1901,6 +1901,46 @@
             "economy_score": 80,
             "stability_score": 99
           }
+        },
+        {
+        "master": {
+          "iso3": "GRL",
+          "name": "グリーンランド"
+        },
+        "canonical": {
+          "economy": {
+            "gdp_nominal": {
+              "value": 3200000000
+            },
+            "gdp_growth": {
+              "value": 1.4
+            }
+          },
+          "society": {
+            "population": {
+              "value": 57000
+            }
+          },
+          "politics": {
+            "regime_type": "Liberal Democracy"
+          },
+          "risk": {
+            "fsi_total": {
+              "value": 24.0
+            }
+          }
+        },
+        "ui_view": {
+          "headline": "グリーンランドは北極圏に位置する自治領で、鉱物資源と気候変動の影響が地政学上の注目点となっています。",
+          "tags": [
+            "Arctic",
+            "Autonomous Territory",
+            "Resource Potential"
+          ],
+          "scores": {
+            "economy_score": 52,
+            "stability_score": 86
+          }
         }
       },
       {
