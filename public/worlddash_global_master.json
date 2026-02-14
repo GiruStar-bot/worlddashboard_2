@@ -7,7 +7,9 @@
       "economy": "IMF World Economic Outlook (Oct 2025)",
       "society": "UN World Population Prospects 2024",
       "politics": "V-Dem Democracy Report 2024",
-      "risk": "Fragile States Index (FSI) 2024"
+      "risk": "Fragile States Index (FSI) 2024",
+      "greenland": "Statistics Greenland 2025 (GDP: ~3B USD, autonomous territory of Denmark)",
+      "antarctica": "Antarctic Treaty System (Non-permanent population: ~1,000 seasonal researchers, FSI=0 represents international governance)"
     },
     "last_changes": "Added Greenland (GRL) and Antarctica (ATA) data, plus Kosovo (XKX) ISO mapping for complete world coverage",
     "stats": {
