@@ -9,6 +9,9 @@ import AnalyticsPanel  from './components/AnalyticsPanel';
 import MacroStatsOverlay from './components/MacroStatsOverlay';
 import { REPORT_FILES } from './constants/isoMap';
 
+const MOBILE_BREAKPOINT = 768;
+const MOBILE_PANEL_HEIGHT = '70vh';
+
 export default function App() {
   const [data, setData] = useState(null);
   const [reports, setReports] = useState({});
@@ -23,7 +26,7 @@ export default function App() {
   const [isLayerMenuOpen, setIsLayerMenuOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < MOBILE_BREAKPOINT);
 
   const layerMenuRef = useRef(null);
   const layerMenuButtonRef = useRef(null);
@@ -74,9 +77,19 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
+    let rafId;
+    const onResize = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const nextIsMobile = window.innerWidth < MOBILE_BREAKPOINT;
+        setIsMobile((prev) => (prev === nextIsMobile ? prev : nextIsMobile));
+      });
+    };
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   const handleCountryClick = useCallback((iso3) => {
@@ -108,6 +121,12 @@ export default function App() {
   const allCountries = data?.regions ? Object.values(data.regions).flat() : [];
   const selectedCountry = allCountries.find(c => c.master.iso3 === selectedIso) || null;
   const selectedReport  = selectedIso ? reports[selectedIso] : null;
+  const reportPanelClassName = isMobile
+    ? 'fixed inset-0 z-[100] transition-transform duration-300'
+    : 'absolute top-20 bottom-12 right-[24rem] md:right-[28rem] w-[26rem] z-[89] transition-transform duration-300';
+  const countryPanelClassName = isMobile
+    ? `fixed left-0 right-0 bottom-0 z-[95] transform transition-transform duration-300 ${selectedIso ? 'translate-y-0' : 'translate-y-full'}`
+    : `absolute top-16 bottom-0 right-0 w-[24rem] md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`;
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#020617] relative font-sans text-slate-200">
@@ -232,20 +251,19 @@ export default function App() {
           data={data}
           isOpen={isAnalyticsPanelOpen}
           isMobile={isMobile}
+          mobilePanelHeight={MOBILE_PANEL_HEIGHT}
           onClose={() => setIsAnalyticsPanelOpen(false)}
           onSelectCountry={handleCountryClick}
           selectedIso={selectedIso}
         />
 
         {selectedReport && isReportOpen && (
-          <aside className={`${isMobile ? 'fixed inset-0 z-[100]' : 'absolute top-20 bottom-12 right-[24rem] md:right-[28rem] w-[26rem] z-[89]'}`}>
+          <aside className={reportPanelClassName}>
             <DeepReportPanel report={selectedReport} onClose={() => setIsReportOpen(false)} />
           </aside>
         )}
 
-        <aside className={`${isMobile
-          ? `fixed left-0 right-0 bottom-0 h-[70vh] z-[95] transform transition-transform duration-300 ${selectedIso ? 'translate-y-0' : 'translate-y-full'}`
-          : `absolute top-16 bottom-0 right-0 w-[24rem] md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}`}>
+        <aside className={countryPanelClassName} style={isMobile ? { height: MOBILE_PANEL_HEIGHT } : undefined}>
           <CountryDetails
             country={selectedCountry}
             onClose={() => setSelectedIso(null)}
