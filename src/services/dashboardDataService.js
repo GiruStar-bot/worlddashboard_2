@@ -24,6 +24,9 @@ const loadJsonWithFallback = async ({ dynamicUrl, staticFile }) => {
 };
 
 export const loadDashboardData = async () => {
+  const reportBaseUrl = import.meta.env.VITE_REPORTS_DATA_BASE_URL
+    ? import.meta.env.VITE_REPORTS_DATA_BASE_URL.replace(/\/$/, '')
+    : '';
   const [
     master,
     china,
@@ -49,9 +52,7 @@ export const loadDashboardData = async () => {
     }),
     Promise.all(
       REPORT_FILES.map((reportFile) => loadJsonWithFallback({
-        dynamicUrl: import.meta.env.VITE_REPORTS_DATA_BASE_URL
-          ? `${import.meta.env.VITE_REPORTS_DATA_BASE_URL.replace(/\/$/, '')}/${reportFile}`
-          : '',
+        dynamicUrl: reportBaseUrl ? `${reportBaseUrl}/${reportFile}` : '',
         staticFile: reportFile,
       })),
     ),
