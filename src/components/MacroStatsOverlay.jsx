@@ -14,32 +14,32 @@ import FDIFlowChart from './macro/FDIFlowChart';
 const CATEGORIES = [
   {
     id: 'energy',
-    label: 'Energy Transition',
-    shortLabel: 'Energy',
+    label: 'エネルギー転換',
+    shortLabel: 'エネルギー',
     icon: Zap,
     gradient: 'from-cyan-500 to-blue-500',
     accentColor: '#06b6d4',
   },
   {
     id: 'resources',
-    label: 'Strategic Resources',
-    shortLabel: 'Resources',
+    label: '戦略資源',
+    shortLabel: '資源',
     icon: Pickaxe,
     gradient: 'from-amber-500 to-yellow-500',
     accentColor: '#f59e0b',
   },
   {
     id: 'innovation',
-    label: 'Innovation & Tech',
-    shortLabel: 'Innovation',
+    label: 'イノベーション・技術',
+    shortLabel: 'イノベーション',
     icon: Cpu,
     gradient: 'from-emerald-500 to-lime-500',
     accentColor: '#10b981',
   },
   {
     id: 'capital',
-    label: 'Global Capital Flow',
-    shortLabel: 'Capital',
+    label: 'グローバル資本フロー',
+    shortLabel: '資本',
     icon: DollarSign,
     gradient: 'from-rose-500 to-orange-500',
     accentColor: '#f43f5e',
@@ -47,10 +47,10 @@ const CATEGORIES = [
 ];
 
 const SECTION_DESCRIPTIONS = {
-  energy: 'Tracking the global shift from fossil fuels to clean energy sources. Monitoring the speed and scale of the energy transition.',
-  resources: 'Mapping monopoly risks in critical supply chains. Identifying concentration risks in minerals and food security.',
-  innovation: 'Tracking the rise of non-Western tech hubs and R&D investment intensity across major economies.',
-  capital: 'Following global investment flows. Analyzing FDI patterns between the Global North and Global South.',
+  energy: '化石燃料からクリーンエネルギーへの世界的な移行を追跡し、転換の速度と規模を監視します。',
+  resources: '重要サプライチェーンの独占リスクを可視化し、鉱物資源と食料安全保障の集中リスクを把握します。',
+  innovation: '非西側テックハブの台頭と主要経済圏におけるR&D投資強度の変化を追跡します。',
+  capital: '世界の投資フローを追跡し、グローバルノースとグローバルサウス間のFDIパターンを分析します。',
 };
 
 export default function MacroStatsOverlay({ isOpen, onClose }) {
@@ -123,7 +123,7 @@ export default function MacroStatsOverlay({ isOpen, onClose }) {
           {/* Logo area */}
           <div className="h-14 flex items-center px-4 border-b border-white/[0.06]">
             <span className="hidden lg:block text-xs font-semibold text-slate-300 font-['Inter'] tracking-widest uppercase">
-              Macro Analytics
+              マクロ分析
             </span>
             <span className="lg:hidden text-xs font-bold text-slate-300 font-['Inter'] mx-auto">MA</span>
           </div>
@@ -175,9 +175,9 @@ export default function MacroStatsOverlay({ isOpen, onClose }) {
           {/* Source badge */}
           <div className="px-3 py-3 border-t border-white/[0.06]">
             <p className="hidden lg:block text-[9px] text-slate-600 font-['Inter'] leading-relaxed">
-              Data: IMF, IEA, USGS, WIPO
+              データ: IMF, IEA, USGS, WIPO
               <br />
-              Updated: {macroData.metadata.updated}
+              更新: {macroData.metadata.updated}
             </p>
           </div>
         </nav>

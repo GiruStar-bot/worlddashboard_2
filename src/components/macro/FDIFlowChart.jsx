@@ -20,7 +20,7 @@ export default function FDIFlowChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="Foreign Direct Investment Flows" subtitle="Inflows (positive) vs outflows (negative) by bloc" source="IMF 2025" className="col-span-full">
+    <DashboardCard title="対内・対外直接投資フロー" subtitle="ブロック別の流入（正）と流出（負）" source="IMF 2025" className="col-span-full">
       <ResponsiveContainer width="100%" height={380}>
         <BarChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
           <defs>
@@ -61,10 +61,10 @@ export default function FDIFlowChart({ data }) {
             iconSize={6}
           />
           <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
-          <Bar dataKey="global_north_inflow" name="North Inflow" fill="url(#grad-fdi-north-in)" stackId="north" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar dataKey="global_north_outflow" name="North Outflow" fill="url(#grad-fdi-north-out)" stackId="north" radius={[0, 0, 4, 4]} />
-          <Bar dataKey="global_south_inflow" name="South Inflow" fill="url(#grad-fdi-south-in)" stackId="south" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar dataKey="global_south_outflow" name="South Outflow" fill="url(#grad-fdi-south-out)" stackId="south" radius={[0, 0, 4, 4]} />
+          <Bar dataKey="global_north_inflow" name="北側流入" fill="url(#grad-fdi-north-in)" stackId="north" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar dataKey="global_north_outflow" name="北側流出" fill="url(#grad-fdi-north-out)" stackId="north" radius={[0, 0, 4, 4]} />
+          <Bar dataKey="global_south_inflow" name="南側流入" fill="url(#grad-fdi-south-in)" stackId="south" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar dataKey="global_south_outflow" name="南側流出" fill="url(#grad-fdi-south-out)" stackId="south" radius={[0, 0, 4, 4]} />
         </BarChart>
       </ResponsiveContainer>
     </DashboardCard>

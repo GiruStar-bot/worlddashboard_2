@@ -20,7 +20,7 @@ export default function HydrogenGrowthChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="Clean Hydrogen Growth" subtitle="Production volume vs cost reduction trajectory" source="IEA 2025">
+    <DashboardCard title="クリーン水素の成長" subtitle="生産量とコスト低減の推移" source="IEA 2025">
       <ResponsiveContainer width="100%" height={320}>
         <ComposedChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
           <defs>
@@ -61,7 +61,7 @@ export default function HydrogenGrowthChart({ data }) {
           <Bar
             yAxisId="left"
             dataKey="production_mt"
-            name="Production (Mt)"
+            name="生産量 (Mt)"
             fill="url(#grad-h2-bar)"
             radius={[4, 4, 0, 0]}
             barSize={24}
@@ -70,7 +70,7 @@ export default function HydrogenGrowthChart({ data }) {
             yAxisId="right"
             type="monotone"
             dataKey="cost_per_kg"
-            name="Cost ($/kg)"
+            name="コスト ($/kg)"
             stroke="#f43f5e"
             strokeWidth={2.5}
             dot={{ r: 3, fill: '#f43f5e', strokeWidth: 0 }}

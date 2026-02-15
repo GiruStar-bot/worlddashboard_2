@@ -7,11 +7,11 @@ import DashboardCard from './DashboardCard';
 import CustomTooltip from './CustomTooltip';
 
 const SERIES = [
-  { key: 'coal', name: 'Coal', colors: ['#64748b', '#334155'] },
-  { key: 'oil', name: 'Oil', colors: ['#78716c', '#44403c'] },
-  { key: 'gas', name: 'Natural Gas', colors: ['#a8a29e', '#57534e'] },
-  { key: 'renewables', name: 'Renewables', colors: ['#10b981', '#84cc16'] },
-  { key: 'hydrogen', name: 'Hydrogen', colors: ['#06b6d4', '#3b82f6'] },
+  { key: 'coal', name: '石炭', colors: ['#64748b', '#334155'] },
+  { key: 'oil', name: '石油', colors: ['#78716c', '#44403c'] },
+  { key: 'gas', name: '天然ガス', colors: ['#a8a29e', '#57534e'] },
+  { key: 'renewables', name: '再生可能エネルギー', colors: ['#10b981', '#84cc16'] },
+  { key: 'hydrogen', name: '水素', colors: ['#06b6d4', '#3b82f6'] },
 ];
 
 export default function EnergyMixChart({ data }) {
@@ -36,7 +36,7 @@ export default function EnergyMixChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="Global Energy Mix" subtitle="Primary energy consumption by source (EJ)" source="IEA 2025">
+    <DashboardCard title="世界のエネルギーミックス" subtitle="一次エネルギー消費（供給源別、EJ）" source="IEA 2025">
       <ResponsiveContainer width="100%" height={320}>
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
           <defs>
@@ -68,7 +68,7 @@ export default function EnergyMixChart({ data }) {
               strokeDasharray="6 3"
               strokeWidth={1.5}
               label={{
-                value: `Crossover ${crossoverYear}`,
+                value: `逆転 ${crossoverYear}年`,
                 position: 'top',
                 style: { fontSize: 9, fill: '#f59e0b', fontFamily: 'Inter' }
               }}

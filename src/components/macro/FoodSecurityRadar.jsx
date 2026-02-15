@@ -6,12 +6,12 @@ import {
 import DashboardCard from './DashboardCard';
 
 const AXES = [
-  { key: 'grain_self_sufficiency', label: 'Grain Self-sufficiency' },
-  { key: 'water_stress', label: 'Water Stress' },
-  { key: 'fertilizer_dependence', label: 'Fertilizer Dep.' },
-  { key: 'export_capacity', label: 'Export Capacity' },
-  { key: 'arable_land_per_capita', label: 'Arable Land/Capita' },
-  { key: 'storage_infrastructure', label: 'Storage Infra.' },
+  { key: 'grain_self_sufficiency', label: '穀物自給率' },
+  { key: 'water_stress', label: '水ストレス' },
+  { key: 'fertilizer_dependence', label: '肥料依存度' },
+  { key: 'export_capacity', label: '輸出能力' },
+  { key: 'arable_land_per_capita', label: '一人当たり耕地' },
+  { key: 'storage_infrastructure', label: '貯蔵インフラ' },
 ];
 
 const REGION_COLORS = {
@@ -34,7 +34,7 @@ export default function FoodSecurityRadar({ data }) {
   });
 
   return (
-    <DashboardCard title="Food Security Index" subtitle="Regional comparison across key dimensions" source="FAO / IMF 2025">
+    <DashboardCard title="食料安全保障指数" subtitle="主要指標における地域比較" source="FAO / IMF 2025">
       <ResponsiveContainer width="100%" height={340}>
         <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="72%">
           <PolarGrid stroke="rgba(255,255,255,0.08)" />

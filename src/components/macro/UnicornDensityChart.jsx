@@ -31,19 +31,19 @@ const CustomScatterTooltip = ({ active, payload }) => {
       </div>
       <div className="space-y-1">
         <div className="flex justify-between">
-          <span className="text-[10px] text-slate-400">Unicorns</span>
+          <span className="text-[10px] text-slate-400">ユニコーン数</span>
           <span className="text-[11px] text-slate-100 font-['JetBrains_Mono',monospace]">{d.count}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[10px] text-slate-400">Total Valuation</span>
+          <span className="text-[10px] text-slate-400">評価額合計</span>
           <span className="text-[11px] text-slate-100 font-['JetBrains_Mono',monospace]">${d.total_valuation}B</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[10px] text-slate-400">Avg Valuation</span>
+          <span className="text-[10px] text-slate-400">平均評価額</span>
           <span className="text-[11px] text-slate-100 font-['JetBrains_Mono',monospace]">${d.avg_valuation}B</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-[10px] text-slate-400">YoY Growth</span>
+          <span className="text-[10px] text-slate-400">前年比成長率</span>
           <span className={`text-[11px] font-['JetBrains_Mono',monospace] ${d.growth_rate >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
             {d.growth_rate >= 0 ? '+' : ''}{d.growth_rate}%
           </span>
@@ -62,29 +62,29 @@ export default function UnicornDensityChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="Global Unicorn Density" subtitle="Tech hub comparison: count vs total valuation" source="CB Insights 2025">
+    <DashboardCard title="世界のユニコーン密度" subtitle="テックハブ比較：件数と評価額合計" source="CB Insights 2025">
       <ResponsiveContainer width="100%" height={340}>
         <ScatterChart margin={{ top: 10, right: 10, left: -10, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
           <XAxis
             dataKey="count"
-            name="Unicorn Count"
+            name="ユニコーン数"
             tick={{ fontSize: 10, fill: '#94a3b8', fontFamily: 'JetBrains Mono, monospace' }}
             axisLine={{ stroke: 'rgba(255,255,255,0.08)' }}
             tickLine={false}
-            label={{ value: 'Unicorn Count', position: 'insideBottom', offset: -5, style: { fontSize: 9, fill: '#64748b', fontFamily: 'Inter' } }}
+            label={{ value: 'ユニコーン数', position: 'insideBottom', offset: -5, style: { fontSize: 9, fill: '#64748b', fontFamily: 'Inter' } }}
           />
           <YAxis
             dataKey="total_valuation"
-            name="Total Valuation ($B)"
+            name="評価額合計 ($B)"
             tick={{ fontSize: 10, fill: '#94a3b8', fontFamily: 'JetBrains Mono, monospace' }}
             axisLine={false}
             tickLine={false}
-            label={{ value: 'Valuation ($B)', position: 'insideTopLeft', offset: 10, style: { fontSize: 9, fill: '#64748b', fontFamily: 'Inter' } }}
+            label={{ value: '評価額 ($B)', position: 'insideTopLeft', offset: 10, style: { fontSize: 9, fill: '#64748b', fontFamily: 'Inter' } }}
           />
-          <ZAxis dataKey="avg_valuation" range={[40, 400]} name="Avg Valuation" />
+          <ZAxis dataKey="avg_valuation" range={[40, 400]} name="平均評価額" />
           <Tooltip content={<CustomScatterTooltip />} />
-          <Scatter data={chartData} name="Tech Hubs">
+          <Scatter data={chartData} name="テックハブ">
             {chartData.map((entry, idx) => (
               <Cell
                 key={idx}

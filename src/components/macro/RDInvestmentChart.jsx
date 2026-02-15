@@ -30,7 +30,7 @@ export default function RDInvestmentChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="R&D Investment Intensity" subtitle="Research spending as percentage of GDP" source="WIPO 2025">
+    <DashboardCard title="R&D投資強度" subtitle="GDP比の研究開発支出" source="WIPO 2025">
       <ResponsiveContainer width="100%" height={340}>
         <LineChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
