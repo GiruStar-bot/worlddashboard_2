@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { X, TrendingUp, AlertTriangle, Users, DollarSign, BarChart2 } from 'lucide-react';
 
-const AnalyticsPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso }) => {
+const AnalyticsPanel = ({ data, isOpen, isMobile, onClose, onSelectCountry, selectedIso }) => {
   const [activeTab, setActiveTab] = useState('gdp');
 
   // データ処理ロジックは既存と同じ
@@ -42,7 +42,9 @@ const AnalyticsPanel = ({ data, isOpen, onClose, onSelectCountry, selectedIso })
   const activeTabConfig = tabs.find(t => t.key === activeTab);
 
   return (
-    <div className={`absolute top-16 bottom-0 left-0 w-[22rem] md:w-[24rem] transform transition-transform duration-300 z-[90] ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+    <div className={`${isMobile
+      ? `fixed left-0 right-0 bottom-0 h-[70vh] z-[95] transform transition-transform duration-300 ${isOpen ? 'translate-y-0' : 'translate-y-full'}`
+      : `absolute top-16 bottom-0 left-0 w-[22rem] md:w-[24rem] transform transition-transform duration-300 z-[90] ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}`}>
       <div className="flex flex-col h-full bg-[#0f172a]/95 backdrop-blur-xl border-r border-white/[0.06] shadow-2xl">
 
         {/* ヘッダー */}

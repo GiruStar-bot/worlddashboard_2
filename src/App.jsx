@@ -23,6 +23,7 @@ export default function App() {
   const [isLayerMenuOpen, setIsLayerMenuOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
   const layerMenuRef = useRef(null);
   const layerMenuButtonRef = useRef(null);
@@ -72,6 +73,12 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, []);
 
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   const handleCountryClick = useCallback((iso3) => {
     setSelectedIso(iso3);
     setIsReportOpen(false);
@@ -108,7 +115,7 @@ export default function App() {
       {/* 削除: ノイズテクスチャ、スキャンライン、グラデーションオーバーレイ */}
       
       {/* ═══ ヘッダー: マットデザイン ══════════════════════════════════ */}
-      <header className="absolute top-0 left-0 right-0 h-16 flex items-center px-6 justify-between z-[110] bg-[#0f172a]/90 backdrop-blur-md border-b border-white/[0.06]">
+      <header className="absolute top-0 left-0 right-0 h-16 flex items-center px-3 md:px-6 justify-between z-[110] bg-[#0f172a]/90 backdrop-blur-md border-b border-white/[0.06]">
         {/* ロゴエリア: シンプルかつ堅牢に */}
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center w-8 h-8 bg-white/[0.05] rounded-md border border-white/10 text-slate-200">
@@ -118,7 +125,7 @@ export default function App() {
             <h1 className="text-sm font-semibold text-slate-100 tracking-wide font-['Inter']">
               WORLD DASHBOARD
             </h1>
-            <div className="text-[10px] text-slate-500 font-medium">
+            <div className="text-[10px] text-slate-500 font-medium hidden md:block">
               Global Intelligence Nexus v6.3
             </div>
           </div>
@@ -158,7 +165,7 @@ export default function App() {
             )}
           </div>
 
-          <div className="h-4 w-[1px] bg-white/10 mx-1" />
+          <div className="h-4 w-[1px] bg-white/10 mx-1 hidden md:block" />
 
           {/* Macro Analytics Button */}
           <button
@@ -166,7 +173,7 @@ export default function App() {
             className="btn-base hover:bg-slate-700/50 hover:text-white hover:border-slate-500/30"
           >
             <TrendingUp size={14} />
-            <span>MACRO</span>
+            <span className="hidden sm:inline">MACRO</span>
           </button>
 
           {/* Analytics Panel Toggle */}
@@ -175,7 +182,7 @@ export default function App() {
             className={`btn-base ${isAnalyticsPanelOpen ? 'bg-white/[0.08] text-slate-100' : ''}`}
           >
             <BarChart2 size={14} />
-            <span>ANALYTICS</span>
+            <span className="hidden sm:inline">ANALYTICS</span>
           </button>
 
           {/* Fullscreen */}
@@ -224,18 +231,21 @@ export default function App() {
         <AnalyticsPanel
           data={data}
           isOpen={isAnalyticsPanelOpen}
+          isMobile={isMobile}
           onClose={() => setIsAnalyticsPanelOpen(false)}
           onSelectCountry={handleCountryClick}
           selectedIso={selectedIso}
         />
 
         {selectedReport && isReportOpen && (
-          <aside className="absolute top-20 bottom-12 right-[24rem] md:right-[28rem] w-[26rem] z-[89]">
+          <aside className={`${isMobile ? 'fixed inset-0 z-[100]' : 'absolute top-20 bottom-12 right-[24rem] md:right-[28rem] w-[26rem] z-[89]'}`}>
             <DeepReportPanel report={selectedReport} onClose={() => setIsReportOpen(false)} />
           </aside>
         )}
 
-        <aside className={`absolute top-16 bottom-0 right-0 w-[24rem] md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
+        <aside className={`${isMobile
+          ? `fixed left-0 right-0 bottom-0 h-[70vh] z-[95] transform transition-transform duration-300 ${selectedIso ? 'translate-y-0' : 'translate-y-full'}`
+          : `absolute top-16 bottom-0 right-0 w-[24rem] md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}`}>
           <CountryDetails
             country={selectedCountry}
             onClose={() => setSelectedIso(null)}
