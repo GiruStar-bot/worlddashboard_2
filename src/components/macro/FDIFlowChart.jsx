@@ -54,17 +54,56 @@ export default function FDIFlowChart({ data }) {
             tickLine={false}
             label={{ value: '$B', position: 'insideTopLeft', offset: 10, style: { fontSize: 9, fill: '#64748b' } }}
           />
-          <Tooltip content={<CustomTooltip unitOverride="$B" previousDataLookup={previousLookup} />} />
+          {/* UI改善: 白い背景(cursor)を削除。
+            代わりに stroke を指定し、極細の垂直ラインを表示（Scanner Line）。
+            データの邪魔をせず、正確な位置を示唆する。
+          */}
+          <Tooltip 
+            cursor={{ fill: 'transparent', stroke: 'rgba(255,255,255,0.2)', strokeWidth: 1 }} 
+            content={<CustomTooltip unitOverride="$B" previousDataLookup={previousLookup} />} 
+          />
           <Legend
             wrapperStyle={{ fontSize: 10, fontFamily: 'Inter' }}
             iconType="circle"
             iconSize={6}
           />
           <ReferenceLine y={0} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
-          <Bar dataKey="global_north_inflow" name="北側流入" fill="url(#grad-fdi-north-in)" stackId="north" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar dataKey="global_north_outflow" name="北側流出" fill="url(#grad-fdi-north-out)" stackId="north" radius={[0, 0, 4, 4]} />
-          <Bar dataKey="global_south_inflow" name="南側流入" fill="url(#grad-fdi-south-in)" stackId="south" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar dataKey="global_south_outflow" name="南側流出" fill="url(#grad-fdi-south-out)" stackId="south" radius={[0, 0, 4, 4]} />
+          
+          {/* activeBar設定（オプション）: ホバー時に該当バーの枠線を強調 */}
+          <Bar 
+            dataKey="global_north_inflow" 
+            name="北側流入" 
+            fill="url(#grad-fdi-north-in)" 
+            stackId="north" 
+            radius={[4, 4, 0, 0]} 
+            barSize={20}
+            activeBar={{ stroke: '#fff', strokeWidth: 1, strokeOpacity: 0.8 }}
+          />
+          <Bar 
+            dataKey="global_north_outflow" 
+            name="北側流出" 
+            fill="url(#grad-fdi-north-out)" 
+            stackId="north" 
+            radius={[0, 0, 4, 4]} 
+            activeBar={{ stroke: '#fff', strokeWidth: 1, strokeOpacity: 0.8 }}
+          />
+          <Bar 
+            dataKey="global_south_inflow" 
+            name="南側流入" 
+            fill="url(#grad-fdi-south-in)" 
+            stackId="south" 
+            radius={[4, 4, 0, 0]} 
+            barSize={20}
+            activeBar={{ stroke: '#fff', strokeWidth: 1, strokeOpacity: 0.8 }}
+          />
+          <Bar 
+            dataKey="global_south_outflow" 
+            name="南側流出" 
+            fill="url(#grad-fdi-south-out)" 
+            stackId="south" 
+            radius={[0, 0, 4, 4]} 
+            activeBar={{ stroke: '#fff', strokeWidth: 1, strokeOpacity: 0.8 }}
+          />
         </BarChart>
       </ResponsiveContainer>
     </DashboardCard>
