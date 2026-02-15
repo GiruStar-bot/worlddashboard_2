@@ -9,6 +9,13 @@ import AnalyticsPanel  from './components/AnalyticsPanel';
 import MacroStatsOverlay from './components/MacroStatsOverlay';
 import { REPORT_FILES } from './constants/isoMap';
 
+const TOOLTIP_WIDTH = 220;
+const TOOLTIP_HEIGHT = 90;
+const MOBILE_MEDIA_QUERY = '(max-width: 767px)';
+const getIsMobileViewport = () => (
+  typeof window !== 'undefined' ? window.matchMedia(MOBILE_MEDIA_QUERY).matches : false
+);
+
 export default function App() {
   const [data, setData] = useState(null);
   const [reports, setReports] = useState({});
@@ -23,6 +30,7 @@ export default function App() {
   const [isLayerMenuOpen, setIsLayerMenuOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(getIsMobileViewport);
 
   const layerMenuRef = useRef(null);
   const layerMenuButtonRef = useRef(null);
@@ -72,23 +80,55 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const mediaQuery = window.matchMedia(MOBILE_MEDIA_QUERY);
+    const handleViewportChange = (event) => setIsMobileViewport(event.matches);
+    mediaQuery.addEventListener('change', handleViewportChange);
+    return () => mediaQuery.removeEventListener('change', handleViewportChange);
+  }, []);
+
   const handleCountryClick = useCallback((iso3) => {
     setSelectedIso(iso3);
     setIsReportOpen(false);
-  }, []);
+    if (isMobileViewport) setIsAnalyticsPanelOpen(false);
+  }, [isMobileViewport]);
 
   const handleHover = useCallback((iso3, position) => {
-    if (!iso3 || !position) {
+    if (isMobileViewport || !iso3 || !position) {
       setHoverInfo(null);
       return;
     }
     setHoverInfo({ iso3, x: position.x, y: position.y });
-  }, []);
+  }, [isMobileViewport]);
 
   const toggleFs = useCallback(async () => {
     if (document.fullscreenElement) await document.exitFullscreen();
     else await document.documentElement.requestFullscreen();
   }, []);
+
+  const closeCountryContextPanels = useCallback(() => {
+    setSelectedIso(null);
+    setIsReportOpen(false);
+  }, []);
+
+  const openMacroOverlay = useCallback(() => {
+    if (isMobileViewport) {
+      setIsAnalyticsPanelOpen(false);
+      closeCountryContextPanels();
+    }
+    setIsMacroOverlayOpen(true);
+  }, [closeCountryContextPanels, isMobileViewport]);
+
+  const toggleAnalyticsPanel = useCallback(() => {
+    setIsAnalyticsPanelOpen((prev) => {
+      const next = !prev;
+      if (next && isMobileViewport) {
+        closeCountryContextPanels();
+      }
+      return next;
+    });
+  }, [closeCountryContextPanels, isMobileViewport]);
 
   // Loading Screen: 演出を控えめに
   if (!data) return (
@@ -108,9 +148,9 @@ export default function App() {
       {/* 削除: ノイズテクスチャ、スキャンライン、グラデーションオーバーレイ */}
       
       {/* ═══ ヘッダー: マットデザイン ══════════════════════════════════ */}
-      <header className="absolute top-0 left-0 right-0 h-16 flex items-center px-6 justify-between z-[110] bg-[#0f172a]/90 backdrop-blur-md border-b border-white/[0.06]">
+      <header className="absolute top-0 left-0 right-0 h-16 flex items-center px-3 sm:px-6 justify-between z-[110] bg-[#0f172a]/90 backdrop-blur-md border-b border-white/[0.06]">
         {/* ロゴエリア: シンプルかつ堅牢に */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center justify-center w-8 h-8 bg-white/[0.05] rounded-md border border-white/10 text-slate-200">
             <Globe size={18} strokeWidth={1.5} />
           </div>
@@ -118,14 +158,14 @@ export default function App() {
             <h1 className="text-sm font-semibold text-slate-100 tracking-wide font-['Inter']">
               WORLD DASHBOARD
             </h1>
-            <div className="text-[10px] text-slate-500 font-medium">
+            <div className="hidden sm:block text-[10px] text-slate-500 font-medium">
               Global Intelligence Nexus v6.3
             </div>
           </div>
         </div>
 
         {/* コントロール群: 派手な光彩を削除し、実用的なボタンスタイルへ */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Layer Menu */}
           <div className="relative hidden md:block" ref={layerMenuRef}>
             <button
@@ -158,24 +198,24 @@ export default function App() {
             )}
           </div>
 
-          <div className="h-4 w-[1px] bg-white/10 mx-1" />
+          <div className="hidden sm:block h-4 w-[1px] bg-white/10 mx-1" />
 
           {/* Macro Analytics Button */}
           <button
-            onClick={() => setIsMacroOverlayOpen(true)}
+            onClick={openMacroOverlay}
             className="btn-base hover:bg-slate-700/50 hover:text-white hover:border-slate-500/30"
           >
             <TrendingUp size={14} />
-            <span>MACRO</span>
+            <span className="hidden sm:inline">MACRO</span>
           </button>
 
           {/* Analytics Panel Toggle */}
           <button
-            onClick={() => setIsAnalyticsPanelOpen(!isAnalyticsPanelOpen)}
+            onClick={toggleAnalyticsPanel}
             className={`btn-base ${isAnalyticsPanelOpen ? 'bg-white/[0.08] text-slate-100' : ''}`}
           >
             <BarChart2 size={14} />
-            <span>ANALYTICS</span>
+            <span className="hidden sm:inline">ANALYTICS</span>
           </button>
 
           {/* Fullscreen */}
@@ -204,10 +244,13 @@ export default function App() {
         </div>
 
         {/* ツールチップ: シンプルなカード形式に変更 */}
-        {hoverInfo && (
+        {hoverInfo && !isMobileViewport && (
           <div
             className="fixed z-[120] px-4 py-3 bg-[#0f172a]/95 backdrop-blur-sm border border-white/10 text-slate-200 shadow-xl rounded-lg pointer-events-none"
-            style={{ left: hoverInfo.x + 15, top: hoverInfo.y + 15 }}
+            style={{
+              left: Math.max(8, Math.min(window.innerWidth - TOOLTIP_WIDTH, hoverInfo.x + 15)),
+              top: Math.max(8, Math.min(window.innerHeight - TOOLTIP_HEIGHT, hoverInfo.y + 15)),
+            }}
           >
             <div className="text-xs font-bold text-slate-100 mb-1 flex items-center gap-2">
                {allCountries.find(c => c.master.iso3 === hoverInfo.iso3)?.master.name}
@@ -230,12 +273,12 @@ export default function App() {
         />
 
         {selectedReport && isReportOpen && (
-          <aside className="absolute top-20 bottom-12 right-[24rem] md:right-[28rem] w-[26rem] z-[89]">
+          <aside className="absolute top-16 bottom-0 right-0 md:right-[26rem] w-full md:w-[26rem] z-[91]">
             <DeepReportPanel report={selectedReport} onClose={() => setIsReportOpen(false)} />
           </aside>
         )}
 
-        <aside className={`absolute top-16 bottom-0 right-0 w-[24rem] md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
+        <aside className={`absolute top-16 bottom-0 right-0 w-full sm:w-80 md:w-[26rem] transform transition-transform duration-300 z-[90] ${selectedIso ? 'translate-x-0' : 'translate-x-full'}`}>
           <CountryDetails
             country={selectedCountry}
             onClose={() => setSelectedIso(null)}
