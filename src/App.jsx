@@ -9,6 +9,9 @@ import AnalyticsPanel  from './components/AnalyticsPanel';
 import MacroStatsOverlay from './components/MacroStatsOverlay';
 import { REPORT_FILES } from './constants/isoMap';
 
+const TOOLTIP_WIDTH = 220;
+const TOOLTIP_HEIGHT = 90;
+
 export default function App() {
   const [data, setData] = useState(null);
   const [reports, setReports] = useState({});
@@ -208,8 +211,8 @@ export default function App() {
           <div
             className="fixed z-[120] px-4 py-3 bg-[#0f172a]/95 backdrop-blur-sm border border-white/10 text-slate-200 shadow-xl rounded-lg pointer-events-none"
             style={{
-              left: Math.max(8, Math.min(window.innerWidth - 220, hoverInfo.x + 15)),
-              top: Math.max(8, Math.min(window.innerHeight - 90, hoverInfo.y + 15)),
+              left: Math.max(8, Math.min(window.innerWidth - TOOLTIP_WIDTH, hoverInfo.x + 15)),
+              top: Math.max(8, Math.min(window.innerHeight - TOOLTIP_HEIGHT, hoverInfo.y + 15)),
             }}
           >
             <div className="text-xs font-bold text-slate-100 mb-1 flex items-center gap-2">
@@ -233,7 +236,7 @@ export default function App() {
         />
 
         {selectedReport && isReportOpen && (
-          <aside className="absolute top-16 bottom-0 right-0 w-full md:w-[26rem] z-[89] md:right-[26rem]">
+          <aside className="absolute top-16 bottom-0 right-0 md:right-[26rem] w-full md:w-[26rem] z-[91]">
             <DeepReportPanel report={selectedReport} onClose={() => setIsReportOpen(false)} />
           </aside>
         )}
