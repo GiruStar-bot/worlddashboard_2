@@ -7,9 +7,9 @@ import DashboardCard from './DashboardCard';
 import CustomTooltip from './CustomTooltip';
 
 const MINERALS = [
-  { key: 'lithium', label: 'Lithium' },
-  { key: 'cobalt', label: 'Cobalt' },
-  { key: 'rare_earths', label: 'Rare Earths' },
+  { key: 'lithium', label: 'リチウム' },
+  { key: 'cobalt', label: 'コバルト' },
+  { key: 'rare_earths', label: 'レアアース' },
 ];
 
 const CHINA_COLOR = '#f43f5e';
@@ -23,7 +23,7 @@ export default function CriticalMineralsChart({ data }) {
   const mineralData = data[activeMineral] || [];
 
   return (
-    <DashboardCard title="Critical Minerals Supply Concentration" subtitle="Top producers by global share (%)" source="USGS 2025">
+    <DashboardCard title="重要鉱物供給の集中度" subtitle="世界シェア上位生産国（%）" source="USGS 2025">
       <div className="flex gap-1.5 mb-3">
         {MINERALS.map(m => (
           <button
@@ -73,7 +73,7 @@ export default function CriticalMineralsChart({ data }) {
             tickLine={false}
           />
           <Tooltip content={<CustomTooltip unitOverride="%" />} />
-          <Bar dataKey="share" name="Global Share" radius={[0, 6, 6, 0]} barSize={18}>
+          <Bar dataKey="share" name="世界シェア" radius={[0, 6, 6, 0]} barSize={18}>
             {mineralData.map((entry, idx) => (
               <Cell
                 key={idx}
