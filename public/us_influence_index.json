@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.0",
+    "version": "1.1",
     "as_of": "2026-02-15",
-    "methodology": "Composite US Influence Index (0-100). Weights: allied_institutions_exposure (0.10) + fdi_from_us (0.15) + trade_with_us_pct (0.15) + security_ties (0.25) + tech_dependency (0.15) + financial_exposure (0.15) + logistics_exposure (0.05). Each indicator winsorized at p1-p99, then min-max normalized 0-100. Missing values estimated from nearest-year data, regional median, or proxy substitution; if still unavailable set to 50 and flagged in raw_values.estimated_fields.",
+    "methodology": "Composite US Influence Index v1.1 (0-100). Formula: score = clamp(12 + 0.10*allied_institutions_exposure + 0.12*fdi_from_us + 0.14*trade_with_us_pct + 0.30*security_ties + 0.12*tech_dependency + 0.17*financial_exposure + 0.05*logistics_exposure). Inputs are pre-normalized 0-100 indicators; output rounded to one decimal. This revision raises baseline structural influence and increases weights for security_ties and financial_exposure to better reflect current geopolitical conditions.",
     "sources": [
       "IMF IMTS (International Trade in Goods by partner, formerly DOTS)",
       "IMF COFER (Currency Composition of Official Foreign Exchange Reserves, aggregate context)",
@@ -28,7 +28,7 @@
   },
   "countries": {
     "AFG": {
-      "score": 23.5,
+      "score": 37,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 5,
       "trade_with_us_pct": 10,
@@ -36,10 +36,13 @@
       "tech_dependency": 10,
       "financial_exposure": 40,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "AGO": {
-      "score": 26.0,
+      "score": 37.6,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 35,
       "trade_with_us_pct": 30,
@@ -47,10 +50,13 @@
       "tech_dependency": 15,
       "financial_exposure": 35,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ALB": {
-      "score": 37.5,
+      "score": 52.4,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 8,
@@ -58,10 +64,13 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "AND": {
-      "score": 20.5,
+      "score": 32.7,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -69,10 +78,15 @@
       "tech_dependency": 40,
       "financial_exposure": 30,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "ARE": {
-      "score": 58.3,
+      "score": 71.7,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 50,
       "trade_with_us_pct": 30,
@@ -80,10 +94,13 @@
       "tech_dependency": 55,
       "financial_exposure": 65,
       "logistics_exposure": 75,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ARG": {
-      "score": 34.3,
+      "score": 46.6,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 30,
       "trade_with_us_pct": 20,
@@ -91,10 +108,13 @@
       "tech_dependency": 35,
       "financial_exposure": 50,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ARM": {
-      "score": 19.0,
+      "score": 31.3,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 8,
@@ -102,10 +122,13 @@
       "tech_dependency": 20,
       "financial_exposure": 30,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ATG": {
-      "score": 28.3,
+      "score": 40.8,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 15,
       "trade_with_us_pct": 30,
@@ -113,10 +136,15 @@
       "tech_dependency": 25,
       "financial_exposure": 50,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "AUS": {
-      "score": 73.5,
+      "score": 87,
       "allied_institutions_exposure": 80,
       "fdi_from_us": 50,
       "trade_with_us_pct": 70,
@@ -124,10 +152,13 @@
       "tech_dependency": 75,
       "financial_exposure": 60,
       "logistics_exposure": 65,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "AUT": {
-      "score": 40.5,
+      "score": 52.9,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 35,
       "trade_with_us_pct": 15,
@@ -135,10 +166,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "AZE": {
-      "score": 24.3,
+      "score": 36.5,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 25,
       "trade_with_us_pct": 12,
@@ -146,10 +180,13 @@
       "tech_dependency": 20,
       "financial_exposure": 35,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BDI": {
-      "score": 13.0,
+      "score": 25.5,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -157,10 +194,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "BEL": {
-      "score": 65.0,
+      "score": 78.5,
       "allied_institutions_exposure": 75,
       "fdi_from_us": 65,
       "trade_with_us_pct": 25,
@@ -168,10 +210,13 @@
       "tech_dependency": 60,
       "financial_exposure": 65,
       "logistics_exposure": 80,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BEN": {
-      "score": 13.0,
+      "score": 25.5,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -179,10 +224,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "BFA": {
-      "score": 10.4,
+      "score": 22.8,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -190,10 +240,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "BGD": {
-      "score": 20.3,
+      "score": 32.8,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 15,
@@ -201,10 +256,13 @@
       "tech_dependency": 15,
       "financial_exposure": 35,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BGR": {
-      "score": 38.2,
+      "score": 53,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 15,
       "trade_with_us_pct": 8,
@@ -212,10 +270,13 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BHR": {
-      "score": 49.3,
+      "score": 64.4,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 20,
       "trade_with_us_pct": 15,
@@ -223,10 +284,13 @@
       "tech_dependency": 40,
       "financial_exposure": 55,
       "logistics_exposure": 85,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BHS": {
-      "score": 42.3,
+      "score": 54.8,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 30,
       "trade_with_us_pct": 45,
@@ -234,10 +298,13 @@
       "tech_dependency": 40,
       "financial_exposure": 65,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BIH": {
-      "score": 24.8,
+      "score": 38.1,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -245,10 +312,13 @@
       "tech_dependency": 20,
       "financial_exposure": 30,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BLR": {
-      "score": 8.5,
+      "score": 20.5,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -256,10 +326,13 @@
       "tech_dependency": 10,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BLZ": {
-      "score": 29.3,
+      "score": 42.4,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 10,
       "trade_with_us_pct": 35,
@@ -267,10 +340,13 @@
       "tech_dependency": 20,
       "financial_exposure": 55,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BOL": {
-      "score": 19.5,
+      "score": 32,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 10,
       "trade_with_us_pct": 15,
@@ -278,10 +354,13 @@
       "tech_dependency": 15,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BRA": {
-      "score": 43.3,
+      "score": 54.9,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 45,
       "trade_with_us_pct": 30,
@@ -289,10 +368,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BRB": {
-      "score": 29.5,
+      "score": 42.1,
       "allied_institutions_exposure": 42,
       "fdi_from_us": 15,
       "trade_with_us_pct": 25,
@@ -300,10 +382,13 @@
       "tech_dependency": 30,
       "financial_exposure": 55,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BRN": {
-      "score": 29.5,
+      "score": 42.5,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 15,
       "trade_with_us_pct": 15,
@@ -311,10 +396,13 @@
       "tech_dependency": 30,
       "financial_exposure": 40,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "BTN": {
-      "score": 11.0,
+      "score": 23.3,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -322,10 +410,15 @@
       "tech_dependency": 10,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "BWA": {
-      "score": 23.8,
+      "score": 37.3,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 10,
@@ -333,10 +426,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CAF": {
-      "score": 10.1,
+      "score": 22.6,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -344,10 +440,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "CAN": {
-      "score": 85.7,
+      "score": 98.6,
       "allied_institutions_exposure": 82,
       "fdi_from_us": 75,
       "trade_with_us_pct": 90,
@@ -355,10 +456,13 @@
       "tech_dependency": 80,
       "financial_exposure": 85,
       "logistics_exposure": 85,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CHE": {
-      "score": 46.8,
+      "score": 58.3,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 55,
       "trade_with_us_pct": 20,
@@ -366,10 +470,13 @@
       "tech_dependency": 60,
       "financial_exposure": 72,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CHL": {
-      "score": 35.3,
+      "score": 47.6,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 30,
       "trade_with_us_pct": 25,
@@ -377,10 +484,13 @@
       "tech_dependency": 35,
       "financial_exposure": 50,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CHN": {
-      "score": 27.3,
+      "score": 38.1,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 25,
       "trade_with_us_pct": 55,
@@ -388,10 +498,13 @@
       "tech_dependency": 30,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CIV": {
-      "score": 15.5,
+      "score": 28.1,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 8,
@@ -399,10 +512,13 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 12,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CMR": {
-      "score": 13.9,
+      "score": 26.5,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -410,10 +526,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "COD": {
-      "score": 12.5,
+      "score": 25.2,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -421,10 +540,13 @@
       "tech_dependency": 5,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "COG": {
-      "score": 14.7,
+      "score": 26.9,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 15,
       "trade_with_us_pct": 10,
@@ -432,10 +554,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "COL": {
-      "score": 45.0,
+      "score": 58.7,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 25,
       "trade_with_us_pct": 35,
@@ -443,10 +568,13 @@
       "tech_dependency": 35,
       "financial_exposure": 55,
       "logistics_exposure": 45,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "COM": {
-      "score": 10.1,
+      "score": 22.6,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -454,10 +582,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "CPV": {
-      "score": 13.5,
+      "score": 26.1,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -465,10 +598,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "CRI": {
-      "score": 31.8,
+      "score": 44.2,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 20,
       "trade_with_us_pct": 30,
@@ -476,10 +614,13 @@
       "tech_dependency": 30,
       "financial_exposure": 50,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CUB": {
-      "score": 6.3,
+      "score": 18.4,
       "allied_institutions_exposure": 15,
       "fdi_from_us": 2,
       "trade_with_us_pct": 5,
@@ -487,10 +628,13 @@
       "tech_dependency": 5,
       "financial_exposure": 10,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CYP": {
-      "score": 28.5,
+      "score": 42,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -498,10 +642,13 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "CZE": {
-      "score": 42.3,
+      "score": 56.7,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 20,
       "trade_with_us_pct": 10,
@@ -509,10 +656,13 @@
       "tech_dependency": 40,
       "financial_exposure": 40,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "DEU": {
-      "score": 68.8,
+      "score": 81.9,
       "allied_institutions_exposure": 78,
       "fdi_from_us": 70,
       "trade_with_us_pct": 40,
@@ -520,10 +670,13 @@
       "tech_dependency": 65,
       "financial_exposure": 70,
       "logistics_exposure": 75,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "DJI": {
-      "score": 30.0,
+      "score": 44.7,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -531,10 +684,13 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 80,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "DMA": {
-      "score": 19.0,
+      "score": 31.8,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 15,
@@ -542,10 +698,15 @@
       "tech_dependency": 15,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "DNK": {
-      "score": 49.8,
+      "score": 64.4,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 25,
       "trade_with_us_pct": 10,
@@ -553,10 +714,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "DOM": {
-      "score": 32.8,
+      "score": 45.5,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 15,
       "trade_with_us_pct": 40,
@@ -564,10 +728,13 @@
       "tech_dependency": 25,
       "financial_exposure": 55,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "DZA": {
-      "score": 20.3,
+      "score": 32.9,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 15,
       "trade_with_us_pct": 10,
@@ -575,10 +742,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ECU": {
-      "score": 32.5,
+      "score": 45.5,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 15,
       "trade_with_us_pct": 30,
@@ -586,10 +756,13 @@
       "tech_dependency": 25,
       "financial_exposure": 75,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "EGY": {
-      "score": 45.5,
+      "score": 59.7,
       "allied_institutions_exposure": 70,
       "fdi_from_us": 30,
       "trade_with_us_pct": 15,
@@ -597,10 +770,13 @@
       "tech_dependency": 35,
       "financial_exposure": 50,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ERI": {
-      "score": 7.3,
+      "score": 19.6,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 2,
       "trade_with_us_pct": 3,
@@ -608,10 +784,15 @@
       "tech_dependency": 5,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "ESH": {
-      "score": 6.6,
+      "score": 18.9,
       "allied_institutions_exposure": 15,
       "fdi_from_us": 2,
       "trade_with_us_pct": 2,
@@ -619,10 +800,16 @@
       "tech_dependency": 5,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us", "trade_with_us_pct"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us",
+          "trade_with_us_pct"
+        ]
+      }
     },
     "ESP": {
-      "score": 50.8,
+      "score": 64.8,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 35,
       "trade_with_us_pct": 15,
@@ -630,10 +817,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 60,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "EST": {
-      "score": 39.5,
+      "score": 54.4,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -641,10 +831,13 @@
       "tech_dependency": 40,
       "financial_exposure": 35,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ETH": {
-      "score": 18.7,
+      "score": 31.5,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 8,
       "trade_with_us_pct": 8,
@@ -652,10 +845,13 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "FIN": {
-      "score": 46.3,
+      "score": 60.5,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 20,
       "trade_with_us_pct": 10,
@@ -663,10 +859,13 @@
       "tech_dependency": 55,
       "financial_exposure": 50,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "FJI": {
-      "score": 16.0,
+      "score": 28.5,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 8,
@@ -674,10 +873,15 @@
       "tech_dependency": 15,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "FRA": {
-      "score": 57.0,
+      "score": 70.5,
       "allied_institutions_exposure": 70,
       "fdi_from_us": 55,
       "trade_with_us_pct": 20,
@@ -685,10 +889,13 @@
       "tech_dependency": 55,
       "financial_exposure": 60,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "FSM": {
-      "score": 40.0,
+      "score": 55.5,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 5,
       "trade_with_us_pct": 30,
@@ -696,10 +903,13 @@
       "tech_dependency": 15,
       "financial_exposure": 70,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GAB": {
-      "score": 14.7,
+      "score": 26.9,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 15,
       "trade_with_us_pct": 10,
@@ -707,10 +917,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GBR": {
-      "score": 81.6,
+      "score": 94.1,
       "allied_institutions_exposure": 85,
       "fdi_from_us": 85,
       "trade_with_us_pct": 60,
@@ -718,10 +931,13 @@
       "tech_dependency": 82,
       "financial_exposure": 80,
       "logistics_exposure": 80,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GEO": {
-      "score": 26.7,
+      "score": 40.3,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 8,
@@ -729,10 +945,13 @@
       "tech_dependency": 20,
       "financial_exposure": 30,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GHA": {
-      "score": 19.6,
+      "score": 32.4,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 10,
@@ -740,10 +959,13 @@
       "tech_dependency": 12,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GIN": {
-      "score": 10.7,
+      "score": 23.1,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -751,10 +973,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "GMB": {
-      "score": 10.1,
+      "score": 22.6,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -762,10 +989,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "GNB": {
-      "score": 8.4,
+      "score": 20.7,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -773,10 +1005,15 @@
       "tech_dependency": 5,
       "financial_exposure": 18,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "GNQ": {
-      "score": 16.2,
+      "score": 28.2,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 20,
       "trade_with_us_pct": 15,
@@ -784,10 +1021,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GRC": {
-      "score": 40.7,
+      "score": 55.4,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 15,
       "trade_with_us_pct": 8,
@@ -795,10 +1035,13 @@
       "tech_dependency": 35,
       "financial_exposure": 40,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GRD": {
-      "score": 19.0,
+      "score": 31.8,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 15,
@@ -806,10 +1049,15 @@
       "tech_dependency": 15,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "GRL": {
-      "score": 34.5,
+      "score": 49.4,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -817,10 +1065,15 @@
       "tech_dependency": 25,
       "financial_exposure": 30,
       "logistics_exposure": 70,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "GTM": {
-      "score": 29.1,
+      "score": 41.8,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 12,
       "trade_with_us_pct": 35,
@@ -828,10 +1081,13 @@
       "tech_dependency": 20,
       "financial_exposure": 50,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "GUY": {
-      "score": 25.0,
+      "score": 37.5,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 20,
       "trade_with_us_pct": 25,
@@ -839,10 +1095,13 @@
       "tech_dependency": 15,
       "financial_exposure": 45,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "HND": {
-      "score": 29.2,
+      "score": 42,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 12,
       "trade_with_us_pct": 38,
@@ -850,10 +1109,13 @@
       "tech_dependency": 18,
       "financial_exposure": 50,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "HRV": {
-      "score": 36.5,
+      "score": 51.5,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -861,10 +1123,13 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "HTI": {
-      "score": 23.0,
+      "score": 36,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 5,
       "trade_with_us_pct": 30,
@@ -872,10 +1137,13 @@
       "tech_dependency": 8,
       "financial_exposure": 50,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "HUN": {
-      "score": 36.0,
+      "score": 50.2,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 15,
       "trade_with_us_pct": 8,
@@ -883,10 +1151,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "IDN": {
-      "score": 33.5,
+      "score": 45.9,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 25,
       "trade_with_us_pct": 20,
@@ -894,10 +1165,13 @@
       "tech_dependency": 35,
       "financial_exposure": 45,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "IND": {
-      "score": 41.8,
+      "score": 54.3,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 30,
       "trade_with_us_pct": 25,
@@ -905,10 +1179,13 @@
       "tech_dependency": 50,
       "financial_exposure": 45,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "IRL": {
-      "score": 51.0,
+      "score": 61.2,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 80,
       "trade_with_us_pct": 30,
@@ -916,10 +1193,13 @@
       "tech_dependency": 65,
       "financial_exposure": 65,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "IRN": {
-      "score": 5.5,
+      "score": 17.5,
       "allied_institutions_exposure": 15,
       "fdi_from_us": 2,
       "trade_with_us_pct": 2,
@@ -927,10 +1207,13 @@
       "tech_dependency": 8,
       "financial_exposure": 8,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "IRQ": {
-      "score": 35.8,
+      "score": 50,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 15,
       "trade_with_us_pct": 15,
@@ -938,10 +1221,13 @@
       "tech_dependency": 20,
       "financial_exposure": 45,
       "logistics_exposure": 60,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ISL": {
-      "score": 41.7,
+      "score": 56.6,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 8,
@@ -949,10 +1235,13 @@
       "tech_dependency": 40,
       "financial_exposure": 45,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ISR": {
-      "score": 71.6,
+      "score": 85.7,
       "allied_institutions_exposure": 88,
       "fdi_from_us": 40,
       "trade_with_us_pct": 45,
@@ -960,10 +1249,13 @@
       "tech_dependency": 80,
       "financial_exposure": 70,
       "logistics_exposure": 75,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ITA": {
-      "score": 53.3,
+      "score": 67.2,
       "allied_institutions_exposure": 68,
       "fdi_from_us": 40,
       "trade_with_us_pct": 18,
@@ -971,10 +1263,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 65,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "JAM": {
-      "score": 30.5,
+      "score": 43.2,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 15,
       "trade_with_us_pct": 35,
@@ -982,10 +1277,13 @@
       "tech_dependency": 25,
       "financial_exposure": 55,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "JOR": {
-      "score": 41.6,
+      "score": 56.3,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 15,
       "trade_with_us_pct": 12,
@@ -993,10 +1291,13 @@
       "tech_dependency": 30,
       "financial_exposure": 50,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "JPN": {
-      "score": 77.3,
+      "score": 90.3,
       "allied_institutions_exposure": 78,
       "fdi_from_us": 60,
       "trade_with_us_pct": 75,
@@ -1004,10 +1305,13 @@
       "tech_dependency": 78,
       "financial_exposure": 72,
       "logistics_exposure": 85,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KAZ": {
-      "score": 20.7,
+      "score": 33.1,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 20,
       "trade_with_us_pct": 8,
@@ -1015,10 +1319,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KEN": {
-      "score": 22.8,
+      "score": 35.8,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 12,
       "trade_with_us_pct": 8,
@@ -1026,10 +1333,13 @@
       "tech_dependency": 15,
       "financial_exposure": 35,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KGZ": {
-      "score": 14.2,
+      "score": 27,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -1037,10 +1347,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KHM": {
-      "score": 13.7,
+      "score": 26.1,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 10,
@@ -1048,10 +1361,13 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KIR": {
-      "score": 13.7,
+      "score": 26.5,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1059,10 +1375,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "KNA": {
-      "score": 21.0,
+      "score": 33.7,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 20,
@@ -1070,10 +1391,15 @@
       "tech_dependency": 15,
       "financial_exposure": 45,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "KOR": {
-      "score": 74.3,
+      "score": 87.4,
       "allied_institutions_exposure": 75,
       "fdi_from_us": 55,
       "trade_with_us_pct": 72,
@@ -1081,10 +1407,13 @@
       "tech_dependency": 76,
       "financial_exposure": 68,
       "logistics_exposure": 82,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "KWT": {
-      "score": 46.3,
+      "score": 61.1,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 20,
       "trade_with_us_pct": 15,
@@ -1092,10 +1421,13 @@
       "tech_dependency": 35,
       "financial_exposure": 55,
       "logistics_exposure": 70,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LAO": {
-      "score": 9.1,
+      "score": 21.4,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1103,10 +1435,13 @@
       "tech_dependency": 8,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LBN": {
-      "score": 23.7,
+      "score": 36.9,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 8,
       "trade_with_us_pct": 8,
@@ -1114,10 +1449,13 @@
       "tech_dependency": 20,
       "financial_exposure": 45,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LBR": {
-      "score": 23.2,
+      "score": 36.7,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 8,
       "trade_with_us_pct": 10,
@@ -1125,10 +1463,13 @@
       "tech_dependency": 10,
       "financial_exposure": 55,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LBY": {
-      "score": 9.5,
+      "score": 21.7,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1136,10 +1477,13 @@
       "tech_dependency": 8,
       "financial_exposure": 15,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LCA": {
-      "score": 21.0,
+      "score": 33.7,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 20,
@@ -1147,10 +1491,15 @@
       "tech_dependency": 15,
       "financial_exposure": 45,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "LIE": {
-      "score": 19.0,
+      "score": 31.2,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1158,10 +1507,15 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "LKA": {
-      "score": 19.2,
+      "score": 31.9,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 8,
       "trade_with_us_pct": 10,
@@ -1169,10 +1523,13 @@
       "tech_dependency": 15,
       "financial_exposure": 35,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LSO": {
-      "score": 10.2,
+      "score": 22.7,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1180,10 +1537,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "LTU": {
-      "score": 38.8,
+      "score": 53.8,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -1191,10 +1553,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LUX": {
-      "score": 48.5,
+      "score": 62.6,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 40,
       "trade_with_us_pct": 8,
@@ -1202,10 +1567,13 @@
       "tech_dependency": 45,
       "financial_exposure": 65,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "LVA": {
-      "score": 38.8,
+      "score": 53.8,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -1213,10 +1581,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MAR": {
-      "score": 29.6,
+      "score": 43.4,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 12,
       "trade_with_us_pct": 10,
@@ -1224,10 +1595,13 @@
       "tech_dependency": 20,
       "financial_exposure": 35,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MCO": {
-      "score": 17.0,
+      "score": 29.2,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1235,10 +1609,15 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MDA": {
-      "score": 17.5,
+      "score": 30.4,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1246,10 +1625,13 @@
       "tech_dependency": 15,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MDG": {
-      "score": 10.7,
+      "score": 23.1,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1257,10 +1639,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MDV": {
-      "score": 12.2,
+      "score": 24.7,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1268,10 +1655,15 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MEX": {
-      "score": 59.5,
+      "score": 70.6,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 55,
       "trade_with_us_pct": 85,
@@ -1279,10 +1671,13 @@
       "tech_dependency": 60,
       "financial_exposure": 70,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MHL": {
-      "score": 42.3,
+      "score": 58.1,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 5,
       "trade_with_us_pct": 30,
@@ -1290,10 +1685,13 @@
       "tech_dependency": 15,
       "financial_exposure": 75,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MKD": {
-      "score": 33.7,
+      "score": 48.7,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1301,10 +1699,13 @@
       "tech_dependency": 25,
       "financial_exposure": 30,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MLI": {
-      "score": 8.7,
+      "score": 21,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1312,10 +1713,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MLT": {
-      "score": 23.8,
+      "score": 36.5,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -1323,10 +1729,13 @@
       "tech_dependency": 30,
       "financial_exposure": 35,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MMR": {
-      "score": 8.2,
+      "score": 20.3,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1334,10 +1743,13 @@
       "tech_dependency": 8,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MNE": {
-      "score": 33.3,
+      "score": 48.3,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1345,10 +1757,13 @@
       "tech_dependency": 22,
       "financial_exposure": 30,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MNG": {
-      "score": 15.8,
+      "score": 28.4,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1356,10 +1771,13 @@
       "tech_dependency": 12,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MOZ": {
-      "score": 13.4,
+      "score": 25.9,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1367,10 +1785,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MRT": {
-      "score": 11.2,
+      "score": 23.7,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1378,10 +1799,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MUS": {
-      "score": 16.0,
+      "score": 28.4,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1389,10 +1815,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "MWI": {
-      "score": 11.7,
+      "score": 24.2,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1400,10 +1829,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "MYS": {
-      "score": 32.3,
+      "score": 44.1,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 25,
       "trade_with_us_pct": 25,
@@ -1411,10 +1845,13 @@
       "tech_dependency": 40,
       "financial_exposure": 40,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NAM": {
-      "score": 14.2,
+      "score": 26.7,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1422,10 +1859,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NCL": {
-      "score": 15.8,
+      "score": 28.2,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1433,10 +1873,15 @@
       "tech_dependency": 20,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "NER": {
-      "score": 8.7,
+      "score": 21,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1444,10 +1889,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "NGA": {
-      "score": 24.5,
+      "score": 37.1,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 20,
       "trade_with_us_pct": 15,
@@ -1455,10 +1905,13 @@
       "tech_dependency": 15,
       "financial_exposure": 40,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NIC": {
-      "score": 16.3,
+      "score": 28.8,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 5,
       "trade_with_us_pct": 20,
@@ -1466,10 +1919,13 @@
       "tech_dependency": 10,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NLD": {
-      "score": 63.8,
+      "score": 76.9,
       "allied_institutions_exposure": 75,
       "fdi_from_us": 75,
       "trade_with_us_pct": 20,
@@ -1477,10 +1933,13 @@
       "tech_dependency": 60,
       "financial_exposure": 70,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NOR": {
-      "score": 51.3,
+      "score": 65.9,
       "allied_institutions_exposure": 65,
       "fdi_from_us": 30,
       "trade_with_us_pct": 12,
@@ -1488,10 +1947,13 @@
       "tech_dependency": 50,
       "financial_exposure": 55,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "NPL": {
-      "score": 12.7,
+      "score": 25.3,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1499,10 +1961,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "NRU": {
-      "score": 11.6,
+      "score": 24.3,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1510,10 +1977,15 @@
       "tech_dependency": 5,
       "financial_exposure": 25,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "NZL": {
-      "score": 56.0,
+      "score": 70.1,
       "allied_institutions_exposure": 70,
       "fdi_from_us": 25,
       "trade_with_us_pct": 30,
@@ -1521,10 +1993,13 @@
       "tech_dependency": 65,
       "financial_exposure": 50,
       "logistics_exposure": 60,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "OMN": {
-      "score": 33.0,
+      "score": 47.1,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 10,
       "trade_with_us_pct": 10,
@@ -1532,10 +2007,13 @@
       "tech_dependency": 25,
       "financial_exposure": 40,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PAK": {
-      "score": 28.2,
+      "score": 42,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 8,
       "trade_with_us_pct": 10,
@@ -1543,10 +2021,13 @@
       "tech_dependency": 20,
       "financial_exposure": 35,
       "logistics_exposure": 35,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PAN": {
-      "score": 33.8,
+      "score": 46.7,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 20,
       "trade_with_us_pct": 25,
@@ -1554,10 +2035,13 @@
       "tech_dependency": 25,
       "financial_exposure": 65,
       "logistics_exposure": 45,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PER": {
-      "score": 29.6,
+      "score": 42.1,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 20,
       "trade_with_us_pct": 22,
@@ -1565,10 +2049,13 @@
       "tech_dependency": 25,
       "financial_exposure": 45,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PHL": {
-      "score": 44.3,
+      "score": 59.3,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 15,
       "trade_with_us_pct": 20,
@@ -1576,10 +2063,13 @@
       "tech_dependency": 30,
       "financial_exposure": 50,
       "logistics_exposure": 60,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PLW": {
-      "score": 42.3,
+      "score": 58.1,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 5,
       "trade_with_us_pct": 30,
@@ -1587,10 +2077,13 @@
       "tech_dependency": 15,
       "financial_exposure": 75,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PNG": {
-      "score": 15.7,
+      "score": 28.3,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 8,
       "trade_with_us_pct": 8,
@@ -1598,10 +2091,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "POL": {
-      "score": 44.5,
+      "score": 59.2,
       "allied_institutions_exposure": 62,
       "fdi_from_us": 20,
       "trade_with_us_pct": 10,
@@ -1609,10 +2105,13 @@
       "tech_dependency": 40,
       "financial_exposure": 40,
       "logistics_exposure": 45,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PRK": {
-      "score": 1.9,
+      "score": 13.9,
       "allied_institutions_exposure": 5,
       "fdi_from_us": 0,
       "trade_with_us_pct": 0,
@@ -1620,10 +2119,13 @@
       "tech_dependency": 2,
       "financial_exposure": 3,
       "logistics_exposure": 2,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PRT": {
-      "score": 40.5,
+      "score": 55.2,
       "allied_institutions_exposure": 58,
       "fdi_from_us": 15,
       "trade_with_us_pct": 8,
@@ -1631,10 +2133,13 @@
       "tech_dependency": 35,
       "financial_exposure": 40,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PRY": {
-      "score": 17.3,
+      "score": 29.9,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 10,
@@ -1642,10 +2147,13 @@
       "tech_dependency": 12,
       "financial_exposure": 35,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "PSE": {
-      "score": 14.7,
+      "score": 27.3,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1653,10 +2161,15 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "QAT": {
-      "score": 44.3,
+      "score": 58.8,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 15,
       "trade_with_us_pct": 15,
@@ -1664,10 +2177,13 @@
       "tech_dependency": 40,
       "financial_exposure": 55,
       "logistics_exposure": 75,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ROU": {
-      "score": 40.5,
+      "score": 55.2,
       "allied_institutions_exposure": 58,
       "fdi_from_us": 15,
       "trade_with_us_pct": 8,
@@ -1675,10 +2191,13 @@
       "tech_dependency": 35,
       "financial_exposure": 38,
       "logistics_exposure": 45,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "RUS": {
-      "score": 7.8,
+      "score": 19.7,
       "allied_institutions_exposure": 15,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1686,10 +2205,13 @@
       "tech_dependency": 10,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "RWA": {
-      "score": 15.0,
+      "score": 27.8,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1697,10 +2219,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SAU": {
-      "score": 48.5,
+      "score": 62.6,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 25,
       "trade_with_us_pct": 25,
@@ -1708,10 +2233,13 @@
       "tech_dependency": 45,
       "financial_exposure": 60,
       "logistics_exposure": 60,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SDN": {
-      "score": 10.1,
+      "score": 22.6,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1719,10 +2247,13 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SEN": {
-      "score": 15.7,
+      "score": 28.4,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1730,10 +2261,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SGP": {
-      "score": 54.8,
+      "score": 67,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 50,
       "trade_with_us_pct": 30,
@@ -1741,10 +2275,13 @@
       "tech_dependency": 65,
       "financial_exposure": 65,
       "logistics_exposure": 70,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SLB": {
-      "score": 14.9,
+      "score": 27.9,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1752,10 +2289,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SLE": {
-      "score": 12.5,
+      "score": 25.2,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1763,10 +2305,15 @@
       "tech_dependency": 5,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SLV": {
-      "score": 30.0,
+      "score": 43.1,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 10,
       "trade_with_us_pct": 35,
@@ -1774,10 +2321,13 @@
       "tech_dependency": 18,
       "financial_exposure": 65,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SMR": {
-      "score": 14.4,
+      "score": 26.6,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1785,10 +2335,15 @@
       "tech_dependency": 25,
       "financial_exposure": 30,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SOM": {
-      "score": 13.4,
+      "score": 26.4,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1796,10 +2351,15 @@
       "tech_dependency": 5,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SRB": {
-      "score": 17.2,
+      "score": 29.7,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1807,10 +2367,13 @@
       "tech_dependency": 18,
       "financial_exposure": 28,
       "logistics_exposure": 12,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SSD": {
-      "score": 9.6,
+      "score": 22.2,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1818,10 +2381,15 @@
       "tech_dependency": 3,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "STP": {
-      "score": 8.7,
+      "score": 21,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1829,10 +2397,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SUR": {
-      "score": 13.9,
+      "score": 26.4,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 8,
@@ -1840,10 +2413,13 @@
       "tech_dependency": 10,
       "financial_exposure": 30,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SVK": {
-      "score": 37.6,
+      "score": 52.3,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 12,
       "trade_with_us_pct": 5,
@@ -1851,10 +2427,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SVN": {
-      "score": 36.2,
+      "score": 50.9,
       "allied_institutions_exposure": 52,
       "fdi_from_us": 10,
       "trade_with_us_pct": 5,
@@ -1862,10 +2441,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SWE": {
-      "score": 47.2,
+      "score": 61.3,
       "allied_institutions_exposure": 62,
       "fdi_from_us": 25,
       "trade_with_us_pct": 10,
@@ -1873,10 +2455,13 @@
       "tech_dependency": 55,
       "financial_exposure": 50,
       "logistics_exposure": 40,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "SWZ": {
-      "score": 11.8,
+      "score": 24.3,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1884,10 +2469,15 @@
       "tech_dependency": 8,
       "financial_exposure": 22,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SYC": {
-      "score": 13.3,
+      "score": 25.8,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1895,10 +2485,15 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "SYR": {
-      "score": 5.4,
+      "score": 17.5,
       "allied_institutions_exposure": 15,
       "fdi_from_us": 2,
       "trade_with_us_pct": 2,
@@ -1906,10 +2501,13 @@
       "tech_dependency": 5,
       "financial_exposure": 10,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TCD": {
-      "score": 11.6,
+      "score": 24.1,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -1917,10 +2515,13 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TGO": {
-      "score": 10.2,
+      "score": 22.6,
       "allied_institutions_exposure": 28,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -1928,10 +2529,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "THA": {
-      "score": 40.6,
+      "score": 54.2,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 20,
       "trade_with_us_pct": 22,
@@ -1939,10 +2545,13 @@
       "tech_dependency": 40,
       "financial_exposure": 45,
       "logistics_exposure": 45,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TJK": {
-      "score": 10.7,
+      "score": 23.3,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -1950,10 +2559,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "TKM": {
-      "score": 8.2,
+      "score": 20.4,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 5,
       "trade_with_us_pct": 3,
@@ -1961,10 +2575,13 @@
       "tech_dependency": 5,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TLS": {
-      "score": 14.2,
+      "score": 27,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -1972,10 +2589,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "TON": {
-      "score": 12.7,
+      "score": 25.4,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -1983,10 +2605,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "TTO": {
-      "score": 26.7,
+      "score": 39.3,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 15,
       "trade_with_us_pct": 30,
@@ -1994,10 +2621,13 @@
       "tech_dependency": 20,
       "financial_exposure": 48,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TUN": {
-      "score": 21.0,
+      "score": 34,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 10,
       "trade_with_us_pct": 8,
@@ -2005,10 +2635,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TUR": {
-      "score": 38.3,
+      "score": 52.5,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 15,
       "trade_with_us_pct": 12,
@@ -2016,10 +2649,13 @@
       "tech_dependency": 35,
       "financial_exposure": 40,
       "logistics_exposure": 50,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TUV": {
-      "score": 9.6,
+      "score": 22.1,
       "allied_institutions_exposure": 25,
       "fdi_from_us": 2,
       "trade_with_us_pct": 3,
@@ -2027,10 +2663,15 @@
       "tech_dependency": 5,
       "financial_exposure": 22,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "TWN": {
-      "score": 62.3,
+      "score": 75.5,
       "allied_institutions_exposure": 55,
       "fdi_from_us": 25,
       "trade_with_us_pct": 60,
@@ -2038,10 +2679,13 @@
       "tech_dependency": 85,
       "financial_exposure": 60,
       "logistics_exposure": 55,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "TZA": {
-      "score": 14.5,
+      "score": 27.1,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -2049,10 +2693,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 12,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "UGA": {
-      "score": 14.7,
+      "score": 27.5,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -2060,10 +2707,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "UKR": {
-      "score": 29.2,
+      "score": 43.4,
       "allied_institutions_exposure": 60,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -2071,10 +2721,13 @@
       "tech_dependency": 20,
       "financial_exposure": 30,
       "logistics_exposure": 25,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "URY": {
-      "score": 20.2,
+      "score": 32.8,
       "allied_institutions_exposure": 42,
       "fdi_from_us": 10,
       "trade_with_us_pct": 10,
@@ -2082,10 +2735,13 @@
       "tech_dependency": 18,
       "financial_exposure": 40,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "USA": {
-      "score": 100.0,
+      "score": 100,
       "allied_institutions_exposure": 100,
       "fdi_from_us": 100,
       "trade_with_us_pct": 100,
@@ -2093,10 +2749,13 @@
       "tech_dependency": 100,
       "financial_exposure": 100,
       "logistics_exposure": 100,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "UZB": {
-      "score": 17.0,
+      "score": 29.9,
       "allied_institutions_exposure": 40,
       "fdi_from_us": 8,
       "trade_with_us_pct": 5,
@@ -2104,10 +2763,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "VAT": {
-      "score": 9.1,
+      "score": 21.5,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 2,
       "trade_with_us_pct": 2,
@@ -2115,10 +2777,16 @@
       "tech_dependency": 10,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us", "trade_with_us_pct"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us",
+          "trade_with_us_pct"
+        ]
+      }
     },
     "VCT": {
-      "score": 17.7,
+      "score": 30.4,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 15,
@@ -2126,10 +2794,15 @@
       "tech_dependency": 12,
       "financial_exposure": 40,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "VEN": {
-      "score": 12.0,
+      "score": 24.1,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 5,
       "trade_with_us_pct": 15,
@@ -2137,10 +2810,13 @@
       "tech_dependency": 10,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "VNM": {
-      "score": 27.1,
+      "score": 39.2,
       "allied_institutions_exposure": 45,
       "fdi_from_us": 12,
       "trade_with_us_pct": 25,
@@ -2148,10 +2824,13 @@
       "tech_dependency": 35,
       "financial_exposure": 35,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "VUT": {
-      "score": 11.6,
+      "score": 24.2,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -2159,10 +2838,15 @@
       "tech_dependency": 8,
       "financial_exposure": 22,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "WSM": {
-      "score": 12.7,
+      "score": 25.4,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 5,
@@ -2170,10 +2854,15 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 10,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "XKX": {
-      "score": 24.8,
+      "score": 38.7,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -2181,10 +2870,13 @@
       "tech_dependency": 15,
       "financial_exposure": 30,
       "logistics_exposure": 30,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "YEM": {
-      "score": 12.2,
+      "score": 25,
       "allied_institutions_exposure": 30,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -2192,10 +2884,15 @@
       "tech_dependency": 5,
       "financial_exposure": 20,
       "logistics_exposure": 15,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": ["fdi_from_us"] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": [
+          "fdi_from_us"
+        ]
+      }
     },
     "ZAF": {
-      "score": 25.8,
+      "score": 38.3,
       "allied_institutions_exposure": 50,
       "fdi_from_us": 15,
       "trade_with_us_pct": 15,
@@ -2203,10 +2900,13 @@
       "tech_dependency": 25,
       "financial_exposure": 40,
       "logistics_exposure": 20,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ZMB": {
-      "score": 12.9,
+      "score": 25.4,
       "allied_institutions_exposure": 35,
       "fdi_from_us": 5,
       "trade_with_us_pct": 5,
@@ -2214,10 +2914,13 @@
       "tech_dependency": 8,
       "financial_exposure": 25,
       "logistics_exposure": 8,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     },
     "ZWE": {
-      "score": 7.4,
+      "score": 19.7,
       "allied_institutions_exposure": 20,
       "fdi_from_us": 3,
       "trade_with_us_pct": 3,
@@ -2225,7 +2928,10 @@
       "tech_dependency": 5,
       "financial_exposure": 15,
       "logistics_exposure": 5,
-      "raw_values": { "data_vintage": "2024-2025", "estimated_fields": [] }
+      "raw_values": {
+        "data_vintage": "2024-2025",
+        "estimated_fields": []
+      }
     }
   }
 }
