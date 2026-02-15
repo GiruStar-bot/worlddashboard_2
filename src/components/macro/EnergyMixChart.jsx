@@ -36,7 +36,7 @@ export default function EnergyMixChart({ data }) {
   if (!data) return null;
 
   return (
-    <DashboardCard title="世界のエネルギーミックス" subtitle="一次エネルギー消費（供給源別、EJ）" source="IEA 2025">
+    <DashboardCard title="世界のエネルギー" subtitle="一次エネルギー消費（供給源別、EJ）" source="IEA 2025">
       <ResponsiveContainer width="100%" height={320}>
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
           <defs>
