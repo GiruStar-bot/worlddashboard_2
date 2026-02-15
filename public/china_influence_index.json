@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "1.0",
+    "version": "1.1",
     "as_of": "2026-02-15",
-    "methodology": "Composite index: trade exposure (30%) + BRI participation (20%) + Chinese FDI (20%) + AIIB membership (10%) + infrastructure exposure (20%). Each indicator normalized 0–100 before weighting.",
+    "methodology": "Composite China Influence Index v1.1 (0-100). Refresh formula: score = clamp[0,100](0.90*base_score + 12 + 0.08*max(base_score-45,0) - 0.04*max(20-base_score,0)), where base_score is the previous composite index derived from trade exposure (30%), BRI participation (20%), Chinese FDI (20%), AIIB membership (10%), and infrastructure exposure (20%). Output rounded to one decimal (whole-number values may appear without trailing .0 in JSON serialization).",
     "sources": [
       "IMF IMTS / UN Comtrade bilateral trade data",
       "PRC Belt & Road Initiative country list (MFA)",
@@ -12,205 +12,605 @@
     ]
   },
   "countries": {
-    "AFG": { "score": 44.8 },
-    "AGO": { "score": 70.3 },
-    "ALB": { "score": 18.2 },
-    "AND": { "score": 4.7 },
-    "ARE": { "score": 41.6 },
-    "ARG": { "score": 40.2 },
-    "ARM": { "score": 24.5 },
-    "ATG": { "score": 34.8 },
-    "AUS": { "score": 48.4 },
-    "AUT": { "score": 22.3 },
-    "AZE": { "score": 35.1 },
-    "BDI": { "score": 29.7 },
-    "BEL": { "score": 22.1 },
-    "BEN": { "score": 34.6 },
-    "BFA": { "score": 32.4 },
-    "BGD": { "score": 55.2 },
-    "BGR": { "score": 17.8 },
-    "BHR": { "score": 20.3 },
-    "BHS": { "score": 24.6 },
-    "BIH": { "score": 21.9 },
-    "BLR": { "score": 42.1 },
-    "BLZ": { "score": 5.2 },
-    "BOL": { "score": 40.4 },
-    "BRA": { "score": 45.3 },
-    "BRB": { "score": 17.6 },
-    "BRN": { "score": 35.4 },
-    "BTN": { "score": 9.8 },
-    "BWA": { "score": 30.2 },
-    "CAF": { "score": 28.1 },
-    "CAN": { "score": 22.4 },
-    "CHE": { "score": 20.1 },
-    "CHL": { "score": 47.8 },
-    "CHN": { "score": 100.0 },
-    "CIV": { "score": 37.9 },
-    "CMR": { "score": 47.6 },
-    "COD": { "score": 64.7 },
-    "COG": { "score": 57.8 },
-    "COL": { "score": 25.3 },
-    "COM": { "score": 29.6 },
-    "CPV": { "score": 18.4 },
-    "CRI": { "score": 28.3 },
-    "CUB": { "score": 52.1 },
-    "CYP": { "score": 21.7 },
-    "CZE": { "score": 18.2 },
-    "DEU": { "score": 30.4 },
-    "DJI": { "score": 78.2 },
-    "DMA": { "score": 32.1 },
-    "DNK": { "score": 14.8 },
-    "DOM": { "score": 25.4 },
-    "DZA": { "score": 42.3 },
-    "ECU": { "score": 47.6 },
-    "EGY": { "score": 52.4 },
-    "ERI": { "score": 30.1 },
-    "ESH": { "score": 4.5 },
-    "ESP": { "score": 20.2 },
-    "EST": { "score": 11.8 },
-    "ETH": { "score": 72.1 },
-    "FIN": { "score": 18.2 },
-    "FJI": { "score": 45.3 },
-    "FRA": { "score": 24.6 },
-    "FSM": { "score": 15.2 },
-    "GAB": { "score": 42.4 },
-    "GBR": { "score": 24.8 },
-    "GEO": { "score": 32.3 },
-    "GHA": { "score": 50.1 },
-    "GIN": { "score": 55.4 },
-    "GMB": { "score": 30.2 },
-    "GNB": { "score": 22.4 },
-    "GNQ": { "score": 48.1 },
-    "GRC": { "score": 42.3 },
-    "GRD": { "score": 28.4 },
-    "GRL": { "score": 17.6 },
-    "GTM": { "score": 5.1 },
-    "GUY": { "score": 22.3 },
-    "HND": { "score": 25.2 },
-    "HRV": { "score": 28.1 },
-    "HTI": { "score": 5.3 },
-    "HUN": { "score": 45.2 },
-    "IDN": { "score": 55.4 },
-    "IND": { "score": 30.2 },
-    "IRL": { "score": 15.3 },
-    "IRN": { "score": 55.1 },
-    "IRQ": { "score": 42.4 },
-    "ISL": { "score": 14.7 },
-    "ISR": { "score": 30.4 },
-    "ITA": { "score": 28.2 },
-    "JAM": { "score": 35.1 },
-    "JOR": { "score": 22.1 },
-    "JPN": { "score": 28.4 },
-    "KAZ": { "score": 65.3 },
-    "KEN": { "score": 68.4 },
-    "KGZ": { "score": 70.2 },
-    "KHM": { "score": 82.1 },
-    "KIR": { "score": 35.4 },
-    "KNA": { "score": 20.3 },
-    "KOR": { "score": 35.2 },
-    "KWT": { "score": 28.4 },
-    "LAO": { "score": 85.3 },
-    "LBN": { "score": 18.2 },
-    "LBR": { "score": 30.4 },
-    "LBY": { "score": 15.1 },
-    "LCA": { "score": 18.3 },
-    "LIE": { "score": 4.8 },
-    "LKA": { "score": 72.4 },
-    "LSO": { "score": 22.1 },
-    "LTU": { "score": 8.2 },
-    "LUX": { "score": 18.4 },
-    "LVA": { "score": 12.1 },
-    "MAR": { "score": 28.3 },
-    "MCO": { "score": 5.1 },
-    "MDA": { "score": 15.2 },
-    "MDG": { "score": 35.4 },
-    "MDV": { "score": 55.2 },
-    "MEX": { "score": 25.1 },
-    "MHL": { "score": 5.2 },
-    "MKD": { "score": 25.3 },
-    "MLI": { "score": 35.2 },
-    "MLT": { "score": 18.1 },
-    "MMR": { "score": 75.4 },
-    "MNE": { "score": 42.3 },
-    "MNG": { "score": 72.1 },
-    "MOZ": { "score": 50.2 },
-    "MRT": { "score": 30.4 },
-    "MUS": { "score": 32.1 },
-    "MWI": { "score": 25.3 },
-    "MYS": { "score": 58.2 },
-    "NAM": { "score": 35.1 },
-    "NCL": { "score": 20.2 },
-    "NER": { "score": 35.4 },
-    "NGA": { "score": 52.3 },
-    "NIC": { "score": 35.1 },
-    "NLD": { "score": 22.3 },
-    "NOR": { "score": 14.6 },
-    "NPL": { "score": 55.3 },
-    "NRU": { "score": 30.2 },
-    "NZL": { "score": 42.1 },
-    "OMN": { "score": 35.2 },
-    "PAK": { "score": 82.4 },
-    "PAN": { "score": 42.3 },
-    "PER": { "score": 50.4 },
-    "PHL": { "score": 42.1 },
-    "PLW": { "score": 5.1 },
-    "PNG": { "score": 45.2 },
-    "POL": { "score": 25.4 },
-    "PRK": { "score": 88.2 },
-    "PRT": { "score": 32.1 },
-    "PRY": { "score": 5.3 },
-    "PSE": { "score": 15.2 },
-    "QAT": { "score": 30.1 },
-    "ROU": { "score": 18.4 },
-    "RUS": { "score": 58.3 },
-    "RWA": { "score": 35.2 },
-    "SAU": { "score": 40.1 },
-    "SDN": { "score": 52.4 },
-    "SEN": { "score": 45.3 },
-    "SGP": { "score": 52.1 },
-    "SLB": { "score": 62.4 },
-    "SLE": { "score": 42.1 },
-    "SLV": { "score": 28.4 },
-    "SMR": { "score": 5.2 },
-    "SOM": { "score": 20.1 },
-    "SRB": { "score": 55.2 },
-    "SSD": { "score": 45.1 },
-    "STP": { "score": 28.2 },
-    "SUR": { "score": 20.4 },
-    "SVK": { "score": 18.3 },
-    "SVN": { "score": 18.1 },
-    "SWE": { "score": 12.4 },
-    "SWZ": { "score": 5.1 },
-    "SYC": { "score": 30.2 },
-    "SYR": { "score": 25.1 },
-    "TCD": { "score": 35.2 },
-    "TGO": { "score": 38.4 },
-    "THA": { "score": 52.3 },
-    "TJK": { "score": 72.1 },
-    "TKM": { "score": 58.4 },
-    "TLS": { "score": 20.3 },
-    "TON": { "score": 42.1 },
-    "TTO": { "score": 20.2 },
-    "TUN": { "score": 22.3 },
-    "TUR": { "score": 38.2 },
-    "TUV": { "score": 5.3 },
-    "TWN": { "score": 32.4 },
-    "TZA": { "score": 58.1 },
-    "UGA": { "score": 52.3 },
-    "UKR": { "score": 22.1 },
-    "URY": { "score": 28.4 },
-    "USA": { "score": 22.3 },
-    "UZB": { "score": 48.2 },
-    "VAT": { "score": 4.6 },
-    "VCT": { "score": 18.2 },
-    "VEN": { "score": 58.1 },
-    "VNM": { "score": 45.2 },
-    "VUT": { "score": 40.1 },
-    "WSM": { "score": 38.2 },
-    "XKX": { "score": 12.3 },
-    "YEM": { "score": 15.4 },
-    "ZAF": { "score": 48.1 },
-    "ZMB": { "score": 72.3 },
-    "ZWE": { "score": 58.2 }
+    "AFG": {
+      "score": 52.3
+    },
+    "AGO": {
+      "score": 77.3
+    },
+    "ALB": {
+      "score": 28.3
+    },
+    "AND": {
+      "score": 15.6
+    },
+    "ARE": {
+      "score": 49.4
+    },
+    "ARG": {
+      "score": 48.2
+    },
+    "ARM": {
+      "score": 34
+    },
+    "ATG": {
+      "score": 43.3
+    },
+    "AUS": {
+      "score": 55.8
+    },
+    "AUT": {
+      "score": 32.1
+    },
+    "AZE": {
+      "score": 43.6
+    },
+    "BDI": {
+      "score": 38.7
+    },
+    "BEL": {
+      "score": 31.9
+    },
+    "BEN": {
+      "score": 43.1
+    },
+    "BFA": {
+      "score": 41.2
+    },
+    "BGD": {
+      "score": 62.5
+    },
+    "BGR": {
+      "score": 27.9
+    },
+    "BHR": {
+      "score": 30.3
+    },
+    "BHS": {
+      "score": 34.1
+    },
+    "BIH": {
+      "score": 31.7
+    },
+    "BLR": {
+      "score": 49.9
+    },
+    "BLZ": {
+      "score": 16.1
+    },
+    "BOL": {
+      "score": 48.4
+    },
+    "BRA": {
+      "score": 52.8
+    },
+    "BRB": {
+      "score": 27.7
+    },
+    "BRN": {
+      "score": 43.9
+    },
+    "BTN": {
+      "score": 20.4
+    },
+    "BWA": {
+      "score": 39.2
+    },
+    "CAF": {
+      "score": 37.3
+    },
+    "CAN": {
+      "score": 32.2
+    },
+    "CHE": {
+      "score": 30.1
+    },
+    "CHL": {
+      "score": 55.2
+    },
+    "CHN": {
+      "score": 100
+    },
+    "CIV": {
+      "score": 46.1
+    },
+    "CMR": {
+      "score": 55
+    },
+    "COD": {
+      "score": 71.8
+    },
+    "COG": {
+      "score": 65
+    },
+    "COL": {
+      "score": 34.8
+    },
+    "COM": {
+      "score": 38.6
+    },
+    "CPV": {
+      "score": 28.5
+    },
+    "CRI": {
+      "score": 37.5
+    },
+    "CUB": {
+      "score": 59.5
+    },
+    "CYP": {
+      "score": 31.5
+    },
+    "CZE": {
+      "score": 28.3
+    },
+    "DEU": {
+      "score": 39.4
+    },
+    "DJI": {
+      "score": 85
+    },
+    "DMA": {
+      "score": 40.9
+    },
+    "DNK": {
+      "score": 25.1
+    },
+    "DOM": {
+      "score": 34.9
+    },
+    "DZA": {
+      "score": 50.1
+    },
+    "ECU": {
+      "score": 55
+    },
+    "EGY": {
+      "score": 59.8
+    },
+    "ERI": {
+      "score": 39.1
+    },
+    "ESH": {
+      "score": 15.4
+    },
+    "ESP": {
+      "score": 30.2
+    },
+    "EST": {
+      "score": 22.3
+    },
+    "ETH": {
+      "score": 79.1
+    },
+    "FIN": {
+      "score": 28.3
+    },
+    "FJI": {
+      "score": 52.8
+    },
+    "FRA": {
+      "score": 34.1
+    },
+    "FSM": {
+      "score": 25.5
+    },
+    "GAB": {
+      "score": 50.2
+    },
+    "GBR": {
+      "score": 34.3
+    },
+    "GEO": {
+      "score": 41.1
+    },
+    "GHA": {
+      "score": 57.5
+    },
+    "GIN": {
+      "score": 62.7
+    },
+    "GMB": {
+      "score": 39.2
+    },
+    "GNB": {
+      "score": 32.2
+    },
+    "GNQ": {
+      "score": 55.5
+    },
+    "GRC": {
+      "score": 50.1
+    },
+    "GRD": {
+      "score": 37.6
+    },
+    "GRL": {
+      "score": 27.7
+    },
+    "GTM": {
+      "score": 16
+    },
+    "GUY": {
+      "score": 32.1
+    },
+    "HND": {
+      "score": 34.7
+    },
+    "HRV": {
+      "score": 37.3
+    },
+    "HTI": {
+      "score": 16.2
+    },
+    "HUN": {
+      "score": 52.7
+    },
+    "IDN": {
+      "score": 62.7
+    },
+    "IND": {
+      "score": 39.2
+    },
+    "IRL": {
+      "score": 25.6
+    },
+    "IRN": {
+      "score": 62.4
+    },
+    "IRQ": {
+      "score": 50.2
+    },
+    "ISL": {
+      "score": 25
+    },
+    "ISR": {
+      "score": 39.4
+    },
+    "ITA": {
+      "score": 37.4
+    },
+    "JAM": {
+      "score": 43.6
+    },
+    "JOR": {
+      "score": 31.9
+    },
+    "JPN": {
+      "score": 37.6
+    },
+    "KAZ": {
+      "score": 72.4
+    },
+    "KEN": {
+      "score": 75.4
+    },
+    "KGZ": {
+      "score": 77.2
+    },
+    "KHM": {
+      "score": 88.9
+    },
+    "KIR": {
+      "score": 43.9
+    },
+    "KNA": {
+      "score": 30.3
+    },
+    "KOR": {
+      "score": 43.7
+    },
+    "KWT": {
+      "score": 37.6
+    },
+    "LAO": {
+      "score": 92
+    },
+    "LBN": {
+      "score": 28.3
+    },
+    "LBR": {
+      "score": 39.4
+    },
+    "LBY": {
+      "score": 25.4
+    },
+    "LCA": {
+      "score": 28.4
+    },
+    "LIE": {
+      "score": 15.7
+    },
+    "LKA": {
+      "score": 79.4
+    },
+    "LSO": {
+      "score": 31.9
+    },
+    "LTU": {
+      "score": 18.9
+    },
+    "LUX": {
+      "score": 28.5
+    },
+    "LVA": {
+      "score": 22.6
+    },
+    "MAR": {
+      "score": 37.5
+    },
+    "MCO": {
+      "score": 16
+    },
+    "MDA": {
+      "score": 25.5
+    },
+    "MDG": {
+      "score": 43.9
+    },
+    "MDV": {
+      "score": 62.5
+    },
+    "MEX": {
+      "score": 34.6
+    },
+    "MHL": {
+      "score": 16.1
+    },
+    "MKD": {
+      "score": 34.8
+    },
+    "MLI": {
+      "score": 43.7
+    },
+    "MLT": {
+      "score": 28.2
+    },
+    "MMR": {
+      "score": 82.3
+    },
+    "MNE": {
+      "score": 50.1
+    },
+    "MNG": {
+      "score": 79.1
+    },
+    "MOZ": {
+      "score": 57.6
+    },
+    "MRT": {
+      "score": 39.4
+    },
+    "MUS": {
+      "score": 40.9
+    },
+    "MWI": {
+      "score": 34.8
+    },
+    "MYS": {
+      "score": 65.4
+    },
+    "NAM": {
+      "score": 43.6
+    },
+    "NCL": {
+      "score": 30.2
+    },
+    "NER": {
+      "score": 43.9
+    },
+    "NGA": {
+      "score": 59.7
+    },
+    "NIC": {
+      "score": 43.6
+    },
+    "NLD": {
+      "score": 32.1
+    },
+    "NOR": {
+      "score": 24.9
+    },
+    "NPL": {
+      "score": 62.6
+    },
+    "NRU": {
+      "score": 39.2
+    },
+    "NZL": {
+      "score": 49.9
+    },
+    "OMN": {
+      "score": 43.7
+    },
+    "PAK": {
+      "score": 89.2
+    },
+    "PAN": {
+      "score": 50.1
+    },
+    "PER": {
+      "score": 57.8
+    },
+    "PHL": {
+      "score": 49.9
+    },
+    "PLW": {
+      "score": 16
+    },
+    "PNG": {
+      "score": 52.7
+    },
+    "POL": {
+      "score": 34.9
+    },
+    "PRK": {
+      "score": 94.8
+    },
+    "PRT": {
+      "score": 40.9
+    },
+    "PRY": {
+      "score": 16.2
+    },
+    "PSE": {
+      "score": 25.5
+    },
+    "QAT": {
+      "score": 39.1
+    },
+    "ROU": {
+      "score": 28.5
+    },
+    "RUS": {
+      "score": 65.5
+    },
+    "RWA": {
+      "score": 43.7
+    },
+    "SAU": {
+      "score": 48.1
+    },
+    "SDN": {
+      "score": 59.8
+    },
+    "SEN": {
+      "score": 52.8
+    },
+    "SGP": {
+      "score": 59.5
+    },
+    "SLB": {
+      "score": 69.6
+    },
+    "SLE": {
+      "score": 49.9
+    },
+    "SLV": {
+      "score": 37.6
+    },
+    "SMR": {
+      "score": 16.1
+    },
+    "SOM": {
+      "score": 30.1
+    },
+    "SRB": {
+      "score": 62.5
+    },
+    "SSD": {
+      "score": 52.6
+    },
+    "STP": {
+      "score": 37.4
+    },
+    "SUR": {
+      "score": 30.4
+    },
+    "SVK": {
+      "score": 28.4
+    },
+    "SVN": {
+      "score": 28.2
+    },
+    "SWE": {
+      "score": 22.9
+    },
+    "SWZ": {
+      "score": 16
+    },
+    "SYC": {
+      "score": 39.2
+    },
+    "SYR": {
+      "score": 34.6
+    },
+    "TCD": {
+      "score": 43.7
+    },
+    "TGO": {
+      "score": 46.6
+    },
+    "THA": {
+      "score": 59.7
+    },
+    "TJK": {
+      "score": 79.1
+    },
+    "TKM": {
+      "score": 65.6
+    },
+    "TLS": {
+      "score": 30.3
+    },
+    "TON": {
+      "score": 49.9
+    },
+    "TTO": {
+      "score": 30.2
+    },
+    "TUN": {
+      "score": 32.1
+    },
+    "TUR": {
+      "score": 46.4
+    },
+    "TUV": {
+      "score": 16.2
+    },
+    "TWN": {
+      "score": 41.2
+    },
+    "TZA": {
+      "score": 65.3
+    },
+    "UGA": {
+      "score": 59.7
+    },
+    "UKR": {
+      "score": 31.9
+    },
+    "URY": {
+      "score": 37.6
+    },
+    "USA": {
+      "score": 32.1
+    },
+    "UZB": {
+      "score": 55.6
+    },
+    "VAT": {
+      "score": 15.5
+    },
+    "VCT": {
+      "score": 28.3
+    },
+    "VEN": {
+      "score": 65.3
+    },
+    "VNM": {
+      "score": 52.7
+    },
+    "VUT": {
+      "score": 48.1
+    },
+    "WSM": {
+      "score": 46.4
+    },
+    "XKX": {
+      "score": 22.8
+    },
+    "YEM": {
+      "score": 25.7
+    },
+    "ZAF": {
+      "score": 55.5
+    },
+    "ZMB": {
+      "score": 79.3
+    },
+    "ZWE": {
+      "score": 65.4
+    }
   }
 }
