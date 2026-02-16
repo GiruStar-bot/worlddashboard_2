@@ -1999,6 +1999,77 @@
         "summary": "国家管理経済。ガス輸出収入によるインフラ建設（大理石の都市）と社会保障維持がモデルですが、効率性は低いです。"
       }
     }
+  },
+  {
+    "meta": {
+      "schema_version": "1.0",
+      "generated_at": "2026-02-17T01:00:00+09:00",
+      "country_iso3": "SGP",
+      "country_name_ja": "シンガポール共和国",
+      "country_name_en": "Republic of Singapore",
+      "confidence": {
+        "overall": 0.95,
+        "notes": "経済統計はシンガポール統計局（DOS）および通貨庁（MAS）の最新値を反映。政治情勢は2025年末までに実施された総選挙後の新内閣の動向に基づく。"
+      }
+    },
+    "key_takeaways": [
+      {
+        "claim": "ローレンス・ウォン首相の下で4G（第4世代）指導部への権力移譲が完了し、社会契約の再定義（Forward Singapore）を通じた格差是正と包摂的な成長へ舵を切っています。",
+        "evidence": ["SRC_PMO_Forward_Singapore_Report", "SRC_GE2025_Analysis"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "『AIネイション』への進化を加速。政府による大規模なAI計算資源への投資と、グローバル・テック企業（Google, Microsoft, NVIDIA）との提携により、アジアにおけるAIガバナンスと開発の中枢となっています。",
+        "evidence": ["SRC_Smart_Nation_2_0_Blueprint", "SRC_EDB_Investment_Review"],
+        "confidence": 0.9
+      },
+      {
+        "claim": "米中デカップリングが進む中、高度な中立性を維持。サプライチェーンの再編に伴う地域統括拠点（RHQ）や、富裕層によるファミリーオフィスの受け皿として独歩的な存在感を維持しています。",
+        "evidence": ["SRC_MAS_Wealth_Management_Stats", "SRC_MFA_Foreign_Policy_2026"],
+        "confidence": 0.95
+      },
+      {
+        "claim": "2030年のグリーン・プラン達成に向け、ASEAN広域送電網のハブ化や水素エネルギー、炭素市場の構築を主導。環境規制を新たな経済成長の機会へと転換しています。",
+        "evidence": ["SRC_MSE_Green_Plan_Progress"],
+        "confidence": 0.85
+      }
+    ],
+    "analysis": {
+      "resource_endowment": {
+        "summary": "天然資源を持たない『持たざる国』という制約を、世界最高水準の『人的資本』と『信頼という無形資産』、そして『地理的ハブ機能』で克服しています。",
+        "notable_resources": [
+          { 
+            "name": "人的資本 (Human Capital)", 
+            "role": "世界有数のSTEM教育と、グローバルな高度人材を引き寄せる『オーバーシーズ・ネットワーク＆エキスパート・パス（ONE Pass）』。AI・バイオ・金融の専門家集団が最大の資源。", 
+            "evidence": ["SRC_MOM_Labor_Market_Report"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "信頼・ガバナンス (Trust & Governance)", 
+            "role": "法の支配、低い汚職率、透明性の高い規制枠組み。地政学的リスクが高まる中で、安全資産（Safe Haven）としてのブランド価値が急上昇。", 
+            "evidence": ["SRC_Transparency_International_Index"], 
+            "confidence": 0.98 
+          },
+          { 
+            "name": "地理的・デジタル接続性", 
+            "role": "マラッカ海峡の要衝。物理的な港湾・空港（チャンギ空港第5ターミナル計画）に加え、アジアを繋ぐ海底ケーブルの陸揚げ拠点としての重要性。", 
+            "evidence": ["SRC_MPA_Maritime_Stats"], 
+            "confidence": 0.95 
+          }
+        ]
+      },
+      "political_stability": {
+        "summary": "人民行動党（PAP）による長期安定政権。ローレンス・ウォン首相への交代後も政策の継続性は維持されていますが、若年層の価値観多様化や生活コストへの不満に対応するため、より対話的な統治スタイルを模索中。",
+        "key_actors": [
+          { "name": "ローレンス・ウォン", "role": "内閣総理大臣。4Gチームのリーダー。パンデミック対応での評価を背景に、経済刷新と社会契約の更新を主導。" },
+          { "name": "リー・シェンロン", "role": "シニア・ミニスター（国務資政）。前首相としての経験と外交的人脈を活かし、政権の後見人的役割を果たす。" },
+          { "name": "シンガポール通貨庁 (MAS)", "role": "中央銀行として、金融安定とフィンテック・ハブ化、気候変動金融の国際標準化をリード。" }
+        ]
+      },
+      "economic_structure": {
+        "summary": "金融、貿易、高度製造業（バイオ、半導体）、デジタルサービスが柱。現在は『スマート・ネイション 2.0』により、AIの社会実装と、デジタル経済がGDPに占める割合を飛躍的に高める構造改革を断行中。"
+      }
+    }
   }
 ]
 
