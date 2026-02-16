@@ -1,10 +1,11 @@
 import React, { useMemo, useCallback, useState, useEffect, useRef } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
-import { GEO_URL, ISO_MAP } from '../constants/isoMap';
+import { GEO_URL } from '../constants/isoMap';
 import { COUNTRY_COORDINATES, DEFAULT_POSITION } from '../constants/countryCoordinates';
 import { mixColours, COLOUR_LOW, COLOUR_MID, COLOUR_HIGH } from '../utils/colorUtils';
 import { getChinaColour, getNaturalResourceColour } from '../utils/layerColorUtils';
 import { getUSColour } from '../utils/usLayerUtils';
+import { resolveGeoIso } from '../utils/geoIsoResolver';
 
 // Center mobile default view around the Europe/Africa midpoint (longitude, latitude)
 const MOBILE_DEFAULT_POSITION = {
@@ -189,11 +190,7 @@ const WorldMap = React.memo(({ data, activeLayer, chinaInfluenceData, resourcesD
           <Geographies geography={GEO_URL}>
             {({ geographies }) =>
               geographies.map((geo) => {
-                const isoFromProperties = geo.properties?.iso_a3 || geo.properties?.ISO_A3 || geo.properties?.adm0_a3;
-                const geoId = geo.id != null ? String(geo.id) : null;
-                const isoFromNumericId = geoId ? (ISO_MAP[geoId] || ISO_MAP[geoId.padStart(3, '0')]) : null;
-                const isoAlpha3 = isoFromProperties || isoFromNumericId || geoId;
-                const iso = isoAlpha3;
+                const { iso, clickable } = resolveGeoIso(geo);
 
                 let baseFill;
                 if (activeLayer === 'us')        baseFill = getUSColour(usByIso[iso]?.score);
@@ -210,10 +207,14 @@ const WorldMap = React.memo(({ data, activeLayer, chinaInfluenceData, resourcesD
                     fill={baseFill}
                     stroke={isSelected ? "#fff" : "rgba(2, 6, 23, 0.45)"}
                     strokeWidth={isSelected ? 1.5 : 0.6}
-                    style={geoStyle}
+                    style={{
+                      default: geoStyle.default,
+                      hover: { ...geoStyle.hover, cursor: clickable ? 'pointer' : 'not-allowed' },
+                      pressed: geoStyle.pressed,
+                    }}
                     onMouseEnter={(evt) => onHover(iso, { x: evt.clientX, y: evt.clientY })}
                     onMouseLeave={() => onHover(null)}
-                    onClick={() => { if (iso && iso.length === 3) onCountryClick(iso); }}
+                    onClick={() => { if (clickable) onCountryClick(iso); }}
                   />
                 );
               })
