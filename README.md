@@ -91,37 +91,8 @@ Deep Dive Reportボタン	その国に深掘りレポートが存在する場合
 ・マクロ分析パネルの拡張と充実
 ・情報ソースを最新のものへ継続的に更新する運用を新設（Data Freshness Auditと連動）
 ・データ鮮度監査（Data Freshness Audit）を運用し、半年超データを自動的に更新候補へ振り分ける
-・FSIレイヤーは再定義済み計算プロセス（正規化 + 安定性補正）を基準に全国家・地域へ適用する
-
-## World Trendsデータ更新運用
-
-`world_trends_*` は外部RSSソースを定期収集して生成する運用ファイルです。以下コマンドで更新できます。
-
-```bash
-npm run build:world-trends
-```
-
-### 生成物
-- `public/world_trends_events.json`: 正規化済みイベント本体（`iso3`, `region`, `timestamp`, `source`, `severity_signal` を含む）。
-- `public/world_trends_index.json`: 生成時刻・件数・集計・イベントID一覧。
-
-### 実装上の運用仕様
-- 収集ソース: BBC World / NYT World / UN News / Al Jazeera RSS。
-- 正規化: 取得項目を共通イベントスキーマに変換。
-- 重複排除: 同一URLは除外、見出しはトークン類似度（Jaccard）で近似重複を除外。
-- 欠損補完: `iso3` 未解決時は `region` 推定し、地域フォールバックコード（例: `EUR`, `ASI`, `GLB`）を付与。
-
-### 定期実行例（cron）
-毎時15分に更新する場合:
-
-```bash
-15 * * * * cd /path/to/worlddashboard_2 && /usr/bin/npm run build:world-trends >> /var/log/worlddashboard-world-trends.log 2>&1
-```
-
-CI/CDで実行する場合も同コマンドをスケジュールジョブに設定してください。
 
 新機能実装案
-・マクロ分析パネルの拡充
 ・レイヤー増設
 ・情報を静的情報参照だけでなく、外部リポジトリとのパイプラインを構築し、動的情報を参照するサービス新設
 ・GDELTの情報を活用し、地政学リスクが高まっている地域をマーキングし、ユーザーに緊急性、もしくは注視すべき情報を可視化
