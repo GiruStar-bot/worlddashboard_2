@@ -552,6 +552,7 @@ const MapLibreWorldMap = ({
     const startAnimation = () => {
       if (cancelled) return;
       if (!map.getLayer(GDELT_HALO_LAYER_ID)) {
+        // Keep polling until the halo layer is added.
         rafId = requestAnimationFrame(startAnimation);
         return;
       }
