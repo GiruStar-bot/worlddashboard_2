@@ -36,14 +36,14 @@ const DataSourceCredits = ({ activeLayer }) => {
 
   return (
     <div className="absolute bottom-2 left-2 z-20 pointer-events-none select-none">
-      <div className="text-[10px] text-slate-500/60 font-mono leading-tight">
-        <div className="font-semibold opacity-70">
+      <div className="text-[10px] text-slate-200/90 font-mono leading-tight">
+        <div className="font-semibold opacity-80">
           {data.title}
         </div>
-        <div className="opacity-50">
+        <div className="opacity-70">
           Sources: {data.providers}
         </div>
-        <div className="opacity-40 text-[9px]">
+        <div className="opacity-60 text-[9px]">
           Verified: {data.lastVerified}
         </div>
       </div>
