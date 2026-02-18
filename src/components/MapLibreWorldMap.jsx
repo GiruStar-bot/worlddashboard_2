@@ -578,7 +578,6 @@ const MapLibreWorldMap = ({
 
     return () => {
       cancelled = true;
-      hasLoggedStart = false;
       if (rafId) cancelAnimationFrame(rafId);
       // Reset to invisible when overlay is hidden or component unmounts
       if (map.getLayer(GDELT_HALO_LAYER_ID)) {
