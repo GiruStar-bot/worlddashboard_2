@@ -71,7 +71,7 @@ export function getGdeltHaloLayerStyle() {
     // Same filter as the main layer — only render where bubbles exist
     filter: ['<', ['coalesce', ['get', 'risk_score'], 99], -1.0],
     paint: {
-      // ~2.5x the main circle radius for a bolder pulse
+      // ~2.5x the main circle radius for a bolder pulse (per UX update)
       'circle-radius': [
         'interpolate',
         ['linear'],
