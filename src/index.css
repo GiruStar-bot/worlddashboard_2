@@ -43,3 +43,29 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.4);
 }
+
+/* MapLibre Popup Dark Mode Override */
+.maplibregl-popup-content {
+  background: rgba(15, 23, 42, 0.95) !important; /* Slate-900 */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0 !important; /* Slate-200 */
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  padding: 12px 16px;
+  font-family: monospace;
+}
+
+.maplibregl-popup-tip {
+  border-top-color: rgba(15, 23, 42, 0.95) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.95) !important;
+}
+
+.maplibregl-popup-close-button {
+  color: #94a3b8;
+  font-size: 16px;
+  padding: 4px 8px;
+}
+.maplibregl-popup-close-button:hover {
+  color: #fff;
+  background: transparent;
+}

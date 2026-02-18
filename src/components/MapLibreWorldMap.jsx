@@ -545,20 +545,32 @@ const MapLibreWorldMap = ({
   useEffect(() => {
     const map = mapRef.current;
     if (!isMapReady || !map || !showRiskOverlay || !gdeltGeojson) return;
-    if (!map.getLayer(GDELT_HALO_LAYER_ID)) return;
 
     let rafId;
-    const animate = () => {
-      const opacity = (Math.sin(performance.now() / 800) + 1) / 2 * 0.6 + 0.2;
-      if (map.getLayer(GDELT_HALO_LAYER_ID)) {
-        map.setPaintProperty(GDELT_HALO_LAYER_ID, 'circle-opacity', opacity);
-      }
+    let cancelled = false;
+    const startAnimation = () => {
+      if (cancelled || !map.getLayer(GDELT_HALO_LAYER_ID)) return;
+
+      console.log('Animation running...');
+      const animate = () => {
+        const opacity = (Math.sin(performance.now() / 800) + 1) / 2 * 0.7 + 0.1;
+        if (map.getLayer(GDELT_HALO_LAYER_ID)) {
+          map.setPaintProperty(GDELT_HALO_LAYER_ID, 'circle-opacity', opacity);
+        }
+        rafId = requestAnimationFrame(animate);
+      };
       rafId = requestAnimationFrame(animate);
     };
-    rafId = requestAnimationFrame(animate);
+
+    if (map.isStyleLoaded()) {
+      startAnimation();
+    } else {
+      map.once('style.load', startAnimation);
+    }
 
     return () => {
-      cancelAnimationFrame(rafId);
+      cancelled = true;
+      if (rafId) cancelAnimationFrame(rafId);
       // Reset to invisible when overlay is hidden or component unmounts
       if (map.getLayer(GDELT_HALO_LAYER_ID)) {
         map.setPaintProperty(GDELT_HALO_LAYER_ID, 'circle-opacity', 0);
@@ -584,23 +596,18 @@ const MapLibreWorldMap = ({
 
       {/* GDELT risk overlay toggle — moved to top-left to avoid credit overlap */}
       {gdeltGeojson && (
-        <div className="absolute top-4 left-4 z-50 font-sans select-none animate-in fade-in slide-in-from-top-4 duration-700">
-          <button
-            type="button"
-            onClick={() => setShowRiskOverlay((prev) => !prev)}
-            className={`flex items-center gap-2 backdrop-blur-md border rounded-lg px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 ${
-              showRiskOverlay
-                ? 'bg-red-900/90 text-red-100 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]'
-                : 'bg-slate-800/90 text-slate-300 border-white/10 shadow-2xl'
-            }`}
-          >
-            <span
-              className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
-              style={{ background: showRiskOverlay ? '#ef4444' : '#475569' }}
-            />
-            <span>LIVE RISK MONITOR</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setShowRiskOverlay((prev) => !prev)}
+          className={`absolute top-24 left-4 z-[9999] flex items-center gap-2 px-4 py-2 rounded-full border shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-xs cursor-pointer ${
+            showRiskOverlay
+              ? 'bg-red-950/90 border-red-500 text-red-100 shadow-[0_0_15px_rgba(239,68,68,0.6)] animate-pulse'
+              : 'bg-slate-900/90 border-slate-600 text-slate-400 hover:text-slate-200 hover:border-slate-400'
+          }`}
+        >
+          <span className={showRiskOverlay ? 'text-red-500' : 'text-slate-400'}>●</span>
+          <span>LIVE RISK MONITOR</span>
+        </button>
       )}
 
       <div className="absolute bottom-4 right-8 z-20 font-sans select-none animate-in fade-in slide-in-from-bottom-4 duration-700 pointer-events-none">
