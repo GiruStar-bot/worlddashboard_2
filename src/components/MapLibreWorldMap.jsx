@@ -598,12 +598,13 @@ const MapLibreWorldMap = ({
           {[0, 20, 40, 60, 80, 100].map((pos) => (
             <span
               key={pos}
+              aria-hidden="true"
               className="absolute top-0 h-3 w-[1px] bg-white/70"
               style={{ left: `${pos}%` }}
             />
           ))}
         </div>
-        <div className="flex justify-between mt-1">
+        <div className="flex justify-between mt-1" aria-label="Legend scale from 0 to 100">
           <span className="text-white text-[10px] font-mono opacity-90">0</span>
           <span className="text-white text-[10px] font-mono opacity-90">100</span>
         </div>
