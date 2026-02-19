@@ -9,6 +9,18 @@ import {
   GDELT_LAYER_ID,
   GDELT_HALO_LAYER_ID,
 } from '../utils/gdeltLayerUtils';
+import {
+  buildChokePointGeojson,
+  getChokePointHaloStyle,
+  getChokePointRingStyle,
+  getChokePointDiamondStyle,
+  getChokePointLabelStyle,
+  CHOKE_POINT_SOURCE_ID,
+  CHOKE_POINT_HALO_LAYER_ID,
+  CHOKE_POINT_RING_LAYER_ID,
+  CHOKE_POINT_DIAMOND_LAYER_ID,
+  CHOKE_POINT_LABEL_LAYER_ID,
+} from '../utils/chokePointLayerUtils';
 
 const MOBILE_DEFAULT_POSITION = {
   coordinates: [10, 35],
@@ -161,6 +173,8 @@ const MapLibreWorldMap = ({
   const [showRiskOverlay, setShowRiskOverlay] = useState(true);
   const [gdeltGeojson, setGdeltGeojson] = useState(null);
   const gdeltPopupRef = useRef(null);
+  const [showChokePoints, setShowChokePoints] = useState(true);
+  const chokePopupRef = useRef(null);
 
   const legendConfig = useMemo(() => layerStyles[activeLayer] || layerStyles.fsi, [activeLayer]);
   const scoreMaps = useMemo(
@@ -356,6 +370,22 @@ const MapLibreWorldMap = ({
         if (!country) return;
         onCountryClick(country.iso);
       });
+
+      // ── Chokepoints: add source and layers ──────────────────────────────
+      const cpGeojson = buildChokePointGeojson();
+      map.addSource(CHOKE_POINT_SOURCE_ID, { type: 'geojson', data: cpGeojson });
+
+      const halo = getChokePointHaloStyle();
+      map.addLayer({ id: CHOKE_POINT_HALO_LAYER_ID, source: CHOKE_POINT_SOURCE_ID, ...halo });
+
+      const ring = getChokePointRingStyle();
+      map.addLayer({ id: CHOKE_POINT_RING_LAYER_ID, source: CHOKE_POINT_SOURCE_ID, ...ring });
+
+      const diamond = getChokePointDiamondStyle();
+      map.addLayer({ id: CHOKE_POINT_DIAMOND_LAYER_ID, source: CHOKE_POINT_SOURCE_ID, ...diamond });
+
+      const label = getChokePointLabelStyle();
+      map.addLayer({ id: CHOKE_POINT_LABEL_LAYER_ID, source: CHOKE_POINT_SOURCE_ID, ...label });
     });
 
     return () => {
@@ -558,6 +588,84 @@ const MapLibreWorldMap = ({
     return () => cancelAnimationFrame(rafId);
   }, [isMapReady]);
 
+  // ── Chokepoints: toggle layer visibility ────────────────────────────────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!isMapReady || !map || !map.getLayer(CHOKE_POINT_RING_LAYER_ID)) return;
+
+    const vis = showChokePoints ? 'visible' : 'none';
+    [CHOKE_POINT_HALO_LAYER_ID, CHOKE_POINT_RING_LAYER_ID, CHOKE_POINT_DIAMOND_LAYER_ID, CHOKE_POINT_LABEL_LAYER_ID].forEach((layerId) => {
+      if (map.getLayer(layerId)) map.setLayoutProperty(layerId, 'visibility', vis);
+    });
+
+    if (!showChokePoints && chokePopupRef.current) {
+      chokePopupRef.current.remove();
+      chokePopupRef.current = null;
+    }
+  }, [isMapReady, showChokePoints]);
+
+  // ── Chokepoints: halo pulsing animation ─────────────────────────────────
+  useEffect(() => {
+    if (!isMapReady) return;
+
+    let rafId;
+    const animate = () => {
+      rafId = requestAnimationFrame(animate);
+      const map = mapRef.current;
+      if (!map || !map.getLayer(CHOKE_POINT_HALO_LAYER_ID)) return;
+
+      const opacity = (Math.sin(performance.now() / 800) + 1) / 2 * 0.35 + 0.08;
+      map.setPaintProperty(CHOKE_POINT_HALO_LAYER_ID, 'circle-opacity', opacity);
+    };
+
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, [isMapReady]);
+
+  // ── Chokepoints: popup on click ─────────────────────────────────────────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!isMapReady || !map || !maplibre || !map.getLayer(CHOKE_POINT_DIAMOND_LAYER_ID)) return;
+
+    const handleClick = (event) => {
+      const feature = event.features?.[0];
+      if (!feature) return;
+
+      const { name, type: cpType, riskLevel } = feature.properties;
+      const coordinates = feature.geometry.coordinates.slice();
+
+      if (chokePopupRef.current) {
+        chokePopupRef.current.remove();
+        chokePopupRef.current = null;
+      }
+
+      const riskColors = { high: '#f97316', medium: '#06b6d4', low: '#22d3ee' };
+      const riskColor = riskColors[riskLevel] || '#06b6d4';
+      const typeLabel = cpType === 'energy' ? 'Energy Route' : 'Trade Route';
+
+      const popup = new maplibre.Popup({ closeButton: true, closeOnClick: true, maxWidth: '240px' })
+        .setLngLat(coordinates)
+        .setHTML(`
+          <div style="font-family:monospace;padding:4px 2px;background:#0f172a;color:#e2e8f0;border:1px solid ${riskColor};border-radius:4px;">
+            <div style="font-weight:700;font-size:13px;margin-bottom:4px;color:${riskColor};">${name}</div>
+            <div style="font-size:11px;margin-bottom:2px;">Type: <strong>${typeLabel}</strong></div>
+            <div style="font-size:11px;">Risk: <strong style="color:${riskColor}">${riskLevel.toUpperCase()}</strong></div>
+          </div>
+        `)
+        .addTo(map);
+
+      chokePopupRef.current = popup;
+    };
+
+    map.on('click', CHOKE_POINT_DIAMOND_LAYER_ID, handleClick);
+    map.on('mouseenter', CHOKE_POINT_DIAMOND_LAYER_ID, () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', CHOKE_POINT_DIAMOND_LAYER_ID, () => { map.getCanvas().style.cursor = ''; });
+
+    return () => {
+      map.off('click', CHOKE_POINT_DIAMOND_LAYER_ID, handleClick);
+    };
+  }, [isMapReady, maplibre]);
+
   return (
     <div data-testid="world-map" className="w-full h-full bg-[#020617] relative">
       <div ref={mapContainerRef} className="w-full h-full" />
@@ -589,6 +697,20 @@ const MapLibreWorldMap = ({
           <span>LIVE RISK MONITOR</span>
         </button>
       )}
+
+      {/* Chokepoint overlay toggle */}
+      <button
+        type="button"
+        onClick={() => setShowChokePoints((prev) => !prev)}
+        className={`absolute top-[100px] left-4 z-[9999] flex items-center gap-1.5 px-2 py-0.5 rounded-full border shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-[10px] cursor-pointer ${
+          showChokePoints
+            ? 'bg-cyan-950/90 border-cyan-500 text-cyan-100 shadow-[0_0_15px_rgba(6,182,212,0.5)]'
+            : 'bg-slate-900/90 border-slate-600 text-slate-400 hover:text-slate-200 hover:border-slate-400'
+        }`}
+      >
+        <span className={showChokePoints ? 'text-cyan-400' : 'text-slate-400'}>◆</span>
+        <span>CHOKEPOINTS</span>
+      </button>
 
       <div className="absolute bottom-2 right-8 z-50 w-48 pointer-events-none">
         <div
