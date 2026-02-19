@@ -579,7 +579,7 @@ const MapLibreWorldMap = ({
         <button
           type="button"
           onClick={() => setShowRiskOverlay((prev) => !prev)}
-          className={`absolute top-[60px] left-4 z-[9999] flex items-center gap-1.5 px-2 py-0.5 rounded-full border shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-[10px] cursor-pointer ${
+          className={`absolute top-[64px] left-4 z-[9999] flex items-center gap-1.5 px-2 py-0.5 rounded-full border shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-[10px] cursor-pointer ${
             showRiskOverlay
               ? 'bg-red-950/90 border-red-500 text-red-100 shadow-[0_0_15px_rgba(239,68,68,0.6)] animate-pulse'
               : 'bg-slate-900/90 border-slate-600 text-slate-400 hover:text-slate-200 hover:border-slate-400'
@@ -592,7 +592,7 @@ const MapLibreWorldMap = ({
 
       <div className="absolute bottom-8 right-8 z-50 w-48 pointer-events-none">
         <div
-          className="h-2 w-full rounded-full relative"
+          className="h-2 w-full rounded-full relative border border-black/90 shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
           style={{ background: legendConfig.gradient }}
         >
           {[0, 20, 40, 60, 80, 100].map((pos) => (
