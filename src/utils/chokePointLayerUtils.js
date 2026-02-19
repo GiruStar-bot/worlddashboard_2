@@ -9,24 +9,30 @@ export const CHOKE_POINT_LABEL_LAYER_ID = 'chokepoint-label';
 
 /**
  * Risk-level colour mapping:
- *   high   → alert orange (#f97316)
- *   medium → cyan (#06b6d4)
- *   low    → light cyan (#22d3ee)
+ *   critical → intense red (#ef4444)
+ *   high     → alert orange (#f97316)
+ *   medium   → cyan (#06b6d4)
+ *   low      → light cyan (#22d3ee)
  */
 const RISK_COLOR_EXPR = [
   'match', ['get', 'riskLevel'],
+  'critical', '#ef4444',
   'high', '#f97316',
   'medium', '#06b6d4',
   '#22d3ee',
 ];
 
 /**
- * Converts the CHOKE_POINTS array into a GeoJSON FeatureCollection.
+ * Converts a choke-points array into a GeoJSON FeatureCollection.
+ * When called without arguments, uses the static CHOKE_POINTS constant.
+ *
+ * @param {Array} [points] - Optional array of choke-point objects to convert.
  */
-export function buildChokePointGeojson() {
+export function buildChokePointGeojson(points) {
+  const source = points || CHOKE_POINTS;
   return {
     type: 'FeatureCollection',
-    features: CHOKE_POINTS.map((cp) => ({
+    features: source.map((cp) => ({
       type: 'Feature',
       geometry: {
         type: 'Point',
