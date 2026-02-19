@@ -4,8 +4,10 @@ import { getLayerScoreMaps } from '../utils/layerScoreUtils';
 import {
   fetchAndBuildGdeltGeojson,
   getGdeltLayerStyle,
+  getGdeltHaloLayerStyle,
   GDELT_SOURCE_ID,
   GDELT_LAYER_ID,
+  GDELT_HALO_LAYER_ID,
 } from '../utils/gdeltLayerUtils';
 
 const MOBILE_DEFAULT_POSITION = {
@@ -449,6 +451,15 @@ const MapLibreWorldMap = ({
 
     map.addSource(GDELT_SOURCE_ID, { type: 'geojson', data: gdeltGeojson });
 
+    const haloStyle = getGdeltHaloLayerStyle();
+    map.addLayer({
+      id: GDELT_HALO_LAYER_ID,
+      source: GDELT_SOURCE_ID,
+      type: haloStyle.type,
+      filter: haloStyle.filter,
+      paint: haloStyle.paint,
+    });
+
     const style = getGdeltLayerStyle();
     map.addLayer({
       id: GDELT_LAYER_ID,
@@ -456,7 +467,6 @@ const MapLibreWorldMap = ({
       type: style.type,
       filter: style.filter,
       paint: style.paint,
-      // No beforeId: render on top of all fill/line layers, below no explicit label layer exists
     });
 
     // Popup on bubble click
@@ -517,13 +527,36 @@ const MapLibreWorldMap = ({
     const map = mapRef.current;
     if (!isMapReady || !map || !map.getLayer(GDELT_LAYER_ID)) return;
 
-    map.setLayoutProperty(GDELT_LAYER_ID, 'visibility', showRiskOverlay ? 'visible' : 'none');
+    const vis = showRiskOverlay ? 'visible' : 'none';
+    map.setLayoutProperty(GDELT_LAYER_ID, 'visibility', vis);
+    if (map.getLayer(GDELT_HALO_LAYER_ID)) {
+      map.setLayoutProperty(GDELT_HALO_LAYER_ID, 'visibility', vis);
+    }
 
     if (!showRiskOverlay && gdeltPopupRef.current) {
       gdeltPopupRef.current.remove();
       gdeltPopupRef.current = null;
     }
   }, [isMapReady, showRiskOverlay]);
+
+  // ── GDELT: persistent halo pulsing animation loop ───────────────────────
+  useEffect(() => {
+    if (!isMapReady) return;
+
+    let rafId;
+    const animate = () => {
+      rafId = requestAnimationFrame(animate);
+
+      const map = mapRef.current;
+      if (!map || !map.getLayer(GDELT_HALO_LAYER_ID)) return;
+
+      const opacity = (Math.sin(performance.now() / 600) + 1) / 2 * 0.5 + 0.1;
+      map.setPaintProperty(GDELT_HALO_LAYER_ID, 'circle-opacity', opacity);
+    };
+
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, [isMapReady]);
 
   return (
     <div data-testid="world-map" className="w-full h-full bg-[#020617] relative">
