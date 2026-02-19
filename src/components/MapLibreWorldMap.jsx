@@ -31,6 +31,12 @@ import {
   SEA_LANE_LAYER_ID,
 } from '../utils/seaLaneLayerUtils';
 
+const SEA_LANE_HIGHLIGHT_WIDTH = 4.5;
+const SEA_LANE_DEFAULT_WIDTH = 2.0;
+const SEA_LANE_HIGHLIGHT_OPACITY = 1.0;
+const SEA_LANE_DIMMED_OPACITY = 0.3;
+const SEA_LANE_DEFAULT_OPACITY = 0.6;
+
 const MOBILE_DEFAULT_POSITION = {
   coordinates: [10, 35],
   zoom: 2.2,
@@ -673,14 +679,14 @@ const MapLibreWorldMap = ({
 
     if (kodokuRouteId && showKodokuPanel) {
       map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-width', [
-        'case', ['==', ['get', 'id'], kodokuRouteId], 4.5, 2.0,
+        'case', ['==', ['get', 'id'], kodokuRouteId], SEA_LANE_HIGHLIGHT_WIDTH, SEA_LANE_DEFAULT_WIDTH,
       ]);
       map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-opacity', [
-        'case', ['==', ['get', 'id'], kodokuRouteId], 1.0, 0.3,
+        'case', ['==', ['get', 'id'], kodokuRouteId], SEA_LANE_HIGHLIGHT_OPACITY, SEA_LANE_DIMMED_OPACITY,
       ]);
     } else {
-      map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-width', 2.0);
-      map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-opacity', 0.6);
+      map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-width', SEA_LANE_DEFAULT_WIDTH);
+      map.setPaintProperty(SEA_LANE_LAYER_ID, 'line-opacity', SEA_LANE_DEFAULT_OPACITY);
     }
   }, [isMapReady, kodokuRouteId, showKodokuPanel]);
 

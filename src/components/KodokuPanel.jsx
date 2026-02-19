@@ -35,7 +35,8 @@ const KodokuPanel = ({ onRouteSelect }) => {
     if (selectedRouteId) {
       onRouteSelect?.(selectedRouteId);
     }
-  }, [selectedRouteId, onRouteSelect]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedRouteId]);
 
   const getSurvivalColor = (rate) => {
     if (rate >= 90) return 'text-cyan-400';
