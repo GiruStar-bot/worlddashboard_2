@@ -574,12 +574,12 @@ const MapLibreWorldMap = ({
         </div>
       )}
 
-      {/* GDELT risk overlay toggle — moved to top-left to avoid credit overlap */}
+      {/* GDELT risk overlay toggle — micro UI size */}
       {gdeltGeojson && (
         <button
           type="button"
           onClick={() => setShowRiskOverlay((prev) => !prev)}
-          className={`absolute top-[68px] left-4 z-[9999] flex items-center gap-2 px-4 py-2 rounded-full border shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-xs cursor-pointer ${
+          className={`absolute top-[60px] left-4 z-[9999] flex items-center gap-1.5 px-2 py-0.5 rounded-full border shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 font-bold tracking-wider text-[10px] cursor-pointer ${
             showRiskOverlay
               ? 'bg-red-950/90 border-red-500 text-red-100 shadow-[0_0_15px_rgba(239,68,68,0.6)] animate-pulse'
               : 'bg-slate-900/90 border-slate-600 text-slate-400 hover:text-slate-200 hover:border-slate-400'
