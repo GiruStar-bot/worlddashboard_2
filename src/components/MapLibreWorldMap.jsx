@@ -21,6 +21,14 @@ import {
   CHOKE_POINT_DIAMOND_LAYER_ID,
   CHOKE_POINT_LABEL_LAYER_ID,
 } from '../utils/chokePointLayerUtils';
+import { CHOKE_POINTS } from '../constants/chokePoints';
+import { calculateDistance } from '../utils/geoMath';
+import {
+  buildSeaLaneGeojson,
+  getSeaLaneLayerStyle,
+  SEA_LANE_SOURCE_ID,
+  SEA_LANE_LAYER_ID,
+} from '../utils/seaLaneLayerUtils';
 
 const MOBILE_DEFAULT_POSITION = {
   coordinates: [10, 35],
@@ -186,6 +194,37 @@ const MapLibreWorldMap = ({
     }),
     [data, chinaInfluenceData, resourcesData, usInfluenceData],
   );
+
+  // ── Dynamic choke-point risk: promote to 'critical' when nearby GDELT
+  //    country has risk_score > 10 within 1500 km ──────────────────────────
+  const dynamicChokePoints = useMemo(() => {
+    if (!gdeltGeojson || !gdeltGeojson.features) return CHOKE_POINTS;
+
+    // Collect high-risk country coordinates from GDELT data
+    const highRiskCoords = [];
+    for (const feature of gdeltGeojson.features) {
+      const score = feature.properties?.risk_score;
+      if (score != null && score > 10.0) {
+        const iso3 = feature.properties.iso3;
+        const coordEntry = COUNTRY_COORDINATES[iso3];
+        if (coordEntry) {
+          highRiskCoords.push(coordEntry.coordinates);
+        }
+      }
+    }
+
+    if (highRiskCoords.length === 0) return CHOKE_POINTS;
+
+    return CHOKE_POINTS.map((cp) => {
+      const isNearHighRisk = highRiskCoords.some(
+        (countryCoord) => calculateDistance(cp.coordinates, countryCoord) <= 1500
+      );
+      if (isNearHighRisk) {
+        return { ...cp, riskLevel: 'critical' };
+      }
+      return cp;
+    });
+  }, [gdeltGeojson]);
 
   const updateSelectedFeatureState = useCallback((nextSelectedIso) => {
     const map = mapRef.current;
@@ -371,8 +410,20 @@ const MapLibreWorldMap = ({
         onCountryClick(country.iso);
       });
 
-      // ── Chokepoints: add source and layers ──────────────────────────────
-      const cpGeojson = buildChokePointGeojson();
+      // ── Sea Lanes: add source and line layer (below choke points) ──────
+      const slGeojson = buildSeaLaneGeojson();
+      map.addSource(SEA_LANE_SOURCE_ID, { type: 'geojson', data: slGeojson });
+
+      const slStyle = getSeaLaneLayerStyle();
+      map.addLayer({
+        id: SEA_LANE_LAYER_ID,
+        source: SEA_LANE_SOURCE_ID,
+        type: slStyle.type,
+        paint: slStyle.paint,
+      });
+
+      // ── Chokepoints: add source and layers (above sea lanes) ──────────
+      const cpGeojson = buildChokePointGeojson(dynamicChokePoints);
       map.addSource(CHOKE_POINT_SOURCE_ID, { type: 'geojson', data: cpGeojson });
 
       const halo = getChokePointHaloStyle();
@@ -467,6 +518,14 @@ const MapLibreWorldMap = ({
       });
     return () => { cancelled = true; };
   }, []);
+
+  // ── Chokepoints: update source when dynamic risk levels change ──────────
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!isMapReady || !map || !map.getSource(CHOKE_POINT_SOURCE_ID)) return;
+    const cpGeojson = buildChokePointGeojson(dynamicChokePoints);
+    map.getSource(CHOKE_POINT_SOURCE_ID).setData(cpGeojson);
+  }, [isMapReady, dynamicChokePoints]);
 
   // ── GDELT: add/update the bubble layer once both map and data are ready ──
   useEffect(() => {
@@ -588,13 +647,13 @@ const MapLibreWorldMap = ({
     return () => cancelAnimationFrame(rafId);
   }, [isMapReady]);
 
-  // ── Chokepoints: toggle layer visibility ────────────────────────────────
+  // ── Chokepoints & Sea Lanes: toggle layer visibility ─────────────────
   useEffect(() => {
     const map = mapRef.current;
     if (!isMapReady || !map || !map.getLayer(CHOKE_POINT_RING_LAYER_ID)) return;
 
     const vis = showChokePoints ? 'visible' : 'none';
-    [CHOKE_POINT_HALO_LAYER_ID, CHOKE_POINT_RING_LAYER_ID, CHOKE_POINT_DIAMOND_LAYER_ID, CHOKE_POINT_LABEL_LAYER_ID].forEach((layerId) => {
+    [CHOKE_POINT_HALO_LAYER_ID, CHOKE_POINT_RING_LAYER_ID, CHOKE_POINT_DIAMOND_LAYER_ID, CHOKE_POINT_LABEL_LAYER_ID, SEA_LANE_LAYER_ID].forEach((layerId) => {
       if (map.getLayer(layerId)) map.setLayoutProperty(layerId, 'visibility', vis);
     });
 
@@ -639,7 +698,7 @@ const MapLibreWorldMap = ({
         chokePopupRef.current = null;
       }
 
-      const riskColors = { high: '#f97316', medium: '#06b6d4', low: '#22d3ee' };
+      const riskColors = { critical: '#ef4444', high: '#f97316', medium: '#06b6d4', low: '#22d3ee' };
       const riskColor = riskColors[riskLevel] || '#06b6d4';
       const typeLabel = cpType === 'energy' ? 'Energy Route' : 'Trade Route';
 
@@ -698,7 +757,7 @@ const MapLibreWorldMap = ({
         </button>
       )}
 
-      {/* Chokepoint overlay toggle */}
+      {/* Chokepoint & Sea Lane overlay toggle */}
       <button
         type="button"
         onClick={() => setShowChokePoints((prev) => !prev)}
@@ -709,7 +768,7 @@ const MapLibreWorldMap = ({
         }`}
       >
         <span className={showChokePoints ? 'text-cyan-400' : 'text-slate-400'}>◆</span>
-        <span>CHOKEPOINTS</span>
+        <span>SEA LANES</span>
       </button>
 
       <div className="absolute bottom-2 right-8 z-50 w-48 pointer-events-none">
