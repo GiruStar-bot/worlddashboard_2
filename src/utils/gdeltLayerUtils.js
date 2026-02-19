@@ -6,6 +6,7 @@ const GDELT_DATA_URL =
 
 export const GDELT_SOURCE_ID = 'gdelt-risk-source';
 export const GDELT_LAYER_ID = 'gdelt-risk-circles';
+export const GDELT_HALO_LAYER_ID = 'gdelt-risk-halo';
 /**
  * Fetches GDELT daily risk scores and joins them with country coordinates,
  * returning a GeoJSON FeatureCollection of Point features.
@@ -86,11 +87,44 @@ export function getGdeltLayerStyle() {
         ['<', ['coalesce', ['get', 'risk_score'], 0], -5.0], '#dc2626',
         '#f59e0b',
       ],
-      'circle-opacity': 0.4,
+      'circle-opacity': 0.6,
       // White stroke so bubbles are readable on any base-layer colour
       'circle-stroke-width': 1.0,
       'circle-stroke-color': '#ffffff',
       'circle-stroke-opacity': 0.5,
+    },
+  };
+}
+
+/**
+ * Returns the MapLibre layer config for the GDELT halo (glow) layer.
+ *
+ * The halo is a larger, blurred circle rendered behind the main marker.
+ * Its opacity starts at 0 and is controlled by a requestAnimationFrame
+ * animation loop in the map component.
+ *
+ * @returns {{ type: string, filter: Array, paint: object }}
+ */
+export function getGdeltHaloLayerStyle() {
+  return {
+    type: 'circle',
+    filter: ['<', ['coalesce', ['get', 'risk_score'], 99], -1.0],
+    paint: {
+      'circle-radius': [
+        'interpolate',
+        ['linear'],
+        ['coalesce', ['get', 'count'], 0],
+        0, 15,
+        100, 30,
+        500, 50,
+      ],
+      'circle-color': [
+        'case',
+        ['<', ['coalesce', ['get', 'risk_score'], 0], -5.0], '#dc2626',
+        '#f59e0b',
+      ],
+      'circle-opacity': 0.0,
+      'circle-blur': 0.5,
     },
   };
 }
