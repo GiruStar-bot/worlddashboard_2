@@ -22,7 +22,7 @@ const KodokuPanel = ({ onRouteSelect }) => {
       .catch((err) => setError(err.message));
   }, []);
 
-  const selectedRoute = report?.routes?.find((r) => r.route_id === selectedRouteId);
+  const selectedRoute = report?.routes?.find((r) => r.id === selectedRouteId);
 
   const handleChange = (e) => {
     const routeId = e.target.value;
@@ -77,8 +77,8 @@ const KodokuPanel = ({ onRouteSelect }) => {
             className="w-full bg-slate-900 border border-slate-700 text-slate-200 text-[10px] px-2 py-1 rounded-sm mb-3 focus:outline-none focus:border-red-700 cursor-pointer"
           >
             {report.routes?.map((route) => (
-              <option key={route.route_id} value={route.route_id}>
-                {route.route_name}
+              <option key={route.id} value={route.id}>
+                {route.name}
               </option>
             ))}
           </select>
@@ -99,10 +99,10 @@ const KodokuPanel = ({ onRouteSelect }) => {
                   <div className="text-slate-500 text-[9px] tracking-wider mb-0.5">CRITICAL NODE</div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-orange-400 font-bold text-xs">
-                      {selectedRoute.critical_node.name}
+                      {selectedRoute.critical_node}
                     </span>
                     <span className="text-red-400 text-[10px]">
-                      BLOCKADE RISK: {selectedRoute.critical_node.blockade_risk}%
+                      BLOCKADE RISK: {selectedRoute.max_disruption_risk}%
                     </span>
                   </div>
                 </div>
